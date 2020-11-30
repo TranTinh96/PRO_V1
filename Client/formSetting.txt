@@ -1,0 +1,53 @@
+import React, { useState } from 'react';
+
+
+
+function ManageSetting() {
+    const [selectedRow, setSelectedRow] = useState(null);
+    return (
+        <div className="row m-r-0 m-l-0">
+            <div className="col-lg-6 col-sm-12 form-left-02 p-r-l-0">
+                <div className="manage-right manage-right-setting">
+                    <div className="form-content-manage">
+                        <div className="title-form-2">
+                            Setting <p>Project</p>
+                        </div>
+
+                        <form >
+                            <div className="form-group from-position">
+                                <label className="form-lable">Name</label>
+                                <input type="text" className="form-control shadow-none input-show rounded-0 input-form-2" name="gmail" />
+                            </div>
+                            <div className="form-group m-t-25 from-position">
+                                <label className="form-lable">Address</label>
+                                <input type="text" className="form-control shadow-none input-show rounded-0 input-form-2" name="password" />
+                            </div>
+                            <div className="form-group m-t-25 from-position">
+                                <label className="form-lable">Token</label>
+                                <input type="text" className="form-control shadow-none input-show rounded-0 input-form-2" name="password" />
+                            </div>
+
+                            <div className="btn-form-container m-t-50">
+                                <button className="btn btn-form shadow-none">
+                                    <div className="btn-login-one"></div>
+                                    <div className="btn-login-two"></div>
+                                    <div className="btn-form-login-content">Submit</div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg-6 form-right-02 p-r-l-0">
+                <div className="container-table">
+               
+
+                </div>
+
+            </div>
+        </div>
+
+    )
+}
+
+export default ManageSetting

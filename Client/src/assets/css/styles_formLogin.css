@@ -1,0 +1,546 @@
+.form-body{
+    min-width: 100vw;
+    min-height: 100vh;
+    position: relative;
+}
+
+/*----------------------------------*/
+.form-left{
+    background: white;
+    position: relative;
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}  
+
+.form-left-02{
+    background: white;
+    position: relative;
+    min-height: cacl(100vh -65px)
+   
+}  
+.logo-container{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+.width-img-form{
+    width: 40px;
+}
+/*----------------------------------*/
+.control-container{
+    position: absolute;
+    height: 100%;
+    margin: 0 auto;
+    display: table;
+    right:-86px;
+    z-index: 1000;  
+}
+
+.control-container div{
+    display: table-cell;
+    vertical-align: middle;
+}
+.control-container div ul{
+    margin-bottom: 0rem !important;
+    padding-inline-start: 0px !important;
+}
+
+.control-select-active{
+    padding: 15px 10px 15px 9px;
+    list-style: none;
+    border-radius: 0px 200px 200px 0px;
+    background-color: white;
+    border: 1px solid #bdbcbc;
+    border-left: 0;
+}
+.control-select-active .active{
+    font-size: 16px;
+    font-weight: 500;
+}
+.control-select{
+    list-style: none;
+    padding: 15px 10px 15px 10px;
+}
+.control-select-link:hover{
+    text-decoration: none;
+}
+.control-select-text{
+    font-size: 16px;
+    font-weight: 500;
+}
+/*----------------------------------*/
+
+.form-content{
+    padding: 20px 50px;
+    max-width: 550px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.form-content-manage{
+    padding: 20px 20px;
+    max-width: 550px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.title-form{
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    color: black;
+}
+.title-form p{
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    color: black;
+    padding-left: 15px;
+}
+.title-form-2{
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    color: black;
+}
+.title-form-2 p{
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    color: black;
+    padding-left: 15px;
+}
+
+.btn-form-container{
+    position: relative;
+}
+
+.btn-form{
+    width: 100%;
+    height: 55px;
+    color: black;
+    border-radius: 0px !important ;
+    border: 2px solid black !important;
+    font-weight: 700;
+    font-size: 19px ;
+
+}
+.btn-form-edit{
+    width: 100%;
+    height: 50px;
+    color: black;
+    border-radius: 0px !important ;
+    border: 2px solid rgb(255, 255, 255) !important;
+    font-weight: 700;
+    font-size: 16px ;
+  
+
+}
+
+.form-marginTop{
+    margin-top: 22px;
+}
+.btn-form-login-content{
+    position: relative;
+    z-index: 3;
+}
+.btn-login-one{
+    background-color: transparent;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.btn-login-two{
+    height: 100%;
+    left: 0; 
+    position: absolute;
+    top: 0;
+    background: black;
+    -webkit-transition: width .3s,color .3s;
+    -o-transition: width .3s,color .3s;
+    transition: width .3s,color .3s;
+    z-index: 2;
+    width: 0;
+}
+.btn-form:hover > .btn-form-login-content{
+    color: white !important;
+   
+}
+
+.btn-form:hover > .btn-login-two{
+    width: 100%;
+}
+
+.input-form{
+    padding :20px 15px 20px 35px;
+    opacity: 1 !important;
+
+}
+.input-form-2{
+    padding :20px 15px 20px 15px;
+
+}
+.form-checkPASS{
+    width: 100%;
+    margin-bottom: 120px;
+}
+.form-checkbox{
+    float: left;
+}
+.form-forgotPass a{
+    float: right;
+    line-height: 2.7;
+    color: rgb(139, 139, 139) !important;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+.form-forgotPass a:hover{
+    color: #5457ff !important;
+}
+
+.form-lable{
+    font-family: 'Poppins', sans-serif !important; 
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: black;
+}
+.from-position{
+    position: relative;
+    margin-bottom: 0rem !important;
+}
+.from-position p{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.from-position p::before{
+    display: inline;
+    content: "⚠ ";
+}
+
+.from-position-temp p{
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+}
+.from-position-temp p::before{
+    display: inline;
+    content: "⚠ ";
+}
+.icon-email{
+    position: absolute;
+    top:45px;
+    left: 10px !important;
+}
+.MuiTypography-body1{
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+}
+.form-line-login{
+    padding: 50px 0;
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+}
+.form-line-login span{
+    width: 100%;
+   font-weight: 600;
+   color: #acaaaa;
+
+
+}
+
+.form-line-login span::after{
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #bdbcbc;
+    width: 45%;
+    top:50%;
+    display: block;
+    left: 0;
+    
+}
+
+
+.form-line-login span::before{
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #bdbcbc;
+    width: 45%;
+    top:50%;
+    display: block;
+    right: 0;
+    
+}
+.form-login-googleFacebook{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.btn-google{
+    padding: 12px;
+    border-radius: 100%;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3) !important;
+}
+/*----------------------------------*/
+.form-right{
+    background: #f7f8fc;
+    min-height: 100vh;
+    
+}
+.form-right-02{
+    background: #f7f8fc;
+    height: 100%;
+    
+}
+.container-img{
+    margin: 0 auto;
+    
+    
+}
+.img-login{
+    display: flex; /* Canh giữa bằng flex */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+   
+}
+
+.input-show{
+    webkit-box-shadow: inset 0 2px 4px 0 rgba(206, 209, 224, 0.20) !important;
+    -moz-box-shadow: inset 0 2px 4px 0 rgba(206, 209, 224, 0.20) !important;
+    box-shadow: inset 0 2px 4px 0 rgba(206, 209, 224, 0.20) !important; 
+}
+
+/*-----Token -------*/
+.form-body-token{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(../Image/back_02.jpg);
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    top: 0px;
+    left: 0px;
+    visibility: inherit;
+    z-index: 20;
+    opacity: 1;
+    margin: 0 auto;
+}
+
+.form-auth-token{
+    position: relative;
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.form-content-token{
+    padding: 20px 50px;
+    max-width: 730px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.form-content-token input{
+    text-align: center;
+}
+.title-form-token{
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: black;
+    letter-spacing: 4px;
+    word-spacing: 10px;
+}
+.title-form-token-2{
+    font-size: 19px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    color: black;
+    letter-spacing: 4px;
+    word-spacing: 10px;
+}
+.icon-enter-token{
+    opacity: 1 !important;
+}
+.btn-form-container-token{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    transition: 1s;
+   
+}
+.btn-form-token{
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 50%;
+    transition: 1s;
+    background-color:rgba(169, 255, 202, 0.192);
+
+}
+.btn-form-container-token:hover{
+    margin-top: 40px;
+  
+}
+.btn-form-token:hover{
+    background-color:rgb(169, 255, 202);
+
+}
+
+/*---------Verification--------*/
+
+.form-body-verification{
+   
+}
+
+.form-auth-verification{
+    
+}
+.form-content-verification{
+    padding: 20px 50px;
+    max-width: 800px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.title-form-verification{
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    color: black;
+    letter-spacing: 5px;
+    word-spacing: 15px;
+}
+.icon-enter-verification{
+    opacity: 1 !important;
+}
+.btn-form-container-verification{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    transition: 1s;
+   
+}
+.btn-form-verification{
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 50%;
+    transition: 1s;
+
+}
+.btn-form-container-verification:hover{
+    margin-top: 40px;
+  
+}
+.btn-form-verification:hover{
+    background-color:rgb(169, 255, 202);
+
+}
+.err-total{
+    color: red;
+    padding-bottom: 20px;
+    font-size: 15px;
+    
+}
+.form-content-resend{
+    padding: 20px 50px;
+    max-width: 600px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.form-content-resend input{
+    text-align: center;
+}
+.btn-form-container-resend{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+   
+   
+}
+.btn-form-resend{
+    display: flex;
+    justify-content: center;
+    padding: 14px 30px;
+    border: 2px solid #d0ecc15b;
+    border-radius: 100px;
+    color: black;
+    font-weight: 700;
+    font-size: 17px;
+    background-color: #d0ecc15b !important;
+    transition: 1s border;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+}
+.btn-form-resend:hover{
+    border: 2px solid #59ff0075;
+  
+}
+.title-form-infomation{
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+    color: rgb(0, 4, 255);
+
+}
+.border-resend{
+    margin-top: 40px;
+    padding-bottom: 10px;
+    border-top: 1px solid #e8e8ff;
+}
+.title-form-link-resend{
+    text-align: right;
+}
+.title-form-link-resend a{
+    text-decoration: none;
+    color: rgb(139, 139, 139) !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.title-form-link-resend a:hover{
+    color: #5457ff !important;
+}
+

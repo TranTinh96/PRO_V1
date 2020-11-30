@@ -1,0 +1,86 @@
+@media (max-width: 576px) {
+    .title-form{
+        margin-bottom: 50px !important;
+    }
+    .logo-container{
+        top: 15px !important;
+        left: 15px !important;
+    }
+    .width-img-form{
+        width: 35px !important;
+    }
+    .form-line-login{
+        padding: 40px 0 20px !important;
+    
+    }
+    .form-checkPASS{
+        margin-bottom: 100px !important;
+    }
+    .form-content{
+        padding: 80px 30px 50px 30px !important;
+        
+    }
+    .form-marginTop{
+        margin-top: 15px !important;
+    }
+    /*----------------------------------*/
+    .control-container{
+        height: 100% ;
+        margin: 0 !important;
+        display: block !important;
+        right:15px !important;
+        top:15px !important;
+    }
+    .control-container div{
+        display: block!important;
+
+    }
+    .control-container div ul{
+        border-radius: 200px;
+     }
+
+    .control-container div ul li{
+       display: inline-block;
+       padding:  3px 0 3px 0px !important ;
+        
+    }
+
+    .control-select-active{
+        border-radius: 200px !important;
+        border: 1px solid #bdbcbc !important;
+        
+    }
+    .control-select{
+        border-radius: 0px !important;
+        border: 0px solid #bdbcbc !important;
+    
+    }
+    .control-select-link{
+        padding: 5px 16px !important;
+    }
+ 
+    .control-select-link:hover{
+        text-decoration: none;
+    }
+    .control-select-text{
+        font-size: 13px !important;
+        font-weight: 500;
+    }
+    /*----------------------------------*/
+    
+}
+@media (max-width: 768px) {
+   
+}
+
+   
+@media (max-width: 992px) {
+    .form-right{
+        display: none !important;
+    }
+   
+}
+@media (min-width: 992px) {
+    
+}
+ 

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body-email {
+            font-family: "Poppins";
+            position: relative;
+            height: 100%;
+            width: 100%;
+            margin-top: 80px;
+
+        }
+
+        .them-email {
+
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: white;
+            top: 50% !important;
+            box-shadow: 0 5px 5px #727df52c;
+
+
+        }
+
+        .email-width{
+            border-radius: 4px;
+        }
+        .email-img{
+            padding-top: 40px;
+            padding-bottom: 30px;
+        }
+        .email-content{
+            padding: 40px;
+            border-top: 3px solid #727cf5;
+            background-color: #fafafa;
+            border-radius: 5px 5px 0 0;
+        }
+        .content-header{
+            font-weight: 600;
+            font-size: 17px;
+            padding-bottom: 15px;
+        }
+        .content-nd{
+            font-size: 15px;
+            line-height: 1.8 !important;
+        }
+       
+        .content-issues{
+            padding-top: 40px;
+            font-size: 15px;
+            line-height: 1.8 !important;
+        }
+        .content-thanks{
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            font-size: 15px;
+            padding-top: 30px;
+        }
+        .content-author{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .content-user{
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .content-user .user{
+            color :#727cf5;
+            font-size: 15px;
+            padding: 5px;
+            font-weight: 500;
+
+        }
+        .content-user .code{
+            color :#727cf5;
+            font-size: 15px;
+            padding: 5px;
+            font-weight: 500;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body-email">
+        <table class="them-email" border="0" cellpadding="0" cellspacing="0" width="100% background:#fafa">
+            <tr>
+                <td align="center" valign="top" class="email-width">
+                    <!--Image-->
+                    <table class="email-img">
+                        <tr>
+                            <td>
+                                <img src="https://i.ibb.co/r4WhyZy/logo2.png" width="40" height="40" style="display: block; border: 0px;" />
+                            </td>
+                        </tr>
+                    </table>
+                    <!---Content-->
+                    <table class="email-content">
+                        <tr>
+                            <td>
+                                <div class="content-infomation">
+                                    
+                                </div>
+                                <div class="content-header">
+                                    Hi.{{userName}} !
+                                </div>
+                                <div class="content-nd">
+                                    Have we got the right email address to reach you on ? To confirm that you can get our emails , just copy code and paste link below <br> {{hostServer}} 
+                                </div>
+                                
+                                <div class="content-user" align="center" >
+                                    <div class="user">User Name : {{userName}}</div>    
+                                    <div class="code">Code : {{token}}</div>    
+                                </div>
+                                <div class="content-issues">
+                                    If you are having any issues with your accout , please don't hesitable to contact us replying to this mail .                               
+                                </div>
+                                
+                                <div class="content-thanks">
+                                    Thanks 
+                                </div>
+                                <div class="content-author">
+                                    Tran Ngoc Tinh
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
