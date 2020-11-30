@@ -239,6 +239,33 @@ module.exports.postResendConfirmEmail = async (req, res) => {
 }
 
 
-//Change password
+//Create accout admin
+module.exports.createAccoutAdmin=async (req, res) => {
+    var reqGmail = process.env.ADMIN_NAME;
+    var newUser = new User({
+        userName: process.env.ADMIN_NAME,
+        email: process.env.ADMIN_MAIL,
+        password: process.env.ADMIN_PASSWORD,
+        isVerified :true
+    })
+    User.getUserByEmail(reqGmail, (err, email) => {
+        if (err) throw err;
+        if (!email) {
+            User.createUser(newUser, (err, user) => {
+                if (err) throw err
+                res.json({
+                    success: true,
+                    message: "New User Register Success"  
+                })
+            })
+        }
+        else {
+            res.json({
+                success: false,
+                message: "Email already exits . Please enter a vaild others"
+            })
+        }
+    })
 
+}
 

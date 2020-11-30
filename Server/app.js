@@ -15,6 +15,7 @@ require("./config/passport")
 var app = express();
 var authRouter = require('./routers/auth.router');
 var projectRouter = require('./api/routers/project.router');
+var authController = require("./controllers/authController");
 
 app.use(express.json());
 app.use(morgan("dev"))
@@ -29,17 +30,11 @@ app.use(passport.initialize());
 mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (err, data) {
   if (err) throw err;
   console.log("Database connect")
+  //authController.createAccoutAdmin();
 });
 
 app.use('/profile', authRouter)
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
-
-app.get("/user",(req,res)=>{
-  res.json({
-      name :"Tran Tinh"
-  })
-})
-
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
