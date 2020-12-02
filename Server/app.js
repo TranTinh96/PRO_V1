@@ -15,7 +15,7 @@ require("./config/passport")
 var app = express();
 var authRouter = require('./routers/auth.router');
 var projectRouter = require('./api/routers/project.router');
-var authController = require("./controllers/authController");
+var {checkAccoutAdmin ,createAccoutAdmin} = require("./config/accoutAdmin")
 
 app.use(express.json());
 app.use(morgan("dev"))
@@ -29,9 +29,16 @@ app.use(passport.initialize());
 //Connect MongoDB
 mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (err, data) {
   if (err) throw err;
-  console.log("Database connect")
-  //authController.createAccoutAdmin();
+  console.log("Database connection")
+  let checkAccout=checkAccoutAdmin();
+  checkAccout.then(function(result) {
+     if(result){
+       createAccoutAdmin();
+     }
+ })
 });
+mongoose.Promise = global.Promise;
+
 
 app.use('/profile', authRouter)
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)

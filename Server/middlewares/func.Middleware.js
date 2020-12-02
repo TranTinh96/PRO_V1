@@ -1,3 +1,3 @@
 module.exports.checkNull = (valueNull) =>{
-   return valueNull ==null ? true :false 
+   return valueNull == null ? true :false 
 }
