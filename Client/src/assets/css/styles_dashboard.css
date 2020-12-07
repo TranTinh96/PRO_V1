@@ -333,9 +333,11 @@
   padding: 4px !important;
 }
 .pcoded-link .pcoded-mtext {
-  color: #dcdcdc;
-  font-size: 15px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   padding-top: 4px;
+  font-family: Poppins,sans-serif !important;
 }
 .pcoded-link .pcoded-mtext :hover {
   color: white !important;
@@ -363,9 +365,11 @@
   padding: 4px !important;
 }
 .pcoded-link-many-element .pcoded-mtext {
-  color: #dcdcdc;
-  font-size: 15px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   padding-top: 4px;
+  font-family: Poppins,sans-serif !important;
 }
 .pcoded-link-many-element .pcoded-mtext :hover {
   color: white !important;
