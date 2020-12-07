@@ -21,6 +21,7 @@ import "./assets/css/screen.css"
 import "./assets/css/styles_home.css"
 import "./assets/css/styles_formLogin.css"
 import "./assets/css/style_calendar.css"
+import "./assets/css/styles_chart.css"
 
 var store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 store.subscribe(() => {

@@ -18,7 +18,7 @@ var app = express();
 var authRouter = require('./routers/auth.router');
 var projectRouter = require('./api/routers/project.router');
 var {checkAccoutAdmin ,createAccoutAdmin} = require("./config/accoutAdmin")
-//var options = require("./config/mqttBroker")
+var options = require("./config/mqttBroker")
 
 // Create the http server 
 const server = require('http').createServer(app); 
@@ -47,27 +47,12 @@ mongoose.Promise = global.Promise;
   
 // Create the Socket IO server on  
 var io = socketio(server); 
-var showMqtt = process.env.MQTT_SERVER + " " +  process.env.MQTT_PORT + " "+process.env.MQTT_USER + " "+ process.env.MQTT_PASSWORD
- console.log("MQTT : "+ showMqtt)
-var options = {
-  port: 15572,
-  host: 'mqtt://hairdresser.cloudmqtt.com',
-  clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-  username: 'qiiwyeiv',
-  password: 'X4hvcjgbyUit',
-  keepalive: 60,
-  reconnectPeriod: 1000,
-  protocolId: 'MQIsdp',
-  protocolVersion: 3,
-  clean: true,
-  encoding: 'utf8'
-};
-var client = mqtt.connect('mqtt://hairdresser.cloudmqtt.com', options);
+
+//Connect Cloud MQTT
+var client = mqtt.connect(process.env.MQTT_SERVER, options);
 
 require("./controllers/mqttController")(client);
 require("./controllers/socketIO_Controller")(io);
-
-
 
 app.use('/profile', authRouter)
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)

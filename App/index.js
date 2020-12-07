@@ -21,7 +21,7 @@ store.subscribe(() => {
 
 });
 
-axios.defaults.baseURL = 'http://192.168.1.61:5000'
+axios.defaults.baseURL = 'http://192.168.1.103:5000'
 
 var authToken = AsyncStorage.getItem('Auth')
 if (authToken) {

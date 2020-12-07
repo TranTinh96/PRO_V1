@@ -1,15 +1,20 @@
-import React from 'react'
-import { Link} from "react-router-dom";
-import logo from "../../assets/Image/logo2.png"
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../assets/Image/logo2.png";
 
 function home() {
+  //useEffect 
+  
   return (
-    <React.Fragment>
+    <>
       <nav className="navbar navbar-header-home">
         <div className="container">
           <div className="navbar-container-home">
             <div className="navbar-left-home">
-              <Link to="/"> <img src={logo} alt="Logo" /></Link>
+              <Link to="/">
+                {" "}
+                <img src={logo} alt="Logo" />
+              </Link>
             </div>
             <div className="navbar-right-home">
               <ul>
@@ -24,8 +29,8 @@ function home() {
           </div>
         </div>
       </nav>
-    </React.Fragment>
-  )
+    </>
+  );
 }
 
-export default home
+export default home;

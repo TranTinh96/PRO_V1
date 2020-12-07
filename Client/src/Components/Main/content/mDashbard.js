@@ -2,6 +2,13 @@ import React, { useState } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link,useHistory } from "react-router-dom";
 import { DatePicker } from 'rc-datepicker';
+import ChartLine_v from "../library/charLine/chartLine_v"
+
+//Image
+import v1 from "../../../assets/Image/vonke/v1.png"
+import v12 from "../../../assets/Image/vonke/v12.png"
+import v13 from "../../../assets/Image/vonke/v13.png"
+import v23 from "../../../assets/Image/vonke/v23.png"
 
 function formatDate(d) {
     var month = parseInt(d.getMonth()) + 1
@@ -85,27 +92,41 @@ function MDashbard() {
                                 </div>
                                 {/* --------------------- Header Dashboard -------------------------*/}
                                 <div className="row m-t-20">
-                                         <div className="col-lg-3 col-md-3 col-sm-12">
+                                         <div className="col-md-6 col-xl-3">
+                                            <div  className="card">
+                                                <div className="card-body">
+                                                    <div className="d-flex  align-items-baseline">
+                                                        <img  src={v1} alt="Joseph" className="img-vonke" />
+                                                        <h5 className="card-title card-title-header mb-0">Phase Voltage</h5>
+                                                    </div>
+                                                    <div className="row card-content-line align-items-center">
+                                                        <div className="col-7 card-data">
+                                                            <h1>220</h1>
+                                                            <h4> V </h4>
+                                                        </div>
+                                                        <div className="col-5">
+                                                            <ChartLine_v/>                                              
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 col-xl-3">
+                                            <div  className="card">
+                                                <div className="card-body">
+                                
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 col-xl-3">
                                             <div  className="card">
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between align-items-baseline">
                                                         <h6 className="card-title mb-0">New Customers</h6>
                                                     </div>
                                                     <div className="row">
-                                                         <button className="btn btn-primary m-t-20 rounded-0 border-0 shadow-none" >SET COOKIE</button>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-3 col-md-3 col-sm-12">
-                                            <div  className="card">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between align-items-baseline">
-                                                        <h6 className="card-title mb-0">New Customers</h6>
-                                                    </div>
-                                                    <div className="row">
 
                                                     </div>
 
@@ -113,21 +134,7 @@ function MDashbard() {
 
                                             </div>
                                         </div>
-                                        <div className="col-lg-3 col-md-3 col-sm-12">
-                                            <div  className="card">
-                                                <div className="card-body">
-                                                    <div className="d-flex justify-content-between align-items-baseline">
-                                                        <h6 className="card-title mb-0">New Customers</h6>
-                                                    </div>
-                                                    <div className="row">
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-3 col-md-3 col-sm-12">
+                                        <div className="col-md-6 col-xl-3">
                                             <div  className="card">
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between align-items-baseline">
@@ -147,7 +154,7 @@ function MDashbard() {
                             <div className='page-chart-dashboard'>
                                 <div className="row">
                                     <div className="col-lg-8 col-sm-12">
-                                        
+                                       
                                     </div>
                                     <div className="col-lg-4 col-sm-12">
 

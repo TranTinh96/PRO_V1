@@ -27,7 +27,7 @@ const MenuLink = ({ lable, to, activeOnlyWhenExact }) => {
 }
 
  function checkNull(valueNull){
-   return valueNull ==null ? true :false 
+   return valueNull == null ? true :false 
  }
 
 function AuRegister() {
@@ -147,7 +147,8 @@ function AuRegister() {
                                         label="I agree to the Temps of User"
                                         inputRef={register({
                                             required: true
-                                        })} name="isTemp"
+                                        })} 
+                                        name="isTemp"
                                     />
                                     {errors.isTemp && <p>Please chose agree Temps</p>}
                                 </div>
