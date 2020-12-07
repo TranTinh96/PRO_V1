@@ -8,7 +8,7 @@ import am4themes_material from "@amcharts/amcharts4/themes/material";
 am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
 
-class Chart extends Component {
+class ChartElectric extends Component {
 
   componentDidMount() {
     var chart = am4core.create("chartLine", am4charts.XYChart);
@@ -19,15 +19,12 @@ class Chart extends Component {
     chart.zoomOutButton.disabled = false;
 
     var value1,value2,value3;
-    socket.on("TEMPERATURE_BON", data => {
-      value1 = data.value1;
-      value2 = data.value2;
-      value3 = data.value3;
-    });
+   
     var i =0;
     var data = [];
     for (i = 0; i <= 30; i++) {
-        data.push({ date: new Date().setSeconds(i - 30), value1: 0 ,value2:0 ,value3:0});
+      
+        data.push({ date: new Date().setSeconds(i - 30), value1:  Math.random() * 10 ,value2 : Math.random() * 100 ,value3: Math.random() * 200});
     }
     
     chart.data = data;
@@ -140,7 +137,6 @@ class Chart extends Component {
             var lastdataItem = series.dataItems.getIndex(series.dataItems.length - 1);
             chart.addData(
                 { date: new Date(lastdataItem.dateX.getTime() + 1000), value1: value1 ,value2:value2,value3:value3},
-                1
             );
         }, 1000);
     }
@@ -239,4 +235,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default ChartElectric;

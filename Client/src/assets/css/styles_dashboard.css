@@ -448,38 +448,34 @@
 }
 .card .card-title-header{
   position: absolute;
-  font-size: 16px;
+  font-size: 14px;
   color: #5b73e8;
   font-weight: 600;
-  margin-top: 12px;
-  margin-left: 60px;
+  margin-top: 14px;
+  margin-left: 52px;
 
 }
 .card-content-line{
-  margin-top: 1rem!important;
+  margin-top: 1.5rem!important;
   -webkit-box-align: center!important;
   -ms-flex-align: center!important;
   align-items: center!important;
 }
-.card-content-line .col-7{
-  padding-left: 12px;
-  padding-right: 12px;
-}
+
 .card-data{
  display: inline;
 }
 .card-data h1{
   display: inline;
-  font-size: 40px;
+  font-size: 36px;
+  font-weight: 500;
+  margin-left: 5px;
  } 
  .card-data h4{
   display: inline;
-  font-size: 25px;
+  font-size: 18px;
+  font-weight: 400;
  } 
-.card-content-line .col-5{
-  padding-left: 12px;
-  padding-right: 12px;
-}
 .shadow-none {
     -webkit-box-shadow: none !important; 
     box-shadow: none !important;
@@ -740,8 +736,8 @@
 
 /**********************************************/
 .img-vonke{
-  height: 2.8rem;
-  width: 2.8rem;
+  height: 2.5rem;
+  width: 2.5rem;
   padding: .25rem!important;
   margin-right: 1rem!important;
   border: 2px solid  rgba(42,79,215,.2) !important;

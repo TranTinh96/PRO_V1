@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link,useHistory } from "react-router-dom";
 import { DatePicker } from 'rc-datepicker';
+//Chart
 import ChartLine_v from "../library/charLine/chartLine_v"
+import ChartLine_v12 from "../library/charLine/chartLine_v12"
+import ChartLine_v13 from "../library/charLine/chartLine_v13"
+import ChartLine_v23 from "../library/charLine/chartLine_v23"
+import ChartElectric from "../library/chartelEctric"
 
 //Image
 import v1 from "../../../assets/Image/vonke/v1.png"
 import v12 from "../../../assets/Image/vonke/v12.png"
 import v13 from "../../../assets/Image/vonke/v13.png"
 import v23 from "../../../assets/Image/vonke/v23.png"
+import i from "../../../assets/Image/vonke/i.png"
+import control from "../../../assets/Image/vonke/remote-control.png"
 
 function formatDate(d) {
     var month = parseInt(d.getMonth()) + 1
@@ -97,14 +104,14 @@ function MDashbard() {
                                                 <div className="card-body">
                                                     <div className="d-flex  align-items-baseline">
                                                         <img  src={v1} alt="Joseph" className="img-vonke" />
-                                                        <h5 className="card-title card-title-header mb-0">Phase Voltage</h5>
+                                                        <h5 className="card-title card-title-header mb-0">PHASE VOLTAGE</h5>
                                                     </div>
                                                     <div className="row card-content-line align-items-center">
-                                                        <div className="col-7 card-data">
+                                                        <div className="col-6 card-data">
                                                             <h1>220</h1>
                                                             <h4> V </h4>
                                                         </div>
-                                                        <div className="col-5">
+                                                        <div className="col-6">
                                                             <ChartLine_v/>                                              
                                                         </div>
                                                     </div>
@@ -115,7 +122,21 @@ function MDashbard() {
                                         <div className="col-md-6 col-xl-3">
                                             <div  className="card">
                                                 <div className="card-body">
-                                
+                                                    <div className="d-flex justify-content-between align-items-baseline">
+                                                         <div className="d-flex  align-items-baseline">
+                                                            <img  src={v12} alt="Joseph" className="img-vonke" />
+                                                             <h5 className="card-title card-title-header mb-0">WIRE VOLTAGE</h5>
+                                                         </div>
+                                                    </div>
+                                                    <div className="row card-content-line align-items-center">
+                                                        <div className="col-6 card-data">
+                                                            <h1>220</h1>
+                                                            <h4> V </h4>
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <ChartLine_v12/>                                              
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -124,12 +145,20 @@ function MDashbard() {
                                             <div  className="card">
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between align-items-baseline">
-                                                        <h6 className="card-title mb-0">New Customers</h6>
+                                                         <div className="d-flex  align-items-baseline">
+                                                            <img  src={v12} alt="Joseph" className="img-vonke" />
+                                                             <h5 className="card-title card-title-header mb-0">WIRE VOLTAGE</h5>
+                                                         </div>
                                                     </div>
-                                                    <div className="row">
-
+                                                    <div className="row card-content-line align-items-center">
+                                                        <div className="col-6 card-data">
+                                                            <h1>220</h1>
+                                                            <h4> V </h4>
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <ChartLine_v12/>                                              
+                                                        </div>
                                                     </div>
-
                                                 </div>
 
                                             </div>
@@ -138,10 +167,21 @@ function MDashbard() {
                                             <div  className="card">
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between align-items-baseline">
-                                                        <h6 className="card-title mb-0">New Customers</h6>
+                                                         <div className="d-flex justify-content-between align-items-baseline">
+                                                            <div className="d-flex  align-items-baseline">
+                                                                 <img  src={v23} alt="Joseph" className="img-vonke" />
+                                                                <h5 className="card-title card-title-header mb-0">WIRE VOLTAGE</h5>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div className="row">
-
+                                                    <div className="row card-content-line align-items-center">
+                                                        <div className="col-6 card-data">
+                                                            <h1>220</h1>
+                                                            <h4> V </h4>
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <ChartLine_v23/>                                              
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -153,18 +193,34 @@ function MDashbard() {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div className="col-lg-8 col-sm-12">
-                                       
+                                    <div class="col-xl-9 col-md-12">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="d-flex  align-items-baseline">
+                                                    <img  src={i} alt="Joseph" className="img-vonke" />
+                                                    <h5 className="card-title card-title-header mb-0">ELECTRIC</h5>
+                                                </div>
+                                                <div className="card-content-line align-items-center">
+                                                    <ChartElectric/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="col-lg-4 col-sm-12">
-
+                                    <div class="col-xl-3 col-md-12">    
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="d-flex  align-items-baseline">
+                                                    <img  src={control} alt="Joseph" className="img-vonke" />
+                                                    <h5 className="card-title card-title-header mb-0">CONTROL</h5>
+                                                </div>
+                                                <div className="row card-content-line align-items-center">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
