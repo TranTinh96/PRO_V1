@@ -14,7 +14,7 @@ function MenuLink({ label, to, activeOnlyWhenExact, icon }) {
     <li className={match ? "pcoded-hasmenu-active" : " pcoded-hasmenu"}>
       <NavLink to={to} className="pcoded-link">
         <span className="pcoded-micon">
-          <FeatherIcon icon={icon} color="#fff" size={18} />
+          <FeatherIcon icon={icon} color="#fff" size={15} />
         </span>
         <span className="pcoded-mtext">
           {label}

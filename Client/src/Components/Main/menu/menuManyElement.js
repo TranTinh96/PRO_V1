@@ -12,7 +12,7 @@ const MenuLink = ({ name, to, activeOnlyWhenExact }) => {
                 <li className={active} >
                     <NavLink to={to} className="many-element-link">
                         <span className="many-element-micon">
-                            <FeatherIcon icon="chevron-right" color="#dcdcdc" size={16} />
+                            <FeatherIcon icon="chevron-right" color="#dcdcdc" size={15} />
                         </span>
                         <span className="many-element-mtext">
                             {name}
@@ -43,13 +43,13 @@ function MenuManyElement({ label, icon, routers, exact }) {
 
             }}>
                 <span className="pcoded-micon">
-                    <FeatherIcon icon={icon} color="#dcdcdc" size={18} />
+                    <FeatherIcon icon={icon} color="#dcdcdc" size={15} />
                 </span>
                 <span className="pcoded-mtext">
                     {label}
                 </span>
                 <span className="pcoded-toggle">
-                    <FeatherIcon icon={isMenuElement ? "chevron-right" : "chevron-down"} size={18} />
+                    <FeatherIcon icon={isMenuElement ? "chevron-down" : "chevron-up"} size={14} />
                 </span>
             </div>
             <div className={isMenuElement ? "pcoded-content-many-element d-none" : "pcoded-content-many-element d-d-block"}>

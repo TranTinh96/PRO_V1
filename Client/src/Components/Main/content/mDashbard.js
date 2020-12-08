@@ -8,6 +8,10 @@ import ChartLine_v12 from "../library/charLine/chartLine_v12"
 import ChartLine_v13 from "../library/charLine/chartLine_v13"
 import ChartLine_v23 from "../library/charLine/chartLine_v23"
 import ChartElectric from "../library/chartelEctric"
+import KW from "../library/tableShow/KW"
+import KVA from "../library/tableShow/KVA"
+import KVAr from "../library/tableShow/KVAr"
+import PE from "../library/tableShow/PE"
 
 //Image
 import v1 from "../../../assets/Image/vonke/v1.png"
@@ -15,6 +19,7 @@ import v12 from "../../../assets/Image/vonke/v12.png"
 import v13 from "../../../assets/Image/vonke/v13.png"
 import v23 from "../../../assets/Image/vonke/v23.png"
 import i from "../../../assets/Image/vonke/i.png"
+import voltmeter from "../../../assets/Image/vonke/voltmeter.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
 function formatDate(d) {
@@ -146,7 +151,7 @@ function MDashbard() {
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between align-items-baseline">
                                                          <div className="d-flex  align-items-baseline">
-                                                            <img  src={v12} alt="Joseph" className="img-vonke" />
+                                                            <img  src={v13} alt="Joseph" className="img-vonke" />
                                                              <h5 className="card-title card-title-header mb-0">WIRE VOLTAGE</h5>
                                                          </div>
                                                     </div>
@@ -193,15 +198,62 @@ function MDashbard() {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-9 col-md-12">
+                                    <div class="col-xl-8 col-md-12">
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
                                                     <img  src={i} alt="Joseph" className="img-vonke" />
                                                     <h5 className="card-title card-title-header mb-0">ELECTRIC</h5>
                                                 </div>
-                                                <div className="card-content-line align-items-center">
+                                                <div className="card-content-line-chart align-items-center">
                                                     <ChartElectric/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-md-12">    
+                                        <div className="col-12 col-control-panel">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <div className="d-flex  align-items-baseline">
+                                                        <img  src={control} alt="Joseph" className="img-vonke" />
+                                                        <h5 className="card-title card-title-header mb-0">CONTROL</h5>
+                                                    </div>
+                                                    <div className="card-content-line align-items-center">
+                                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-control-panel">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <div className="d-flex  align-items-baseline">
+                                                        <img  src={control} alt="Joseph" className="img-vonke" />
+                                                        <h5 className="card-title card-title-header mb-0">FREQUENCY & ENERGY</h5>
+                                                    </div>
+                                                    <div className="card-content-line align-items-center">
+                                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                              {/*----------- KW - KW/H -KVAR - PE-------------*/}
+                              <div className='page-chart-dashboard'>
+                                <div className="row">
+                                    <div class="col-xl-3 col-md-12">    
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="d-flex  align-items-baseline">
+                                                    <img  src={control} alt="Joseph" className="img-vonke" />
+                                                    <h5 className="card-title card-title-header mb-0">ACTIVE  POWER ( KW )</h5>
+                                                </div>
+                                                <div className="card-content-line align-items-center">
+                                                     <KW/>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,10 +263,36 @@ function MDashbard() {
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
                                                     <img  src={control} alt="Joseph" className="img-vonke" />
-                                                    <h5 className="card-title card-title-header mb-0">CONTROL</h5>
+                                                    <h5 className="card-title card-title-header mb-0">REACTIVE  POWER ( KVA )</h5>
                                                 </div>
-                                                <div className="row card-content-line align-items-center">
-                                                    
+                                                <div className="card-content-line align-items-center">
+                                                    <KVA/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-12">    
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="d-flex  align-items-baseline">
+                                                    <img  src={control} alt="Joseph" className="img-vonke" />
+                                                    <h5 className="card-title card-title-header mb-0">APPARENT  POWER ( KVAr )</h5>
+                                                </div>
+                                                <div className="card-content-line align-items-center">
+                                                    <KVAr/>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-12">    
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="d-flex  align-items-baseline">
+                                                    <img  src={control} alt="Joseph" className="img-vonke" />
+                                                    <h5 className="card-title card-title-header mb-0">POWER  FACTOR</h5>
+                                                </div>
+                                                <div className="card-content-line align-items-center">
+                                                    <PE/>     
                                                 </div>
                                             </div>
                                         </div>

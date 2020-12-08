@@ -7,6 +7,7 @@ import mDashboard from "./content/mDashbard"
 import mManage from "./content/mManage"
 import mAccout from "./content/mAccout"
 import mMaps from "./content/mMaps"
+import mDataTable from "./content/mDataTable"
 
 
 function mApp() {
@@ -25,6 +26,7 @@ function mApp() {
           <Route exact path="/manage/open-accout" component={mManage} />
           <Route exact path="/accouts" component={mAccout} />
           <Route exact path="/maps" component={mMaps} />
+          <Route exact path="/tables" component={mDataTable} />
       </Switch>
       </div>
     </React.Fragment>

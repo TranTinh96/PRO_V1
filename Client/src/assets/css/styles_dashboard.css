@@ -15,7 +15,7 @@
   position: relative;
 }
 .navbar-logo {
-  background: #404e67;
+  background: #242e3e;
   color: white;
   width: 250px;
   height: 65px;
@@ -260,7 +260,7 @@
 
 .pcoded-navbar {
   width: 250px;
-  background: #404e67;
+  background: #242e3e;
   height: 100%;
   float: left;
   position: fixed;
@@ -296,12 +296,12 @@
 }
 /*----------------Menu Link 01----------------*/
 .pcoded-hasmenu-active {
-  border-left: 3px solid #fe8a7d !important;
+  border-left: 4px solid #fe8a7d !important;
 }
 
 .pcoded-hasmenu {
   /*border-left: 3px solid#fe8a7d!important;*/
-  border-left: 3px solid #404e67;
+  border-left: 4px solid #242e3e;
 }
 .pcoded-hasmenu :hover {
   background: #31475e;
@@ -333,11 +333,11 @@
   padding: 4px !important;
 }
 .pcoded-link .pcoded-mtext {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  color: #dcdcdc !important;
+  font-size: 15px;
+  font-weight: 500;
   padding-top: 4px;
-  font-family: Poppins,sans-serif !important;
+  font-family: open sans,sans-serif;
 }
 .pcoded-link .pcoded-mtext :hover {
   color: white !important;
@@ -365,11 +365,11 @@
   padding: 4px !important;
 }
 .pcoded-link-many-element .pcoded-mtext {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  color: #dcdcdc;
+  font-size: 15px;
+  font-weight: 500;
   padding-top: 4px;
-  font-family: Poppins,sans-serif !important;
+  font-family: open sans,sans-serif;
 }
 .pcoded-link-many-element .pcoded-mtext :hover {
   color: white !important;
@@ -391,8 +391,10 @@
   padding-right: 16px;
 }
 .pcoded-content-many-element .many-element-mtext {
+  font-family: open sans,sans-serif;
   color: #dcdcdc;
   font-size: 15px;
+  font-weight: 500;
 }
 .pcoded-content-many-element .content-many a {
   text-decoration: none;
@@ -423,6 +425,7 @@
 .pcoded-content .pcoded-inner-content {
   position: relative;
   padding: 24px;
+  padding-bottom: 0 !important;
   height: 100%;
   width: 100%;
 }
@@ -455,8 +458,8 @@
   font-size: 14px;
   color: #5b73e8;
   font-weight: 600;
-  margin-top: 14px;
-  margin-left: 52px;
+  margin-top: 9px;
+  margin-left: 45px;
 
 }
 .card-content-line{
@@ -471,7 +474,7 @@
 }
 .card-data h1{
   display: inline;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 500;
   margin-left: 5px;
  } 
@@ -740,10 +743,16 @@
 
 /**********************************************/
 .img-vonke{
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2rem;
+  width: 2rem;
   padding: .25rem!important;
   margin-right: 1rem!important;
   border: 2px solid  rgba(42,79,215,.2) !important;
   border-radius: 2px;
+}
+.map-contanier{
+  margin-top: 20px;
+  margin-right: -50px !important;
+  margin-left: -12px !important;
+  padding-right: -12px !important;
 }
