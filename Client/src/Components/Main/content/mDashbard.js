@@ -201,7 +201,7 @@ function MDashbard() {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-8 col-lg-12">
+                                    <div class="col-xl-6 col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -214,7 +214,7 @@ function MDashbard() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-lg-12">    
+                                    <div class="col-xl-6 col-lg-12">    
                                         <div className="col-12 col-control-panel">
                                             <div className="card">
                                                 <div className="card-body">

@@ -26,7 +26,7 @@
   
 }
 .text-show-name{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #495057;
   font-family: 'Open Sans', sans-serif;
@@ -135,7 +135,7 @@
    border-top: 2px solid #f6f6f6;
  }
  .table-chartFreEne p{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #495057;
     font-family: 'Open Sans', sans-serif;
@@ -144,6 +144,11 @@
     margin: 0 auto;
     margin-left: 22px !important;
   
+ }
+ .table-chartFreEne-name{
+   margin: 0 auto;
+   justify-content: center;
+   align-items: center;
  }
  .table-chartFreEne-name .badge-chartFreEne{
     width: 3px;
@@ -154,9 +159,7 @@
     position: absolute;
     margin-top: 9px;
  }
- .table-chartFreEne-chart{
 
- }
  .table-chartFreEne-value{
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -167,3 +170,50 @@
     font-size: 14px;
     font-weight: 600;
  }
+ /****** Table Control *****/
+ .table-chartControl th{
+    border: none !important;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+ }
+ .table-chartControl .btn-mode{
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 4px !important;
+ }
+ .table-chartControl .btn-manual{
+  margin-left: 8px;
+
+}
+.table-chartControl-auto input{
+  font-size: 12px;
+  font-weight: 600;
+   font-family: 'Open Sans', sans-serif;
+   width: 105px;
+   padding: 5px;
+}
+.table-chartControl .btn-auto{
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+.table-chartControl-manual .MuiSwitch-sizeSmall{
+  margin-top: 3px;
+}
+
+.img-light-on{
+  height: 35px;
+  width: 35px;
+  background: #ffec44;
+  border-radius: 50px;
+  padding: 5px;
+}
+.img-light-off{
+  height: 35px;
+  width: 35px;
+  background: rgb(255, 255, 255);
+  border-radius: 50px;
+  padding: 5px;
+}
