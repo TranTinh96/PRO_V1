@@ -21,8 +21,9 @@ function ChartLine_v() {
           enabled: false
         },
         style: {
-          fontSize: '10px',
-          fontFamily: "Poppins,sans-serif"
+          fontSize: '11px',
+          fontFamily: "Open Sans,sans-serif"
+
         },
         x: {
           show: false

@@ -474,14 +474,14 @@
 }
 .card-data h1{
   display: inline;
-  font-size: 30px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 600;
   margin-left: 5px;
  } 
  .card-data h4{
   display: inline;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
  } 
 .shadow-none {
     -webkit-box-shadow: none !important; 

@@ -8,6 +8,9 @@ import ChartLine_v12 from "../library/charLine/chartLine_v12"
 import ChartLine_v13 from "../library/charLine/chartLine_v13"
 import ChartLine_v23 from "../library/charLine/chartLine_v23"
 import ChartElectric from "../library/chartelEctric"
+import ChartFreEne from "../library/chartFreEne"
+import ChartControl from "../library/chartControl"
+
 import KW from "../library/tableShow/KW"
 import KVA from "../library/tableShow/KVA"
 import KVAr from "../library/tableShow/KVAr"
@@ -198,7 +201,7 @@ function MDashbard() {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-8 col-md-12">
+                                    <div class="col-xl-8 col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -211,7 +214,7 @@ function MDashbard() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-md-12">    
+                                    <div class="col-xl-4 col-lg-12">    
                                         <div className="col-12 col-control-panel">
                                             <div className="card">
                                                 <div className="card-body">
@@ -220,7 +223,7 @@ function MDashbard() {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                                
+                                                         <ChartControl/>        
                                                     </div>
                                                 </div>
                                             </div>
@@ -233,7 +236,7 @@ function MDashbard() {
                                                         <h5 className="card-title card-title-header mb-0">FREQUENCY & ENERGY</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                                
+                                                         <ChartFreEne/>       
                                                     </div>
                                                 </div>
                                             </div>
