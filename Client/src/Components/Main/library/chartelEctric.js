@@ -172,7 +172,7 @@ function ChartelEctric() {
     };
   }, []);
 
-  return <div id="chartdiv" style={{ width: "100%", height: "400px" }}></div>;
+  return <div id="chartdiv" style={{ width: "100%", height: "408px" }}></div>;
 }
 
 export default ChartelEctric;

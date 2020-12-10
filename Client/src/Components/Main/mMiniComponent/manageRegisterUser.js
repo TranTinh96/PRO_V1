@@ -296,7 +296,7 @@ function ManageRegisterUser() {
                         <div className="form-manage">
                             <form className="form-setting" onSubmit={handleSubmit(onSubmit)} >
                                 <div className="form-group  form-input-manage-2">
-                                    <label className="form-lable-manage" id="fullName">Full Name</label>
+                                    <label className="form-lable-manage" id="fullName">FULL NAME</label>
                                     <input type="text" className="form-control shadow-none rounded-0 input-setting" id="fullName" name="userName"
                                         ref={register({
                                             required: 'Required',
@@ -304,7 +304,7 @@ function ManageRegisterUser() {
                                         {errors.userName && <p>Full Name is required</p>}
                                 </div>
                                 <div className="form-group form-input-manage-2">
-                                    <label className="form-lable-manage" id="email">Gmail</label>
+                                    <label className="form-lable-manage" id="email">GMAIL</label>
                                     <input type="email" className="form-control shadow-none rounded-0 input-setting" name="email" id="email"
                                         ref={register({
                                             required: 'Required',
@@ -319,7 +319,7 @@ function ManageRegisterUser() {
                                 <div className="row">
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage-2">
-                                            <label className="form-lable-manage" id="password">Password</label>
+                                            <label className="form-lable-manage" id="password">PASSWORD</label>
                                             <input type="password" className="form-control shadow-none input-show rounded-0 input-setting" id="password" name="password"
                                                 ref={register({
                                                     required: 'Required', minLength: 8,
@@ -332,7 +332,7 @@ function ManageRegisterUser() {
                                     </div>
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage-2">
-                                            <label className="form-lable-manage" for="rePassword">Repeat Password</label>
+                                            <label className="form-lable-manage" for="rePassword">REPEAT PASSWORD</label>
                                             <input type="password" className="form-control shadow-none input-show rounded-0 input-setting" id="rePassword" name="rePassword" 
                                                 ref={register({
                                                     required: 'Required', minLength: 8,
@@ -347,7 +347,7 @@ function ManageRegisterUser() {
                                     </div>
                                 </div>
                                 <div class="form-group form-input-manage-2">
-                                    <label className="my-1 mr-2 form-lable-manage " for="nameProject">Name Project</label>
+                                    <label className="my-1 mr-2 form-lable-manage " for="nameProject">NAME PROJECT</label>
                                     <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="nameProject" name="project_id" ref={register}>
                                         <option selected>Choose...</option>
                                         {InfoDetailProject}
@@ -403,12 +403,12 @@ function ManageRegisterUser() {
                                 <table className="table table-centered mb-0">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>User Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Project ID</th>
-                                            <th>Action</th>
+                                            <th>ID</th>
+                                            <th>USER NAME</th>
+                                            <th>EMAIL</th>
+                                            <th>ROLE</th>
+                                            <th>PROJECT ID</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>

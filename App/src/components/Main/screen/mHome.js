@@ -71,7 +71,7 @@ function Home() {
                                         radius={30}
                                         borderWidth={3}
                                         color="#FCAF45"
-                                        shadowColor="#ECECEC"
+                                        shadowColor="#FFF"
                                         bgColor="#fff"
 
                                     >

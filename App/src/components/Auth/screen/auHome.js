@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#05375a',
-        fontSize: 23,
+        fontSize: 21,
         fontFamily:"Quicksand-Bold"
     },
     text: {
         color: 'grey',
         marginTop: 14 ,
-        fontSize:15,
+        fontSize:16,
         fontFamily:"Quicksand-Medium"
         
     },

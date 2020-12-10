@@ -3,16 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'Mobile' do
+target 'App' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
-  target 'MobileTests' do
+  target 'AppTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -27,10 +23,10 @@ target 'Mobile' do
   end
 end
 
-target 'Mobile-tvOS' do
-  # Pods for Mobile-tvOS
+target 'App-tvOS' do
+  # Pods for App-tvOS
 
-  target 'Mobile-tvOSTests' do
+  target 'App-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

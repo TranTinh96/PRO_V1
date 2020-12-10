@@ -192,7 +192,7 @@ function ManageSetting() {
                         <div className="form-manage">
                             <form className="form-setting" onSubmit={handleSubmit(onSubmit)} >
                                 <div className="form-group ">
-                                    <label className="form-lable-manage" id="nameProject">Name Project</label>
+                                    <label className="form-lable-manage" id="nameProject">NAME PROJECT</label>
                                     <input type="text" className="form-control shadow-none rounded-0 input-setting" id="nameProject" name="nameProject"
                                         ref={register({
                                             required: 'Required',
@@ -203,7 +203,7 @@ function ManageSetting() {
                                 <div className="row">
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage">
-                                            <label className="form-lable-manage">Provincial</label>
+                                            <label className="form-lable-manage">PROVINCIAL</label>
                                             <input type="text" className="form-control shadow-none rounded-0 input-setting " name="provincial"
                                                 ref={register({
                                                     required: 'Required',
@@ -213,7 +213,7 @@ function ManageSetting() {
                                     </div>
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage">
-                                            <label className="form-lable-manage">District</label>
+                                            <label className="form-lable-manage">DISTRICT</label>
                                             <input type="text" className="form-control shadow-none rounded-0 input-setting " name="district"
                                                 ref={register({
                                                     required: 'Required',
@@ -223,7 +223,7 @@ function ManageSetting() {
                                     </div>
                                 </div>
                                 <div className="form-group form-input-manage">
-                                    <label className="form-lable-manage">Address Details</label>
+                                    <label className="form-lable-manage">ADDRESS DETAILS</label>
                                     <input type="text" className="form-control shadow-none rounded-0 input-setting " name="addressDetail"
                                         ref={register({
                                             required: 'Required',
@@ -267,11 +267,11 @@ function ManageSetting() {
                                 <table className="table table-centered mb-0">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>Name</th>
-                                            <th>Token</th>
-                                            <th>Active</th>
-                                            <th>Action</th>
+                                            <th>ID</th>
+                                            <th>NAME</th>
+                                            <th>TOKEN</th>
+                                            <th>ACTIVE</th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>

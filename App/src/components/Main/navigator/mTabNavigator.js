@@ -8,7 +8,7 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import Home from "../screen/mHome"
 import Accout from "../screen/mAccout"
 import Dashboard from "../screen/mDashboard"
-import Map from "../screen/mMap"
+//import Map from "../screen/mMap"
 
 
 //Setting Tav Navigator
@@ -47,7 +47,7 @@ function TabNavigator() {
                     <MaterialIcons name="dashboard" color={color} size={24} />
                 ),
             }} />
-            <Tab.Screen name="Map" component={Map} options={{
+            <Tab.Screen name="Map" component={Home} options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="place" color={color} size={22} />
@@ -59,12 +59,6 @@ function TabNavigator() {
                     <FeatherIcon name="user" color={color} size={22} />
                 ),
             }} />
-
-
-
-
-
-
         </Tab.Navigator>
     )
 }
