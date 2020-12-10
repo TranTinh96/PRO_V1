@@ -60,55 +60,6 @@ const Forms = {
         alignItems: 'stretch'
         
     },
-    screenDataOne:{
-        marginRight: 10,
-        borderWidth: 1,
-        borderColor: "#E7ECEE",
-        paddingBottom: 15,
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderRadius: 5,
-        width: Math.floor((width-20)/ 2) - 20,
-        position: "relative",
-        
-        
-    },
-    screenDataTwo:{
-        marginLeft: 10,
-        borderWidth: 1,
-        borderColor: "#E7ECEE",
-        paddingBottom: 10,
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderRadius: 5,
-        width: Math.floor((width-20)/ 2) - 20,
-        position: "relative",
-        
-    },
-    progressContainer:{
-       flexDirection: 'row-reverse',
-       right:0,
-       top: 0,
-        
-    },
-    textprogress:{
-        fontSize: 18 ,
-        color:"#FCAF45"
-    },
-    textHeader:{
-        fontFamily: "Quicksand-SemiBold",
-        color: "#727CF5",
-        fontSize: 14.5
-    },
-    textContent:{
-        marginTop: 3,
-        fontFamily: "Quicksand-Medium",
-        color: "#A09DB0",
-        fontSize: 14,
-
-    },
     /*-----------------------*/
     screenChart:{
         marginLeft: 10,  

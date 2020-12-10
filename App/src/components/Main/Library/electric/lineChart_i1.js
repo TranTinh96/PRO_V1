@@ -21,7 +21,7 @@ function Line() {
                     ]
                 }}
                 width={Dimensions.get("window").width-42} // from react-native
-                height={220}
+                height={230}
                 yAxisLabel=" "
                 yAxisSuffix=""
                 yAxisInterval={1} // optional, defaults to 1
@@ -30,21 +30,22 @@ function Line() {
                 withVerticalLabels={false} //Hiển thị lable ngang
                 
                 chartConfig={{
-                    backgroundColor: "#cee3f9",
+                    backgroundColor: "#fff",
                     backgroundGradientFrom: "#fff",
                     backgroundGradientTo: "#fff",
                     decimalPlaces: 2, // optional, defaults to 2dp
-                    color: (opacity = 1) => `rgba(252,175,69, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(55,119,255, ${opacity})`,
+                    color:(opacity = 0) => `rgba(255,0,0, ${opacity})`,
+                    labelColor:(opacity = 0) => `rgba(0,0,0, ${opacity})`,
                     fillShadowGradient :"#3777FF",//Màu vùng dưới dữ liệu
                     fillShadowGradientOpacity:0.08, //độ mờ vùng dưới dữ liệu
                     style: {
+                        marginVertical:8,
                         borderRadius: 16
                     },
                     propsForDots: {
-                        r: "6",
+                        r: "3",
                         strokeWidth: "2",
-                        stroke: "#ffa726"
+                        stroke: "red"
                     }
                 }}
                 bezier //Cong va muon hơn

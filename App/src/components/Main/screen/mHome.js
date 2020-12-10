@@ -5,7 +5,11 @@ import { Text, View, ScrollView, Dimensions, SafeAreaView, StatusBar } from 'rea
 import ProgressCirclee from 'react-native-progress-circle'
 import Header from '../Library/mHeaderHome';
 import styles from "../../../assets/dashboardCss"
-import LineChart from "../Library/lineChart"
+import LineChart_Itb from "../Library/electric/lineChart_itb"
+import LineChart_I1 from "../Library/electric/lineChart_i1"
+import LineChart_I2 from "../Library/electric/lineChart_i2"
+import LineChart_I3 from "../Library/electric/lineChart_i3"
+
 import Swiper from 'react-native-swiper'
 
 
@@ -20,10 +24,7 @@ function Home() {
             <StatusBar backgroundColor='#1F9EFF' barStyle="light-content" />
             <Header name="MY HOME" />
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Animatable.View
-                    style={[styles.main]}
-                    animation="fadeInLeft"
-                >
+                <Animatable.View style={[styles.main]} animation="fadeInLeft">
                     <View style={styles.formContainer}>
                         <Text style={styles.containerHeader2}>Chart</Text>
                         <View style={styles.screenChart}>
@@ -51,102 +52,23 @@ function Home() {
                                 }}
                             >
                                 <View style={styles.slide1}>
-                                    <LineChart />
+                                    <LineChart_Itb/>
                                 </View>
                                 <View style={styles.slide2}>
-                                    <Text style={styles.text}>Beautiful</Text>
+                                    <LineChart_I1/>
                                 </View>
                                 <View style={styles.slide3}>
-                                    <Text style={styles.text}>And simple</Text>
+                                    <LineChart_I2/>
+                                </View>
+                                <View style={styles.slide4}>
+                                    <LineChart_I3/>
                                 </View>
                             </Swiper>
 
                         </View>
                         <Text style={styles.containerHeader}>Statistics</Text>
                         <View style={styles.screenBetween}>
-                            <View style={styles.screenDataOne}>
-                                <View style={styles.progressContainer}>
-                                    <ProgressCirclee
-                                        percent={30}
-                                        radius={30}
-                                        borderWidth={3}
-                                        color="#FCAF45"
-                                        shadowColor="#FFF"
-                                        bgColor="#fff"
-
-                                    >
-                                        <Text style={styles.textprogress}>{'30'}</Text>
-                                    </ProgressCirclee>
-
-                                </View>
-                                <View>
-                                    <Text style={styles.textHeader}>V</Text>
-                                    <Text style={styles.textContent}>Sơ cấp </Text>
-                                </View>
-                            </View>
-                            <View style={styles.screenDataTwo}>
-                                <View style={styles.progressContainer}>
-                                    <ProgressCirclee
-                                        percent={30}
-                                        radius={30}
-                                        borderWidth={3}
-                                        color="#2180FD"
-                                        shadowColor="#ECECEC"
-                                        bgColor="#fff"
-
-                                    >
-                                        <Text style={styles.textprogress}>{'30'}</Text>
-                                    </ProgressCirclee>
-
-                                </View>
-                                <View>
-                                    <Text style={styles.textHeader}>V</Text>
-                                    <Text style={styles.textContent}>Thứ cấp </Text>
-                                </View>
-
-                            </View>
-                        </View>
-                        <View style={[styles.screenBetween, styles.paddingScreen]}>
-                            <View style={styles.screenDataOne}>
-                                <View style={styles.progressContainer}>
-                                    <ProgressCirclee
-                                        percent={30}
-                                        radius={30}
-                                        borderWidth={3}
-                                        color="#63D471"
-                                        shadowColor="#ECECEC"
-                                        bgColor="#fff"
-
-                                    >
-                                        <Text style={styles.textprogress}>{'30'}</Text>
-                                    </ProgressCirclee>
-
-                                </View>
-                                <View>
-                                    <Text style={styles.textHeader}>I </Text>
-                                    <Text style={styles.textContent}>Sơ cấp </Text>
-                                </View>
-                            </View>
-                            <View style={styles.screenDataTwo}>
-                                <View style={styles.progressContainer}>
-                                    <ProgressCirclee
-                                        percent={30}
-                                        radius={30}
-                                        borderWidth={3}
-                                        color="#9381FF"
-                                        shadowColor="#ECECEC"
-                                        bgColor="#fff"
-
-                                    >
-                                        <Text style={styles.textprogress}>{'30'}</Text>
-                                    </ProgressCirclee>
-
-                                </View>
-                                <View>
-                                    <Text style={styles.textHeader}>I </Text>
-                                    <Text style={styles.textContent}>Thứ cấp </Text>
-                                </View>
-                            </View>
+                           
                         </View>
 
                     </View>
