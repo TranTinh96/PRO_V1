@@ -41,8 +41,8 @@ const { width, height } = Dimensions.get("screen")
 const styles = StyleSheet.create({
     container: {
         height: 60,
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
         backgroundColor: "white",
         position: "relative",
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
         marginTop: 15,
-        marginLeft: 10,
+        marginLeft: 5,
         marginRight: 12,
 
     },

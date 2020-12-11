@@ -33,8 +33,6 @@ function TabNavigator() {
                 borderRadius: 3
             }}
         >
-
-
             <Tab.Screen name="Home" component={Home} options={{
                 tabBarColor: '#FFF',
                 tabBarIcon: ({ color }) => (

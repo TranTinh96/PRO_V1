@@ -1,7 +1,7 @@
 import React from 'react'
 import { LineChart  } from "react-native-chart-kit";
 import {Dimensions,View,Text}  from "react-native"
-function Line() {
+function Line(props) {
     return (
         <View>
             <LineChart
@@ -9,14 +9,7 @@ function Line() {
                     labels: ["January", "February", "March", "April", "May", "June"],
                     datasets: [
                         {
-                            data: [
-                                Math.random() * 100,
-                                Math.random() * 100,
-                                Math.random() * 100,
-                                Math.random() * 100,
-                                Math.random() * 100,
-                                Math.random() * 100
-                            ]
+                            data: props.data
                         }
                     ]
                 }}

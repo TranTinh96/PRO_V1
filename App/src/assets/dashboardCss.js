@@ -13,61 +13,70 @@ const Forms = {
         backgroundColor: "white",
     },
     formContainer :{
-        paddingTop:0 ,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 10,
+        padding :10
+    },
+    logoheader:{
+        width :20,
+        height:20
+    },
+    containerScreenTow:{
+
     },
     containerHeader:{
-        marginLeft: 10,
-        marginBottom: 20,
-        fontFamily: "Quicksand-SemiBold",
-        color: "#E48762",
-        fontSize:17,
-        marginTop: 0,
+        flexDirection: 'row',
       
     },
-   
-    containerHeader2:{
-        marginLeft: 10,
-        fontFamily: "Quicksand-SemiBold",
-        color: "#E48762",
-        fontSize:17,
-        marginTop: 0,
+    containerHeaderTwo:{
+        flexDirection: 'row',
+        marginLeft:10
       
     },
-    paddingScreen:{
-        paddingTop:20,
+    containerHeaderTop:{
+        marginTop :10
     },
-    screenOne:{
-        marginTop: 20,
-        marginLeft: 10,
-        borderWidth: 2,
-        borderColor: "#F8F8F7",
-        paddingBottom: 10,
-        paddingTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
+    textHeader:{
+        marginBottom: 5,
+        fontFamily: "Quicksand-Bold",
+        color: "#E48762",
+        fontSize:14,
+        marginLeft: 8,
+       
+      
+    },
+    screenChart:{
         borderRadius: 10,
-        width: Math.floor(width) - 40,
-        
+        marginTop: 10,
     },
+    ///////////////////////////
     screenBetween:{
         flexDirection: 'row',
         position : 'relative',
         alignContent:"stretch",
         justifyContent: 'center',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        padding :5,
+        paddingTop :5
         
     },
-    /*-----------------------*/
-    screenChart:{
-        marginLeft: 10,  
-        marginRight: 10, 
-    
-        borderRadius: 10,
-        marginTop: 20,
+    screenTop:{
+        marginTop:12
+    },
+    box1:{
+        width:"50%",
+        borderWidth: 2,
+        borderColor: "#f6f6f6",
+        borderRadius:25,
+        marginRight :5,
+    },
+    box2:{
+        width:"50%",
+        borderWidth: 1,
+        borderColor: "#f6f6f6",
+        borderRadius:15,
+        marginLeft :5,
     }
+    
+    
 }
 
 export default Forms
