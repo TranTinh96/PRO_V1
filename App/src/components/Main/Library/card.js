@@ -10,64 +10,13 @@ import {
 function Card(props) {
     return (
         <View style={styles.card}>
-            <View style={styles.cardbody}>
-                <View style={styles.viewHeader}>
-                    <Text style={styles.textHeader}>{props.title}</Text>
-                </View>
+            <View style={styles.cardbody}
                 <View style={styles.screenBetween}>
-                     <View style={styles.screenLeft}>
-                        <Badge status="success" containerStyle ={{
-                                position:"absolute",
-                                marginTop:7,
-                                marginLeft:10
-                        }}  />
-                        <Text style={styles.textContent}>{props.name}</Text>
-                     </View>
+                    <View style={styles.screenLeft}>
+                        <Text style={styles.textHeader}>{props.title}</Text>
+                    </View>
                      <View style={styles.screenRight}>
                         <Text style={styles.textValue}>{props.value}</Text>
-                        <Text style={styles.textUnit}>{props.unit}</Text>
-                    </View>
-                </View>
-                <View style={styles.screenBetween}>
-                     <View style={styles.screenLeft}>
-                        <Badge status="success" containerStyle ={{
-                                position:"absolute",
-                                marginTop:7,
-                                marginLeft:10
-                        }}  />
-                        <Text style={styles.textContent}>{props.name1}</Text>
-                     </View>
-                     <View style={styles.screenRight}>
-                        <Text style={styles.textValue}>{props.value1}</Text>
-                        <Text style={styles.textUnit}>{props.unit}</Text>
-                    </View>
-                </View>
-
-                <View style={styles.screenBetween}>
-                     <View style={styles.screenLeft}>
-                        <Badge status="success" containerStyle ={{
-                                position:"absolute",
-                                marginTop:7,
-                                marginLeft:10
-                        }}  />
-                        <Text style={styles.textContent}>{props.name2}</Text>
-                     </View>
-                     <View style={styles.screenRight}>
-                        <Text style={styles.textValue}>{props.value2}</Text>
-                        <Text style={styles.textUnit}>{props.unit}</Text>
-                    </View>
-                </View>
-                <View style={styles.screenBetween}>
-                     <View style={styles.screenLeft}>
-                        <Badge status="success" containerStyle ={{
-                                position:"absolute",
-                                marginTop:7,
-                                marginLeft:10
-                        }}  />
-                        <Text style={styles.textContent}>{props.name3}</Text>
-                     </View>
-                     <View style={styles.screenRight}>
-                        <Text style={styles.textValue}>{props.value3}</Text>
                         <Text style={styles.textUnit}>{props.unit}</Text>
                     </View>
                 </View>
@@ -82,8 +31,10 @@ export default Card
 const {width,height} = Dimensions.get("screen")
 const styles = StyleSheet.create({
     card: {
-        padding :10,
-        backgroundColor:"#FFF"
+        margin:8,
+        padding:10,
+        backgroundColor:"#FFF",
+        borderRadius:10
     },
     cardbody: {
      

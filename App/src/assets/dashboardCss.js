@@ -5,77 +5,40 @@ const {width,height} = Dimensions.get("screen")
 const Forms = {
     container :{
         flex :1 ,
-        backgroundColor: "white",
+        backgroundColor: '#F4F4F4',
         position : 'relative'
     },
     main:{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: '#F4F4F4',
     },
     formContainer :{
-        padding :10
+        padding :8,
+        shadowColor: 'gray',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
     },
-    logoheader:{
-        width :20,
-        height:20
+    wrapper:{
     },
-    containerScreenTow:{
-
-    },
-    containerHeader:{
-        flexDirection: 'row',
-      
-    },
-    containerHeaderTwo:{
-        flexDirection: 'row',
-        marginLeft:10
-      
-    },
-    containerHeaderTop:{
-        marginTop :10
-    },
-    textHeader:{
-        marginBottom: 5,
-        fontFamily: "Quicksand-Bold",
-        color: "#E48762",
-        fontSize:14,
-        marginLeft: 8,
-       
-      
-    },
-    screenChart:{
-        borderRadius: 10,
-        marginTop: 10,
-    },
-    ///////////////////////////
-    screenBetween:{
-        flexDirection: 'row',
-        position : 'relative',
-        alignContent:"stretch",
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        padding :5,
-        paddingTop :5
+    containerScreen:{
         
     },
-    screenTop:{
-        marginTop:12
+   
+    screenChart:{
+        borderRadius: 10,
+       
     },
-    box1:{
+    chartViewContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+    chartView:{
         width:"50%",
-        borderWidth: 2,
-        borderColor: "#f6f6f6",
-        borderRadius:25,
-        marginRight :5,
-    },
-    box2:{
-        width:"50%",
-        borderWidth: 1,
-        borderColor: "#f6f6f6",
-        borderRadius:15,
-        marginLeft :5,
+        padding :8
     }
-    
+    /*-----Card ---*/
+
     
 }
 

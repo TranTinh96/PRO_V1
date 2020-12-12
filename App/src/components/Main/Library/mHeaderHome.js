@@ -14,7 +14,7 @@ function mHeader(props) {
             <View style={styles.headerContainer}>
                 <Text style={styles.text}>{props.name}</Text>
                 <TouchableOpacity  onPress={()=>navigation.navigate('Notification') }>
-                    <MaterialIcons name="notifications" size={26} color="#0074FE" style={[styles.icon], {
+                    <MaterialIcons name="notifications" size={24} color="#0074FE" style={[styles.icon], {
                         transform: [{ rotate: "0deg" }]
                     }}  />
                     <Badge
@@ -40,10 +40,10 @@ function mHeader(props) {
 const { width, height } = Dimensions.get("screen")
 const styles = StyleSheet.create({
     container: {
-        height: 60,
+        height: 50,
         paddingLeft: 5,
         paddingRight: 5,
-        backgroundColor: "white",
+        backgroundColor: "#F4F4F4",
         position: "relative",
 
     },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         color:"#0074FE" ,
         fontSize:17,
         fontFamily: "Quicksand-Bold",
-        marginTop:2
+        marginTop:0
     },
     headerContainer: {
         flexDirection: 'row',

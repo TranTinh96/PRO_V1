@@ -1,9 +1,10 @@
 import React from 'react'
 import { LineChart  } from "react-native-chart-kit";
-import {Dimensions,View,Text}  from "react-native"
+import {Dimensions,View,StyleSheet,Text}  from "react-native"
 function Line(props) {
     return (
-        <View>
+        <View style={styles.containerCard}>
+            <Text style={styles.textHeader}>CURRENT - {props.name} ( Ampe )</Text>
             <LineChart
                 data={{
                     labels: ["January", "February", "March", "April", "May", "June"],
@@ -13,8 +14,8 @@ function Line(props) {
                         }
                     ]
                 }}
-                width={Dimensions.get("window").width-42} // from react-native
-                height={230}
+                width={Dimensions.get("window").width-40} // from react-native
+                height={225}
                 yAxisLabel=" "
                 yAxisSuffix=""
                 yAxisInterval={1} // optional, defaults to 1
@@ -32,8 +33,8 @@ function Line(props) {
                     fillShadowGradient :"#3777FF",//Màu vùng dưới dữ liệu
                     fillShadowGradientOpacity:0.08, //độ mờ vùng dưới dữ liệu
                     style: {
-                        marginVertical:8,
-                        borderRadius: 16
+                        
+                        borderRadius: 10
                     },
                     propsForDots: {
                         r: "3",
@@ -43,8 +44,7 @@ function Line(props) {
                 }}
                 bezier //Cong va muon hơn
                 style={{
-                    marginVertical: 8,
-                    borderRadius: 16
+                    borderRadius: 10,
                 }}
             />
         </View>
@@ -52,3 +52,21 @@ function Line(props) {
 }
 
 export default Line
+
+
+const styles = StyleSheet.create({
+    containerCard:{
+        backgroundColor:"#FFF",
+        margin:8,
+        borderRadius:10
+    },
+    textHeader:{
+        marginLeft: 15,
+        fontFamily: "OpenSans-Bold",
+        fontSize:14,
+        marginTop: 15,
+        marginBottom:15,
+        color:"#E48762",
+    },
+    
+})

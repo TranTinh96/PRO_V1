@@ -14,6 +14,7 @@ import styles from '../../../assets/dashboardCss';
 import LineChart from '../Library/lineChart';
 import Card from '../Library/card';
 import FreEne from '../Library/FreEne';
+import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
 
@@ -29,37 +30,25 @@ function Home() {
       <Header name="MY HOME" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Animatable.View style={[styles.main]} animation="fadeInLeft">
-          <View>
             <View style={styles.formContainer}>
               <View style={styles.containerScreen}>
-                <View style={styles.containerHeader}>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require('../../../assets/image/vonke/i.png')}
-                    style={styles.logoheader}
-                    resizeMode="stretch"
-                  />
-                  <Text style={styles.textHeader}>ELECTRIC</Text>
-                </View>
                 <View style={styles.screenChart}>
                   <Swiper
                     style={styles.wrapper}
                     showsButtons={false}
                     autoplay={true}
                     autoplayTimeout={10}
-                    width={width - 30}
-                    height={250}
+                    height={290}
                     index={0}
                     dotStyle={{
-                      backgroundColor: '#B3FAEB',
+                      backgroundColor: '#fafafa',
                       padding: 1,
-                      marginTop: 20,
+                      marginTop: 10,
                       borderRadius: 10,
                     }}
                     activeDotStyle={{
                       backgroundColor: '#FFF',
-                      marginTop: 20,
+                      marginTop: 10,
                       borderWidth: 2,
                       borderColor: '#0074FE',
                       padding: 3,
@@ -67,6 +56,7 @@ function Home() {
                     }}>
                     <View>
                       <LineChart
+                        name ="I"
                         data={[
                           Math.random() * 100,
                           Math.random() * 100,
@@ -79,6 +69,7 @@ function Home() {
                     </View>
                     <View>
                       <LineChart
+                        name ="I1"
                         data={[
                           Math.random() * 100,
                           Math.random() * 100,
@@ -91,6 +82,7 @@ function Home() {
                     </View>
                     <View>
                       <LineChart
+                        name ="I2"
                         data={[
                           Math.random() * 100,
                           Math.random() * 100,
@@ -103,6 +95,7 @@ function Home() {
                     </View>
                     <View>
                       <LineChart
+                        name ="I3"
                         data={[
                           Math.random() * 100,
                           Math.random() * 100,
@@ -117,18 +110,7 @@ function Home() {
                 </View>
               </View>
               <View style={styles.containerScreen}>
-                <View style={styles.containerHeader}>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require('../../../assets/image/vonke/v23.png')}
-                    style={styles.logoheader}
-                    resizeMode="stretch"
-                  />
-                  <Text style={styles.textHeader}>VOLTAGE</Text>
-                </View>
-                <View style={[styles.screenBetween, styles.screenTop]}>
-                  <View style={styles.box1}>
+                <View>
                     <Card
                       title="LINE - NEUTRAL"
                       name="V"
@@ -141,8 +123,6 @@ function Home() {
                       value3={20}
                       unit="V"
                     />
-                  </View>
-                  <View style={styles.box2}>
                     <Card
                       title="LINE - LINE"
                       name="V"
@@ -155,22 +135,24 @@ function Home() {
                       value3={20}
                       unit="V"
                     />
+                </View>
+              </View>
+                {/*  KWH -F */}
+              <View style={styles.containerScreen}>
+                <View style={styles.chartViewContainer}>
+                  <View style={styles.chartView}>
+                    <ChartView title="ENEGRY" num={125.5} color="#2B28A9" unit="KWh" />
                   </View>
+                  <View style={styles.chartView}>
+                    <ChartView title="FREQUENCY" num={50} unit="Hz" color="#50c594" />
+                  </View>
+                   
+                   
                 </View>
               </View>
             </View>
             {/*  KW -KVAr - KVA - PE */}
             <View style={styles.containerScreenTow}>
-              <View style={[styles.containerHeaderTwo, styles.containerHeaderTop]}>
-                <Animatable.Image
-                  animation="bounceIn"
-                  duraton="1500"
-                  source={require('../../../assets/image/vonke/statistics.png')}
-                  style={styles.logoheader}
-                  resizeMode="stretch"
-                />
-                <Text style={styles.textHeader}>STATISTICS</Text>
-              </View>
               <ScrollView
                 style={{marginTop: 10 ,marginLeft:5}}
                 showsHorizontalScrollIndicator={false}
@@ -212,22 +194,11 @@ function Home() {
             {/* KWH - F*/}
             <View style={styles.formContainer}>
               <View style={styles.containerScreen}>
-                <View style={styles.containerHeader}>
-                  <Animatable.Image
-                    animation="bounceIn"
-                    duraton="1500"
-                    source={require('../../../assets/image/vonke/i.png')}
-                    style={styles.logoheader}
-                    resizeMode="stretch"
-                  />
-                  <Text style={styles.textHeader}>FREQUENCY & ENERGY</Text>
-                </View>
                 <View style={styles.screenChart}>
                 
                 </View>
               </View>
             </View>
-          </View>
         </Animatable.View>
       </ScrollView>
     </SafeAreaView>
