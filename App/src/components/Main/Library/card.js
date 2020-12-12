@@ -5,24 +5,54 @@ import {
     Dimensions,
     StyleSheet
   } from 'react-native';
-  import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
+  import * as Animatable from 'react-native-animatable';
 
 function Card(props) {
     return (
-        <View style={styles.card}>
-            <View style={styles.cardbody}
-                <View style={styles.screenBetween}>
-                    <View style={styles.screenLeft}>
-                        <Text style={styles.textHeader}>{props.title}</Text>
-                    </View>
-                     <View style={styles.screenRight}>
+      <View style={styles.card}>
+        <View style={styles.cardbody}>
+          <View style={styles.screenBetween}>
+            <View style={styles.screenLeft}>
+                <View style={styles.cardImage}>
+                    <Animatable.Image
+                    animation="bounceIn"
+                    duraton="1500"
+                    source={require('../../../assets/image/vonke/v23.png')}
+                    style={styles.logoheader}
+                    resizeMode="stretch"
+                />
+                </View>
+              <View syle={styles.containerLeft}>
+                <Text style={styles.textHeader}>VOLTAGE</Text>
+                <Text style={styles.textdetailHeader}>{props.title}</Text>
+              </View>
+            </View>
+            <View style={styles.screenRight}>
+                <View style={styles.columnRight}>
+                    <View style={styles.containerRight}>
                         <Text style={styles.textValue}>{props.value}</Text>
-                        <Text style={styles.textUnit}>{props.unit}</Text>
+                        <Text style={styles.textInfo}>{props.name}</Text>
+                    </View>
+                    <View style={styles.containerRightEnd}>
+                        <Text style={styles.textValue}>{props.value1}</Text>
+                        <Text style={styles.textInfo}>{props.name1}</Text>
+                    </View>
+                </View>
+                <View style={styles.columnRightTwo}>
+                    <View style={styles.containerRight}>
+                        <Text style={styles.textValue}>{props.value2}</Text>
+                        <Text style={styles.textInfo}>{props.name2}</Text>
+                    </View>
+                    <View style={styles.containerRightEnd}>
+                        <Text style={styles.textValue}>{props.value3}</Text>
+                        <Text style={styles.textInfo}>{props.name3}</Text>
                     </View>
                 </View>
             </View>
+          </View>
         </View>
-    )
+      </View>
+    );
 }
 
 
@@ -32,7 +62,9 @@ const {width,height} = Dimensions.get("screen")
 const styles = StyleSheet.create({
     card: {
         margin:8,
-        padding:10,
+        padding:3,
+        paddingLeft:20,
+        paddingRight:20,
         backgroundColor:"#FFF",
         borderRadius:10
     },
@@ -42,15 +74,7 @@ const styles = StyleSheet.create({
     viewHeader:{
         marginBottom:10
     },
-    textHeader:{
-        marginLeft: 10,
-        fontFamily: "OpenSans-Bold",
-        fontSize:13,
-        marginTop: 0,
-        color:"#727cf5",
-        alignContent:"center",
-        alignItems:"center"
-    },
+ 
     screenBetween:{
         flexDirection: 'row',
         position : 'relative',
@@ -63,10 +87,48 @@ const styles = StyleSheet.create({
         
     },
     screenRight:{
-        flexDirection: 'row',
+        flexDirection: "row",
+    },
+    columnRight:{
+        flexDirection: "column",
+    },
+    columnRightTwo:{
+        flexDirection: "column",
+        marginLeft:25
+    },
+    containerRight:{
     },
     screenLeft:{
-        
+        alignContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+    },
+    cardImage:{
+        padding:6,
+        borderWidth :2,
+        borderColor:"#30CC7B",
+        borderRadius:50,
+        marginRight:10
+    },
+    logoheader:{
+        width :17,
+        height :17 ,
+       
+    },
+    containerLeft:{
+       
+    },
+    textHeader:{
+        fontFamily: "OpenSans-Bold",
+        fontSize:14,
+        color:"#E48762",
+       
+    },
+    textdetailHeader:{
+        fontFamily: "OpenSans-Bold",
+        fontSize:13,
+        color:"#2B28A9",
+        marginTop: 3,
     },
     textContent:{
         marginLeft:25,
@@ -75,12 +137,25 @@ const styles = StyleSheet.create({
     },
     textValue:{
         fontFamily: "OpenSans-SemiBold",
-        fontSize:14,
+        fontSize:15,
+        color:"#2B28A9",
+        textAlign: 'right'
     },
-    textUnit:{
+    textInfo:{
+        color: '#CCCDCE',
+        marginTop:2,
+        fontSize:10,
         fontFamily: "OpenSans-SemiBold",
-        fontSize:14,
-        marginLeft:6
+        marginBottom:5,
+        textAlign: 'right'
+    },
+    textInfoEnd:{
+        color: '#CCCDCE',
+        marginTop: 2,
+        fontSize:10,
+        fontFamily: "OpenSans-SemiBold",
+        marginBottom:0,
+        textAlign: 'right'
     }
   
 

@@ -109,36 +109,62 @@ function Home() {
                   </Swiper>
                 </View>
               </View>
-              <View style={styles.containerScreen}>
-                <View>
-                    <Card
-                      title="LINE - NEUTRAL"
-                      name="V"
-                      name1="V1"
-                      name2="V2"
-                      name3="V3"
-                      value={20}
-                      value1={20}
-                      value2={20}
-                      value3={20}
-                      unit="V"
-                    />
-                    <Card
-                      title="LINE - LINE"
-                      name="V"
-                      name1="V12"
-                      name2="V23"
-                      name3="V13"
-                      value={20}
-                      value1={20}
-                      value2={20}
-                      value3={20}
-                      unit="V"
-                    />
-                </View>
+               {/*  KW -KVAr - KVA - PE */}
+               <View style={styles.containerScreen}>
+                <ScrollView
+                  showsHorizontalScrollIndicator={false}
+                  horizontal>
+                  <Statistic 
+                    title="ACTION POWER (KW)"
+                    nameSummary="SUMMARY"
+                    namePhase1="PHASE 1"
+                    namePhase2="PHASE 2"
+                    namePhase3="PHASE 3"
+                    valueSummary={230}
+                    valuePhase1={230}
+                    valuePhase2={230}
+                    valuePhase3={230}
+                    bg="action"
+                  />
+                  <Statistic 
+                    title="REACTION POWER (KVA)"
+                    nameSummary="SUMMARY"
+                    namePhase1="PHASE 1"
+                    namePhase2="PHASE 2"
+                    namePhase3="PHASE 3"
+                    valueSummary={230}
+                    valuePhase1={230}
+                    valuePhase2={230}
+                    valuePhase3={230}
+                    bg="action"
+                  />
+                  <Statistic 
+                    title="APPARENT POWER (KVAr)"
+                    nameSummary="SUMMARY"
+                    namePhase1="PHASE 1"
+                    namePhase2="PHASE 2"
+                    namePhase3="PHASE 3"
+                    valueSummary={230}
+                    valuePhase1={230}
+                    valuePhase2={230}
+                    valuePhase3={230}
+                    bg="action"
+                  />
+                  <Statistic 
+                    title="POWER FACTOR"
+                    nameSummary="SUMMARY"
+                    namePhase1="PHASE 1"
+                    namePhase2="PHASE 2"
+                    namePhase3="PHASE 3"
+                    valueSummary={230}
+                    valuePhase1={230}
+                    valuePhase2={230}
+                    valuePhase3={230}
+                  />
+                </ScrollView>
               </View>
-                {/*  KWH -F */}
-              <View style={styles.containerScreen}>
+                 {/*  KWH -F */}
+                 <View style={styles.containerScreen}>
                 <View style={styles.chartViewContainer}>
                   <View style={styles.chartView}>
                     <ChartView title="ENEGRY" num={125.5} color="#2B28A9" unit="KWh" />
@@ -146,58 +172,38 @@ function Home() {
                   <View style={styles.chartView}>
                     <ChartView title="FREQUENCY" num={50} unit="Hz" color="#50c594" />
                   </View>
-                   
-                   
                 </View>
               </View>
-            </View>
-            {/*  KW -KVAr - KVA - PE */}
-            <View style={styles.containerScreenTow}>
-              <ScrollView
-                style={{marginTop: 10 ,marginLeft:5}}
-                showsHorizontalScrollIndicator={false}
-                horizontal>
-                <Statistic 
-                  title="ACTION POWER (KW)"
-                  valueSUM ={125,5}
-                  valuePHA1 ={220}
-                  valuePHA2 ={230}
-                  valuePHA3 ={120}
-                  bg="action"
-                />
-                <Statistic 
-                  title="REACTION POWER (KVA)"
-                  valueSUM ={125,5}
-                  valuePHA1 ={220}
-                  valuePHA2 ={230}
-                  valuePHA3 ={120}
-                  bg="action"
-                />
-                <Statistic 
-                  title="APPARENT POWER (KVAr)"
-                  valueSUM ={125,5}
-                  valuePHA1 ={220}
-                  valuePHA2 ={230}
-                  valuePHA3 ={120}
-                  bg="action"
-                />
-                <Statistic 
-                  title="POWER FACTOR"
-                  valueSUM ={125,5}
-                  valuePHA1 ={220}
-                  valuePHA2 ={230}
-                  valuePHA3 ={120}
-                  bg="action"
-                />
-              </ScrollView>
-            </View>
-            {/* KWH - F*/}
-            <View style={styles.formContainer}>
               <View style={styles.containerScreen}>
-                <View style={styles.screenChart}>
-                
+                <View>
+                    <Card
+                      title="LINE - NEUTRAL"
+                      name="SUMMARY"
+                      name1="PHASE 1"
+                      name2="PHASE 2"
+                      name3="PHASE 3"
+                      value={220}
+                      value1={220}
+                      value2={220}
+                      value3={220}
+                      unit="V"
+                    />
+                    <Card
+                      title="LINE - LINE"
+                      name="SUMMARY"
+                      name1="PHASE 1"
+                      name2="PHASE 2"
+                      name3="PHASE 3"
+                      value={230}
+                      value1={230}
+                      value2={230}
+                      value3={230}
+                      unit="V"
+                    />
                 </View>
               </View>
+             
+              
             </View>
         </Animatable.View>
       </ScrollView>
