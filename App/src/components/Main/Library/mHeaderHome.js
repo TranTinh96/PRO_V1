@@ -8,32 +8,42 @@ import { Badge } from "react-native-elements"
 function mHeader(props) {
      //Navigator
     const navigation = useNavigation();
-    
-    return (
-        <LinearGradient colors={['#FFF', '#FFF']} style={styles.container}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.text}>{props.name}</Text>
-                <TouchableOpacity  onPress={()=>navigation.navigate('Notification') }>
-                    <MaterialIcons name="notifications" size={24} color="#0074FE" style={[styles.icon], {
-                        transform: [{ rotate: "0deg" }]
-                    }}  />
-                    <Badge
-                         badgeStyle={{
-                             backgroundColor: "#EB4833",
-                         }}
-                         status="error"
-                        containerStyle={{ position: 'absolute', top: -6, right: -4 }}
-                        value={10}
-                        textStyle={{
-                            color: "white",
-  
-                        }}
-                        
-                    />
-                </TouchableOpacity>
+    if(props.isNotification=="true")
+    {
+        return (
+            <LinearGradient colors={['#F4F4F4', '#F4F4F4']} style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.text}>{props.name}</Text>
+                    <TouchableOpacity  onPress={()=>navigation.navigate('Notification') }>
+                        <MaterialIcons name="notifications-none" size={24} color="#0074FE" style={[styles.icon], {
+                            transform: [{ rotate: "0deg" }]
+                        }}  />
+                        <Badge
+                            badgeStyle={{
+                                backgroundColor: "#EB4833",
+                            }}
+                            status="error"
+                            containerStyle={{ position: 'absolute', top: -6, right: -4 }}
+                            value={10}
+                            textStyle={{
+                                color: "white",
+                                fontSize: 11,
+                                fontFamily: "OpenSans-SemiBold"
+                            }}
+                            
+                        />
+                    </TouchableOpacity>
 
-            </View>
-        </LinearGradient>
+                </View>
+            </LinearGradient>
+        )
+    }
+    return(
+        <LinearGradient colors={['#FFF', '#FFF']} style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.text}>{props.name}</Text>
+                </View>
+            </LinearGradient>
     )
 }
 
@@ -49,8 +59,8 @@ const styles = StyleSheet.create({
     },
     text:{
         color:"#0074FE" ,
-        fontSize:17,
-        fontFamily: "Quicksand-Bold",
+        fontSize:15,
+        fontFamily: "OpenSans-Bold",
         marginTop:0
     },
     headerContainer: {

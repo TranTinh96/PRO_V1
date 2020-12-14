@@ -1,33 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {useTheme} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-import {
-  Text,
-  View,
-  ScrollView,
-  Dimensions,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
+import { View,ScrollView,SafeAreaView,StatusBar,} from 'react-native';
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
 import LineChart from '../Library/lineChart';
 import Card from '../Library/card';
-import FreEne from '../Library/FreEne';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
 
-const {width, height} = Dimensions.get('screen');
 
 function Home() {
-  const [valueOne, setValueOne] = useState();
 
   //RETURN
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#1F9EFF" barStyle="light-content" />
-      <Header name="MY HOME" />
+      <Header name="MY HOME" isNotification ="true" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Animatable.View style={[styles.main]} animation="fadeInLeft">
             <View style={styles.formContainer}>
@@ -115,7 +104,8 @@ function Home() {
                   showsHorizontalScrollIndicator={false}
                   horizontal>
                   <Statistic 
-                    title="ACTION POWER (KW)"
+                    title="ACTION POWER"
+                    unit="( KW )"
                     nameSummary="SUMMARY"
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
@@ -127,7 +117,8 @@ function Home() {
                     bg="action"
                   />
                   <Statistic 
-                    title="REACTION POWER (KVA)"
+                    title="REACTION POWER"
+                    unit="( KVA )"
                     nameSummary="SUMMARY"
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
@@ -139,7 +130,8 @@ function Home() {
                     bg="action"
                   />
                   <Statistic 
-                    title="APPARENT POWER (KVAr)"
+                    title="APPARENT POWER"
+                    unit="( KVAr )"
                     nameSummary="SUMMARY"
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
@@ -167,7 +159,7 @@ function Home() {
                  <View style={styles.containerScreen}>
                 <View style={styles.chartViewContainer}>
                   <View style={styles.chartView}>
-                    <ChartView title="ENEGRY" num={125.5} color="#2B28A9" unit="KWh" />
+                    <ChartView title="ENEGRY" num={125.5} color="#1F9EFF" unit="KWh" />
                   </View>
                   <View style={styles.chartView}>
                     <ChartView title="FREQUENCY" num={50} unit="Hz" color="#50c594" />

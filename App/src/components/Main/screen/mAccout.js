@@ -39,12 +39,13 @@ function Accouts() {
                 <Animatable.View style={[styles.main ]} animation="fadeInLeft">
                     <View style={styles.userInfoSection}>
                         <View style={{ flexDirection: "column" ,marginTop:10}}>
-                            <Avatar.Image
-                                source={{
-                                    uri: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/117877160_1007000939759713_3134007040104332026_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=EBJIMLMxKYcAX-BkjPo&_nc_ht=scontent.fdad3-1.fna&oh=a1e9c3df756baa2915fa9a3533149b26&oe=5F697C93'
-                                }}
-                                size={69}
-                            />
+                            <Animatable.Image
+                            animation="bounceIn"
+                            duraton="1500"
+                            source={require('../../../assets/image/user.png')}
+                            style={styles.userImage}
+                            resizeMode="stretch"
+                          />
                             <View style={{ flexDirection: 'column' , marginTop:10 }}>
                                 <Title style={styles.title}>John Doe</Title>
                                 <Caption style={styles.caption}>@j_doe</Caption>
@@ -160,6 +161,9 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         backgroundColor:"#FFF"
+    },
+    userImage:{
+
     },
     userInfoSection:{
         justifyContent:"center",

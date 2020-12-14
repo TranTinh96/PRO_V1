@@ -3,12 +3,11 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
-
 //Import
 import Home from "../screen/mHome"
 import Accout from "../screen/mAccout"
 import Dashboard from "../screen/mDashboard"
-//import Map from "../screen/mMap"
+import Notification from "../screen/mNotification"
 
 
 //Setting Tav Navigator
@@ -39,16 +38,16 @@ function TabNavigator() {
                     <Foundation name="home" color={color} size={23} />
                 ),
             }} />
-            <Tab.Screen name="Dashboard" component={Home} options={{
+            <Tab.Screen name="Dashboard" component={Dashboard} options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="dashboard" color={color} size={24} />
                 ),
             }} />
-            <Tab.Screen name="Map" component={Home} options={{
+            <Tab.Screen name="Notification" component={Notification} options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
-                    <MaterialIcons name="place" color={color} size={22} />
+                    <MaterialIcons name="notifications-none" color={color} size={26} />
                 ),
             }} />
             <Tab.Screen name="Accout" component={Accout} options={{

@@ -4,7 +4,7 @@ import {Dimensions,View,StyleSheet,Text}  from "react-native"
 function Line(props) {
     return (
         <View style={styles.containerCard}>
-            <Text style={styles.textHeader}>CURRENT - {props.name} ( Ampe )</Text>
+            <Text style={styles.textHeader}>CURRENT - {props.name} ( A )</Text>
             <LineChart
                 data={{
                     labels: ["January", "February", "March", "April", "May", "June"],
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     containerCard:{
         backgroundColor:"#FFF",
         margin:8,
-        borderRadius:10
+        borderRadius:10,
     },
     textHeader:{
         marginLeft: 15,

@@ -4,6 +4,7 @@ import { useNavigation, useTheme } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
+import Header from '../Library/mHeaderHome';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 function mNotification() {
     //Navigator
@@ -13,13 +14,12 @@ function mNotification() {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#1F9EFF' barStyle="light-content" />
+            <Header name="NOTIFICATION" isNotification ="true" />
             <ScrollView showsVerticalScrollIndicator={false} >
                 <Animatable.View
                     style={[styles.main, {}]}>
                     <View style={styles.formContainer} >
-                    <View>
-                        <MaterialIcons name="keyboard-backspace" size={27} color="#01ab9d" style={styles.loginLink} onPress={() => navigation.navigate('Home')} />
-                    </View>
+                
                     </View>
                 </Animatable.View>
             </ScrollView>
@@ -31,10 +31,10 @@ const { height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF'
+        backgroundColor: '#F4F4F4'
     },
     main:{
-        backgroundColor:"#FFF"
+        backgroundColor:"#F4F4F4"
     },
     formContainer:{
         padding:15

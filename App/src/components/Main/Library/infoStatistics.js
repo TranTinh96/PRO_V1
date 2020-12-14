@@ -15,6 +15,7 @@ function Info(props) {
             <View style={styles.screenLeft}>
               <View syle={styles.containerLeft}>
                 <Text style={styles.textHeader}>{props.title}</Text>
+                <Text style={styles.textdetailHeader}>{props.unit}</Text>
               </View>
             </View>
             <View style={styles.screenRight}>

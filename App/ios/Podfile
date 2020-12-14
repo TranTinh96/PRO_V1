@@ -8,6 +8,8 @@ target 'App' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-date-picker', :path => '../node_modules/react-native-date-picker'
+
   target 'AppTests' do
     inherit! :complete
     # Pods for testing

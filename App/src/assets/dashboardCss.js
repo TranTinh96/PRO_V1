@@ -36,9 +36,127 @@ const Forms = {
     chartView:{
         width:"50%",
         padding :8
-    }
-    /*-----Card ---*/
+    },
+    /*-----Dashboard ---*/
+    containerControl :{
+        flex :1 ,
+        backgroundColor: '#F4F4F4',
+        position : 'relative',
+       
+    },
+    mainControl:{
+        flex:1,
+        backgroundColor: '#F4F4F4',
+        position : 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+       
+    },
+    
+    dashboardContainer:{
+        margin :16,
+        marginBottom :0,
+        flexDirection: 'column',
+        borderRadius:10,
+        backgroundColor:"#FFF",
+        padding :10
+     
+    },
+    dashboardContainerRelayOn:{
+        margin :16,
+        marginBottom :0,
+        flexDirection: 'column',
+        borderRadius:10,
+        backgroundColor:"#efe9ae",
+        padding :10
+     
+    },
+    dashboardControl:{
+        flexDirection: 'row',
+        alignContent:"stretch",
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        marginBottom :10,
+        width :width-54
+        
+    },
+    border:{
+        borderWidth :1,
+        borderColor:"#f6bd60",
+        margin :5
 
+    },
+
+    bulbContainer:{
+        backgroundColor:"#f8f9fa",
+        padding :8,
+        borderRadius:50,
+        borderColor:"#727cf5",
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin :5,
+        marginBottom :0
+    },
+    bulbContainerOn:{
+        backgroundColor:"#ffee93",
+        padding :8,
+        borderRadius:50,
+        borderColor:"#727cf5",
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin :5,
+        marginBottom :0
+    },
+    controlContainer:{
+        padding :5,
+       
+        
+    },
+    controlContainerRelayB:{
+        padding :5,
+    },
+    textHeader:{
+        fontFamily: "OpenSans-Bold",
+        fontSize:14,
+        color:"#E48762",
+        justifyContent: 'center',
+        marginTop:20,
+        marginLeft:5
+       
+    },
+    screenBetween:{
+        flexDirection: 'row',
+        alignContent:"stretch",
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+    },
+    screenLeft:{
+        marginTop:15,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    screenRight:{
+        width :80,
+        marginTop:5,
+    },
+  
+  
+    containerManual:{
+        marginRight :5,
+        paddingBottom :10
+    },
+    viewPower:{
+
+    },
+    powerImage:{
+        height:36,
+        width :36
+    },
+
+
+
+
+    
     
 }
 
