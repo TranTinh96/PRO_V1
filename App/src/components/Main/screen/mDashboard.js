@@ -90,7 +90,7 @@ function Home() {
                           <Animatable.Image
                             animation="bounceIn"
                             duraton="1500"
-                            source={require('../../../assets/image/vonke/power-On.png')}
+                            source={require('../../../assets/image/vonke/powerOn.png')}
                             style={styles.powerImage}
                             resizeMode="stretch"
                           />
@@ -165,7 +165,7 @@ function Home() {
                           <Animatable.Image
                             animation="bounceIn"
                             duraton="1500"
-                            source={require('../../../assets/image/vonke/power-On.png')}
+                            source={require('../../../assets/image/vonke/powerOn.png')}
                             style={styles.powerImage}
                             resizeMode="stretch"
                           />

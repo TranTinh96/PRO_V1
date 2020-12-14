@@ -146,11 +146,14 @@ const Forms = {
         paddingBottom :10
     },
     viewPower:{
-
+        padding :6,
+        backgroundColor:"#a5ffd6",
+        borderRadius:50
     },
     powerImage:{
-        height:36,
-        width :36
+        height:28,
+        width :28,
+        
     },
 
 

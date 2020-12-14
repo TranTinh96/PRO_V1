@@ -13,8 +13,11 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from "moment"
 
 function TimePicker() {
-  var [timeEndRelayA, setTimeEndRelayA] = useState('6:30');
+  var [timeStartRelayA, setTimeStartRelayA] = useState('6:30');
+  var [timeEndRelayA, setTimeEndRelayA] = useState('8:30');
   const [isDatePickerVisibleStartRelayA,setDatePickerVisibilityStartRelayA,] = useState(false);
+  const [isDatePickerVisibleEndRelayA,setDatePickerVisibilityEndRelayA,] = useState(false);
+ 
   //StartRelayA
   const showTimePickerStartRelayA = () => {
     setDatePickerVisibilityStartRelayA(true);
@@ -23,14 +26,26 @@ function TimePicker() {
     setDatePickerVisibilityStartRelayA(false);
   };
   const handleConfirmStartRelayA = (datetime) => {
-    setTimeEndRelayA(moment(datetime).format('HH:MM'))
+    setTimeStartRelayA(moment(datetime).format('HH:MM'))
     hideTimePickerStartRelayA();
   };
+  //  EndRelayA
+  const showTimePickerEndRelayA = () => {
+    setDatePickerVisibilityEndRelayA(true);
+  };
+  const hideTimePickerEndRelayA = () => {
+    setDatePickerVisibilityEndRelayA(false);
+  };
+  const handleConfirmEndRelayA = (datetime) => {
+    setTimeEndRelayA(moment(datetime).format('HH:MM'))
+    hideTimePickerEndRelayA();
+  };
+
   return (
     <View style={styles.containerAuto}>
       <View style={styles.autoTime}>
         <View style={styles.timeContainer}>
-          <TextInput style={styles.textTime} value={timeEndRelayA} />
+          <TextInput style={styles.textTime} value={timeStartRelayA} />
           <TouchableOpacity onPress={showTimePickerStartRelayA }>
             <Animatable.Image
               animation="bounceIn"
@@ -45,6 +60,27 @@ function TimePicker() {
             mode="time"
             onConfirm={handleConfirmStartRelayA}
             onCancel={hideTimePickerStartRelayA}
+          />
+        </View>
+      </View>
+      <View style={styles.padding}></View>
+      <View style={styles.autoTime}>
+        <View style={styles.timeContainer}>
+          <TextInput style={styles.textTime} value={timeEndRelayA} />
+          <TouchableOpacity onPress={showTimePickerStartRelayA }>
+            <Animatable.Image
+              animation="bounceIn"
+              duraton="1500"
+              source={require('../../../assets/image/time.png')}
+              style={styles.timeImage}
+              resizeMode="stretch"
+            />
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisibleEndRelayA}
+            mode="time"
+            onConfirm={handleConfirmEndRelayA}
+            onCancel={hideTimePickerEndRelayA}
           />
         </View>
       </View>
@@ -90,13 +126,13 @@ const styles = StyleSheet.create({
   timeImage: {
     width: 25,
     height: 25,
-    marginLeft:5,
+    marginLeft:0,
     marginTop:8
     
   },
   autoButton:{
     justifyContent:"center",
-    marginTop:-8,
+    marginTop:-5,
     marginRight:5,
     marginLeft:6
   },
@@ -114,5 +150,8 @@ const styles = StyleSheet.create({
     color:"#FFF",
     fontFamily: "OpenSans-Bold",
     fontSize:13,
+  },
+  padding:{
+    marginLeft:15
   }
 });
