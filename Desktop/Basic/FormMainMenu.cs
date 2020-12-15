@@ -22,6 +22,7 @@ namespace Basic
         public FormMainMenu()
         {
             InitializeComponent();
+            ReallyCenterToScreen();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(5, 55);
             panelMenu.Controls.Add(leftBorderBtn);
@@ -31,6 +32,18 @@ namespace Basic
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
+        }
+        //Screen
+        protected void ReallyCenterToScreen()
+        {
+            Screen screen = Screen.FromControl(this);
+
+            Rectangle workingArea = screen.WorkingArea;
+            this.Location = new Point()
+            {
+                X = Math.Max(workingArea.X, workingArea.X + (workingArea.Width - this.Width) / 2),
+                Y = Math.Max(workingArea.Y, workingArea.Y + (workingArea.Height - this.Height) / 2)
+            };
         }
         //Structs
         private struct RGBColors
@@ -106,11 +119,7 @@ namespace Basic
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            if (currentChildForm != null)
-            {
-                currentChildForm.Close();
-            }
-            Reset();
+            btnDashboard.PerformClick();
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -139,9 +148,10 @@ namespace Basic
 
         private void FormDashboard_Load(object sender, EventArgs e)
         {
+
             DateTime tn = DateTime.Now;
             lableTime.Text = tn.ToString("dd-MM-yyyy");
             btnDashboard.PerformClick();
-         }
+        }
     }
 }

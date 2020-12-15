@@ -66,7 +66,7 @@ namespace Basic
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 614);
+            this.panelMenu.Size = new System.Drawing.Size(250, 941);
             this.panelMenu.TabIndex = 0;
             // 
             // lableTime
@@ -74,7 +74,7 @@ namespace Basic
             this.lableTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lableTime.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lableTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.lableTime.Location = new System.Drawing.Point(0, 579);
+            this.lableTime.Location = new System.Drawing.Point(0, 906);
             this.lableTime.Name = "lableTime";
             this.lableTime.Size = new System.Drawing.Size(250, 35);
             this.lableTime.TabIndex = 6;
@@ -207,7 +207,7 @@ namespace Basic
             this.panelHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
             this.panelHeader.Location = new System.Drawing.Point(250, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(698, 65);
+            this.panelHeader.Size = new System.Drawing.Size(1134, 65);
             this.panelHeader.TabIndex = 0;
             // 
             // btnScreen
@@ -272,7 +272,7 @@ namespace Basic
             this.btnTask.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnTask.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTask.IconSize = 22;
-            this.btnTask.Location = new System.Drawing.Point(533, 0);
+            this.btnTask.Location = new System.Drawing.Point(969, 0);
             this.btnTask.Name = "btnTask";
             this.btnTask.Size = new System.Drawing.Size(40, 65);
             this.btnTask.TabIndex = 6;
@@ -289,7 +289,7 @@ namespace Basic
             this.btnNotification.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNotification.IconSize = 22;
-            this.btnNotification.Location = new System.Drawing.Point(573, 0);
+            this.btnNotification.Location = new System.Drawing.Point(1009, 0);
             this.btnNotification.Name = "btnNotification";
             this.btnNotification.Size = new System.Drawing.Size(50, 65);
             this.btnNotification.TabIndex = 5;
@@ -299,7 +299,7 @@ namespace Basic
             // 
             this.btnProfile.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnProfile.Image")));
-            this.btnProfile.Location = new System.Drawing.Point(623, 0);
+            this.btnProfile.Location = new System.Drawing.Point(1059, 0);
             this.btnProfile.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.btnProfile.Name = "btnProfile";
             this.btnProfile.Size = new System.Drawing.Size(45, 65);
@@ -318,7 +318,7 @@ namespace Basic
             this.btnShowProfile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnShowProfile.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnShowProfile.IconSize = 16;
-            this.btnShowProfile.Location = new System.Drawing.Point(668, 0);
+            this.btnShowProfile.Location = new System.Drawing.Point(1104, 0);
             this.btnShowProfile.Name = "btnShowProfile";
             this.btnShowProfile.Size = new System.Drawing.Size(30, 65);
             this.btnShowProfile.TabIndex = 3;
@@ -326,11 +326,12 @@ namespace Basic
             // 
             // panelDesktop
             // 
+            this.panelDesktop.AutoSize = true;
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(250, 65);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(698, 549);
+            this.panelDesktop.Size = new System.Drawing.Size(1134, 876);
             this.panelDesktop.TabIndex = 1;
             // 
             // FormMainMenu
@@ -338,10 +339,12 @@ namespace Basic
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(948, 614);
+            this.ClientSize = new System.Drawing.Size(1384, 941);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelMenu);
+            this.MaximumSize = new System.Drawing.Size(1400, 980);
+            this.MinimumSize = new System.Drawing.Size(1400, 980);
             this.Name = "FormMainMenu";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.FormDashboard_Load);
@@ -351,6 +354,7 @@ namespace Basic
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnProfile)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

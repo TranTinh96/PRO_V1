@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Basic"
   ],
+  "SelectedNode": "\\Basic\\packages.config",
   "PreviewInSolutionExplorer": false
 }

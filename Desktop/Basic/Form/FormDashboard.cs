@@ -16,5 +16,15 @@ namespace Basic
         {
             InitializeComponent();
         }
+
+        private void panel39_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel45_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
