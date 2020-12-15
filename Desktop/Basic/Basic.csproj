@@ -59,16 +59,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form\FormDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form\FormDashboard.Designer.cs">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormAccout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormAccout.Designer.cs">
+      <DependentUpon>FormAccout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormAlarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormAlarms.Designer.cs">
+      <DependentUpon>FormAlarms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMainMenu.Designer.cs">
+      <DependentUpon>FormMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormDataTables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormDataTables.Designer.cs">
+      <DependentUpon>FormDataTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormMainMenu.resx">
+      <DependentUpon>FormMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormDashboard.resx">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

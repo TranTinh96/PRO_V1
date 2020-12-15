@@ -11,7 +11,7 @@ using FontAwesome.Sharp;
 
 namespace Basic
 {
-    public partial class FormDashboard : Form
+    public partial class FormMainMenu : Form
     {
         //Fields
         private IconButton currentBtn;
@@ -19,12 +19,17 @@ namespace Basic
         private Form currentChildForm;
 
         //Contructor
-        public FormDashboard()
+        public FormMainMenu()
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(5, 55);
             panelMenu.Controls.Add(leftBorderBtn);
+            //Form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
         }
         //Structs
@@ -84,8 +89,8 @@ namespace Basic
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            //panelDesktop.Controls.Add(childForm);
-            //panelDesktop.Tag = childForm;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
             //lblTitleChildForm.Text = childForm.Text;
@@ -117,21 +122,26 @@ namespace Basic
         private void btnDataTables_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new FormDashboard());
+            OpenChildForm(new FormDataTables());
         }
 
         private void btnAlarms_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new FormDashboard());
+            OpenChildForm(new FormAlarms());
         }
 
         private void btnAccout_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new FormDashboard());
+            OpenChildForm(new FormAccout());
         }
 
-        
+        private void FormDashboard_Load(object sender, EventArgs e)
+        {
+            DateTime tn = DateTime.Now;
+            lableTime.Text = tn.ToString("dd-MM-yyyy");
+            btnDashboard.PerformClick();
+         }
     }
 }
