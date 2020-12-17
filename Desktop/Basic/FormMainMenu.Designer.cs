@@ -1,7 +1,7 @@
 ﻿
 namespace Basic
 {
-    partial class FormMainMenu
+    partial class screenForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Basic
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(screenForm));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.lableTime = new System.Windows.Forms.Label();
             this.btnAccout = new FontAwesome.Sharp.IconButton();
@@ -39,6 +39,7 @@ namespace Basic
             this.panelLogo = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.btnExit = new FontAwesome.Sharp.IconButton();
             this.btnScreen = new FontAwesome.Sharp.IconButton();
             this.btnSearch = new FontAwesome.Sharp.IconButton();
             this.btnMenu = new FontAwesome.Sharp.IconButton();
@@ -66,7 +67,7 @@ namespace Basic
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 941);
+            this.panelMenu.Size = new System.Drawing.Size(250, 966);
             this.panelMenu.TabIndex = 0;
             // 
             // lableTime
@@ -74,9 +75,9 @@ namespace Basic
             this.lableTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lableTime.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lableTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.lableTime.Location = new System.Drawing.Point(0, 906);
+            this.lableTime.Location = new System.Drawing.Point(0, 911);
             this.lableTime.Name = "lableTime";
-            this.lableTime.Size = new System.Drawing.Size(250, 35);
+            this.lableTime.Size = new System.Drawing.Size(250, 55);
             this.lableTime.TabIndex = 6;
             this.lableTime.Text = "15-12-2020";
             this.lableTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -195,6 +196,7 @@ namespace Basic
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
+            this.panelHeader.Controls.Add(this.btnExit);
             this.panelHeader.Controls.Add(this.btnScreen);
             this.panelHeader.Controls.Add(this.btnSearch);
             this.panelHeader.Controls.Add(this.btnMenu);
@@ -209,6 +211,21 @@ namespace Basic
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1134, 65);
             this.panelHeader.TabIndex = 0;
+            // 
+            // btnExit
+            // 
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnExit.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(35)))), ((int)(((byte)(60)))));
+            this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExit.IconSize = 18;
+            this.btnExit.Location = new System.Drawing.Point(543, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 20);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnScreen
             // 
@@ -326,27 +343,25 @@ namespace Basic
             // 
             // panelDesktop
             // 
-            this.panelDesktop.AutoSize = true;
-            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(250, 65);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1134, 876);
+            this.panelDesktop.Size = new System.Drawing.Size(1134, 901);
             this.panelDesktop.TabIndex = 1;
             // 
-            // FormMainMenu
+            // screenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1384, 941);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
+            this.ClientSize = new System.Drawing.Size(1384, 966);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelMenu);
-            this.MaximumSize = new System.Drawing.Size(1400, 980);
-            this.MinimumSize = new System.Drawing.Size(1400, 980);
-            this.Name = "FormMainMenu";
-            this.Text = "Dashboard";
+            this.MaximumSize = new System.Drawing.Size(1400, 1005);
+            this.MinimumSize = new System.Drawing.Size(1400, 1005);
+            this.Name = "screenForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormDashboard_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
@@ -354,7 +369,6 @@ namespace Basic
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnProfile)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -376,6 +390,7 @@ namespace Basic
         private FontAwesome.Sharp.IconButton btnSearch;
         private FontAwesome.Sharp.IconButton btnMenu;
         private System.Windows.Forms.Label lableTime;
+        private FontAwesome.Sharp.IconButton btnExit;
         private System.Windows.Forms.Panel panelDesktop;
     }
 }

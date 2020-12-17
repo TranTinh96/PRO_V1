@@ -11,7 +11,7 @@ using FontAwesome.Sharp;
 
 namespace Basic
 {
-    public partial class FormMainMenu : Form
+    public partial class screenForm : Form
     {
         //Fields
         private IconButton currentBtn;
@@ -19,10 +19,9 @@ namespace Basic
         private Form currentChildForm;
 
         //Contructor
-        public FormMainMenu()
+        public screenForm()
         {
             InitializeComponent();
-            ReallyCenterToScreen();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(5, 55);
             panelMenu.Controls.Add(leftBorderBtn);
@@ -33,18 +32,7 @@ namespace Basic
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
         }
-        //Screen
-        protected void ReallyCenterToScreen()
-        {
-            Screen screen = Screen.FromControl(this);
-
-            Rectangle workingArea = screen.WorkingArea;
-            this.Location = new Point()
-            {
-                X = Math.Max(workingArea.X, workingArea.X + (workingArea.Width - this.Width) / 2),
-                Y = Math.Max(workingArea.Y, workingArea.Y + (workingArea.Height - this.Height) / 2)
-            };
-        }
+  
         //Structs
         private struct RGBColors
         {
@@ -152,6 +140,11 @@ namespace Basic
             DateTime tn = DateTime.Now;
             lableTime.Text = tn.ToString("dd-MM-yyyy");
             btnDashboard.PerformClick();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

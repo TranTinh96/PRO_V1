@@ -1,0 +1,15 @@
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\IOT.csprojAssemblyReference.cache
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.FormDashboard.resources
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.Properties.Resources.resources
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\IOT.csproj.GenerateResource.cache
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\IOT.csproj.CoreCompileInputs.cache
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.exe
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.pdb
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\Basic.exe.config
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\Basic.exe
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\Basic.pdb
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\FontAwesome.Sharp.dll
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\IOT.csproj.CopyComplete
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.screenForm.resources
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\Guna.UI2.dll
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.Auth.FormLogin.resources

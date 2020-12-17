@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Basic"
+    "\\Basic",
+    "\\Basic\\Auth"
   ],
-  "SelectedNode": "\\Basic\\packages.config",
+  "SelectedNode": "\\Basic.sln",
   "PreviewInSolutionExplorer": false
 }

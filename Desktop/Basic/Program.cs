@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basic.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace Basic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMainMenu());
+            //Application.Run(new screenForm());
+            Application.Run(new FormLogin());
         }
     }
 }
