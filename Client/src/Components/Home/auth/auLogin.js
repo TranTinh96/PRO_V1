@@ -36,6 +36,7 @@ const MenuLink = ({ lable, to, activeOnlyWhenExact }) => {
 
 
 function AuLogin() {
+    var jwtToken = null;
     //Router
     const history = useHistory();
     //Redux
@@ -47,20 +48,27 @@ function AuLogin() {
     const onSubmit = data => {
         axios.post('/profile/login', data)
             .then(res => {
-
                 var resData = res.data
+               
                 if (resData.success) {
                     var authToken = resData.token;
-                    let jwtToken =jwt.decode(authToken)
-                    let role =checkRole(jwtToken.role);
+                    jwtToken =jwt.decode(authToken)
+                    var role = checkRole(jwtToken.role);
                     var users ={
                         email :jwtToken.email,
                         user :jwtToken.user,
                         role :role
                     }
+                    if(! (role =="Administrator")){
+                        dispatch({
+                            type :"ID_TOPIC_PROJECT" ,
+                            _idProject :jwtToken.project_id
+                        })
+                    }
+                    
                     //Set JWT
                     setAuthorizationToken(authToken);
-                    //Redux User JWT
+                    //Redux User JWT ,ID_TOPIC_PROJECT
                     dispatch({ type :"SET_USER" ,users:users})
                     //Save Token into Cookie
                     var optionCookie ={

@@ -39,6 +39,11 @@ module.exports.createProject = async (newProject ,cb)=>{
     newProject.save(cb);
 };
 
+module.exports.getProjectById = async (id, cb) => {
+    await Project.findById(id, cb)
+};
+
+
 module.exports.getByTokenProject = async (tokenID ,cb) =>{
     await Project.findOne({tokenProject : tokenID},cb);
 }

@@ -20,7 +20,7 @@ exports.createAccoutAdmin=()=>{
         email: process.env.ADMIN_MAIL,
         password: process.env.ADMIN_PASSWORD,
         isVerified :true ,
-        role:"ROLE_AUTHOR"
+        role:"ROLE_ADMIN"
     })
     User.createUser(newUser, function(err, user) {
         if (err) throw err;

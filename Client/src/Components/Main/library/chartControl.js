@@ -70,8 +70,8 @@ function ChartControl() {
               <button className="btn btn-primary shadow-none rounded-0 btn-mode btn-manual"> MANUAL</button>
             </td>
             <td className="table-chartControl-auto">
-                <input class="form-control shadow-none rounded-0 d-inline" type="time"/>
-                <input class="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
+                <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
                 <button className="btn btn-success shadow-none rounded-0 btn-mode btn-auto">SET</button>
             </td>
             <td className="table-chartControl-manual">

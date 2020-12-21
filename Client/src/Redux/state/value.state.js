@@ -10,10 +10,10 @@ const initialStateJWT = {
 
 
 
-//Project
+//Project Register
 var projectID = (state = null, action) => {
     switch (action.type) {
-      case "PROJECT_ID":
+      case "PROJECT_ID_REGISTER":
         return action.projectID;
 
       default:
@@ -34,8 +34,18 @@ var projectID = (state = null, action) => {
     }
   };
 
-  
+  var idTopicProject = (state = null, action) => {
+    switch (action.type) {
+      case "ID_TOPIC_PROJECT":
+        return action._idProject;
+
+      default:
+        return state;
+    }
+  };
 
   
 
- module.exports= {projectID ,JWT};
+  
+
+ module.exports= {projectID ,JWT,idTopicProject};

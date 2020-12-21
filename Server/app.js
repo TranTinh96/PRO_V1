@@ -49,7 +49,7 @@ mongoose.Promise = global.Promise;
 var io = socketio(server); 
 
 //Connect Cloud MQTT
-var client = mqtt.connect(process.env.MQTT_SERVER, options);
+var client = mqtt.connect(process.env.MQTT_SERVER);
 
 require("./controllers/mqttController")(client);
 require("./controllers/socketIO_Controller")(io);

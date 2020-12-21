@@ -5,7 +5,7 @@ var tokenVerification = require("../models/tokenVerification.model.js")
 var func = require("../middlewares/func.Middleware")
 var mailer = require("../config/sendGmail")
 var crypto = require("crypto")
-
+var _idProject = null
 
 //Post Token Project
 module.exports.postTokenProject = async (req, res) => {
@@ -97,6 +97,7 @@ module.exports.postRegister = async (req, res) => {
 module.exports.postLogin = async (req, res) => {
     var reqGmail = req.body.email
     var passwordBefore = req.body.password
+    var jwtToken  ;
     User.getUserByEmail(reqGmail, (err, user) => {
         if (err) throw err;
         if (user) {
@@ -110,24 +111,51 @@ module.exports.postLogin = async (req, res) => {
                             email: true
                         })
                     } else {
-                        const jwtToken = jwt.sign({
-                            id: user._id,
-                            user: user.userName,
-                            email: user.email,
-                            role: user.role,
-                            expires: "1"
-                        }, process.env.JWT_KEY_SECRET, {
-                            expiresIn: "1h"
-                        });
+                        if(!(user.role == "ROLE_ADMIN"))
+                        {
+                            Project.getProjectById(user.project_id ,(err,project)=> {
+                               if (err) throw err;
+                               if(project){
+                                   _idProject = project.tokenProject
+                               }
+                               else
+                               {
+                                   _idProject = null
+                               }
+                               
+                            })
+                        
+                            jwtToken = jwt.sign({
+                                id: user._id,
+                                user: user.userName,
+                                email: user.email,
+                                role: user.role,
+                                project_id :_idProject,
+                                expires: "1"
+                            }, process.env.JWT_KEY_SECRET, {
+                                expiresIn: "1h"
+                            });
+                            console.log(_idProject)
+                        }
+                        else{
+                            jwtToken = jwt.sign({
+                                id: user._id,
+                                user: user.userName,
+                                email: user.email,
+                                role: user.role,
+                                expires: "1"
+                            }, process.env.JWT_KEY_SECRET, {
+                                expiresIn: "1h"
+                            });
+                        }
                         res.json({
                             success: true,
                             message: "User Login Success",
                             email: true,
-                            token: jwtToken,
-                            role: user.role,
-                            userName: user.userName,
-                            addressEmail : user.email
+                            token: jwtToken
+             
                         })
+                        
                     }
                 })
             }

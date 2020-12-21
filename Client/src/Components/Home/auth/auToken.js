@@ -17,7 +17,7 @@ function AuToken() {
             .then(res=> {
                if(res.data.success){
                    dispatch({
-                       type :"PROJECT_ID" ,
+                       type :"PROJECT_ID_REGISTER" ,
                        projectID :res.data.projectID
                    })
                   history.push("/profile/register");

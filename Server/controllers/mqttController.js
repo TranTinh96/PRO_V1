@@ -7,7 +7,7 @@ module.exports = (client) =>{
           });
         });
       
-        client.publish('hello/world', 'my message', function() {
+        client.publish('tnt1513516', 'my message', function() {
           console.log("Message is published");
           client.end(); 
         });
