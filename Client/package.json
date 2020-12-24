@@ -14,7 +14,6 @@
     "apexcharts": "^3.22.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.3",
-    "dotenv": "^8.2.0",
     "feather-icons-react": "^0.4.1",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
@@ -33,6 +32,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-switch": "^5.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "universal-cookie": "^4.0.3"

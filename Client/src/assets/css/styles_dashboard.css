@@ -133,7 +133,7 @@
 }
 
 .navbar-user {
-  margin: 0px 10px 0 10px;
+  margin: 0px 0px 0 10px;
   position: relative;
   vertical-align: middle;
   display: inline-block;
@@ -144,7 +144,7 @@
   padding-top: 5px;
 }
 .navbar-user-active {
-  margin: 0px 10px 0 10px;
+  margin: 0px 0px 0 10px;
   position: relative;
   vertical-align: middle;
   display: inline-block;
@@ -187,7 +187,8 @@
 }
 .user-detail {
   float: right;
-  padding: 5px;
+  padding: 10px;
+  margin-left: 5px;
 }
 
 .dropdown-menu-user {

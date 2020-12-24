@@ -1,19 +1,30 @@
 import React,{useState}from "react";
-import Switch from '@material-ui/core/Switch';
+import Switch from "react-switch";
 import onLight from "../../../assets/Image/light/on.png"
 import offLight from "../../../assets/Image/light/off.png"
 
 
 
-function ChartControl() {
-    const [state, setState] = React.useState({
-      isRelayA: true,
-      isRelayB: true,
-    });
-    const handleChange = (event) => {
-      setState({ ...state, [event.target.name]: event.target.checked });
+function ChartControl(props) {
+    var clientMQTT= props.clientMQTT
+    const [isRelayA, setIsRelayA] = useState(true)
+    const [isRelayB, setIsRelayB] = useState(true)
+    const [isModeRelayA, setIsModeRelayA] = useState(true)
+    const [isModeRelayB, setIsModeRelayB] = useState(false)
+  
+    const handleChangeRelayA = () => {
+      clientMQTT.publish('presence', 'Hello mqtt Tran Tinh')
+      setIsRelayA(!isRelayA)
     };
-    
+    const handleChangeRelayB = () => {
+      setIsRelayB(!isRelayB)
+    };
+    const handleChangeModeRelayA = () => {
+      setIsModeRelayA(!isModeRelayA)
+    };
+    const handleChangeModeRelayB = () => {
+      setIsModeRelayB(!isModeRelayB)
+    };
   return (
     <div className="table-chartFreEne-container">
       <table className="table table-striped table-chartFreEne table-chartControl" responsive>
@@ -22,8 +33,7 @@ function ChartControl() {
             <th scope="col">RELAY</th>
             <th scope="col">STATUS</th>
             <th scope="col">MODE</th>
-            <th scope="col">AUTO</th>
-            <th scope="col">MANUAL</th>
+            <th scope="col">AUTO / MANUAL</th>
           </tr>
         </thead>
         <tbody className="my-tbody">
@@ -34,27 +44,107 @@ function ChartControl() {
               <p>RELAY A</p>
             </td>
             <td className="table-chartFreEne-status">
-                {state.isRelayA ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
+                {isRelayA ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
             </td>
+          
             <td className="table-chartFreEne-mode">
-              <button className="btn btn-primary shadow-none rounded-0 btn-mode">AUTO</button>
-              <button className="btn btn-primary shadow-none rounded-0 btn-mode btn-manual"> MANUAL</button>
+              <Switch
+                  checked={isModeRelayA}
+                  onChange={handleChangeModeRelayA}
+                  className="react-switch"
+                  id="icon-switch"
+                  height={25}
+                  width={55}
+                  offColor="#ced4da"
+                  onColor="#80ed99"
+                  uncheckedIcon={
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: 11,
+                        color: "#727cf5",
+                        paddingRight: 2 ,
+                        fontWeight:700
+                      }}
+                    >
+                      M
+                    </div>
+                  }
+                  checkedIcon={
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: 11,
+                        color: "#727cf5",
+                        paddingRight: 2,
+                        fontWeight:700
+                      }}
+                    >
+                      AU
+                    </div>
+                  }
+                
+                />
             </td>
+            {isModeRelayA ? 
             <td className="table-chartControl-auto">
                 <input class="form-control shadow-none rounded-0 d-inline" type="time"/>
                 <input class="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
                 <button className="btn btn-success shadow-none rounded-0 btn-mode btn-auto">SET</button>
             </td>
+            :
             <td className="table-chartControl-manual">
               <Switch
-                checked={state.isRelayA}
-                onChange={handleChange}
-                size="small"
-                color="primary"
-                name="isRelayA"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                checked={isRelayA}
+                onChange={handleChangeRelayA}
+                className="react-switch"
+                id="icon-switch"
+                height={25}
+                width={55}
+                offColor="#ced4da"
+                onColor="#d8f3dc"
+                uncheckedIcon={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                      fontSize: 11,
+                      color: "#727cf5",
+                      paddingRight: 2 ,
+                      fontWeight:700
+                    }}
+                  >
+                    OFF
+                  </div>
+                }
+                checkedIcon={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                      fontSize: 11,
+                      color: "red",
+                      paddingRight: 2,
+                      fontWeight:700
+                    }}
+                  >
+                    ON
+                  </div>
+                }
+              
               />
             </td>
+            }
           </tr>
           {/* Relay B  */}
           <tr>
@@ -63,27 +153,106 @@ function ChartControl() {
               <p>RELAY B</p>
             </td>
             <td className="table-chartFreEne-status">
-                {state.isRelayB ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
+                {isRelayB ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
             </td>
             <td className="table-chartFreEne-mode">
-              <button className="btn btn-primary shadow-none rounded-0 btn-mode">AUTO</button>
-              <button className="btn btn-primary shadow-none rounded-0 btn-mode btn-manual"> MANUAL</button>
+              <Switch
+                    checked={isModeRelayB}
+                    onChange={handleChangeModeRelayB}
+                    className="react-switch"
+                    id="icon-switch"
+                    height={25}
+                    width={55}
+                    offColor="#ced4da"
+                    onColor="#80ed99"
+                    uncheckedIcon={
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100%",
+                          fontSize: 11,
+                          color: "#727cf5",
+                          paddingRight: 2 ,
+                          fontWeight:700
+                        }}
+                      >
+                        M
+                      </div>
+                    }
+                    checkedIcon={
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100%",
+                          fontSize: 11,
+                          color: "#727cf5",
+                          paddingRight: 2,
+                          fontWeight:700
+                        }}
+                      >
+                        AU
+                      </div>
+                    }
+                  
+                  />
             </td>
+            {isModeRelayB?
             <td className="table-chartControl-auto">
                 <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
                 <input className="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
                 <button className="btn btn-success shadow-none rounded-0 btn-mode btn-auto">SET</button>
             </td>
+            :
             <td className="table-chartControl-manual">
-              <Switch
-                checked={state.isRelayB}
-                onChange={handleChange}
-                size="small"
-                color="secondary"
-                name="isRelayB"
-                inputProps={{ "aria-label": "primary checkbox" }}
+            <Switch
+                checked={isRelayB}
+                onChange={handleChangeRelayB}
+                className="react-switch"
+                id="icon-switch"
+                height={25}
+                width={55}
+                offColor="#ced4da"
+                onColor="#d8f3dc"
+                uncheckedIcon={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                      fontSize: 11,
+                      color: "#727cf5",
+                      paddingRight: 2 ,
+                      fontWeight:700
+                    }}
+                  >
+                    OFF
+                  </div>
+                }
+                checkedIcon={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                      fontSize: 11,
+                      color: "red",
+                      paddingRight: 2,
+                      fontWeight:700
+                    }}
+                  >
+                    ON
+                  </div>
+                }
+              
               />
             </td>
+            }
           </tr>
         </tbody>
       </table>

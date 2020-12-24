@@ -206,14 +206,9 @@
 .img-light-on{
   height: 35px;
   width: 35px;
-  background: #ffec44;
-  border-radius: 50px;
-  padding: 5px;
+  
 }
 .img-light-off{
   height: 35px;
   width: 35px;
-  background: rgb(255, 255, 255);
-  border-radius: 50px;
-  padding: 5px;
 }

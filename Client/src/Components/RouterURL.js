@@ -10,6 +10,7 @@ import auVerification from "../Components/Home/auth/auVerification"
 import auReSend from "../Components/Home/auth/auReSend"
 
 function RouterURL() {
+
     return (
         <React.Fragment>
             <Route exact path="/" component={Home} />

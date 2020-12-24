@@ -21,7 +21,7 @@ var projectID = (state = null, action) => {
     }
   };
   //JWT
-  var JWT = (state = initialStateJWT, action) => {
+  var setUserJWT = (state = initialStateJWT, action) => {
     switch (action.type) {
       case "SET_USER":
          return {
@@ -48,4 +48,4 @@ var projectID = (state = null, action) => {
 
   
 
- module.exports= {projectID ,JWT,idTopicProject};
+ module.exports= {projectID ,setUserJWT,idTopicProject};

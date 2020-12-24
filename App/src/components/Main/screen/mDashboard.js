@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import SwitchSelector from 'react-native-switch-selector';
-import LinearGradient from 'react-native-linear-gradient';
 import TimePickerRelayA from '../Library/timePickerRelayA';
 import TimePickerRelayB from '../Library/timePickerRelayB';
 import {

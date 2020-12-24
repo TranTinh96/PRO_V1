@@ -1,14 +1,14 @@
 import React from 'react'
 import { NavLink, Route, Link, useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useCookies } from 'react-cookie';
 import axios from "axios"
 //Auth JWT
 import jwt from 'jsonwebtoken';
 import setAuthorizationToken from "../../services/jwtService";
 //Check Role 
-import checkRole  from "../../services/fucService"
+import checkRole  from "../../services/fucRole"
 //Icon - Image
 import logo from '../../../assets/Image/logo2.png'
 import google from '../../../assets/Image/google.png'
@@ -59,7 +59,7 @@ function AuLogin() {
                         user :jwtToken.user,
                         role :role
                     }
-                    if(! (role =="Administrator")){
+                    if(!(role =="Administrator")){
                         dispatch({
                             type :"ID_TOPIC_PROJECT" ,
                             _idProject :jwtToken.project_id
@@ -78,6 +78,7 @@ function AuLogin() {
                     setCookie('Auth', authToken, optionCookie);
                     //Redirect
                     history.push("/dashboard");
+                    history.go(0);
                 } else {
                     if (!resData.email) {
                         setError(

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Image/logo.png";
 
-function home() {
+function Home() {
   //useEffect 
   
   return (
@@ -33,4 +33,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;

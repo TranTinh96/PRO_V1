@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link,useHistory } from "react-router-dom";
 import { DatePicker } from 'rc-datepicker';
@@ -25,31 +25,29 @@ import i from "../../../assets/Image/vonke/i.png"
 import voltmeter from "../../../assets/Image/vonke/voltmeter.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
-function formatDate(d) {
-    var month = parseInt(d.getMonth()) + 1
-    var timeDay =checkLength(d.getDate()) + " - " + checkLength(month )+ " - " + d.getFullYear()
-    return timeDay;
-}
+
 function currentDateInput() {
     var date = new Date().toLocaleDateString().split("/");
-    var timeDay =checkLength(date[0]) + " - " + checkLength(date[1]) + " - " + date[2]
+    var timeDay =checkLength(date[1]) + " - " + checkLength(date[0]) + " - " + date[2]
     return timeDay;
 }
-function currentDateCalendar() {
-    var date = new Date().toLocaleDateString().split("/");
-    var timeDay = checkLength(date[2]) + "-" + checkLength(date[1]) + "-" + date[0]
-    return timeDay;
-}
+
 function checkLength(value){
   return  value.length <= 1 ?  "0"+ value : value
 }
 
 
-function MDashbard() {
-
+function MDashbard(props) {
+    var clientMQTT = props.clientMQTT;
     const [isCalendar, setCalendar] = useState(false)
-    const [date, setDate] = useState(currentDateCalendar())
     const [timeInput, setTimeInput] = useState(currentDateInput())
+    useEffect(() => {
+        /*
+       setInterval(function(){ 
+            clientMQTT.publish('presence', 'Hello mqtt')
+        }, 3000);
+        */
+    }, [])
 
     return (
         <>
@@ -75,15 +73,6 @@ function MDashbard() {
                                                                 </span>
 
                                                             </div>
-                                                        </div>
-                                                        <div className={isCalendar ? "page-calendar d-block" : "page-calendar d-none"}>
-                                                            {/* 
-                                                            <DatePicker value={date} locale='EN'
-                                                                onChange={jsDate => {
-                                                                    setDate(jsDate)
-                                                                    setTimeInput(formatDate(jsDate))
-                                                                }} />
-                                                                */}
                                                         </div>
                                                     </div>
                                                     <Link to="/dashboard">
@@ -201,7 +190,7 @@ function MDashbard() {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-6 col-lg-12">
+                                    <div class="col-xl-7 col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -214,7 +203,7 @@ function MDashbard() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-12">    
+                                    <div class="col-xl-5 col-lg-12">    
                                         <div className="col-12 col-control-panel">
                                             <div className="card">
                                                 <div className="card-body">
@@ -223,7 +212,7 @@ function MDashbard() {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl/>        
+                                                         <ChartControl clientMQTT={props.clientMQTT}/>        
                                                     </div>
                                                 </div>
                                             </div>
