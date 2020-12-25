@@ -250,6 +250,19 @@
 }
 
 /*----------------------Content-----------------*/
+.container-spinners{
+  background: #FFF !important;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+}
+.spinners{
+  position: absolute; /* Canh giữa */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .pcoded-main-container {
   position: relative;
   display: block;

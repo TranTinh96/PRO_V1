@@ -1,5 +1,6 @@
 import React,{useState}from "react";
 import Switch from "react-switch";
+import { Button } from 'antd';
 import onLight from "../../../assets/Image/light/on.png"
 import offLight from "../../../assets/Image/light/off.png"
 
@@ -94,9 +95,9 @@ function ChartControl(props) {
             </td>
             {isModeRelayA ? 
             <td className="table-chartControl-auto">
-                <input class="form-control shadow-none rounded-0 d-inline" type="time"/>
-                <input class="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
-                <button className="btn btn-success shadow-none rounded-0 btn-mode btn-auto">SET</button>
+                <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
+                <Button type="primary" type="dashed">SET</Button>
             </td>
             :
             <td className="table-chartControl-manual">
@@ -203,8 +204,8 @@ function ChartControl(props) {
             {isModeRelayB?
             <td className="table-chartControl-auto">
                 <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10" type="time"/>
-                <button className="btn btn-success shadow-none rounded-0 btn-mode btn-auto">SET</button>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
+                <Button type="primary" type="dashed">SET</Button>
             </td>
             :
             <td className="table-chartControl-manual">

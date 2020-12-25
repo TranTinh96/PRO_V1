@@ -190,7 +190,7 @@ function MDashbard(props) {
                             {/*----------- End header dashboard -------------*/}
                             <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-7 col-lg-12">
+                                    <div className="col-xl-7 col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -203,7 +203,7 @@ function MDashbard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-5 col-lg-12">    
+                                    <div className="col-xl-5 col-lg-12">    
                                         <div className="col-12 col-control-panel">
                                             <div className="card">
                                                 <div className="card-body">
@@ -237,7 +237,7 @@ function MDashbard(props) {
                               {/*----------- KW - KW/H -KVAR - PE-------------*/}
                               <div className='page-chart-dashboard'>
                                 <div className="row">
-                                    <div class="col-xl-3 col-md-12">    
+                                    <div className="col-xl-3 col-md-12">    
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -250,7 +250,7 @@ function MDashbard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-12">    
+                                    <div className="col-xl-3 col-md-12">    
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -263,7 +263,7 @@ function MDashbard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-12">    
+                                    <div className="col-xl-3 col-md-12">    
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
@@ -276,7 +276,7 @@ function MDashbard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-12">    
+                                    <div className="col-xl-3 col-md-12">    
                                         <div className="card">
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">

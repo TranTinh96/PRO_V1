@@ -16,6 +16,7 @@ import setAuthorizationToken from './Components/services/jwtService';
 import checkRole from "./Components/services/fucRole";
 import {checkUndefined } from "./Components/services/fucServices";
 import "bootstrap/dist/css/bootstrap.min.css"
+import 'antd/dist/antd.css'
 import "./assets/css/util.css"
 import "./assets/css/styles_dashboard.css"
 import "./assets/css/screen.css"
@@ -43,7 +44,7 @@ const Them = createMuiTheme({
 const cookies = new Cookies();
 var authToken = cookies.get("Auth")
 
-console.log(authToken)
+console.log((!(checkUndefined(authToken))))
 if (!(checkUndefined(authToken))) {
   let jwtToken = jwt.decode(authToken)
   console.log("Test Auth Token")
