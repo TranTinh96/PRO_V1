@@ -1,7 +1,7 @@
 import React ,{ useEffect ,useState }from 'react'
 import ReactApexChart from "react-apexcharts";
 
-function ChartLine_v() {
+function ChartLine() {
 
     var [series,setSeries] = useState([
         {
@@ -67,5 +67,5 @@ function ChartLine_v() {
     </div>
   )
 }
-export default ChartLine_v;
+export default ChartLine;
 

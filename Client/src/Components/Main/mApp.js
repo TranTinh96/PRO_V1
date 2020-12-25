@@ -79,9 +79,8 @@ function MApp() {
       });
 
       clientMQTT.on("message", (topic, message) => {
-        const payload = { topic, message: message.toString() };
+        const payload = message.toString() ;
         setPayload(payload);
-        console.log(payload);
       });
     }
   }, [clientMQTT]);
@@ -103,7 +102,6 @@ function MApp() {
 
   return (
     <React.Fragment>
-     
       <Header />
       <div className="pcoded-main-container">
         <Navbars />
@@ -111,7 +109,7 @@ function MApp() {
           <Route
             exact
             path="/dashboard"
-            render={(props) => <Dashboard {...props} clientMQTT={clientMQTT} />}
+            render={(props) => <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />}
           />
           <Route exact path="/manage/setting" component={mManage} />
           <Route exact path="/manage/open-accout" component={mManage} />
