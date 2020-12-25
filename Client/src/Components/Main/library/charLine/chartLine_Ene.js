@@ -1,12 +1,11 @@
 import React ,{ useEffect ,useState }from 'react'
 import ReactApexChart from "react-apexcharts";
-import {limitData} from "../../../services/fucServices"
 
-function ChartLine_Ene(props) {
+function ChartLine_Ene() {
   var [series, setSeries] = useState([
     {
-      name: " ",
-      data: []
+      name: "series1",
+      data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]
     },
   ]);
   var [options, setOptions] = useState({
@@ -51,14 +50,8 @@ function ChartLine_Ene(props) {
     }
   });
   useEffect(() => {
-
-    setSeries([{
-          name: props.name,
-          data: limitData(props.dataArray,11,props.data)
-      }]
-    )
-
-  }, [props])
+    return () => {};
+  }, []);
   return (
     <div className="chart-container">
       <ReactApexChart

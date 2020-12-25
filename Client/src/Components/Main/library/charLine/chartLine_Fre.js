@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import {limitData} from "../../../services/fucServices"
 
-function ChartLine_Fre(props) {
+function ChartLine_Fre() {
   var [series, setSeries] = useState([
     {
       name: "series1",
-      data: [],
+      data: [220, 1000, 100, 50, 100, 300],
     },
   ]);
   var [options, setOptions] = useState({
@@ -44,14 +43,8 @@ function ChartLine_Fre(props) {
     },
   });
   useEffect(() => {
-
-    setSeries([{
-          name: props.name,
-          data: limitData(props.dataArray,6,props.data)
-      }]
-    )
-
-  }, [props])
+    return () => {};
+  }, []);
   return (
     <div className="chart-container">
       <ReactApexChart

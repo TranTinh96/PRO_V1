@@ -13,7 +13,7 @@ function ChartFreEne(props) {
                <p >ENERGY</p>
               </td>
             <td className="table-chartFreEne-chart">
-              <CharLine_Ene name='KW' data={props.KWH} dataArray ={[25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]}  />
+              <CharLine_Ene />
             </td>
             <td className="table-chartFreEne-value">{props.KWH}</td>
             <td className="table-chartFreEne-unit">kWH</td>
@@ -24,7 +24,7 @@ function ChartFreEne(props) {
                <p >FREQUENCY</p>
             </td>
             <td className="table-chartFreEne-chart">
-              <CharLine_Fre name='F' data={props.Frequcency} dataArray ={[50, 50, 49, 48, 52, 55]}/>
+              <CharLine_Fre />
             </td>
             <td className="table-chartFreEne-value">{props.Frequcency}</td>
             <td className="table-chartFreEne-unit">F</td>

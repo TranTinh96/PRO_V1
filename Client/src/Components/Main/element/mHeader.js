@@ -10,7 +10,7 @@ import { faCompress} from "@fortawesome/free-solid-svg-icons";
 import userlogo from "../../../assets/Image/loggeduser.jpg"
 
 
-function MHeader() {
+function mHeader() {
   //Cookie
   const [cookies, removeCookie] = useCookies(["Auth"]);
   //Redux
@@ -28,6 +28,9 @@ function MHeader() {
     dispatch({ type: "SET_USER", users: { } });
     removeCookie("Auth");
   };
+
+  //useEffect
+  useEffect(() => {}, []);
 
   return (
     <nav className="navbar navbar-header">
@@ -155,4 +158,4 @@ function MHeader() {
   );
 }
 
-export default MHeader
+export default mHeader
