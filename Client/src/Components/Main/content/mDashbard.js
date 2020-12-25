@@ -192,7 +192,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine/>                                              
+                                                            <ChartLine name='VLN' data={VLN} dataArray ={[0,0,10 ,10,0,0]} />                                              
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,7 +214,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine/>                                              
+                                                            <ChartLine name='V1N' data={V1N} dataArray ={[0,0,100 ,10,20,100]} />                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -236,7 +236,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine/>                                             
+                                                            <ChartLine name='V2N' data={V2N} dataArray ={[100,0,10 ,10,20,0]} />                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -260,7 +260,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine/>                                              
+                                                            <ChartLine name='VL3' data={V3N} dataArray ={[10,0,200 ,10,20,0]}/>                                        
                                                         </div>
                                                     </div>
 

@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
+import {useSelector ,useDispatch} from 'react-redux';
 import logo from "../../assets/Image/logo.png";
 
 function Home() {
-  //useEffect 
-  
+
+const  isAuthenticated = useSelector(state =>state.setUserJWT).isAuthenticated;
+ const history = useHistory();
+
+ useEffect(() => {
+   console.log(isAuthenticated)
+    if( isAuthenticated )
+    {
+      history.push("/dashboard")
+    }
+ }, [isAuthenticated ])
   return (
     <>
       <nav className="navbar navbar-header-home">

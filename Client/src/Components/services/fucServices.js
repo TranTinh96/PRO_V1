@@ -23,5 +23,22 @@ module.exports.checkNull = (valueNull) => {
    
 }
 
+//example if(limitData =5) array =[100 ,200,300,400,500,600,700] => array =[200,300,400,500,600,700]
+//VD: lenghtArray =10 , limit =5
+module.exports.limitData = (array ,limit ,data) => {
+  var lengthArray = array.length 
+  if(lengthArray > limit )
+  {
+   for (let i = 0;  i < (lengthArray -limit + 1); i++) {
+      array.shift();
+   }
+  }
+  array.push(data);   
+
+  return array
+}
+
+
+
 
 

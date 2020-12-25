@@ -1,5 +1,6 @@
-import React,{useState}from "react";
+import React,{useState ,useEffect}from "react";
 import Switch from "react-switch";
+import {useSelector ,useDispatch} from 'react-redux';
 import { Button } from 'antd';
 import onLight from "../../../assets/Image/light/on.png"
 import offLight from "../../../assets/Image/light/off.png"
@@ -8,6 +9,7 @@ import offLight from "../../../assets/Image/light/off.png"
 
 function ChartControl(props) {
     var clientMQTT= props.clientMQTT
+    const role = useSelector((state) => state.setUserJWT).users.role;
     const [isRelayA, setIsRelayA] = useState(true)
     const [isRelayB, setIsRelayB] = useState(true)
     const [isModeRelayA, setIsModeRelayA] = useState(true)
@@ -26,8 +28,18 @@ function ChartControl(props) {
     const handleChangeModeRelayB = () => {
       setIsModeRelayB(!isModeRelayB)
     };
+     const [isDisable , setIsDisable]= useState(false)
+  //useEffect
+   useEffect(() => {
+     console.log(role +":"+isDisable)
+      if(role =="User")
+      {
+        setIsDisable(true);
+      }
+     
+   }, [role])
   return (
-    <div className="table-chartFreEne-container">
+    <div className={isDisable ? "table-chartFreEne-container-disable":"table-chartFreEne-container"}>
       <table className="table table-striped table-chartFreEne table-chartControl" responsive>
         <thead>
           <tr>
