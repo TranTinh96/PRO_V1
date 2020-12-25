@@ -20,7 +20,6 @@ import control from "../../../assets/Image/vonke/remote-control.png"
 
 //Function getKeyValue
 import {getKeyValue}  from "../../services/fucServices"
-import { ViewListOutlined } from '@material-ui/icons';
 
 
 function currentDateInput() {
@@ -82,51 +81,50 @@ function MDashbard(props) {
 
 
     
-  
-
     //Payload
     useEffect(() => {
         if(payload){
+            var payloadSplit = payload.toString().split('&')
 
             //VOLTAGE LINE-NEUTRAL
-            setVLN(getKeyValue(payload,"VLN"))
-            setV1N(getKeyValue(payload,"V1N"))
-            setV2N(getKeyValue(payload,"V2N"))
-            setV3N(getKeyValue(payload,"V3N"))
+            setVLN(getKeyValue(payloadSplit,"VLN"))
+            setV1N(getKeyValue(payloadSplit,"V1N"))
+            setV2N(getKeyValue(payloadSplit,"V2N"))
+            setV3N(getKeyValue(payloadSplit,"V3N"))
 
             //CURRENT
-            setI(getKeyValue(payload,"I"))
-            setI1(getKeyValue(payload,"I1"))
-            setI2(getKeyValue(payload,"I2"))
-            setI3(getKeyValue(payload,"I3"))
+            setI(getKeyValue(payloadSplit,"I"))
+            setI1(getKeyValue(payloadSplit,"I1"))
+            setI2(getKeyValue(payloadSplit,"I2"))
+            setI3(getKeyValue(payloadSplit,"I3"))
 
             //KW
-            setKW(getKeyValue(payload,"KW"))
-            setKW1(getKeyValue(payload,"KW1"))
-            setKW2(getKeyValue(payload,"KW2"))
-            setKW3(getKeyValue(payload,"KW3"))
+            setKW(getKeyValue(payloadSplit,"KW"))
+            setKW1(getKeyValue(payloadSplit,"KW1"))
+            setKW2(getKeyValue(payloadSplit,"KW2"))
+            setKW3(getKeyValue(payloadSplit,"KW3"))
 
             //KVA
-            setKVA(getKeyValue(payload,"KVA"))
-            setKVA1(getKeyValue(payload,"KVA1"))
-            setKVA2(getKeyValue(payload,"KVA2"))
-            setKVA3(getKeyValue(payload,"KVA3"))
+            setKVA(getKeyValue(payloadSplit,"KVA"))
+            setKVA1(getKeyValue(payloadSplit,"KVA1"))
+            setKVA2(getKeyValue(payloadSplit,"KVA2"))
+            setKVA3(getKeyValue(payloadSplit,"KVA3"))
 
              //KVAR
-            setKVAR(getKeyValue(payload,"KVAR"))
-            setKVAR1(getKeyValue(payload,"KVAR1"))
-            setKVAR2(getKeyValue(payload,"KVAR2"))
-            setKVAR3(getKeyValue(payload,"KVAR3"))
+            setKVAR(getKeyValue(payloadSplit,"KVAR"))
+            setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
+            setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
+            setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
 
             //PE
-            setPE(getKeyValue(payload,"PE"))
-            setPE1(getKeyValue(payload,"PE1"))
-            setPE2(getKeyValue(payload,"PE2"))
-            setPE3(getKeyValue(payload,"PE3"))
+            setPE(getKeyValue(payloadSplit,"PE"))
+            setPE1(getKeyValue(payloadSplit,"PE1"))
+            setPE2(getKeyValue(payloadSplit,"PE2"))
+            setPE3(getKeyValue(payloadSplit,"PE3"))
 
              //F & KW
-            setF(getKeyValue(payload,"F"))
-            setKWH(getKeyValue(payload,"KWH"))
+            setF(getKeyValue(payloadSplit,"F"))
+            setKWH(getKeyValue(payloadSplit,"KWH"))
         }
 
     }, [payload])

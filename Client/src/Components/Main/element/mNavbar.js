@@ -69,7 +69,7 @@ function Navbar() {
   //Redux
   const isMenu = useSelector(state => state.isMenu);
   const role = useSelector((state) => state.setUserJWT).users.role;
-  if(role=='Administrator')
+  if(role =='Administrator')
   {
     return (
       <React.Fragment>

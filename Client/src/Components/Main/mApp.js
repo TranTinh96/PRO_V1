@@ -32,6 +32,7 @@ const options = {
 
 
 function MApp() {
+ 
   //Redux
   var _idProject = useSelector((state) => state.idTopicProject);
   //useState
@@ -55,7 +56,7 @@ function MApp() {
   useEffect(() => {
     if (clientMQTT) {
       clientMQTT.on("connect", () => {
-        console.log("Connected");
+        console.log("Connected"+" "+ _idProject);
         setConnectStatus("Connected");
         clientMQTT.subscribe(_idProject, (error) => {
           if (error) {
@@ -106,10 +107,7 @@ function MApp() {
       <div className="pcoded-main-container">
         <Navbars />
         <Switch>
-          <Route
-            exact
-            path="/dashboard"
-            render={(props) => <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />}
+          <Route exact path="/dashboard" render={(props) => <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />}
           />
           <Route exact path="/manage/setting" component={mManage} />
           <Route exact path="/manage/open-accout" component={mManage} />

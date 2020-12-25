@@ -214,5 +214,5 @@
 }
 .table-chartFreEne-container-disable{
    pointer-events: none !important;
-    opacity: 0.6 !important;
+    opacity: 1 !important;
 }

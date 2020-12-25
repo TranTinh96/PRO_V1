@@ -25,7 +25,7 @@ function MHeader() {
   const btnLogout = () => {
     console.log("Remove Cookies ");
     //Redux User JWT
-    dispatch({ type: "SET_USER", users: { } });
+    dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
     removeCookie("Auth");
   };
 
