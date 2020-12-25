@@ -8,9 +8,114 @@ import Card from '../Library/card';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
+import {getKeyValue} from "../../services/fucService"
 
 
-function Home() {
+function Home(props) {
+  var clientMQTT = props.clientMQTT;
+  var payload = props.payload ;
+ 
+
+  //VOLTAGE LINE-NEUTRAL
+  const [VLN , setVLN] =useState(0);
+  const [V1N , setV1N] =useState(0);
+  const [V2N , setV2N] =useState(0);
+  const [V3N , setV3N] =useState(0);
+
+  //VOLTAGE LINE-LINE
+  const [VLL , setVLL] =useState(0);
+  const [V12 , setV12] =useState(0);
+  const [V23 , setV23] =useState(0);
+  const [V31 , setV31] =useState(0);
+
+  //CURRENT
+  const [I , setI] =useState(0);
+  const [I1 , setI1] =useState(0);
+  const [I2 , setI2] =useState(0);
+  const [I3 , setI3] =useState(0);
+
+  //KW
+  const [KW , setKW] =useState(0);
+  const [KW1 , setKW1] =useState(0);
+  const [KW2 , setKW2] =useState(0);
+  const [KW3 , setKW3] =useState(0);
+
+  //KVA
+  const [KVA , setKVA] =useState(0);
+  const [KVA1 , setKVA1] =useState(0);
+  const [KVA2 , setKVA2] =useState(0);
+  const [KVA3 , setKVA3] =useState(0);
+
+ //KVAR
+  const [KVAR , setKVAR] =useState(0);
+  const [KVAR1 , setKVAR1] =useState(0);
+  const [KVAR2 , setKVAR2] =useState(0);
+  const [KVAR3 , setKVAR3] =useState(0);
+
+  //PE
+  const [PE , setPE] =useState(0);
+  const [PE1 , setPE1] =useState(0);
+  const [PE2 , setPE2] =useState(0);
+  const [PE3 , setPE3] =useState(0);
+
+  //F & KW
+  const [F , setF] =useState(0);
+  const [KWH , setKWH] =useState(0);
+
+  
+    //Payload
+    useEffect(() => {
+      if(payload){
+          var payloadSplit = payload.toString().split('&')
+
+          //VOLTAGE LINE-NEUTRAL
+          setVLN(getKeyValue(payloadSplit,"VLN"))
+          setV1N(getKeyValue(payloadSplit,"V1N"))
+          setV2N(getKeyValue(payloadSplit,"V2N"))
+          setV3N(getKeyValue(payloadSplit,"V3N"))
+
+           //VOLTAGE LINE - LINE
+           setVLL(getKeyValue(payloadSplit,"VLL"))
+           setV12(getKeyValue(payloadSplit,"V12"))
+           setV23(getKeyValue(payloadSplit,"V23"))
+           setV31(getKeyValue(payloadSplit,"V31"))
+
+          //CURRENT
+          setI(getKeyValue(payloadSplit,"I"))
+          setI1(getKeyValue(payloadSplit,"I1"))
+          setI2(getKeyValue(payloadSplit,"I2"))
+          setI3(getKeyValue(payloadSplit,"I3"))
+
+          //KW
+          setKW(getKeyValue(payloadSplit,"KW"))
+          setKW1(getKeyValue(payloadSplit,"KW1"))
+          setKW2(getKeyValue(payloadSplit,"KW2"))
+          setKW3(getKeyValue(payloadSplit,"KW3"))
+
+          //KVA
+          setKVA(getKeyValue(payloadSplit,"KVA"))
+          setKVA1(getKeyValue(payloadSplit,"KVA1"))
+          setKVA2(getKeyValue(payloadSplit,"KVA2"))
+          setKVA3(getKeyValue(payloadSplit,"KVA3"))
+
+           //KVAR
+          setKVAR(getKeyValue(payloadSplit,"KVAR"))
+          setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
+          setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
+          setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
+
+          //PE
+          setPE(getKeyValue(payloadSplit,"PE"))
+          setPE1(getKeyValue(payloadSplit,"PE1"))
+          setPE2(getKeyValue(payloadSplit,"PE2"))
+          setPE3(getKeyValue(payloadSplit,"PE3"))
+
+           //F & KW
+          setF(getKeyValue(payloadSplit,"F"))
+          setKWH(getKeyValue(payloadSplit,"KWH"))
+      }
+
+  }, [payload])
 
   //RETURN
   return (
@@ -110,10 +215,10 @@ function Home() {
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
                     namePhase3="PHASE 3"
-                    valueSummary={230}
-                    valuePhase1={230}
-                    valuePhase2={230}
-                    valuePhase3={230}
+                    valueSummary={KW}
+                    valuePhase1={KW1}
+                    valuePhase2={KW2}
+                    valuePhase3={KW3}
                     bg="action"
                   />
                   <Statistic 
@@ -123,10 +228,10 @@ function Home() {
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
                     namePhase3="PHASE 3"
-                    valueSummary={230}
-                    valuePhase1={230}
-                    valuePhase2={230}
-                    valuePhase3={230}
+                    valueSummary={KVA}
+                    valuePhase1={KVA1}
+                    valuePhase2={KVA2}
+                    valuePhase3={KVA3}
                     bg="action"
                   />
                   <Statistic 
@@ -136,10 +241,10 @@ function Home() {
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
                     namePhase3="PHASE 3"
-                    valueSummary={230}
-                    valuePhase1={230}
-                    valuePhase2={230}
-                    valuePhase3={230}
+                    valueSummary={KVAR}
+                    valuePhase1={KVAR1}
+                    valuePhase2={KVAR2}
+                    valuePhase3={KVAR3}
                     bg="action"
                   />
                   <Statistic 
@@ -148,10 +253,10 @@ function Home() {
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
                     namePhase3="PHASE 3"
-                    valueSummary={230}
-                    valuePhase1={230}
-                    valuePhase2={230}
-                    valuePhase3={230}
+                    valueSummary={PE}
+                    valuePhase1={PE1}
+                    valuePhase2={PE2}
+                    valuePhase3={PE3}
                   />
                 </ScrollView>
               </View>
@@ -159,10 +264,10 @@ function Home() {
                  <View style={styles.containerScreen}>
                 <View style={styles.chartViewContainer}>
                   <View style={styles.chartView}>
-                    <ChartView title="ENEGRY" num={125.5} color="#1F9EFF" unit="KWh" />
+                    <ChartView title="ENEGRY" num={KWH} color="#1F9EFF" unit="KWh" />
                   </View>
                   <View style={styles.chartView}>
-                    <ChartView title="FREQUENCY" num={50} unit="Hz" color="#50c594" />
+                    <ChartView title="FREQUENCY" num={F} unit="Hz" color="#50c594" />
                   </View>
                 </View>
               </View>
@@ -174,10 +279,10 @@ function Home() {
                       name1="PHASE 1"
                       name2="PHASE 2"
                       name3="PHASE 3"
-                      value={220}
-                      value1={220}
-                      value2={220}
-                      value3={220}
+                      value={VLN}
+                      value1={V1N}
+                      value2={V2N}
+                      value3={V3N}
                       unit="V"
                     />
                     <Card
@@ -186,10 +291,10 @@ function Home() {
                       name1="PHASE 1"
                       name2="PHASE 2"
                       name3="PHASE 3"
-                      value={230}
-                      value1={230}
-                      value2={230}
-                      value3={230}
+                      value={VLL}
+                      value1={V12}
+                      value2={V23}
+                      value3={V31}
                       unit="V"
                     />
                 </View>

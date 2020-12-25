@@ -47,7 +47,6 @@ function TabNavigator() {
         if (clientMQTT) {
           clientMQTT.on("connect", () => {
             console.log("Connected");
-            clientMQTT.publish('presence', 'Hello mqtt')
             setConnectStatus("Connected");
             clientMQTT.subscribe('TranTinh', (error) => {
               if (error) {
@@ -95,7 +94,8 @@ function TabNavigator() {
                 borderRadius: 3
             }}
         >
-            <Tab.Screen name="Home" component={Home} options={{
+            <Tab.Screen name="Home"  children={()=><Home payload={payload} clientMQTT={clientMQTT}/>}
+            options={{
                 tabBarColor: '#FFF',
                 tabBarIcon: ({ color }) => (
                     <Foundation name="home" color={color} size={23} />
@@ -107,6 +107,7 @@ function TabNavigator() {
                     <MaterialIcons name="dashboard" color={color} size={24} />
                 ),
             }} />
+  
             <Tab.Screen name="Notification" component={Notification} options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (

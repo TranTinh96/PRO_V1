@@ -9,8 +9,8 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import styles from "../../../assets/formCss"
 import { useDispatch } from 'react-redux';
 import setAuthorizationToken from "../../services/jwtService";
-import checkRole from "../../services/fucService"
-import { checkUndefined } from "../../services/fucCheck"
+import checkRole from "../../services/fucRole"
+import { checkUndefined } from "../../services/fucService"
 import CheckBox from '@react-native-community/checkbox';
 //Context
 import { AuthContext } from '../../../context/authContext';

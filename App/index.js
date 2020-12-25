@@ -10,8 +10,7 @@ import axios from 'axios'
 import  AsyncStorage from "@react-native-community/async-storage"
 //Function
 import setAuthorizationToken from './src/components/services/jwtService';
-import checkRole from "./src/components/services/fucService"
-//import jwt_decode from "jwt-decode";
+
 //Redux
 import { createStore } from 'redux'
 import { Provider } from "react-redux"
