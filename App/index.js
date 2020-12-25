@@ -7,7 +7,6 @@ import { AppRegistry } from 'react-native';
 import App from './App';
 import { name as appName } from './app.json';
 import axios from 'axios'
-import jwt from 'jsonwebtoken';
 import  AsyncStorage from "@react-native-community/async-storage"
 //Function
 import setAuthorizationToken from './src/components/services/jwtService';
@@ -23,8 +22,8 @@ store.subscribe(() => {
 
 });
 
-axios.defaults.baseURL = 'http://192.168.1.8:5000'
-//axios.defaults.baseURL = 'http://192.168.1.103:5000'
+//axios.defaults.baseURL = 'http://192.168.1.8:5000'
+axios.defaults.baseURL = 'http://192.168.1.103:5000'
 //axios.defaults.baseURL = 'http://192.168.1.100:5000'
 
 
@@ -32,8 +31,6 @@ var authToken = AsyncStorage.getItem('Auth')
 if (authToken) {
   console.log(authToken)
  
-  let jwtToken = jwt.decode(authToken)
-  console.log(jwtToken)
   /*
   let role = checkRole(jwtToken.role);
   var users = {

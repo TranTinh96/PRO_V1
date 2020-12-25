@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Dimensions, Text ,TouchableOpacity } from "react-native"
 import { useNavigation, useTheme } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { Badge } from "react-native-elements"
