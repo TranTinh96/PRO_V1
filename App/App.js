@@ -8,6 +8,8 @@
 
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
 import { View, ActivityIndicator } from 'react-native'
+import {useDispatch} from "react-redux"
+import jwt_decode from "jwt-decode";
 import {  Provider as PaperProvider, 
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme } from 'react-native-paper';
@@ -22,7 +24,8 @@ import AuNavigator from "./src/components/Auth/navigator/auNavigator"
 import MainNavigator from "./src/components/Main/navigator/mStackNavigator"
 import { AuthContext } from './src/context/authContext';
 import { loginReducer, initialLoginState } from "./src/redux/loginReducer"
-
+//Function
+import setAuthorizationToken from './src/components/services/jwtService';
 
 const App = () => {
 
@@ -100,14 +103,18 @@ const App = () => {
 
   useEffect(() => {
     setTimeout(async () => {
-      let jwtToken =null ;
+      var jwtToken =null ;
 
       try {
         jwtToken = await AsyncStorage.getItem('authJWT');
+        console.log(jwtToken)
+        if(jwtToken){
+            setAuthorizationToken(jwtToken);
+
+        }
       } catch (e) {
         console.log(e);
       }
-      console.log('user token: ', jwtToken);
       dispatch({ type: 'RETRIEVE_TOKEN', token: jwtToken });
     }, 1000);
   }, []);
