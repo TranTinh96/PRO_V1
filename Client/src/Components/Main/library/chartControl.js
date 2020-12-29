@@ -21,7 +21,14 @@ function ChartControl(props) {
     const RLBmode = useSelector((state) => state.RLB.RLBmode);
 
     const topic =`${_idProject}/${topicPublish.topic}`
-    const [isDisable , setIsDisable]= useState(false)
+    const [state , setState]= useState({
+        RLAonTime : " ",
+        RLAoffTime : " ",
+        RLBonTime : " ",
+        RLBoffTime : " "
+    })
+
+
 
     
     function checkRLStatus(status){
@@ -38,9 +45,17 @@ function ChartControl(props) {
       }
       return light;
     }
+    //Input Time
+    function handleChange(e) {
+      const value = e.target.value;
+      setState({
+        ...state,
+        [e.target.name]: value
+      });
+    }
 
 
-     //Publish MQTT
+     //Publish MQTT mode Manual
     const handleManualRLA = () => {
       var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus)+"&";
       if(checkRLStatus(RLAstatus))
@@ -73,8 +88,29 @@ function ChartControl(props) {
       else
         dispatch({type:'RLBmodeAuto'})
     };
+    //Publish MQTT mode Auto
+    const onClickRLAauto = () => {
+      if( (state.RLAoffTime !==" ") &&(state.RLAonTime !==" ")){
+        var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" + state.RLAonTime+":00"+"&"+"RLAoffTime"+"=" + state.RLAoffTime+":00"+"&";
+        clientMQTT.publish(topic,payload)
+      }
+      else
+      {
+        alert("RLAonTime or RLAoffTime don't value !")
+      }
+    }
+    const onClickRLBauto = () => {
+      if( (state.RLBoffTime !==" ") && (state.RLBonTime !==" ")){
+        var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLABnTime"+"=" + state.RLBonTime+":00"+"&"+"RLBoffTime"+"=" + state.RLBoffTime+":00"+"&";
+        clientMQTT.publish(topic,payload)
+      }
+      else
+      {
+        alert("RLBonTime or RLBoffTime don't value !")
+      }
+    }
 
-   
+   const [isDisable,setIsDisable] =useState(false)
   //useEffect
    useEffect(() => {
       if(role =="User")
@@ -186,9 +222,9 @@ function ChartControl(props) {
             </td>
             {RLAmode=="auto" ? 
             <td className="table-chartControl-auto">
-                <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLAonTime"/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLAoffTime"/>
-                <Button type="primary" type="dashed">SET</Button>
+                <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLAonTime"  value={state.RLAonTime} onChange={handleChange}/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLAoffTime"  value={state.RLAoffTime} onChange={handleChange}/>
+                <Button type="primary" type="dashed" onClick={onClickRLAauto}>SET</Button>
             </td>
             :
             <td className="table-chartControl-manual">
@@ -294,9 +330,9 @@ function ChartControl(props) {
             </td>
             {RLBmode=="auto"?
             <td className="table-chartControl-auto">
-                <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
-                <Button type="primary" type="dashed">SET</Button>
+                 <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLBonTime"  value={state.RLBonTime} onChange={handleChange}/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLBoffTime"  value={state.RLBoffTime} onChange={handleChange}/>
+                <Button type="primary" type="dashed" onClick={onClickRLBauto}>SET</Button>
             </td>
             :
             <td className="table-chartControl-manual">
