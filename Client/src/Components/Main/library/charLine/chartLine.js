@@ -1,6 +1,5 @@
 import React ,{ useEffect ,useState }from 'react'
 import ReactApexChart from "react-apexcharts";
-import {limitData} from "../../../services/fucServices"
 
 
 function ChartLine(props) {
@@ -59,7 +58,7 @@ function ChartLine(props) {
 
       setSeries([{
             name: props.name,
-            data: limitData(props.dataArray,6,props.data)
+            data: props.data
         }]
       )
 

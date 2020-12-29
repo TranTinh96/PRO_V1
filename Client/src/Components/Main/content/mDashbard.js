@@ -18,7 +18,7 @@ import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
 //Function getKeyValue
-import {getKeyValue ,getKeyValueString}  from "../../services/fucServices"
+import {getKeyValue ,getKeyValueString ,limitData}  from "../../services/fucServices"
 
 
 function currentDateInput() {
@@ -85,6 +85,13 @@ function MDashbard(props) {
     //RL mode
     const [RLAmode ,setRLAmode] =useState('manual')
     const [RLBmode ,setRLBmode] =useState('manual')
+
+
+    //ArrayData
+     const dataArrayVLN =[5,5,10 ,10,20,200];
+     const dataArrayV1N =[200,100,10 ,0,20,0];
+     const dataArrayV2N =[50,100,150 ,100,20,0];
+     const dataArrayV3N =[28,2,19 ,27,6,19];
 
 
     
@@ -207,7 +214,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='VLN' data={VLN} dataArray ={[0,0,10 ,10,0,0]} />                                              
+                                                            <ChartLine name='VLN' data={limitData(dataArrayVLN,6,VLN)} />                                              
                                                         </div>
                                                     </div>
                                                 </div>
@@ -229,7 +236,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='V1N' data={V1N} dataArray ={[0,0,100 ,10,20,100]} />                                            
+                                                            <ChartLine name='V1N' data={limitData(dataArrayV1N,6,V1N)} />                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -251,7 +258,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='V2N' data={V2N} dataArray ={[100,0,10 ,10,20,0]} />                                           
+                                                            <ChartLine name='V2N' data={limitData(dataArrayV2N,6,V2N)} />                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -275,7 +282,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='VL3' data={V3N} dataArray ={[10,0,200 ,10,20,0]}/>                                        
+                                                            <ChartLine name='VL3' data={limitData(dataArrayV3N,6,V3N)}/>                                        
                                                         </div>
                                                     </div>
 
