@@ -7,6 +7,19 @@ const initialStateJWT = {
   }
 }
 
+const initialStateRLA = {
+    RLAstatus: "off",
+    RLAmode: "manual",
+    
+}
+
+const initialStateRLB = {
+    RLBstatus: "off",
+    RLBmode: "manual",
+}
+
+
+
 
 
 
@@ -44,8 +57,62 @@ var projectID = (state = null, action) => {
     }
   };
 
-  
+   //RLA
+   var  RLA = (state = initialStateRLA, action) => {
+    switch (action.type) {
+      case "RLAmodeAuto":
+         return { 
+           ...state,
+           RLAmode : "auto"
+          };
+      case "RLAmodeManual":
+         return { 
+          ...state,
+           RLAmode : "manual"
+        };
+      case "RLAstatusON":
+          return {
+            ...state,
+            RLAstatus : "on"
+          };
+      case "RLAstatusOFF":
+          return {
+            ...state,
+            RLAstatus : "off"
+          };
+      default:
+        return state;
+    }
+  };
+
+  //RLB
+  var  RLB = (state = initialStateRLB, action) => {
+    switch (action.type) {
+      case "RLBmodeAuto":
+         return {
+          ...state,
+           RLBmode : "auto"
+          };
+      case "RLBmodeManual":
+         return { 
+          ...state,
+           RLBmode : "manual"
+        };
+      case "RLBstatusON":
+          return {
+            ...state,
+            RLBstatus : "on"
+          };
+      case "RLBstatusOFF":
+          return {
+            ...state,
+            RLBstatus : "off"
+          };
+      default:
+        return state;
+    }
+  };
 
   
 
- module.exports= {projectID ,setUserJWT,idTopicProject};
+ module.exports= {projectID ,setUserJWT,idTopicProject ,RLA,RLB};

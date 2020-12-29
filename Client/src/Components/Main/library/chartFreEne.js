@@ -24,10 +24,10 @@ function ChartFreEne(props) {
                <p >FREQUENCY</p>
             </td>
             <td className="table-chartFreEne-chart">
-              <CharLine_Fre name='F' data={props.Frequcency} dataArray ={[50, 50, 49, 48, 52, 55]}/>
+              <CharLine_Fre name='Hz' data={props.F} dataArray ={[50, 50, 49, 48, 52, 55]}/>
             </td>
-            <td className="table-chartFreEne-value">{props.Frequcency}</td>
-            <td className="table-chartFreEne-unit">F</td>
+            <td className="table-chartFreEne-value">{props.F}</td>
+            <td className="table-chartFreEne-unit">Hz</td>
           </tr>
         </tbody>
       </table>

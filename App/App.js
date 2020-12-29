@@ -10,6 +10,7 @@ import React, { useState, useEffect, useMemo, useReducer } from 'react';
 import { View, ActivityIndicator } from 'react-native'
 import {useDispatch} from "react-redux"
 import jwt_decode from "jwt-decode";
+import checkRole from "./src/components/services/fucRole"
 import {  Provider as PaperProvider, 
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme } from 'react-native-paper';
@@ -54,6 +55,9 @@ const App = () => {
   }
 
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+ 
+    //Redux
+  const dispatchApp = useDispatch();
   /*
    *
    * Setting Reducer
@@ -110,13 +114,26 @@ const App = () => {
         console.log(jwtToken)
         if(jwtToken){
             setAuthorizationToken(jwtToken);
-
+            var jwt =jwt_decode(jwtToken);
+            console.log(jwt)
+            console.log(jwt.project_id)
+            let users = {
+              email: jwt.email,
+              user: jwt.user,
+              role: checkRole(jwt.role)
+            }
+            //Redux User JWT
+            dispatchApp({ type: "SET_USER", users: users })
+          
+            //Redux ProjectID
+            dispatchApp({type :"PROJECT_ID" ,projectID : jwt.project_id})
+    
         }
       } catch (e) {
         console.log(e);
       }
       dispatch({ type: 'RETRIEVE_TOKEN', token: jwtToken });
-    }, 1000);
+    }, 500);
   }, []);
 
  /*

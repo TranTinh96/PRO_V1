@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import mqtt from "mqtt";
 import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch ,useHistory } from "react-router-dom";
 import Header from "./element/mHeader";
 import Navbars from "./element/mNavbar";
 //Content
@@ -30,39 +30,42 @@ const options = {
   rejectUnauthorized: false,
 };
 
-
 function MApp() {
- 
+  let history = useHistory()
   //Redux
   var _idProject = useSelector((state) => state.idTopicProject);
   //useState
   const [isLoading, setIsLoading] = useState(true);
-  const[clientMQTT ,setClientMQTT] = useState(null)
+  const [clientMQTT, setClientMQTT] = useState(null);
   const [connectStatus, setConnectStatus] = useState("Connect");
   const [payload, setPayload] = useState({});
 
-
-
   useEffect(() => {
     //Connect MQTT
-    setClientMQTT(mqtt.connect(host, options))
+    setClientMQTT(mqtt.connect(host, options));
 
     setTimeout(() => {
       setIsLoading(!isLoading);
-    }, 500);
- 
-  }, [])
+    }, 200);
+  }, []);
+
   //useEffect MQTT
   useEffect(() => {
     if (clientMQTT) {
       clientMQTT.on("connect", () => {
-        console.log("Connected"+" "+ _idProject);
+        console.log("Connected" + " " + _idProject);
         setConnectStatus("Connected");
-        clientMQTT.subscribe(_idProject, (error) => {
-          if (error) {
-            console.log("Subscribe to topics error", error);
-          }
-        });
+        if (_idProject) {
+          clientMQTT.subscribe(_idProject, (error) => {
+            if (error) {
+              console.log("Subscribe to topics error", error);
+              setClientMQTT(mqtt.connect(host, options));
+            }
+          });
+        }
+        else{
+          history.push("/")
+        }
       });
       clientMQTT.on("error", (err) => {
         setConnectStatus("Connection error");
@@ -70,35 +73,33 @@ function MApp() {
         clientMQTT.end();
       });
       clientMQTT.on("reconnect", () => {
-        console.log("ReConnecting");
         setConnectStatus("Reconnecting");
       });
 
       clientMQTT.on("disconnect", () => {
-        console.log("DisConnect");
         setConnectStatus("Disconnect");
       });
 
       clientMQTT.on("message", (topic, message) => {
-        const payload = message.toString() ;
+        const payload = message.toString();
         setPayload(payload);
       });
     }
+    return () => {
+      
+    };
   }, [clientMQTT]);
 
-
-  if(isLoading)
-  {
-    return(
+  if (isLoading) {
+    return (
       <React.Fragment>
-         <div className="container-spinners">
-           <div className="spinners">
-               <ClipLoader size={60} color="#727cf5" loading={isLoading} />
-           </div>
-             
-         </div>
+        <div className="container-spinners">
+          <div className="spinners">
+            <ClipLoader size={60} color="#727cf5" loading={isLoading} />
+          </div>
+        </div>
       </React.Fragment>
-    )
+    );
   }
 
   return (
@@ -107,7 +108,12 @@ function MApp() {
       <div className="pcoded-main-container">
         <Navbars />
         <Switch>
-          <Route exact path="/dashboard" render={(props) => <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />}
+          <Route
+            exact
+            path="/dashboard"
+            render={(props) => (
+              <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />
+            )}
           />
           <Route exact path="/manage/setting" component={mManage} />
           <Route exact path="/manage/open-accout" component={mManage} />

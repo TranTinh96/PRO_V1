@@ -1,6 +1,7 @@
 import React, { useState ,useContext } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import axios from "axios"
+import jwt_decode from "jwt-decode";
 import { View, Text, StatusBar, TextInput, TouchableOpacity,Image ,ScrollView } from "react-native"
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,7 +9,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import styles from "../../../assets/formCss"
 import { useDispatch } from 'react-redux';
-import setAuthorizationToken from "../../services/jwtService";
 import checkRole from "../../services/fucRole"
 import { checkUndefined } from "../../services/fucService"
 import CheckBox from '@react-native-community/checkbox';
@@ -53,7 +53,7 @@ function AuLogin() {
             axios.post('/profile/login', user)
                 .then(async res => {
                     var resData = res.data
-                    console.log(resData)
+                    
                     if (resData.success) {
                         var authJWT = resData.token;
                         var role = checkRole(resData.role);
@@ -64,11 +64,9 @@ function AuLogin() {
                         }
                         //SignIN context -Set JWT AsyncStorage 
                          signIn(authJWT);
-                        //Set header Axios
-                        setAuthorizationToken(authJWT);
                         //Redux User JWT
                         dispatch({ type: "SET_USER", users: users })
-                       
+                        dispatch({ type: "PROJECT_ID", projectID: jwt_decode(authJWT).project_id })
                         //ERR
                         setErrorEM(" ")
                         setErrorPW(" ")

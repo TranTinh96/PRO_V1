@@ -8,13 +8,12 @@ import Card from '../Library/card';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
-import {getKeyValue} from "../../services/fucService"
+import {getKeyValue } from "../../services/fucService"
 
 
 function Home(props) {
   var clientMQTT = props.clientMQTT;
   var payload = props.payload ;
- 
 
   //VOLTAGE LINE-NEUTRAL
   const [VLN , setVLN] =useState(0);
@@ -151,55 +150,33 @@ function Home(props) {
                     <View>
                       <LineChart
                         name ="I"
-                        data={[
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                        ]}
+                        data={I}
+                        dataArray={[0,0,5,5,8,10]}
                       />
                     </View>
+                    {/* 
                     <View>
                       <LineChart
                         name ="I1"
-                        data={[
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                        ]}
+                        data={I1}
+                        dataArray={[10,1,2,4,8,0]}
                       />
                     </View>
                     <View>
                       <LineChart
                         name ="I2"
-                        data={[
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                        ]}
+                        data={I2}
+                        dataArray={[5,0,5,2,10,0]}
                       />
                     </View>
                     <View>
                       <LineChart
                         name ="I3"
-                        data={[
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                        ]}
+                        data={I3}
+                        dataArray={[3,5,2,1,8,0]}
                       />
                     </View>
+                    */}
                   </Swiper>
                 </View>
               </View>
@@ -299,8 +276,6 @@ function Home(props) {
                     />
                 </View>
               </View>
-             
-              
             </View>
         </Animatable.View>
       </ScrollView>

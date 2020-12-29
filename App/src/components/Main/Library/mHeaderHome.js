@@ -22,13 +22,8 @@ function mHeader(props) {
                                 backgroundColor: "#EB4833",
                             }}
                             status="error"
-                            containerStyle={{ position: 'absolute', top: -6, right: -4 }}
-                            value={10}
-                            textStyle={{
-                                color: "white",
-                                fontSize: 11,
-                                fontFamily: "OpenSans-SemiBold"
-                            }}
+                            containerStyle={{ position: 'absolute', top: -2, right: 0 }}
+                           
                             
                         />
                     </TouchableOpacity>

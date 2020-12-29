@@ -4,6 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
 import mqtt from "@taoqf/react-native-mqtt"
+import { useSelector } from "react-redux";
 //Import
 import Home from "../screen/mHome"
 import Accout from "../screen/mAccout"
@@ -32,11 +33,14 @@ const options = {
 };
 
 
-function TabNavigator() {
+function TabNavigator() 
+{
+    //Redux
+    var _idProject = useSelector((state) => state.projectID);
+    //MQTT
     const[clientMQTT ,setClientMQTT] = useState(null)
     const [connectStatus, setConnectStatus] = useState("Connect");
     const [payload, setPayload] = useState({});
-
     //useEffect connect MQTT   
     useEffect(() => {
         //Connect MQTT
@@ -48,7 +52,7 @@ function TabNavigator() {
           clientMQTT.on("connect", () => {
             console.log("Connected");
             setConnectStatus("Connected");
-            clientMQTT.subscribe('TranTinh', (error) => {
+            clientMQTT.subscribe(_idProject, (error) => {
               if (error) {
                 console.log("Subscribe to topics error", error);
               }

@@ -1,43 +1,122 @@
-import React,{useState ,useEffect}from "react";
+import React,{useState ,useEffect,useLayoutEffect}from "react";
 import Switch from "react-switch";
 import {useSelector ,useDispatch} from 'react-redux';
 import { Button } from 'antd';
 import onLight from "../../../assets/Image/light/on.png"
 import offLight from "../../../assets/Image/light/off.png"
+import topicPublish from "../../MQTT/topicPublish"
 
 
 
 function ChartControl(props) {
+  //MQTT
     var clientMQTT= props.clientMQTT
+    //Redux
+    var dispatch =useDispatch();
     const role = useSelector((state) => state.setUserJWT).users.role;
-    const [isRelayA, setIsRelayA] = useState(true)
-    const [isRelayB, setIsRelayB] = useState(true)
-    const [isModeRelayA, setIsModeRelayA] = useState(true)
-    const [isModeRelayB, setIsModeRelayB] = useState(false)
-  
-    const handleChangeRelayA = () => {
-      clientMQTT.publish('presence', 'Hello mqtt Tran Tinh')
-      setIsRelayA(!isRelayA)
+    const _idProject = useSelector((state) => state.idTopicProject);
+    const RLAstatus = useSelector((state) => state.RLA.RLAstatus);
+    const RLAmode = useSelector((state) => state.RLA.RLAmode);
+    const RLBstatus = useSelector((state) => state.RLB.RLBstatus);
+    const RLBmode = useSelector((state) => state.RLB.RLBmode);
+
+    const topic =`${_idProject}/${topicPublish.topic}`
+    const [isDisable , setIsDisable]= useState(false)
+
+    
+    function checkRLStatus(status){
+      return  status=="on"? true:false;
+    }
+
+    function checkStatus(status){
+      var light;
+      if(status=="on"){
+        light ="off"
+      }
+      else{
+        light ="on"
+      }
+      return light;
+    }
+
+
+     //Publish MQTT
+    const handleManualRLA = () => {
+      var payload = "RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus);
+      if(checkRLStatus(RLAstatus))
+        dispatch({type:'RLAstatusOFF'})
+      else
+        dispatch({type:'RLAstatusON'})
+     
+      clientMQTT.publish(topic,payload)
     };
-    const handleChangeRelayB = () => {
-      setIsRelayB(!isRelayB)
+    const handleManualRLB= () => {
+      var payload = "RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus);
+      if(checkRLStatus(RLBstatus))
+          dispatch({type:'RLBstatusOFF'})
+      else
+         dispatch({type:'RLBstatusON'})
+
+      clientMQTT.publish(topic,payload)
     };
     const handleChangeModeRelayA = () => {
-      setIsModeRelayA(!isModeRelayA)
+    
+      if(RLAmode ==="auto")
+        dispatch({type:'RLAmodeManual'})
+      else
+        dispatch({type:'RLAmodeAuto'})
+  
     };
     const handleChangeModeRelayB = () => {
-      setIsModeRelayB(!isModeRelayB)
+      if(RLBmode ==="auto")
+        dispatch({type:'RLBmodeManual'})
+      else
+        dispatch({type:'RLBmodeAuto'})
     };
-     const [isDisable , setIsDisable]= useState(false)
+
+   
   //useEffect
    useEffect(() => {
-     console.log(role +":"+isDisable)
       if(role =="User")
       {
         setIsDisable(true);
       }
      
    }, [role])
+
+  useLayoutEffect(() => {
+      var RLmodeA = props.RLAmode
+      var RLmodeB = props.RLBmode
+      var RLstatusA = props.RLAstatus
+      var RLstatusB = props.RLBstatus
+      //RELAY A
+      if(RLmodeA ==="auto")
+          dispatch({type:'RLAmodeAuto'})
+      else if(RLmodeA ==="manual")
+          dispatch({type:'RLAmodeManual'})
+      //RELAY B
+      if(RLmodeB ==="auto")
+          dispatch({type:'RLBmodeAuto'})
+      else if(RLmodeB ==="manual")
+          dispatch({type:'RLBmodeManual'})
+        
+      //Status RELAY A
+      if(RLstatusA ==="on")
+          dispatch({type:'RLAstatusON'})
+      else if(RLstatusA ==="off")
+          dispatch({type:'RLAstatusOFF'})
+       //Status RELAY B
+      if(RLstatusB ==="on")
+          dispatch({type:'RLBstatusON'})
+      else if(RLstatusB ==="off")
+          dispatch({type:'RLBstatusOFF'})
+
+
+
+
+  }, [props])
+
+
   return (
     <div className={isDisable ? "table-chartFreEne-container-disable":"table-chartFreEne-container"}>
       <table className="table table-striped table-chartFreEne table-chartControl" responsive>
@@ -57,12 +136,12 @@ function ChartControl(props) {
               <p>RELAY A</p>
             </td>
             <td className="table-chartFreEne-status">
-                {isRelayA ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
+                {RLAstatus ==="on" ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
             </td>
           
             <td className="table-chartFreEne-mode">
               <Switch
-                  checked={isModeRelayA}
+                  checked={RLAmode=="auto"?true:false}
                   onChange={handleChangeModeRelayA}
                   className="react-switch"
                   id="icon-switch"
@@ -105,7 +184,7 @@ function ChartControl(props) {
                 
                 />
             </td>
-            {isModeRelayA ? 
+            {RLAmode=="auto" ? 
             <td className="table-chartControl-auto">
                 <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
                 <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
@@ -114,8 +193,8 @@ function ChartControl(props) {
             :
             <td className="table-chartControl-manual">
               <Switch
-                checked={isRelayA}
-                onChange={handleChangeRelayA}
+                checked={checkRLStatus(RLAstatus)}
+                onChange={handleManualRLA}
                 className="react-switch"
                 id="icon-switch"
                 height={25}
@@ -166,11 +245,11 @@ function ChartControl(props) {
               <p>RELAY B</p>
             </td>
             <td className="table-chartFreEne-status">
-                {isRelayB ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
+                {RLBstatus==="on" ? <img  src={onLight} alt="Joseph" className="img-light-on" />:   <img  src={offLight} alt="Joseph" className="img-light-off" />}
             </td>
             <td className="table-chartFreEne-mode">
               <Switch
-                    checked={isModeRelayB}
+                    checked={RLBmode=="auto"?true:false}
                     onChange={handleChangeModeRelayB}
                     className="react-switch"
                     id="icon-switch"
@@ -213,7 +292,7 @@ function ChartControl(props) {
                   
                   />
             </td>
-            {isModeRelayB?
+            {RLBmode=="auto"?
             <td className="table-chartControl-auto">
                 <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
                 <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
@@ -222,8 +301,8 @@ function ChartControl(props) {
             :
             <td className="table-chartControl-manual">
             <Switch
-                checked={isRelayB}
-                onChange={handleChangeRelayB}
+                checked={checkRLStatus(RLBstatus)}
+                onChange={handleManualRLB}
                 className="react-switch"
                 id="icon-switch"
                 height={25}

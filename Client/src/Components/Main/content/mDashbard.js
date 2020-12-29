@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react'
+import React, { useState ,useEffect ,useLayoutEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,6 @@ import ChartLine from "../library/charLine/chartLine"
 import ChartElectric from "../library/chartelEctric"
 import ChartFreEne from "../library/chartFreEne"
 import ChartControl from "../library/chartControl"
-
 import CardData from "../library/cardData"
 
 //Image
@@ -19,7 +18,7 @@ import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
 //Function getKeyValue
-import {getKeyValue}  from "../../services/fucServices"
+import {getKeyValue ,getKeyValueString}  from "../../services/fucServices"
 
 
 function currentDateInput() {
@@ -34,7 +33,7 @@ function checkLength(value){
 
 
 function MDashbard(props) {
-    var clientMQTT = props.clientMQTT;
+
     var payload = props.payload ;
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
@@ -70,19 +69,27 @@ function MDashbard(props) {
     const [KVAR3 , setKVAR3] =useState(0);
 
     //PE
-    const [PE , setPE] =useState(0);
-    const [PE1 , setPE1] =useState(0);
-    const [PE2 , setPE2] =useState(0);
-    const [PE3 , setPE3] =useState(0);
+    const [PF , setPF] =useState(0);
+    const [PF1 , setPF1] =useState(0);
+    const [PF2 , setPF2] =useState(0);
+    const [PF3 , setPF3] =useState(0);
 
     //F & KW
     const [F , setF] =useState(0);
     const [KWH , setKWH] =useState(0);
+    
+    //RL status
+    const [RLAstatus ,setRLAstatus] =useState('off')
+    const [RLBstatus ,setRLBstatus] =useState('off')
+
+    //RL mode
+    const [RLAmode ,setRLAmode] =useState('manual')
+    const [RLBmode ,setRLBmode] =useState('manual')
 
 
     
     //Payload
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(payload){
             var payloadSplit = payload.toString().split('&')
 
@@ -117,14 +124,24 @@ function MDashbard(props) {
             setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
 
             //PE
-            setPE(getKeyValue(payloadSplit,"PE"))
-            setPE1(getKeyValue(payloadSplit,"PE1"))
-            setPE2(getKeyValue(payloadSplit,"PE2"))
-            setPE3(getKeyValue(payloadSplit,"PE3"))
+            setPF(getKeyValue(payloadSplit,"PF"))
+            setPF1(getKeyValue(payloadSplit,"PF1"))
+            setPF2(getKeyValue(payloadSplit,"PF2"))
+            setPF3(getKeyValue(payloadSplit,"PF3"))
 
              //F & KW
-            setF(getKeyValue(payloadSplit,"F"))
+            setF(getKeyValue(payloadSplit,"FREQUENCY"))
             setKWH(getKeyValue(payloadSplit,"KWH"))
+
+            //RLA status
+            setRLAstatus(getKeyValueString(payloadSplit,"RLAstatus"))
+            setRLBstatus(getKeyValueString(payloadSplit,"RLBstatus"))
+            
+            //RLA mode
+            setRLAmode(getKeyValueString(payloadSplit,"RLAmode"))
+            setRLBmode(getKeyValueString(payloadSplit,"RLBmode"))
+
+            
         }
 
     }, [payload])
@@ -276,10 +293,10 @@ function MDashbard(props) {
                                             <div className="card-body">
                                                 <div className="d-flex  align-items-baseline">
                                                     <img  src={i} alt="Joseph" className="img-vonke" />
-                                                    <h5 className="card-title card-title-header mb-0">ELECTRIC</h5>
+                                                    <h5 className="card-title card-title-header mb-0">CURRENT</h5>
                                                 </div>
                                                 <div className="card-content-line-chart align-items-center">
-                                                    <ChartElectric/>
+                                                    <ChartElectric I={I} I1={I1} I2={I2} I3={I3}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -293,7 +310,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl clientMQTT={props.clientMQTT}/>        
+                                                         <ChartControl clientMQTT={props.clientMQTT} RLAstatus={RLAstatus} RLBstatus={RLBstatus} RLAmode={RLAmode} RLBmode={RLBmode} />        
                                                     </div>
                                                 </div>
                                             </div>
@@ -306,7 +323,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">FREQUENCY & ENERGY</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartFreEne Frequcency ={F} KWH={KWH}/>       
+                                                         <ChartFreEne F ={F} KWH={KWH}/>       
                                                     </div>
                                                 </div>
                                             </div>
@@ -366,7 +383,7 @@ function MDashbard(props) {
                                                     <h5 className="card-title card-title-header mb-0">POWER  FACTOR</h5>
                                                 </div>
                                                 <div className="card-content-line align-items-center">
-                                                    <CardData summary={PE} phase1={PE1} phase2={PE2} phase3={PE3}/>
+                                                    <CardData summary={PF} phase1={PF1} phase2={PF2} phase3={PF3}/>
                                                 </div>
                                             </div>
                                         </div>
