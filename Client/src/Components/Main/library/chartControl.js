@@ -42,7 +42,7 @@ function ChartControl(props) {
 
      //Publish MQTT
     const handleManualRLA = () => {
-      var payload = "RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus);
+      var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus)+"&";
       if(checkRLStatus(RLAstatus))
         dispatch({type:'RLAstatusOFF'})
       else
@@ -51,7 +51,7 @@ function ChartControl(props) {
       clientMQTT.publish(topic,payload)
     };
     const handleManualRLB= () => {
-      var payload = "RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus);
+      var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus)+"&";
       if(checkRLStatus(RLBstatus))
           dispatch({type:'RLBstatusOFF'})
       else
@@ -186,8 +186,8 @@ function ChartControl(props) {
             </td>
             {RLAmode=="auto" ? 
             <td className="table-chartControl-auto">
-                <input className="form-control shadow-none rounded-0 d-inline" type="time"/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time"/>
+                <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLAonTime"/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLAoffTime"/>
                 <Button type="primary" type="dashed">SET</Button>
             </td>
             :
