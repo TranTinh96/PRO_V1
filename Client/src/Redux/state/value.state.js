@@ -18,6 +18,60 @@ const initialStateRLB = {
     RLBmode: "manual",
 }
 
+var initialStateChartLineVLN = [
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220)
+]
+
+var initialStateChartLineV1N = [
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220)
+]
+
+var initialStateChartLineV2N = [
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220)
+]
+
+var initialStateChartLineV3N= [
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220),
+  Math.round(Math.random() * 220)
+]
+
+var initialStateChartLineF = [
+  Math.round(Math.random() * 50),
+  Math.round(Math.random() * 50),
+  Math.round(Math.random() * 50),
+  Math.round(Math.random() * 50),
+  Math.round(Math.random() * 50),
+  Math.round(Math.random() * 50)
+]
+
+var initialStateChartLineE = [
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300)
+]
+
 
 
 
@@ -113,6 +167,87 @@ var projectID = (state = null, action) => {
     }
   };
 
+  var  VLN = (state = initialStateChartLineVLN, action) => {
+    switch (action.type) {
+      case "ADD_DATA_VLN":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.VLN);
+          initialStateChartLineVLN = newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
+  
+  var V1N = (state = initialStateChartLineV1N, action) => {
+    switch (action.type) {
+      case "ADD_DATA_V1N":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.V1N);
+          initialStateChartLineV1N= newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
+
+  
+  var V2N = (state = initialStateChartLineV2N, action) => {
+    switch (action.type) {
+      case "ADD_DATA_V2N":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.V2N);
+          initialStateChartLineV2N= newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
+
+
+  
+  var V3N = (state = initialStateChartLineV3N, action) => {
+    switch (action.type) {
+      case "ADD_DATA_V3N":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.V3N);
+          initialStateChartLineV3N= newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
+
+  var F = (state = initialStateChartLineF, action) => {
+    switch (action.type) {
+      case "ADD_DATA_F":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.F);
+          initialStateChartLineF= newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
+
+  var E = (state = initialStateChartLineE, action) => {
+    switch (action.type) {
+      case "ADD_DATA_E":
+        var newSatate = [...state]
+          newSatate.shift();
+          newSatate.push(action.E);
+          initialStateChartLineE= newSatate;
+         return newSatate;
+      default:
+        return state;
+    }
+  };
   
 
- module.exports= {projectID ,setUserJWT,idTopicProject ,RLA,RLB};
+
+ module.exports= {projectID ,setUserJWT,idTopicProject ,RLA,RLB ,VLN,V1N,V2N,V3N ,F,E};

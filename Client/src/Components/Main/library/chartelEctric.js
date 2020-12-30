@@ -7,7 +7,7 @@ import am4themes_material from "@amcharts/amcharts4/themes/material";
 am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
 
-function ChartelEctric() {
+function ChartelEctric(props) {
   const chart = useRef(null);
   useLayoutEffect(() => {
     var chart = am4core.create("chartdiv", am4charts.XYChart);
@@ -18,14 +18,14 @@ function ChartelEctric() {
     chart.zoomOutButton.disabled = true;
 
     var data = [];
-    var valueSummary = 10 , valuePhase1 = 20, valuePhase2 = 5, valuePhase3 = 30;
+    var valueSummary = 0 , valuePhase1 = 0, valuePhase2 = 0, valuePhase3 = 0;
     var i = 0;
 
     for (i = 0; i <= 30; i++) {
-        valueSummary -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        valuePhase1 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 20);
+        valueSummary -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
+        valuePhase1 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
         valuePhase2 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
-        valuePhase3 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 30);
+        valuePhase3 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
         data.push({ date: new Date().setSeconds(i - 30), valueSummary: valueSummary ,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3});
     }
 
@@ -94,7 +94,7 @@ function ChartelEctric() {
      var seriesPhase2 = chart.series.push(new am4charts.LineSeries());
      seriesPhase2.dataFields.dateX = "date";
      seriesPhase2.dataFields.valueY = "valuePhase2";
-     seriesPhase2.name="PHASE 1";
+     seriesPhase2.name="PHASE 2";
      seriesPhase2.strokeWidth = 2;
      seriesPhase2.interpolationDuration = 500;
      seriesPhase2.defaultState.transitionDuration = 500;
@@ -110,7 +110,7 @@ function ChartelEctric() {
      var seriesPhase3 = chart.series.push(new am4charts.LineSeries());
      seriesPhase3.dataFields.dateX = "date";
      seriesPhase3.dataFields.valueY = "valuePhase3";
-     seriesPhase3.name="PHASE 1";
+     seriesPhase3.name="PHASE 3";
      seriesPhase3.strokeWidth = 2;
      seriesPhase3.interpolationDuration = 500;
      seriesPhase3.defaultState.transitionDuration = 500;
@@ -164,10 +164,10 @@ function ChartelEctric() {
     var interval;
     function startInterval() {
         interval = setInterval(function() {
-            valueSummary =valueSummary + Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-            valuePhase1 =valuePhase1 + Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 20);
-            valuePhase2 =valuePhase2 + Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
-            valuePhase3 =valuePhase3 + Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 30);
+            valueSummary = props.I
+            valuePhase1 =  props.I1
+            valuePhase2 =  props.I2
+            valuePhase3 =  props.I3
             var lastdataItem = seriesSummary.dataItems.getIndex(seriesSummary.dataItems.length - 1);
             chart.addData(
                 { date: new Date(lastdataItem.dateX.getTime() + 1000), valueSummary:valueSummary,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3 },

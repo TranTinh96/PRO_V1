@@ -19,12 +19,12 @@ const initialStateRLB = {
 }
 
 const initialStateChartLineI = [
-            Math.random() * 5,
-            Math.random() * 5,
-            Math.random() * 5,
-            Math.random() * 5,
-            Math.random() * 5,
-            Math.random() * 5
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5,
+    Math.random() * 5
   ]
 
   const initialStateChartLineI1 = [

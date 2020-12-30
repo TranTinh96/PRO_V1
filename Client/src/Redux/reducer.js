@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import {isMenu,isMenuElement} from './state/isToggle.state'
-import {projectID ,setUserJWT ,idTopicProject,RLA,RLB} from "./state/value.state"
+import {projectID ,setUserJWT ,idTopicProject,RLA,RLB,VLN,V1N,V2N,V3N,F,E} from "./state/value.state"
 
 var reducer = combineReducers({
-   isMenu , isMenuElement , projectID ,setUserJWT ,idTopicProject ,RLA,RLB
+   isMenu , isMenuElement , projectID ,setUserJWT ,idTopicProject ,RLA,RLB ,VLN,V1N,V2N,V3N ,F,E
 });
 
 

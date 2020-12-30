@@ -1,7 +1,7 @@
 import React, { useState ,useEffect ,useLayoutEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link } from "react-router-dom";
-
+import {useSelector ,useDispatch} from 'react-redux';
 //Chart
 import ChartLine from "../library/charLine/chartLine"
 import ChartElectric from "../library/chartelEctric"
@@ -18,7 +18,7 @@ import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
 //Function getKeyValue
-import {getKeyValue ,getKeyValueString ,limitData}  from "../../services/fucServices"
+import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
 
 
 function currentDateInput() {
@@ -35,10 +35,15 @@ function checkLength(value){
 function MDashbard(props) {
 
     var payload = props.payload ;
+    var dispatch =useDispatch();
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
 
     //VOLTAGE LINE-NEUTRAL
+    var VLNArray = useSelector((state) => state.VLN);
+    var V1NArray = useSelector((state) => state.V1N);
+    var V2NArray = useSelector((state) => state.V2N);
+    var V3NArray = useSelector((state) => state.V3N);
     const [VLN , setVLN] =useState(0);
     const [V1N , setV1N] =useState(0);
     const [V2N , setV2N] =useState(0);
@@ -77,6 +82,8 @@ function MDashbard(props) {
     //F & KW
     const [F , setF] =useState(0);
     const [KWH , setKWH] =useState(0);
+    var FArray = useSelector((state) => state.F);
+    var KWHArray = useSelector((state) => state.E);
     
     //RL status
     const [RLAstatus ,setRLAstatus] =useState('off')
@@ -87,11 +94,6 @@ function MDashbard(props) {
     const [RLBmode ,setRLBmode] =useState('manual')
 
 
-    //ArrayData
-     const dataArrayVLN =[5,5,10 ,10,20,200];
-     const dataArrayV1N =[200,100,10 ,0,20,0];
-     const dataArrayV2N =[50,100,150 ,100,20,0];
-     const dataArrayV3N =[28,2,19 ,27,6,19];
 
 
     
@@ -101,11 +103,14 @@ function MDashbard(props) {
             var payloadSplit = payload.toString().split('&')
 
             //VOLTAGE LINE-NEUTRAL
+            dispatch({type:"ADD_DATA_VLN",VLN:getKeyValue2Int(payloadSplit,"VLN")})
+            dispatch({type:"ADD_DATA_V1N",V1N:getKeyValue2Int(payloadSplit,"V1N")})
+            dispatch({type:"ADD_DATA_V2N",V2N:getKeyValue2Int(payloadSplit,"V2N")})
+            dispatch({type:"ADD_DATA_V3N",V3N:getKeyValue2Int(payloadSplit,"V3N")})
             setVLN(getKeyValue(payloadSplit,"VLN"))
             setV1N(getKeyValue(payloadSplit,"V1N"))
             setV2N(getKeyValue(payloadSplit,"V2N"))
             setV3N(getKeyValue(payloadSplit,"V3N"))
-
             //CURRENT
             setI(getKeyValue(payloadSplit,"I"))
             setI1(getKeyValue(payloadSplit,"I1"))
@@ -139,6 +144,8 @@ function MDashbard(props) {
              //F & KW
             setF(getKeyValue(payloadSplit,"FREQUENCY"))
             setKWH(getKeyValue(payloadSplit,"KWH"))
+            dispatch({type:"ADD_DATA_F",F:getKeyValue2Int(payloadSplit,"FREQUENCY")})
+            dispatch({type:"ADD_DATA_E",E:getKeyValue2Int(payloadSplit,"KWH")})
 
             //RLA status
             setRLAstatus(getKeyValueString(payloadSplit,"RLAstatus"))
@@ -214,7 +221,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='VLN' data={limitData(dataArrayVLN,6,VLN)} />                                              
+                                                            <ChartLine name='VLN' data={VLNArray} />                                              
                                                         </div>
                                                     </div>
                                                 </div>
@@ -236,7 +243,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='V1N' data={limitData(dataArrayV1N,6,V1N)} />                                            
+                                                            <ChartLine name='V1N' data={V1NArray} />                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -258,7 +265,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='V2N' data={limitData(dataArrayV2N,6,V2N)} />                                           
+                                                            <ChartLine name='V2N' data={V2NArray} />                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,7 +289,7 @@ function MDashbard(props) {
                                                             <h4> V </h4>
                                                         </div>
                                                         <div className="col-6">
-                                                            <ChartLine name='VL3' data={limitData(dataArrayV3N,6,V3N)}/>                                        
+                                                            <ChartLine name='VL3' data={V3NArray}/>                                        
                                                         </div>
                                                     </div>
 
@@ -330,7 +337,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">FREQUENCY & ENERGY</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartFreEne F ={F} KWH={KWH}/>       
+                                                         <ChartFreEne FArray ={FArray} F={F} KWHArray={KWHArray} KWH={KWH}/>       
                                                     </div>
                                                 </div>
                                             </div>

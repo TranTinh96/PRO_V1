@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import mqtt from "mqtt";
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch } from "react-redux";
 import { Route, Switch ,useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import Header from "./element/mHeader";
 import Navbars from "./element/mNavbar";
 //Content
@@ -31,9 +32,12 @@ const options = {
 };
 
 function MApp() {
-  let history = useHistory()
+  const dispatch =useDispatch()
+  const history = useHistory()
   //Redux
-  var _idProject = useSelector((state) => state.idTopicProject);
+  const _idProject = useSelector((state) => state.idTopicProject);
+  //Cookie
+  const [cookies, removeCookie] = useCookies(["Auth"]);
   //useState
   const [isLoading, setIsLoading] = useState(true);
   const [clientMQTT, setClientMQTT] = useState(null);
@@ -64,6 +68,8 @@ function MApp() {
           });
         }
         else{
+          dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+          removeCookie("Auth");
           history.push("/")
         }
       });

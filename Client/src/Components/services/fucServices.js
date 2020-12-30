@@ -31,6 +31,24 @@ module.exports.checkNull = (valueNull) => {
    
 }
 
+ //example key = V1=220&V1N=220 => getKeyValue: V1=220
+ module.exports.getKeyValue2Int = (str , key) => {
+   var value ;
+   for (let i = 0; i < str.length; i++) {
+     if(str[i].search(key) !== -1)
+     {
+       value = parseInt(str[i].split('=')[1]);
+       break;
+     }
+     else
+     {
+        value=0;
+     }
+  }
+  return value;
+  
+}
+
 //example key = V1=220&V1N=220 => getKeyValue: V1=220
 module.exports.getKeyValueString = (str , key) => {
    var value ;
