@@ -14,7 +14,6 @@ function mNotification() {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#1F9EFF' barStyle="light-content" />
-            <Header name="NOTIFICATION" isNotification ="true" />
             <ScrollView showsVerticalScrollIndicator={false} >
                 <Animatable.View
                     style={[styles.main, {}]}>

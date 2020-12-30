@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect ,useLayoutEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import { View,ScrollView,SafeAreaView,StatusBar,} from 'react-native';
+import {useSelector ,useDispatch} from 'react-redux';
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
 import LineChart from '../Library/lineChart';
@@ -8,12 +9,19 @@ import Card from '../Library/card';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
-import {getKeyValue } from "../../services/fucService"
+import {getKeyValue} from "../../services/fucService"
 
 
 function Home(props) {
-  var clientMQTT = props.clientMQTT;
   var payload = props.payload ;
+
+  //Redux
+   var dispatch =useDispatch();
+
+   var I = useSelector((state) => state.I);
+   var I1 = useSelector((state) => state.I1);
+   var I2 = useSelector((state) => state.I2);
+   var I3 = useSelector((state) => state.I3);
 
   //VOLTAGE LINE-NEUTRAL
   const [VLN , setVLN] =useState(0);
@@ -27,11 +35,7 @@ function Home(props) {
   const [V23 , setV23] =useState(0);
   const [V31 , setV31] =useState(0);
 
-  //CURRENT
-  const [I , setI] =useState(0);
-  const [I1 , setI1] =useState(0);
-  const [I2 , setI2] =useState(0);
-  const [I3 , setI3] =useState(0);
+
 
   //KW
   const [KW , setKW] =useState(0);
@@ -63,7 +67,8 @@ function Home(props) {
 
   
     //Payload
-    useEffect(() => {
+    useLayoutEffect(() => {
+      console.log(payload)
       if(payload){
           var payloadSplit = payload.toString().split('&')
 
@@ -74,16 +79,10 @@ function Home(props) {
           setV3N(getKeyValue(payloadSplit,"V3N"))
 
            //VOLTAGE LINE - LINE
-           setVLL(getKeyValue(payloadSplit,"VLL"))
-           setV12(getKeyValue(payloadSplit,"V12"))
-           setV23(getKeyValue(payloadSplit,"V23"))
-           setV31(getKeyValue(payloadSplit,"V31"))
-
-          //CURRENT
-          setI(getKeyValue(payloadSplit,"I"))
-          setI1(getKeyValue(payloadSplit,"I1"))
-          setI2(getKeyValue(payloadSplit,"I2"))
-          setI3(getKeyValue(payloadSplit,"I3"))
+          setVLL(getKeyValue(payloadSplit,"VLL"))
+          setV12(getKeyValue(payloadSplit,"V12"))
+          setV23(getKeyValue(payloadSplit,"V23"))
+          setV31(getKeyValue(payloadSplit,"V31"))
 
           //KW
           setKW(getKeyValue(payloadSplit,"KW"))
@@ -110,8 +109,15 @@ function Home(props) {
           setPE3(getKeyValue(payloadSplit,"PE3"))
 
            //F & KW
-          setF(getKeyValue(payloadSplit,"F"))
+          setF(getKeyValue(payloadSplit,"FREQUENCY"))
           setKWH(getKeyValue(payloadSplit,"KWH"))
+          dispatch({type:"ADD_DATA_I",I:getKeyValue(payloadSplit,"I")})
+          dispatch({type:"ADD_DATA_I1",I1:getKeyValue(payloadSplit,"I1")})
+          dispatch({type:"ADD_DATA_I2",I2:getKeyValue(payloadSplit,"I2")})
+          dispatch({type:"ADD_DATA_I3",I3:getKeyValue(payloadSplit,"I3")})
+          
+        
+          
       }
 
   }, [payload])
@@ -130,7 +136,7 @@ function Home(props) {
                     style={styles.wrapper}
                     showsButtons={false}
                     autoplay={true}
-                    autoplayTimeout={10}
+                    autoplayTimeout={5}
                     height={290}
                     index={0}
                     dotStyle={{
@@ -149,34 +155,30 @@ function Home(props) {
                     }}>
                     <View>
                       <LineChart
-                        name ="I"
-                        data={I}
-                        dataArray={[0,0,5,5,8,10]}
+                        name="I"
+                        dataArray={I}
                       />
                     </View>
-                    {/* 
+          
                     <View>
                       <LineChart
                         name ="I1"
-                        data={I1}
-                        dataArray={[10,1,2,4,8,0]}
+                        dataArray={I1}
                       />
                     </View>
                     <View>
                       <LineChart
                         name ="I2"
-                        data={I2}
-                        dataArray={[5,0,5,2,10,0]}
+                        dataArray={I2}
                       />
                     </View>
                     <View>
                       <LineChart
                         name ="I3"
-                        data={I3}
-                        dataArray={[3,5,2,1,8,0]}
+                        dataArray={I3}
                       />
                     </View>
-                    */}
+            
                   </Swiper>
                 </View>
               </View>

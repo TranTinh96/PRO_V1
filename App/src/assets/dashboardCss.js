@@ -88,9 +88,7 @@ const Forms = {
     },
 
     bulbContainer:{
-        backgroundColor:"#f8f9fa",
         padding :8,
-        borderRadius:50,
         borderColor:"#727cf5",
         justifyContent: 'center',
         alignItems: 'center',
@@ -98,9 +96,7 @@ const Forms = {
         marginBottom :0
     },
     bulbContainerOn:{
-        backgroundColor:"#ffee93",
         padding :8,
-        borderRadius:50,
         borderColor:"#727cf5",
         justifyContent: 'center',
         alignItems: 'center',

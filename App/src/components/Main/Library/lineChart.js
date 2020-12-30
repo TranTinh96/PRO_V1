@@ -1,8 +1,8 @@
 import React from 'react'
 import { LineChart  } from "react-native-chart-kit";
-import {limitData}  from "../../services/fucService"
-
 import {Dimensions,View,StyleSheet,Text}  from "react-native"
+
+
 function Line(props) {
     return (
         <View style={styles.containerCard}>
@@ -11,7 +11,7 @@ function Line(props) {
                 data={{
                     labels: ["January", "February", "March", "April", "May", "June"],
                     datasets: [
-                        {
+                        {   
                             data: props.dataArray
                         }
                     ]

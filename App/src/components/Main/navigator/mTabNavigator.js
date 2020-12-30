@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react'
+import React ,{useState,useEffect ,useContext} from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -10,6 +10,10 @@ import Home from "../screen/mHome"
 import Accout from "../screen/mAccout"
 import Dashboard from "../screen/mDashboard"
 import Notification from "../screen/mNotification"
+
+//Context
+import { AuthContext } from '../../../context/authContext';
+
 
 
 //Setting Tav Navigator
@@ -27,7 +31,7 @@ const options = {
   protocolId: "MQIsdp",
   protocolVersion: 3,
   clean: true,
-  reconnectPeriod: 1000,
+  reconnectPeriod: 10000,
   connectTimeout: 30 * 1000,
   rejectUnauthorized: false,
 };
@@ -35,6 +39,8 @@ const options = {
 
 function TabNavigator() 
 {
+  //Context
+    const { signOut } = useContext(AuthContext);
     //Redux
     var _idProject = useSelector((state) => state.projectID);
     //MQTT
@@ -50,13 +56,20 @@ function TabNavigator()
     useEffect(() => {
         if (clientMQTT) {
           clientMQTT.on("connect", () => {
-            console.log("Connected");
+            console.log("Connected" +_idProject);
             setConnectStatus("Connected");
-            clientMQTT.subscribe(_idProject, (error) => {
-              if (error) {
-                console.log("Subscribe to topics error", error);
-              }
-            });
+            if(_idProject){
+              clientMQTT.subscribe(_idProject, (error) => {
+                if (error) {
+                  console.log("Subscribe to topics error", error);
+                }
+              });
+            }
+            else
+            {
+              signOut()
+            }
+           
           });
           clientMQTT.on("error", (err) => {
             setConnectStatus("Connection error");
@@ -105,7 +118,8 @@ function TabNavigator()
                     <Foundation name="home" color={color} size={23} />
                 ),
             }} />
-            <Tab.Screen name="Dashboard" component={Dashboard} options={{
+            <Tab.Screen name="Dashboard" children={()=><Dashboard payload={payload} clientMQTT={clientMQTT}/>}
+                options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="dashboard" color={color} size={24} />
@@ -113,6 +127,7 @@ function TabNavigator()
             }} />
   
             <Tab.Screen name="Notification" component={Notification} options={{
+                tabBarBadge:true,
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
                     <MaterialIcons name="notifications-none" color={color} size={26} />

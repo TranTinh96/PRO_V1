@@ -22,6 +22,10 @@ module.exports.checkNull = (valueNull) => {
         value = parseFloat(str[i].split('=')[1]);
         break;
       }
+      else
+      {
+         value=0;
+      }
    }
    return value;
    
@@ -36,6 +40,10 @@ module.exports.getKeyValueString = (str , key) => {
        value = str[i].split('=')[1];
        value=value.toString()
        break;
+     }
+     else
+     {
+        value =' ';
      }
   }
   return value;

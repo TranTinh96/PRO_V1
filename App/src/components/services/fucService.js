@@ -16,16 +16,38 @@ module.exports.checkNull = (valueNull) => {
  //example key = V1=220&V1N=220 => getKeyValue: V1=220
  module.exports.getKeyValue = (str , key) => {
     var value ;
-    for (let i = 0; i < str.length; i++) {
-      if(str[i].search(key) !== -1)
-      {
-        value = parseFloat(str[i].split('=')[1]);
-        break;
+      for (let i = 0; i < str.length; i++) {
+         if(str[i].search(key) !== -1)
+         {
+           value = parseFloat(str[i].split('=')[1]);
+           break;
+         }
+         else
+         {
+            value =0;
+         }
       }
-   }
-   return value;
+      return value;
    
 }
+
+
+
+//example key = V1=220&V1N=220 => getKeyValue: V1=220
+module.exports.getKeyValueString = (str , key) => {
+   var value ;
+   for (let i = 0; i < str.length; i++) {
+     if(str[i].search(key) !== -1)
+     {
+       value = str[i].split('=')[1];
+       value=value.toString()
+       break;
+     }
+  }
+  return value;
+  
+}
+
 
 //example if(limitData =5) array =[100 ,200,300,400,500,600,700] => array =[200,300,400,500,600,700]
 //VD: lenghtArray =10 , limit =5
@@ -41,6 +63,7 @@ module.exports.limitData = (array ,limit ,data) => {
 
   return array
 }
+
 
 
 
