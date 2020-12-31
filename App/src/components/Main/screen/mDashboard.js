@@ -75,10 +75,11 @@ function Dashboard(props) {
 
    //MQTT
    var clientMQTT= props.clientMQTT
-   var payload = props.payload ;
+   const payload = props.payload ;
+   const  topic = props.topic
 
    const role = useSelector((state) => state.User).users.role;
-   var _idProject = useSelector((state) => state.projectID);
+   const _idProject = useSelector((state) => state.projectID);
    const RLAstatus = useSelector((state) => state.RLA.RLAstatus);
    const RLAmode = useSelector((state) => state.RLA.RLAmode);
    const RLBstatus = useSelector((state) => state.RLB.RLBstatus);
@@ -124,7 +125,7 @@ function Dashboard(props) {
 
    //Payload
    useLayoutEffect(() => {
-    if(payload){
+    if(topic){
         var payloadSplit = payload.toString().split('&')
         //RLA status
         setRLstatusA(getKeyValueString(payloadSplit,"RLAstatus"))

@@ -47,6 +47,7 @@ function TabNavigator()
     const[clientMQTT ,setClientMQTT] = useState(null)
     const [connectStatus, setConnectStatus] = useState("Connect");
     const [payload, setPayload] = useState({});
+    const [topic, setTopic] = useState("")
     //useEffect connect MQTT   
     useEffect(() => {
         //Connect MQTT
@@ -89,6 +90,7 @@ function TabNavigator()
           clientMQTT.on("message", (topic, message) => {
             const payload = message.toString() ;
             setPayload(payload);
+            setTopic(topic)
           });
         }
       }, [clientMQTT]);
@@ -111,14 +113,14 @@ function TabNavigator()
                 borderRadius: 3
             }}
         >
-            <Tab.Screen name="Home"  children={()=><Home payload={payload} clientMQTT={clientMQTT}/>}
+            <Tab.Screen name="Home"  children={()=><Home payload={payload} clientMQTT={clientMQTT} topic={topic}/>}
             options={{
                 tabBarColor: '#FFF',
                 tabBarIcon: ({ color }) => (
                     <Foundation name="home" color={color} size={23} />
                 ),
             }} />
-            <Tab.Screen name="Dashboard" children={()=><Dashboard payload={payload} clientMQTT={clientMQTT}/>}
+            <Tab.Screen name="Dashboard" children={()=><Dashboard payload={payload} clientMQTT={clientMQTT}  topic={topic}/>}
                 options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (

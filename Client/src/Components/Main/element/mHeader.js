@@ -30,6 +30,7 @@ function MHeader() {
   };
 
   return (
+    <React.Fragment>
     <nav className="navbar navbar-header">
       <div className="navbar-wrapper">
         <div className={isMenu ? "navbar-logo" : "navbar-logo-small"}></div>
@@ -152,6 +153,7 @@ function MHeader() {
         </div>
       </div>
     </nav>
+    </React.Fragment>
   );
 }
 

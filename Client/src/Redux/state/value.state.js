@@ -69,9 +69,27 @@ var initialStateChartLineE = [
   Math.round(Math.random() * 300),
   Math.round(Math.random() * 300),
   Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
   Math.round(Math.random() * 300)
 ]
 
+const initialStateSummary = {
+  modeReport: "readTime",
+  summaryData: {
+    VLN :0,
+    VLL :0,
+    I :0,
+    KW :0 ,
+    KVA :0 ,
+    KVAR : 0,
+    PE : 0,
+    F :0 ,
+    KWH :0
+  }
+}
 
 
 
@@ -247,7 +265,21 @@ var projectID = (state = null, action) => {
         return state;
     }
   };
+
+   //JWT
+   var SUMMARY = (state = initialStateSummary, action) => {
+    switch (action.type) {
+      case "SUMMARY":
+         return {
+           modeReport : action.mode,
+           summaryData : action.summaryData
+         }
+  
+      default:
+        return state;
+    }
+  };
   
 
 
- module.exports= {projectID ,setUserJWT,idTopicProject ,RLA,RLB ,VLN,V1N,V2N,V3N ,F,E};
+ module.exports= {projectID ,setUserJWT,idTopicProject ,RLA,RLB ,VLN,V1N,V2N,V3N ,F,E,SUMMARY};

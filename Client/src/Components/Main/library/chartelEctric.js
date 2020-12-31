@@ -22,10 +22,10 @@ function ChartelEctric(props) {
     var i = 0;
 
     for (i = 0; i <= 30; i++) {
-        valueSummary -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
-        valuePhase1 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
-        valuePhase2 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
-        valuePhase3 -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
+        valueSummary = 0;
+        valuePhase1  = 0;
+        valuePhase2  = 0;
+        valuePhase3  = 0;
         data.push({ date: new Date().setSeconds(i - 30), valueSummary: valueSummary ,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3});
     }
 
@@ -169,6 +169,7 @@ function ChartelEctric(props) {
             valuePhase2 =  props.I2
             valuePhase3 =  props.I3
             var lastdataItem = seriesSummary.dataItems.getIndex(seriesSummary.dataItems.length - 1);
+            console.log(new Date(lastdataItem.dateX.getTime() + 1000) )
             chart.addData(
                 { date: new Date(lastdataItem.dateX.getTime() + 1000), valueSummary:valueSummary,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3 },
                 1

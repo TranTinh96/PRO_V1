@@ -254,7 +254,6 @@ function ManageRegisterUser() {
                                         <label className="my-1 mr-2 form-lable-manage " for="role">ROLE</label>
                                         <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="role" n onChange={handleChangeRole} >
                                             <option selected>Choose...</option>
-                                            <option value="ROLE_ADMIN">Administrator</option>
                                             <option value="ROLE_SEE">User</option>
                                             <option value="ROLE_CONTROL">Control</option>
                                             <option value="ROLE_MANAGER">Manager</option>

@@ -7,8 +7,8 @@ function DataTableSummary() {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">VOLTAGE LINE - NEUTRAL</th>
-            <th scope="col">VOLTAGE LINE - LINE</th>
+            <th scope="col">LINE - NEUTRAL</th>
+            <th scope="col">LINE - LINE</th>
             <th scope="col">CURRENT</th>
             <th scope="col">ACTIVE POWER</th>
             <th scope="col">REACTIVE POWER</th>

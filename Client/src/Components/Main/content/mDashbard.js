@@ -34,16 +34,17 @@ function checkLength(value){
 
 function MDashbard(props) {
 
-    var payload = props.payload ;
-    var dispatch =useDispatch();
+    const payload = props.payload ;
+    const topic = props.topic;
+    const dispatch =useDispatch();
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
 
     //VOLTAGE LINE-NEUTRAL
-    var VLNArray = useSelector((state) => state.VLN);
-    var V1NArray = useSelector((state) => state.V1N);
-    var V2NArray = useSelector((state) => state.V2N);
-    var V3NArray = useSelector((state) => state.V3N);
+    const VLNArray = useSelector((state) => state.VLN);
+    const V1NArray = useSelector((state) => state.V1N);
+    const V2NArray = useSelector((state) => state.V2N);
+    const V3NArray = useSelector((state) => state.V3N);
     const [VLN , setVLN] =useState(0);
     const [V1N , setV1N] =useState(0);
     const [V2N , setV2N] =useState(0);
@@ -99,9 +100,8 @@ function MDashbard(props) {
     
     //Payload
     useLayoutEffect(() => {
-        if(payload){
+        if(topic){
             var payloadSplit = payload.toString().split('&')
-
             //VOLTAGE LINE-NEUTRAL
             dispatch({type:"ADD_DATA_VLN",VLN:getKeyValue2Int(payloadSplit,"VLN")})
             dispatch({type:"ADD_DATA_V1N",V1N:getKeyValue2Int(payloadSplit,"V1N")})

@@ -5,6 +5,10 @@ body {
    background-color: #fafafa!important;
    font-family: 'Poppins', sans-serif ; 
 }
+html ,body{
+   height: 90%;
+ }
+
 .navbar-header-home{
    padding: 0px !important;
    left: 0px;

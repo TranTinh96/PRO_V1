@@ -10,7 +10,7 @@ import Dashboard from "./content/mDashbard";
 import mManage from "./content/mManage";
 import mAccout from "./content/mAccout";
 import mMaps from "./content/mMaps";
-import mDataTable from "./content/mDataTable";
+import DataTable from "./content/mDataTable";
 
 import ClipLoader from "react-spinners/ScaleLoader";
 
@@ -43,6 +43,7 @@ function MApp() {
   const [clientMQTT, setClientMQTT] = useState(null);
   const [connectStatus, setConnectStatus] = useState("Connect");
   const [payload, setPayload] = useState({});
+  const [topic ,setTopic] =useState("")
 
   useEffect(() => {
     //Connect MQTT
@@ -87,6 +88,7 @@ function MApp() {
       });
 
       clientMQTT.on("message", (topic, message) => {
+        setTopic(topic)
         const payload = message.toString();
         setPayload(payload);
       });
@@ -118,14 +120,20 @@ function MApp() {
             exact
             path="/dashboard"
             render={(props) => (
-              <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} />
+              <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} topic={topic} />
             )}
           />
           <Route exact path="/manage/setting" component={mManage} />
           <Route exact path="/manage/open-accout" component={mManage} />
           <Route exact path="/accouts" component={mAccout} />
           <Route exact path="/maps" component={mMaps} />
-          <Route exact path="/tables" component={mDataTable} />
+          <Route
+            exact
+            path="/tables"
+            render={(props) => (
+              <DataTable {...props} clientMQTT={clientMQTT} payload={payload} topic={topic} />
+            )}
+          />
         </Switch>
       </div>
     </React.Fragment>

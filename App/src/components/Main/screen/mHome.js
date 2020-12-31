@@ -13,10 +13,10 @@ import {getKeyValue} from "../../services/fucService"
 
 
 function Home(props) {
-  var payload = props.payload ;
-
+  const payload = props.payload ;
+  const topic = props.topic
   //Redux
-   var dispatch =useDispatch();
+   const dispatch =useDispatch();
 
    var I = useSelector((state) => state.I);
    var I1 = useSelector((state) => state.I1);
@@ -68,8 +68,7 @@ function Home(props) {
   
     //Payload
     useLayoutEffect(() => {
-      console.log(payload)
-      if(payload){
+      if(topic){
           var payloadSplit = payload.toString().split('&')
 
           //VOLTAGE LINE-NEUTRAL
