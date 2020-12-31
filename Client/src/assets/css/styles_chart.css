@@ -82,6 +82,10 @@
  
   border: none !important;
 }
+.table-data-container thead{
+
+  border-bottom:1px solid #f0f0f0 !important;
+}
 .table-data-container th{
   border: none !important;
   font-size: 13px;
@@ -89,7 +93,7 @@
   font-weight: 600;
   padding-top: 15px;
   padding-bottom: 15x;
-  border-bottom:1px solid #f0f0f0;
+  border-bottom:2px solid #f0f0f0;
 }
 .table-data-container td{
   border: none;
@@ -97,6 +101,7 @@
   font-family: 'Open Sans', sans-serif;
   padding-top: 12px;
   padding-bottom: 12x;
+  border-bottom:1px solid #f0f0f0;
 }
 .table-data-container{
   overflow-y: scroll;

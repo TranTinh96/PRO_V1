@@ -73,23 +73,19 @@ var initialStateChartLineE = [
   Math.round(Math.random() * 300),
   Math.round(Math.random() * 300),
   Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
+  Math.round(Math.random() * 300),
   Math.round(Math.random() * 300)
 ]
 
 const initialStateSummary = {
-  modeReport: "readTime",
-  summaryData: {
-    VLN :0,
-    VLL :0,
-    I :0,
-    KW :0 ,
-    KVA :0 ,
-    KVAR : 0,
-    PE : 0,
-    F :0 ,
-    KWH :0
-  }
-}
+  summaryData: [
+  
+  ],
+};
 
 
 
@@ -259,21 +255,21 @@ var projectID = (state = null, action) => {
         var newSatate = [...state]
           newSatate.shift();
           newSatate.push(action.E);
-          initialStateChartLineE= newSatate;
+          
          return newSatate;
       default:
         return state;
     }
   };
 
-   //JWT
+   //SUMMARY
    var SUMMARY = (state = initialStateSummary, action) => {
     switch (action.type) {
       case "SUMMARY":
-         return {
-           modeReport : action.mode,
-           summaryData : action.summaryData
-         }
+        var newState = [...state]
+          newState.push(action.summaryData);
+          initialStateSummary = newState;
+         return newState
   
       default:
         return state;

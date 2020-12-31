@@ -14,7 +14,7 @@ import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/
 function MDataTable(props) {
     const payload = props.payload ;
     const topic = props.topic;
-
+    
     const dispatch = useDispatch();
 
     const [timeReport,setTimeReport] = useState("readTime")
@@ -24,9 +24,21 @@ function MDataTable(props) {
 
       //Payload
     useLayoutEffect(() => {
-        if(topic){
-           
-            
+        if(topic && timeReport=="readTime"){
+            console.log("Tran Tinh")
+            var payloadSplit = payload.toString().split('&')
+            var summaryData ={
+                VLN :getKeyValue(payloadSplit,"VLN"),
+                VLL :getKeyValue(payloadSplit,"VLL"),
+                I :getKeyValue(payloadSplit,"I"),
+                KW :getKeyValue(payloadSplit,"KW") ,
+                KVA :getKeyValue(payloadSplit,"KVA"),
+                KVAR : getKeyValue(payloadSplit,"KVAR"),
+                PE : getKeyValue(payloadSplit,"PE"),
+                F :getKeyValue(payloadSplit,"F"),
+                KWH :getKeyValue(payloadSplit,"KWH")
+            }
+            dispatch({type:"SUMMARY",summaryData :summaryData})
         }
 
     }, [payload])

@@ -9,6 +9,7 @@ am4core.useTheme(am4themes_animated);
 
 function ChartelEctric(props) {
   const chart = useRef(null);
+  console.log(props)
   useLayoutEffect(() => {
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.hiddenState.properties.opacity = 0;
@@ -168,10 +169,9 @@ function ChartelEctric(props) {
             valuePhase1 =  props.I1
             valuePhase2 =  props.I2
             valuePhase3 =  props.I3
-            var lastdataItem = seriesSummary.dataItems.getIndex(seriesSummary.dataItems.length - 1);
-            console.log(new Date(lastdataItem.dateX.getTime() + 1000) )
+            //var lastdataItem = seriesSummary.dataItems.getIndex(seriesSummary.dataItems.length - 1);
             chart.addData(
-                { date: new Date(lastdataItem.dateX.getTime() + 1000), valueSummary:valueSummary,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3 },
+                { date: new Date(new Date().getTime() + 1000), valueSummary:valueSummary,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3 },
                 1
             );
         }, 5000);
@@ -270,7 +270,7 @@ function ChartelEctric(props) {
     return () => {
       chart.dispose();
     };
-  }, []);
+  }, [props]);
 
   return <div id="chartdiv" style={{ width: "100%", height: "408px" }}></div>;
 }
