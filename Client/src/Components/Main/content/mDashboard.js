@@ -1,7 +1,7 @@
-import React, { useState ,useEffect ,useLayoutEffect } from 'react'
+import React, { useState  } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link } from "react-router-dom";
-import {useSelector ,useDispatch} from 'react-redux';
+import {useSelector } from 'react-redux';
 //Chart
 import ChartLine from "../library/charLine/chartLine"
 import ChartElectric from "../library/chartelEctric"
@@ -17,9 +17,6 @@ import v23 from "../../../assets/Image/vonke/v23.png"
 import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
-//Function getKeyValue
-import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
-
 
 function currentDateInput() {
     var date = new Date().toLocaleDateString().split("/");
@@ -34,131 +31,48 @@ function checkLength(value){
 
 function MDashbard(props) {
 
-    const payload = props.payload ;
-    const topic = props.topic;
-    const dispatch =useDispatch();
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
 
     //VOLTAGE LINE-NEUTRAL
-    const VLNArray = useSelector((state) => state.VLN);
-    const V1NArray = useSelector((state) => state.V1N);
-    const V2NArray = useSelector((state) => state.V2N);
-    const V3NArray = useSelector((state) => state.V3N);
-    const [VLN , setVLN] =useState(0);
-    const [V1N , setV1N] =useState(0);
-    const [V2N , setV2N] =useState(0);
-    const [V3N , setV3N] =useState(0);
-
-    //CURRENT
-    const [I , setI] =useState(0);
-    const [I1 , setI1] =useState(0);
-    const [I2 , setI2] =useState(0);
-    const [I3 , setI3] =useState(0);
+    const VLNArray = useSelector((state) => state.VLNArray);
+    const V1NArray = useSelector((state) => state.V1NArray);
+    const V2NArray = useSelector((state) => state.V2NArray);
+    const V3NArray = useSelector((state) => state.V3NArray);
+    const VLN = useSelector((state) => state.VLN).VLN;
+    const V1N = useSelector((state) => state.VLN).V1N;
+    const V2N = useSelector((state) => state.VLN).V2N;
+    const V3N = useSelector((state) => state.VLN).V3N;
 
     //KW
-    const [KW , setKW] =useState(0);
-    const [KW1 , setKW1] =useState(0);
-    const [KW2 , setKW2] =useState(0);
-    const [KW3 , setKW3] =useState(0);
+    const KW = useSelector((state) => state.KW).KW;
+    const KW1 = useSelector((state) => state.KW).KW1;
+    const KW2 = useSelector((state) => state.KW).KW2;
+    const KW3 = useSelector((state) => state.KW).KW3;
 
     //KVA
-    const [KVA , setKVA] =useState(0);
-    const [KVA1 , setKVA1] =useState(0);
-    const [KVA2 , setKVA2] =useState(0);
-    const [KVA3 , setKVA3] =useState(0);
+    const KVA = useSelector((state) => state.KVA).KVA;
+    const KVA1 = useSelector((state) => state.KVA).KVA1;
+    const KVA2 = useSelector((state) => state.KVA).KVA2;
+    const KVA3 = useSelector((state) => state.KVA).KVA3;
 
-   //KVAR
-    const [KVAR , setKVAR] =useState(0);
-    const [KVAR1 , setKVAR1] =useState(0);
-    const [KVAR2 , setKVAR2] =useState(0);
-    const [KVAR3 , setKVAR3] =useState(0);
+     //KVAR
+     const KVAR = useSelector((state) => state.KVAR).KVAR;
+     const KVAR1 = useSelector((state) => state.KVAR).KVAR1;
+     const KVAR2 = useSelector((state) => state.KVAR).KVAR2;
+     const KVAR3 = useSelector((state) => state.KVAR).KVAR3;
 
-    //PE
-    const [PF , setPF] =useState(0);
-    const [PF1 , setPF1] =useState(0);
-    const [PF2 , setPF2] =useState(0);
-    const [PF3 , setPF3] =useState(0);
-
+     //PF
+    const PF = useSelector((state) => state.PF).PF;
+    const PF1 = useSelector((state) => state.PF).PF1;
+    const PF2 = useSelector((state) => state.PF).PF2;
+    const PF3 = useSelector((state) => state.PF).PF3;
+  
     //F & KW
-    const [F , setF] =useState(0);
-    const [KWH , setKWH] =useState(0);
-    var FArray = useSelector((state) => state.F);
-    var KWHArray = useSelector((state) => state.E);
-    
-    //RL status
-    const [RLAstatus ,setRLAstatus] =useState('off')
-    const [RLBstatus ,setRLBstatus] =useState('off')
-
-    //RL mode
-    const [RLAmode ,setRLAmode] =useState('manual')
-    const [RLBmode ,setRLBmode] =useState('manual')
-
-
-
-
-    
-    //Payload
-    useLayoutEffect(() => {
-        if(topic){
-            var payloadSplit = payload.toString().split('&')
-            //VOLTAGE LINE-NEUTRAL
-            dispatch({type:"ADD_DATA_VLN",VLN:getKeyValue2Int(payloadSplit,"VLN")})
-            dispatch({type:"ADD_DATA_V1N",V1N:getKeyValue2Int(payloadSplit,"V1N")})
-            dispatch({type:"ADD_DATA_V2N",V2N:getKeyValue2Int(payloadSplit,"V2N")})
-            dispatch({type:"ADD_DATA_V3N",V3N:getKeyValue2Int(payloadSplit,"V3N")})
-            setVLN(getKeyValue(payloadSplit,"VLN"))
-            setV1N(getKeyValue(payloadSplit,"V1N"))
-            setV2N(getKeyValue(payloadSplit,"V2N"))
-            setV3N(getKeyValue(payloadSplit,"V3N"))
-            //CURRENT
-            setI(getKeyValue(payloadSplit,"I"))
-            setI1(getKeyValue(payloadSplit,"I1"))
-            setI2(getKeyValue(payloadSplit,"I2"))
-            setI3(getKeyValue(payloadSplit,"I3"))
-
-            //KW
-            setKW(getKeyValue(payloadSplit,"KW"))
-            setKW1(getKeyValue(payloadSplit,"KW1"))
-            setKW2(getKeyValue(payloadSplit,"KW2"))
-            setKW3(getKeyValue(payloadSplit,"KW3"))
-
-            //KVA
-            setKVA(getKeyValue(payloadSplit,"KVA"))
-            setKVA1(getKeyValue(payloadSplit,"KVA1"))
-            setKVA2(getKeyValue(payloadSplit,"KVA2"))
-            setKVA3(getKeyValue(payloadSplit,"KVA3"))
-
-             //KVAR
-            setKVAR(getKeyValue(payloadSplit,"KVAR"))
-            setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
-            setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
-            setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
-
-            //PE
-            setPF(getKeyValue(payloadSplit,"PF"))
-            setPF1(getKeyValue(payloadSplit,"PF1"))
-            setPF2(getKeyValue(payloadSplit,"PF2"))
-            setPF3(getKeyValue(payloadSplit,"PF3"))
-
-             //F & KW
-            setF(getKeyValue(payloadSplit,"FREQUENCY"))
-            setKWH(getKeyValue(payloadSplit,"KWH"))
-            dispatch({type:"ADD_DATA_F",F:getKeyValue2Int(payloadSplit,"FREQUENCY")})
-            dispatch({type:"ADD_DATA_E",E:getKeyValue2Int(payloadSplit,"KWH")})
-
-            //RLA status
-            setRLAstatus(getKeyValueString(payloadSplit,"RLAstatus"))
-            setRLBstatus(getKeyValueString(payloadSplit,"RLBstatus"))
-            
-            //RLA mode
-            setRLAmode(getKeyValueString(payloadSplit,"RLAmode"))
-            setRLBmode(getKeyValueString(payloadSplit,"RLBmode"))
-
-            
-        }
-
-    }, [payload])
+    var FArray = useSelector((state) => state.FArray);
+    var KWHArray = useSelector((state) => state.EArray);
+    var F= useSelector((state) => state.F);
+    var KWH = useSelector((state) => state.E);
 
 
     return (
@@ -310,7 +224,7 @@ function MDashbard(props) {
                                                     <h5 className="card-title card-title-header mb-0">CURRENT</h5>
                                                 </div>
                                                 <div className="card-content-line-chart align-items-center">
-                                                    <ChartElectric I={I} I1={I1} I2={I2} I3={I3}/>
+                                                    <ChartElectric I={props.I} I1={props.I1} I2={props.I2} I3={props.I3}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -324,7 +238,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl clientMQTT={props.clientMQTT} RLAstatus={RLAstatus} RLBstatus={RLBstatus} RLAmode={RLAmode} RLBmode={RLBmode} />        
+                                                         <ChartControl clientMQTT={props.clientMQTT} RLAstatus={props.RLAstatus} RLBstatus={props.RLBstatus} RLAmode={props.RLAmode} RLBmode={props.RLBmode} />        
                                                     </div>
                                                 </div>
                                             </div>

@@ -3,13 +3,19 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_material from "@amcharts/amcharts4/themes/material";
+import {useSelector } from 'react-redux';
 
 am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
 
 function ChartelEctric(props) {
-  const chart = useRef(null);
-  console.log(props)
+    const chart = useRef(null);
+   //CURRENT
+    const I = useSelector((state) => state.CURRENT).I;
+    const I1 = useSelector((state) => state.CURRENT).I1;
+    const I2 = useSelector((state) => state.CURRENT).I2;
+    const I3 = useSelector((state) => state.CURRENT).I3;
+
   useLayoutEffect(() => {
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.hiddenState.properties.opacity = 0;
@@ -19,15 +25,10 @@ function ChartelEctric(props) {
     chart.zoomOutButton.disabled = true;
 
     var data = [];
-    var valueSummary = 0 , valuePhase1 = 0, valuePhase2 = 0, valuePhase3 = 0;
-    var i = 0;
 
-    for (i = 0; i <= 30; i++) {
-        valueSummary = 0;
-        valuePhase1  = 0;
-        valuePhase2  = 0;
-        valuePhase3  = 0;
-        data.push({ date: new Date().setSeconds(i - 30), valueSummary: valueSummary ,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3});
+    for (let i = 0; i <= 30; i++) {
+       
+        data.push({ date: new Date().setSeconds(i - 30), valueSummary: 0 ,valuePhase1: 0 ,valuePhase2: 0,valuePhase3: 0});
     }
 
     chart.data = data;
@@ -165,16 +166,11 @@ function ChartelEctric(props) {
     var interval;
     function startInterval() {
         interval = setInterval(function() {
-            valueSummary = props.I
-            valuePhase1 =  props.I1
-            valuePhase2 =  props.I2
-            valuePhase3 =  props.I3
-            //var lastdataItem = seriesSummary.dataItems.getIndex(seriesSummary.dataItems.length - 1);
             chart.addData(
-                { date: new Date(new Date().getTime() + 1000), valueSummary:valueSummary,valuePhase1: valuePhase1 ,valuePhase2: valuePhase2,valuePhase3: valuePhase3 },
+                { date: new Date(new Date().getTime() + 1000), valueSummary:I,valuePhase1: I1 ,valuePhase2: I2,valuePhase3: I3},
                 1
             );
-        }, 5000);
+        }, 1000);
     }
 
     startInterval();
@@ -215,7 +211,7 @@ function ChartelEctric(props) {
      */
     //Summary
     var bulletSummary = seriesSummary.createChild(am4charts.CircleBullet);
-    bulletSummary.circle.radius = 3;
+    bulletSummary.circle.radius = 0;
     bulletSummary.fillOpacity = 1;
     bulletSummary.fill = chart.colors.getIndex(0);
     bulletSummary.isMeasured = false;
@@ -227,7 +223,7 @@ function ChartelEctric(props) {
 
       //Phase 1
     var bulletPhase1 = seriesPhase1.createChild(am4charts.CircleBullet);
-    bulletPhase1.circle.radius = 3;
+    bulletPhase1.circle.radius = 0;
     bulletPhase1.fillOpacity = 1;
     bulletPhase1.fill =chart.colors.getIndex(4);
     bulletPhase1.isMeasured = false;
@@ -238,7 +234,7 @@ function ChartelEctric(props) {
       
     //Phase 2
     var bulletPhase2 = seriesPhase2.createChild(am4charts.CircleBullet);
-    bulletPhase2.circle.radius = 3;
+    bulletPhase2.circle.radius = 0;
     bulletPhase2.fillOpacity = 1;
     bulletPhase2.fill =chart.colors.getIndex(4);
     bulletPhase2.isMeasured = false;
@@ -249,7 +245,7 @@ function ChartelEctric(props) {
       
     //Phase 3
     var bulletPhase3 = seriesPhase3.createChild(am4charts.CircleBullet);
-    bulletPhase3.circle.radius = 3;
+    bulletPhase3.circle.radius = 0;
     bulletPhase3.fillOpacity = 1;
     bulletPhase3.fill =chart.colors.getIndex(4);
     bulletPhase3.isMeasured = false;
@@ -270,7 +266,7 @@ function ChartelEctric(props) {
     return () => {
       chart.dispose();
     };
-  }, [props]);
+  }, [I,I1,I2,I3]);
 
   return <div id="chartdiv" style={{ width: "100%", height: "408px" }}></div>;
 }

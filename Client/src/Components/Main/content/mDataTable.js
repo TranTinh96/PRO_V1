@@ -8,7 +8,6 @@ import DataTablePhase1 from "../library/dataTable/dataTablePhase1"
 import DataTablePhase2 from "../library/dataTable/dataTablePhase2"
 import DataTablePhase3 from "../library/dataTable/dataTablePhase3"
 
-import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
 
 
 function MDataTable(props) {
@@ -22,26 +21,6 @@ function MDataTable(props) {
         setTimeReport( e.target.value );
       };
 
-      //Payload
-    useLayoutEffect(() => {
-        if(topic && timeReport=="readTime"){
-            console.log("Tran Tinh")
-            var payloadSplit = payload.toString().split('&')
-            var summaryData ={
-                VLN :getKeyValue(payloadSplit,"VLN"),
-                VLL :getKeyValue(payloadSplit,"VLL"),
-                I :getKeyValue(payloadSplit,"I"),
-                KW :getKeyValue(payloadSplit,"KW") ,
-                KVA :getKeyValue(payloadSplit,"KVA"),
-                KVAR : getKeyValue(payloadSplit,"KVAR"),
-                PE : getKeyValue(payloadSplit,"PE"),
-                F :getKeyValue(payloadSplit,"F"),
-                KWH :getKeyValue(payloadSplit,"KWH")
-            }
-            dispatch({type:"SUMMARY",summaryData :summaryData})
-        }
-
-    }, [payload])
 
 
     return (

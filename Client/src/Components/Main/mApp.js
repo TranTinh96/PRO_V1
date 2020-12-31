@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useLayoutEffect } from "react";
 import mqtt from "mqtt";
 import { useSelector ,useDispatch } from "react-redux";
 import { Route, Switch ,useHistory } from "react-router-dom";
@@ -6,13 +6,15 @@ import { useCookies } from 'react-cookie';
 import Header from "./element/mHeader";
 import Navbars from "./element/mNavbar";
 //Content
-import Dashboard from "./content/mDashbard";
+import Dashboard from "./content/mDashboard";
 import mManage from "./content/mManage";
 import mAccout from "./content/mAccout";
 import mMaps from "./content/mMaps";
 import DataTable from "./content/mDataTable";
 
 import ClipLoader from "react-spinners/ScaleLoader";
+ //Function
+ import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../services/fucServices"
 
 //MQTT Config
 const host = "wss://hairdresser.cloudmqtt.com";
@@ -26,8 +28,6 @@ const options = {
   protocolId: "MQIsdp",
   protocolVersion: 3,
   clean: true,
-  reconnectPeriod: 1000,
-  connectTimeout: 30 * 1000,
   rejectUnauthorized: false,
 };
 
@@ -38,6 +38,8 @@ function MApp() {
   const _idProject = useSelector((state) => state.idTopicProject);
   //Cookie
   const [cookies, removeCookie] = useCookies(["Auth"]);
+
+ 
   //useState
   const [isLoading, setIsLoading] = useState(true);
   const [clientMQTT, setClientMQTT] = useState(null);
@@ -45,8 +47,9 @@ function MApp() {
   const [payload, setPayload] = useState({});
   const [topic ,setTopic] =useState("")
 
+   //Connect MQTT
   useEffect(() => {
-    //Connect MQTT
+
     setClientMQTT(mqtt.connect(host, options));
 
     setTimeout(() => {
@@ -54,7 +57,7 @@ function MApp() {
     }, 200);
   }, []);
 
-  //useEffect MQTT
+  //Client MQTT
   useEffect(() => {
     if (clientMQTT) {
       clientMQTT.on("connect", () => {
@@ -98,6 +101,109 @@ function MApp() {
     };
   }, [clientMQTT]);
 
+  //Payload
+  useLayoutEffect(() => {
+    if(topic){
+        var payloadSplit = payload.toString().split('&')
+
+        //SUMMARY
+        var summaryData ={
+          VLN :getKeyValue(payloadSplit,"VLN"),
+          VLL :getKeyValue(payloadSplit,"VLL"),
+          I :getKeyValue(payloadSplit,"I"),
+          KW :getKeyValue(payloadSplit,"KW") ,
+          KVA :getKeyValue(payloadSplit,"KVA"),
+          KVAR : getKeyValue(payloadSplit,"KVAR"),
+          PE : getKeyValue(payloadSplit,"PE"),
+          F :getKeyValue(payloadSplit,"F"),
+          KWH :getKeyValue(payloadSplit,"KWH")
+        }
+        //dispatch({type:"SUMMARY",summaryData :summaryData})
+
+        //VOLTAGE LINE-NEUTRAL
+        dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadSplit,"VLN")})
+        dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadSplit,"V1N")})
+        dispatch({type:"ADD_DATA_V2NArray",V2NArray:getKeyValue2Int(payloadSplit,"V2N")})
+        dispatch({type:"ADD_DATA_V3NArray",V3NArray:getKeyValue2Int(payloadSplit,"V3N")})
+        dispatch({
+          type:"ADD_DATA_VLN",
+          VLN:getKeyValue(payloadSplit,"VLN"),
+          V1N:getKeyValue(payloadSplit,"V1N"),
+          V2N:getKeyValue(payloadSplit,"V2N"),
+          V3N:getKeyValue(payloadSplit,"V3N"),
+         })
+
+
+        //CURRENT
+        dispatch({
+          type:"ADD_DATA_I",
+          I:getKeyValue(payloadSplit,"I"),
+          I1:getKeyValue(payloadSplit,"I1"),
+          I2:getKeyValue(payloadSplit,"I2"),
+          I3:getKeyValue(payloadSplit,"I3"),
+         })
+
+
+
+        //KW
+        dispatch({
+          type:"ADD_DATA_KW",
+          KW:getKeyValue(payloadSplit,"KW"),
+          KW1:getKeyValue(payloadSplit,"KW1"),
+          KW2:getKeyValue(payloadSplit,"KW2"),
+          KW3:getKeyValue(payloadSplit,"KW3"),
+         })
+
+
+        //KVA
+        dispatch({
+          type:"ADD_DATA_KVA",
+          KVA:getKeyValue(payloadSplit,"KVA"),
+          KVA1:getKeyValue(payloadSplit,"KVA1"),
+          KVA2:getKeyValue(payloadSplit,"KVA2"),
+          KVA3:getKeyValue(payloadSplit,"KVA3"),
+         })
+
+
+         //KVAR
+         dispatch({
+          type:"ADD_DATA_KVAR",
+          KVAR:getKeyValue(payloadSplit,"KVAR"),
+          KVAR1:getKeyValue(payloadSplit,"KVAR1"),
+          KVAR2:getKeyValue(payloadSplit,"KVAR2"),
+          KVAR3:getKeyValue(payloadSplit,"KVAR3"),
+         })
+
+
+        //PE
+        dispatch({
+          type:"ADD_DATA_PF",
+          PF:getKeyValue(payloadSplit,"PF"),
+          PF1:getKeyValue(payloadSplit,"PF1"),
+          PF2:getKeyValue(payloadSplit,"PF2"),
+          PF3:getKeyValue(payloadSplit,"PF3"),
+         })
+
+         //F & KW
+        dispatch({type:"ADD_DATA_F",F:getKeyValue2Int(payloadSplit,"FREQUENCY")})
+        dispatch({type:"ADD_DATA_E",E:getKeyValue2Int(payloadSplit,"KWH")})
+        dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadSplit,"FREQUENCY")})
+        dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadSplit,"KWH")})
+
+        //RL status
+        dispatch({
+          type:"ADD_RL_SELEC",
+          RLAstatus:getKeyValueString(payloadSplit,"RLAstatus"),
+          RLAmode:getKeyValueString(payloadSplit,"RLAmode"),
+          RLBstatus:getKeyValueString(payloadSplit,"RLBstatus"),
+          RLBmode:getKeyValueString(payloadSplit,"RLBmode"),
+         })
+        
+    }
+
+}, [payload])
+
+
   if (isLoading) {
     return (
       <React.Fragment>
@@ -120,7 +226,7 @@ function MApp() {
             exact
             path="/dashboard"
             render={(props) => (
-              <Dashboard {...props} clientMQTT={clientMQTT} payload={payload} topic={topic} />
+              <Dashboard {...props} clientMQTT={clientMQTT}/> 
             )}
           />
           <Route exact path="/manage/setting" component={mManage} />
@@ -131,7 +237,7 @@ function MApp() {
             exact
             path="/tables"
             render={(props) => (
-              <DataTable {...props} clientMQTT={clientMQTT} payload={payload} topic={topic} />
+              <DataTable {...props}  />
             )}
           />
         </Switch>

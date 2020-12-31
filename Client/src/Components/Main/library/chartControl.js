@@ -9,6 +9,10 @@ import topicPublish from "../../MQTT/topicPublish"
 
 
 function ChartControl(props) {
+    var RLmodeA = useSelector((state) => state.RL).RLAmode;
+    var RLmodeB =  useSelector((state) => state.RL).RLAmode;
+    var RLstatusA =  useSelector((state) => state.RL).RLAmode;
+    var RLstatusB =  useSelector((state) => state.RL).RLAmode;
   //MQTT
     var clientMQTT= props.clientMQTT
     //Redux
@@ -121,10 +125,7 @@ function ChartControl(props) {
    }, [role])
 
   useLayoutEffect(() => {
-      var RLmodeA = props.RLAmode
-      var RLmodeB = props.RLBmode
-      var RLstatusA = props.RLAstatus
-      var RLstatusB = props.RLBstatus
+   
       //RELAY A
       if(RLmodeA ==="auto")
           dispatch({type:'RLAmodeAuto'})
@@ -150,7 +151,7 @@ function ChartControl(props) {
 
 
 
-  }, [props])
+  }, [RLmodeA,RLmodeB,RLstatusA,RLstatusB])
 
 
   return (
