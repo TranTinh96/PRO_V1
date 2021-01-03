@@ -190,21 +190,7 @@ function ChartelEctric(props) {
         })
     })
 
-    // this makes date axis labels which are at equal minutes to be rotated
-    dateAxis.renderer.labels.template.adapter.add("rotation", function (rotation, target) {
-        var dataItem = target.dataItem;
-        if (dataItem.date.getTime() == am4core.time.round(new Date(dataItem.date.getTime()), "minute").getTime()) {
-            
-        target.verticalCenter = "middle";  
-        target.horizontalCenter = "left";
-            return -90;
-        }
-        else {
-            target.verticalCenter = "bottom";  
-            target.horizontalCenter = "middle";
-            return 0;
-        }
-    })
+   
 
     /**
      * BUlLET

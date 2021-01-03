@@ -1,7 +1,10 @@
-import React, { useState  } from 'react'
+import React, { useState ,useEffect,useLayoutEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
-import { Link } from "react-router-dom";
-import {useSelector } from 'react-redux';
+import { Link ,useHistory } from "react-router-dom";
+import mqtt from "mqtt";
+import { useCookies } from 'react-cookie';
+import {useSelector ,useDispatch } from 'react-redux';
+import ClipLoader from "react-spinners/ScaleLoader";
 //Chart
 import ChartLine from "../library/charLine/chartLine"
 import ChartElectric from "../library/chartelEctric"
@@ -17,6 +20,32 @@ import v23 from "../../../assets/Image/vonke/v23.png"
 import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
 
+ //Function
+import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
+
+//MQTT Config
+const host = "wss://hairdresser.cloudmqtt.com";
+const options = {
+  port: 35572,
+  host: "wss://address.cloudmqtt.com",
+  username: "qiiwyeiv",
+  password: "X4hvcjgbyUit",
+  clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+  keepalive: 60,
+  protocolId: "MQIsdp",
+  protocolVersion: 3,
+  clean: true,
+  reconnectPeriod: 1000,
+      connectTimeout: 30 * 1000,
+      will: {
+        topic: 'WillMsg',
+        payload: 'Connection Closed abnormally..!',
+        qos: 0,
+        retain: false
+      },
+      rejectUnauthorized: false,
+};
+
 
 function currentDateInput() {
     var date = new Date().toLocaleDateString().split("/");
@@ -30,51 +59,200 @@ function checkLength(value){
 
 
 function MDashbard(props) {
-
+    const history = useHistory()
+    //Cookie
+    const [cookies, removeCookie] = useCookies(["Auth"]);
+  
+    const dispatch =useDispatch()
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
+
+      //Redux
+     const _idProject = useSelector((state) => state.idTopicProject);
+
+    const [clientMQTT, setClientMQTT] = useState(null);
+    const [connectStatus, setConnectStatus] = useState("Connect");
+    const [payload, setPayload] = useState({});
+    const [topic ,setTopic] =useState("")
+
+    //LOADING
+    const isLoadding = useSelector((state) => state.isLoaddingDashboard);
 
     //VOLTAGE LINE-NEUTRAL
     const VLNArray = useSelector((state) => state.VLNArray);
     const V1NArray = useSelector((state) => state.V1NArray);
     const V2NArray = useSelector((state) => state.V2NArray);
     const V3NArray = useSelector((state) => state.V3NArray);
-    const VLN = useSelector((state) => state.VLN).VLN;
-    const V1N = useSelector((state) => state.VLN).V1N;
-    const V2N = useSelector((state) => state.VLN).V2N;
-    const V3N = useSelector((state) => state.VLN).V3N;
+
+    //VOLTAGE LINE-NEUTRAL
+    const [VLN , setVLN] =useState(220.5);
+    const [V1N , setV1N] =useState(218.2);
+    const [V2N , setV2N] =useState(219.5);
+    const [V3N , setV3N] =useState(225.3);
+
 
     //KW
-    const KW = useSelector((state) => state.KW).KW;
-    const KW1 = useSelector((state) => state.KW).KW1;
-    const KW2 = useSelector((state) => state.KW).KW2;
-    const KW3 = useSelector((state) => state.KW).KW3;
+    const [KW , setKW] =useState(0);
+    const [KW1 , setKW1] =useState(0);
+    const [KW2 , setKW2] =useState(0);
+    const [KW3 , setKW3] =useState(0);
 
     //KVA
-    const KVA = useSelector((state) => state.KVA).KVA;
-    const KVA1 = useSelector((state) => state.KVA).KVA1;
-    const KVA2 = useSelector((state) => state.KVA).KVA2;
-    const KVA3 = useSelector((state) => state.KVA).KVA3;
+    const [KVA , setKVA] =useState(0);
+    const [KVA1 , setKVA1] =useState(0);
+    const [KVA2 , setKVA2] =useState(0);
+    const [KVA3 , setKVA3] =useState(0);
 
-     //KVAR
-     const KVAR = useSelector((state) => state.KVAR).KVAR;
-     const KVAR1 = useSelector((state) => state.KVAR).KVAR1;
-     const KVAR2 = useSelector((state) => state.KVAR).KVAR2;
-     const KVAR3 = useSelector((state) => state.KVAR).KVAR3;
+    //KVAR
+    const [KVAR , setKVAR] =useState(0);
+    const [KVAR1 , setKVAR1] =useState(0);
+    const [KVAR2 , setKVAR2] =useState(0);
+    const [KVAR3 , setKVAR3] =useState(0);
 
-     //PF
-    const PF = useSelector((state) => state.PF).PF;
-    const PF1 = useSelector((state) => state.PF).PF1;
-    const PF2 = useSelector((state) => state.PF).PF2;
-    const PF3 = useSelector((state) => state.PF).PF3;
-  
+    //PE
+    const [PF , setPF] =useState(1);
+    const [PF1 , setPF1] =useState(1);
+    const [PF2 , setPF2] =useState(1);
+    const [PF3 , setPF3] =useState(1);
+
     //F & KW
-    var FArray = useSelector((state) => state.FArray);
-    var KWHArray = useSelector((state) => state.EArray);
-    var F= useSelector((state) => state.F);
-    var KWH = useSelector((state) => state.E);
+    const [F , setF] =useState(0);
+    const [KWH , setKWH] =useState(0);
+    const FArray = useSelector((state) => state.FArray);
+    const KWHArray = useSelector((state) => state.EArray);
 
+    //Connect MQTT
+    useEffect(() => {
+        console.log(isLoadding)
+        if(isLoadding){
+            history.go(0);
+        }
+        
+        setClientMQTT(mqtt.connect(host, options));
 
+    }, []);
+
+     //Client MQTT
+     useLayoutEffect(() => {
+    if (clientMQTT) {
+      clientMQTT.on("connect", () => {
+        setConnectStatus("Connected");
+        if (_idProject) {
+          clientMQTT.subscribe(_idProject, (error) => {
+            if (error) {
+              console.log("Subscribe to topics error", error);
+              setClientMQTT(mqtt.connect(host, options));
+            }
+          });
+        }
+        else{
+          dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+          removeCookie("Auth");
+          history.push("/")
+        }
+      });
+      clientMQTT.on("error", (err) => {
+        setConnectStatus("Connection error");
+        console.error("Connection error: ", err);
+        
+      });
+      clientMQTT.on("reconnect", () => {
+        setConnectStatus("Reconnecting");
+      });
+
+      clientMQTT.on("disconnect", () => {
+        setConnectStatus("Disconnect");
+      });
+
+      clientMQTT.on("message", (topic, message) => {
+        setTopic(topic)
+        const payload = message.toString();
+        setPayload(payload);
+      });
+    }
+    return () => {
+         
+     };
+  }, [clientMQTT]);
+
+  //Payload
+  useLayoutEffect(() => {
+    if(topic){
+        var payloadSplit = payload.toString().split('&')
+
+        //VOLTAGE LINE-NEUTRAL
+        dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadSplit,"VLN")})
+        dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadSplit,"V1N")})
+        dispatch({type:"ADD_DATA_V2NArray",V2NArray:getKeyValue2Int(payloadSplit,"V2N")})
+        dispatch({type:"ADD_DATA_V3NArray",V3NArray:getKeyValue2Int(payloadSplit,"V3N")})
+        setVLN(getKeyValue(payloadSplit,"VLN"))
+        setV1N(getKeyValue(payloadSplit,"V1N"))
+        setV2N(getKeyValue(payloadSplit,"V2N"))
+        setV3N(getKeyValue(payloadSplit,"V3N"))
+
+        //CURRENT
+        dispatch({
+          type:"ADD_DATA_I",
+          I:getKeyValue(payloadSplit,"I"),
+          I1:getKeyValue(payloadSplit,"I1"),
+          I2:getKeyValue(payloadSplit,"I2"),
+          I3:getKeyValue(payloadSplit,"I3"),
+         })
+
+        //KW
+        setKW(getKeyValue(payload,"KW"))
+        setKW1(getKeyValue(payload,"KW1"))
+        setKW2(getKeyValue(payload,"KW2"))
+        setKW3(getKeyValue(payload,"KW3"))
+
+        //KVA
+        setKVA(getKeyValue(payload,"KVA"))
+        setKVA1(getKeyValue(payload,"KVA1"))
+        setKVA2(getKeyValue(payload,"KVA2"))
+        setKVA3(getKeyValue(payload,"KVA3"))
+
+        //KVAR
+        setKVAR(getKeyValue(payload,"KVAR"))
+        setKVAR1(getKeyValue(payload,"KVAR1"))
+        setKVAR2(getKeyValue(payload,"KVAR2"))
+        setKVAR3(getKeyValue(payload,"KVAR3"))
+
+        //PE
+        setPF(getKeyValue(payload,"PF"))
+        setPF1(getKeyValue(payload,"PF1"))
+        setPF2(getKeyValue(payload,"PF2"))
+        setPF3(getKeyValue(payload,"PF3"))
+
+        //F & KW
+        setF(getKeyValue(payload,"F"))
+        setKWH(getKeyValue(payload,"KWH"))
+        dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadSplit,"FREQUENCY")})
+        dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadSplit,"KWH")})
+
+        //RL status
+        dispatch({
+          type:"ADD_RL_SELEC",
+          RLAstatus:getKeyValueString(payloadSplit,"RLAstatus"),
+          RLAmode:getKeyValueString(payloadSplit,"RLAmode"),
+          RLBstatus:getKeyValueString(payloadSplit,"RLBstatus"),
+          RLBmode:getKeyValueString(payloadSplit,"RLBmode"),
+         })
+        
+        }
+
+    }, [payload])
+
+    if (isLoadding) {
+        return (
+          <React.Fragment>
+            <div className="container-spinners">
+              <div className="spinners">
+                <ClipLoader size={60} color="#727cf5" loading={isLoadding} />
+              </div>
+            </div>
+          </React.Fragment>
+        );
+      }
     return (
         <>
         <div className="pcoded-content">
@@ -224,7 +402,7 @@ function MDashbard(props) {
                                                     <h5 className="card-title card-title-header mb-0">CURRENT</h5>
                                                 </div>
                                                 <div className="card-content-line-chart align-items-center">
-                                                    <ChartElectric I={props.I} I1={props.I1} I2={props.I2} I3={props.I3}/>
+                                                    <ChartElectric />
                                                 </div>
                                             </div>
                                         </div>
@@ -238,7 +416,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl clientMQTT={props.clientMQTT} RLAstatus={props.RLAstatus} RLBstatus={props.RLBstatus} RLAmode={props.RLAmode} RLBmode={props.RLBmode} />        
+                                                         <ChartControl clientMQTT={clientMQTT} RLAstatus={props.RLAstatus} RLBstatus={props.RLBstatus} RLAmode={props.RLAmode} RLBmode={props.RLBmode} />        
                                                     </div>
                                                 </div>
                                             </div>

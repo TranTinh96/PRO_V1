@@ -20,7 +20,9 @@ function MDataTable(props) {
     const handleReportChange = e => {
         setTimeReport( e.target.value );
       };
-
+      useLayoutEffect(() => {
+        dispatch({type:"LOADDING_DASHBOARD"})
+      }, [])
 
 
     return (
@@ -50,7 +52,7 @@ function MDataTable(props) {
                                                 <Radio.Button value="readTime">Read Time</Radio.Button>
                                                 <Radio.Button value="hours">Hours</Radio.Button>
                                                 <Radio.Button value="days">Days</Radio.Button>
-                                                <Radio.Button value="weeks">Weekd</Radio.Button>
+                                                <Radio.Button value="weeks">Weeks</Radio.Button>
                                             </Radio.Group>
                                         </div>
                                     </div>                                   

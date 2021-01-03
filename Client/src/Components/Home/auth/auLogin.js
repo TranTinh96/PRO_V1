@@ -78,7 +78,7 @@ function AuLogin() {
                     setCookie('Auth', authToken, optionCookie);
                     //Redirect
                     history.push("/dashboard");
-                    history.go(0);
+                   
                 } else {
                     if (!resData.email) {
                         setError(

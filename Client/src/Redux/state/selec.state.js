@@ -1,15 +1,4 @@
 
-const initialStateValue = 0;
-
-   
-const initialStateVLN = {
-     VLN:0,
-     V1N :0 ,
-     V2N :0,
-     V3N :0
-    
-}
-
 const initialStateCurrent = {
     I:0,
     I1 :0 ,
@@ -17,33 +6,6 @@ const initialStateCurrent = {
     I3 :0
 }
 
-const initialStateKW = {
-    KW:0,
-    KW1 :0 ,
-    KW2 :0,
-    KW3 :0
-}
-
-const initialStateKVA = {
-    KVA:0,
-    KVA1 :0 ,
-    KVA2 :0,
-    KVA3 :0
-}
-  
-const initialStateKVAR = {
-    KVAR:0,
-    KVAR1 :0 ,
-    KVAR2 :0,
-    KVAR3 :0
-}
-
-const initialStatePF = {
-    PF:0,
-    PF1 :0 ,
-    PF2 :0,
-    PF3 :0
-}
   
   
 var initialStateChartLineVLN = [
@@ -196,23 +158,6 @@ var initialStateChartLineVLN = [
     }
   };
 
-  //VOLTAGE LN
-  
-  var VLN = (state =initialStateVLN, action) => {
-    switch (action.type) {
-      case "ADD_DATA_VLN":
-         return {...state, 
-            VLN :action.VLN ,
-            V1N :action.V1N ,
-            V2N :action.V2N,
-            V3N :action.V3N
-        }  ;
-      default:
-        return state;
-    }
-  };
-
-
 
   //CURRENT
   var CURRENT = (state =initialStateCurrent, action) => {
@@ -229,93 +174,6 @@ var initialStateChartLineVLN = [
     }
   };
 
-
-
-
-  //KW
-  var KW = (state =initialStateKW, action) => {
-    switch (action.type) {
-      case "ADD_DATA_KW":
-        return {...state, 
-            KW :action.KW ,
-            KW1 :action.KW1 ,
-            KW2 :action.KW2,
-            KW3 :action.KW3
-        }  ;
-      default:
-        return state;
-    }
-  };
-
-
-  //KVA
-  var KVA = (state =initialStateKVA, action) => {
-    switch (action.type) {
-      case "ADD_DATA_KVA":
-        return {...state, 
-            KVA :action.KVA ,
-            KVA1 :action.KVA1 ,
-            KVA2 :action.KVA2,
-            KVA3 :action.KVA3
-        }  ;
-      default:
-        return state;
-    }
-  };
-
-    //KVAR
-    var KVAR = (state =initialStateKVAR, action) => {
-        switch (action.type) {
-          case "ADD_DATA_KVAR":
-            return {...state, 
-                KVAR :action.KVAR ,
-                KVAR1 :action.KVAR1 ,
-                KVAR2 :action.KVAR2,
-                KVAR3 :action.KVAR3
-            }  ;
-          default:
-            return state;
-        }
-      };
-    
-
-    //PF
-    var PF = (state =initialStatePF, action) => {
-        switch (action.type) {
-          case "ADD_DATA_PF":
-            return {...state, 
-                PF :action.PF ,
-                PF1 :action.PF1 ,
-                PF2 :action.PF2,
-                PF3 :action.PF3
-            }  ;
-           
-          default:
-            return state;
-        }
-      };
-    
-//F&E
-var F = (state =initialStateValue, action) => {
-    switch (action.type) {
-      case "ADD_DATA_F":
-        
-        return action.F ;
-      default:
-        return state;
-    }
-  };
-
-
-  var E = (state =initialStateValue, action) => {
-    switch (action.type) {
-      case "ADD_DATA_E":
-        
-         return action.E ;
-      default:
-        return state;
-    }
-  };
 
  //Array F&E
   var FArray = (state = initialStateChartLineF, action) => {
@@ -352,7 +210,6 @@ var F = (state =initialStateValue, action) => {
           newState.push(action.summaryData);
           initialStateSummary = newState;
          return newState
-  
       default:
         return state;
     }
@@ -432,4 +289,4 @@ var F = (state =initialStateValue, action) => {
         }
     }
 
-      module.exports= {VLNArray,V1NArray,V2NArray,V3NArray,VLN,CURRENT,KW,KVA,KVAR,PF,E ,F,FArray,EArray,SUMMARY,RLA,RLB ,RL};
+      module.exports= {VLNArray,V1NArray,V2NArray,V3NArray,CURRENT,FArray,EArray,SUMMARY,RLA,RLB ,RL};
