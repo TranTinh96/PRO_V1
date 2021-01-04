@@ -31,7 +31,8 @@ var cabinPhaseTwoSchema = new Schema({
         KVAR2    :   Number,
         KVA2     :   Number,
         PF2      :   Number,
-        time    :   Schema.Types.Decimal128
+        time    :   Schema.Types.Decimal128,
+        timeCreate : String
     }]
 })
 
@@ -83,4 +84,9 @@ module.exports.findPhaseTwo_OneHours = async (device_id) =>{
      
 
     return dataPhaseTwo;
+}
+
+module.exports.findPhaseTwoDays = async (device_id) =>{;
+    const data = await cabinPhaseTwo.find({device_id :device_id, day: day}).exec();
+    return  data[0].samplesPhaseTwo
 }

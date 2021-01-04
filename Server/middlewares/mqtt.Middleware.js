@@ -1,6 +1,8 @@
 var func =require("./func.Middleware")
 
 module.exports.dataSummary = (payloadSplit) => {
+     var today = new Date();
+     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return  {
         VLN     :   func.getKeyValue(payloadSplit,"VLN"),
         VLL     :   func.getKeyValue(payloadSplit,"VLL"),
@@ -11,12 +13,15 @@ module.exports.dataSummary = (payloadSplit) => {
         PF      :   func.getKeyValue(payloadSplit,"PF"),
         F       :   func.getKeyValue(payloadSplit,"F"),
         KWH     :   func.getKeyValue(payloadSplit,"KWH"),
-        time    :   new Date().getTime()
+        time    :   new Date().getTime(),
+        timeCreate : time
       }
       
  }
 
  module.exports.dataPhaseOne = (payloadSplit) => {
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   return  {
       V1N     :   func.getKeyValue(payloadSplit,"V1N"),
       V12     :   func.getKeyValue(payloadSplit,"V12"),
@@ -25,12 +30,15 @@ module.exports.dataSummary = (payloadSplit) => {
       KVAR1    :   func.getKeyValue(payloadSplit,"KVAR1") ,
       KVA1     :   func.getKeyValue(payloadSplit,"KVA1"),
       PF1      :   func.getKeyValue(payloadSplit,"PF1"),
-      time    :   new Date().getTime()
+      time    :   new Date().getTime(),
+      timeCreate : time
     }
     
 }
 
 module.exports.dataPhaseTwo = (payloadSplit) => {
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   return  {
       V2N     :   func.getKeyValue(payloadSplit,"V2N"),
       V23    :   func.getKeyValue(payloadSplit,"V23"),
@@ -39,12 +47,15 @@ module.exports.dataPhaseTwo = (payloadSplit) => {
       KVAR2    :   func.getKeyValue(payloadSplit,"KVAR2") ,
       KVA2     :   func.getKeyValue(payloadSplit,"KVA2"),
       PF2      :   func.getKeyValue(payloadSplit,"PF2"),
-      time    :   new Date().getTime()
+      time    :   new Date().getTime(),
+      timeCreate : time
     }
     
 }
 
 module.exports.dataPhaseThree = (payloadSplit) => {
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   return  {
       V3N     :   func.getKeyValue(payloadSplit,"V3N"),
       V31    :   func.getKeyValue(payloadSplit,"V31"),
@@ -53,7 +64,8 @@ module.exports.dataPhaseThree = (payloadSplit) => {
       KVAR3    :   func.getKeyValue(payloadSplit,"KVAR3") ,
       KVA3     :   func.getKeyValue(payloadSplit,"KVA3"),
       PF3      :   func.getKeyValue(payloadSplit,"PF3"),
-      time    :   new Date().getTime()
+      time    :   new Date().getTime(),
+      timeCreate : time
     }
     
 }

@@ -79,25 +79,54 @@ function MDataTable() {
   //Time Sheet Api
    useLayoutEffect(() => {
         switch (timeReport) {
+          //Hours
           case "hours":
-            axios.post('/api/cabin/dataTimeHours', {
-              _idProject :_idProject
-            })
-            .then(function (res) {
-              let resData=res.data ;
-               setDataSummary(resData.dataSummary)
-               setDataPhaseOne(resData.dataPhaseOne)
-               setDataPhaseTwo(resData.dataPhaseTwo)
-               setDataPhaseThree(resData.dataPhaseThree)
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-            break;
+              axios.post('/api/cabin/dataTimeHours', {
+                _idProject :_idProject
+              })
+              .then(function (res) {
+                let resData=res.data ;
+                setDataSummary(resData.dataSummary)
+                setDataPhaseOne(resData.dataPhaseOne)
+                setDataPhaseTwo(resData.dataPhaseTwo)
+                setDataPhaseThree(resData.dataPhaseThree)
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+              break;
+          //Days
           case "days":
+              axios.post('/api/cabin/dataTimeDays', {
+                _idProject :_idProject
+              })
+              .then(function (res) {
+                let resData=res.data ;
+                setDataSummary(resData.dataSummary)
+                setDataPhaseOne(resData.dataPhaseOne)
+                setDataPhaseTwo(resData.dataPhaseTwo)
+                setDataPhaseThree(resData.dataPhaseThree)
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
             
             break;
+          //Weeks
           case "weeks":
+              axios.post('/api/cabin/dataTimeWeeks', {
+                _idProject :_idProject
+              })
+              .then(function (res) {
+                let resData=res.data ;
+                setDataSummary(resData.dataSummary)
+                setDataPhaseOne(resData.dataPhaseOne)
+                setDataPhaseTwo(resData.dataPhaseTwo)
+                setDataPhaseThree(resData.dataPhaseThree)
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
             
             break;
         
@@ -272,16 +301,16 @@ function MDataTable() {
                     <div className="table-data-contanier">            
                        <Tabs className="justify-content-start"  defaultActiveKey="Summary" id="uncontrolled-tab-example">
                           <Tab eventKey="Summary" title="SUMMARY">
-                            <DataTableSummary summaryData={summaryData} />
+                            <DataTableSummary summaryData={summaryData} modeTime={"readTime"}/>
                           </Tab>
                           <Tab eventKey="phase1" title="PHASE 1">
-                            <DataTablePhase1 phaseOneData={phaseOneData} />
+                            <DataTablePhase1 phaseOneData={phaseOneData} modeTime={"readTime"}/>
                           </Tab>
                           <Tab eventKey="phase2" title="PHASE 2">
-                            <DataTablePhase2  phaseTwoData={phaseTwoData}/>
+                            <DataTablePhase2  phaseTwoData={phaseTwoData} modeTime={"readTime"}/>
                           </Tab>
                           <Tab eventKey="phase3" title="PHASE 3">
-                            <DataTablePhase3  phaseThreeData={phaseThreeData}/>
+                            <DataTablePhase3  phaseThreeData={phaseThreeData} modeTime={"readTime"}/>
                           </Tab>
                         </Tabs> 
                     </div>
@@ -343,7 +372,7 @@ function MDataTable() {
                   <div className="table-data-contanier">            
                     <Tabs className="justify-content-start"  defaultActiveKey="Summary" id="uncontrolled-tab-example">
                         <Tab eventKey="Summary" title="SUMMARY">
-                          <DataTableSummary summaryData={dataSummary} />
+                          <DataTableSummary summaryData={dataSummary}  />
                         </Tab>
                         <Tab eventKey="phase1" title="PHASE 1">
                           <DataTablePhase1 phaseOneData={dataPhaseOne} />

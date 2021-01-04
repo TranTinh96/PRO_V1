@@ -34,7 +34,8 @@ var cabinSummarySchema = new Schema({
         PF      :   Number,
         F       :   Number,
         KWH     :   Number,
-        time    :   Schema.Types.Decimal128
+        time    :   Schema.Types.Decimal128,
+        timeCreate : String
     }]
 })
 
@@ -86,4 +87,16 @@ module.exports.findSumaryOneHours = async (device_id) =>{
      
 
     return dataSummary;
+}
+
+module.exports.findSumaryDays = async (device_id) =>{
+
+    const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
+    return  data[0].samplesSummary
+}
+
+module.exports.findSumaryWeeks = async (device_id) =>{
+
+    const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
+    return  data[0].samplesSummary
 }
