@@ -2,7 +2,6 @@ import React, { useState ,useEffect,useLayoutEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link ,useHistory } from "react-router-dom";
 import mqtt from "mqtt";
-import { useCookies } from 'react-cookie';
 import {useSelector ,useDispatch } from 'react-redux';
 import ClipLoader from "react-spinners/ScaleLoader";
 //Chart
@@ -60,9 +59,7 @@ function checkLength(value){
 
 function MDashbard(props) {
     const history = useHistory()
-    //Cookie
-    const [cookies, removeCookie] = useCookies(["Auth"]);
-  
+
     const dispatch =useDispatch()
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
@@ -143,15 +140,11 @@ function MDashbard(props) {
           clientMQTT.subscribe(_idProject, (error) => {
             if (error) {
               console.log("Subscribe to topics error", error);
-              setClientMQTT(mqtt.connect(host, options));
+             
             }
           });
         }
-        else{
-          dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
-          
-          history.push("/")
-        }
+       
       });
       clientMQTT.on("error", (err) => {
         setConnectStatus("Connection error");

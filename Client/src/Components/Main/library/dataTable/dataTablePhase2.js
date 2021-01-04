@@ -1,23 +1,38 @@
 import React from "react";
 
-function DataTablePhase2() {
+function DataTablePhase2(props) {
   return (
     <div className="table-data-container" id="style-7">
-      <table className="table table-striped table-fixed" responsive>
+      <table className="table table-fixed" responsive>
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">VOLTAGE LINE - NEUTRAL</th>
-            <th scope="col">VOLTAGE LINE - LINE</th>
-            <th scope="col">CURRENT</th>
-            <th scope="col">ACTIVE POWER</th>
-            <th scope="col">REACTIVE POWER</th>
-            <th scope="col">APPARENT POWER</th>
-            <th scope="col">POWER FACTOR</th>
+            <th scope="col">STT</th>
+            <th scope="col">LINE - NEUTRAL (V2N)</th>
+            <th scope="col">LINE - LINE (V23)</th>
+            <th scope="col">CURRENT (I2)</th>
+            <th scope="col">ACTIVE POWER (KW2)</th>
+            <th scope="col">REACTIVE POWER (KVAR2)</th>
+            <th scope="col">APPARENT POWER (KVA2)</th>
+            <th scope="col">POWER FACTOR (PF2)</th>
           </tr>
         </thead>
         <tbody className="my-tbody">
-        
+        {
+            props.phaseTwoData.map((data ,index)=>{
+              return(
+              <tr>
+                <td>{index}</td>
+                <td>{data.V2N}</td>
+                <td>{data.V23}</td>
+                <td>{data.I2}</td>
+                <td>{data.KW2}</td>
+                <td>{data.KVA2}</td>
+                <td>{data.KVAR2}</td>
+                <td>{data.PF2}</td>
+              </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>

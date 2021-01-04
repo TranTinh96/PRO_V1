@@ -63,3 +63,20 @@ module.exports.addDocumentCabinSummary = async ( topic,samplesSummary ) =>{
         $inc: { nSamplesSummary: 1} 
     })
 }
+
+module.exports.findSumaryOneHours = async () =>{
+    var dataSummary =[];
+    const minHours = parseFloat(date.getTime()-3600*1000);
+    const data = await cabinSummary.find({day: day}).exec();
+    var timeData =data[0].samplesSummary;
+     for (let i = 0; i < timeData.length; i++) {
+        let time =parseFloat(timeData[i].time)
+        if(minHours <= time)
+        {
+            dataSummary.push(timeData[i]);
+        }
+         
+     }
+
+    return dataSummary;
+}

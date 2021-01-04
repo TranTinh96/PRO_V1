@@ -59,12 +59,10 @@ function AuLogin() {
                         user :jwtToken.user,
                         role :role
                     }
-                    if(!(role =="Administrator")){
-                        dispatch({
-                            type :"ID_TOPIC_PROJECT" ,
-                            _idProject :jwtToken.project_id
-                        })
-                    }
+                    dispatch({
+                        type :"ID_TOPIC_PROJECT" ,
+                        _idProject :jwtToken.project_id
+                    })
                     
                     //Set JWT
                     setAuthorizationToken(authToken);

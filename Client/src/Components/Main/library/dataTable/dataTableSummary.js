@@ -1,9 +1,6 @@
 import React from "react";
-import {useSelector} from 'react-redux';
 
-function DataTableSummary() {
-  var summaryData = useSelector((state) => state.SUMMARY);
-  console.log(summaryData)
+function DataTableSummary(props) {
   return (
     <div className="table-data-container" id="style-7">
       <table className="table table-fixed" responsive>
@@ -16,14 +13,14 @@ function DataTableSummary() {
             <th scope="col">ACTIVE POWER (KW)</th>
             <th scope="col">REACTIVE POWER (KVAR)</th>
             <th scope="col">APPARENT POWER (KVA)</th>
-            <th scope="col">POWER FACTOR</th>
+            <th scope="col">POWER FACTOR (PF)</th>
             <th scope="col">FREQUENCY (Hz)</th>
             <th scope="col">ENERGY (KWH)</th>
           </tr>
         </thead>
         <tbody className="my-tbody">
           {
-            summaryData.map((data ,index)=>{
+            props.summaryData.map((data ,index)=>{
               return(
               <tr>
                 <td>{index}</td>

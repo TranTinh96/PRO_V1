@@ -96,18 +96,23 @@ var initialStateChartLineVLN = [
   
 
   var initialStateSummary =  [
-      {
-        VLN :0,
-        VLL:0,
-        I :0,
-        KW :0 ,
-        KVAR :0 ,
-        KVA :0 ,
-        PF :0,
-        F :0 ,
-        KWH :0
-      }
+    
     ]
+  var initialStatePhaseOne =  [
+    
+    ]
+  
+  var initialStatePhaseTwo =  [
+    
+    ]
+  
+  var initialStatePhaseThree =  [
+    
+    ]
+  var initialStateTable=[
+
+    ]
+  
   
   
 
@@ -219,10 +224,58 @@ var initialStateChartLineVLN = [
           newState.push(action.summaryData);
           initialStateSummary = newState;
          return newState
+      case "TABLE_SUMMARY_STATE":
+        return initialStateTable;
       default:
         return state;
     }
   };
+
+  //Phase One
+  var PhaseOne = (state = initialStatePhaseOne, action) => {
+    switch (action.type) {
+      case "TABLE_PHASE_ONE":
+        var newState = initialStatePhaseOne
+          newState.push(action.phaseOneData);
+          initialStatePhaseOne = newState;
+         return newState
+      case "TABLE_PHASE_ONE_STATE":
+        return initialStateTable;
+      default:
+          return state;
+    }
+  };
+   //Phase Two
+   var PhaseTwo = (state = initialStatePhaseTwo, action) => {
+    switch (action.type) {
+      case "TABLE_PHASE_TWO":
+        var newState = initialStatePhaseTwo
+          newState.push(action.phaseTwoData);
+          initialStatePhaseTwo = newState;
+         return newState
+      case "TABLE_PHASE_TWO_STATE":
+        return initialStateTable;
+      default:
+          return state;
+    }
+  };
+
+   //Phase Three
+   var PhaseThree = (state = initialStatePhaseThree, action) => {
+    switch (action.type) {
+      case "TABLE_PHASE_THREE":
+        var newState = initialStatePhaseThree
+          newState.push(action.phaseThreeData);
+          initialStatePhaseThree = newState;
+         return newState
+      case "TABLE_PHASE_THREE_STATE":
+        return initialStateTable;
+      default:
+          return state;
+    }
+  };
+
+
 
   
 
@@ -298,4 +351,4 @@ var initialStateChartLineVLN = [
         }
     }
 
-      module.exports= {VLNArray,V1NArray,V2NArray,V3NArray,CURRENT,FArray,EArray,SUMMARY,RLA,RLB ,RL};
+      module.exports= {VLNArray,V1NArray,V2NArray,V3NArray,CURRENT,FArray,EArray,SUMMARY,PhaseOne,PhaseTwo,PhaseThree, RLA,RLB ,RL};

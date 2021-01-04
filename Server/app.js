@@ -16,6 +16,7 @@ require("./config/passport")
 var app = express();
 var authRouter = require('./routers/auth.router');
 var projectRouter = require('./api/routers/project.router');
+var cabinRouter = require('./api/routers/cabin.router')
 var {checkAccoutAdmin ,createAccoutAdmin} = require("./config/accoutAdmin")
 var options = require("./config/mqttBroker")
 
@@ -73,10 +74,14 @@ require("./controllers/socketIO_Controller")(io);
 
 
 app.use('/profile', authRouter)
-app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
+app.use('/api/manage',projectRouter)
+app.use('/api/cabin',cabinRouter)
+//app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
+//app.use('/api/cabin', passport.authenticate('jwt', { session: false }),cabinRouter)
+/*
 app.get('/*', async (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
+*/
 
 module.exports = { app: app, server: server }; 
