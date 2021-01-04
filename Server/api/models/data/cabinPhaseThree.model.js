@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
 const func = require("../../../middlewares/func.Middleware")
-
+const funcMqtt = require("../../../middlewares/mqtt.Middleware")
 var Schema = mongoose.Schema;
 var date = new Date()
-var day = date.toISOString().substring(0, 10)
 
 var cabinPhaseThreeSchema = new Schema({
 
@@ -33,7 +32,13 @@ var cabinPhaseThreeSchema = new Schema({
         PF3      :   Number,
         time    :   Schema.Types.Decimal128,
         timeCreate : String
-    }]
+    }],
+    createdAt: { 
+        type: Date,
+         required: true, 
+         default: Date.now, 
+         expires: 60*60*24*7 
+    }
 })
 
 var cabinPhaseThree = module.exports= mongoose.model("cabinPhaseThree", cabinPhaseThreeSchema)
@@ -42,6 +47,7 @@ module.exports.findDocumentCabinPhaseThree = async( deviceID,cb ) =>{
     await cabinPhaseThree.findOne({device_id:deviceID} ,cb)
 }
 module.exports.createDocumentCabinPhaseThree = async(topic,dataPhaseThree,cb ) =>{
+    var day =funcMqtt.getDay();
     var newPhaseThree = new cabinPhaseThree( {
         device_id : topic ,
         nSamplesPhaseThree:1,
@@ -56,17 +62,19 @@ module.exports.createDocumentCabinPhaseThree = async(topic,dataPhaseThree,cb ) =
     newPhaseThree.save(cb)
 }
 module.exports.addDocumentCabinPhaseThree = async ( topic,samplesPhaseThree ) =>{
- var res= await cabinPhaseThree.updateOne({device_id:topic ,day:day},
+    var day =funcMqtt.getDay();
+    var res= await cabinPhaseThree.updateOne({device_id:topic ,day:day},
         {$push:{samplesPhaseThree:samplesPhaseThree},
         $min: { first: samplesPhaseThree.time},
         $max: { last: samplesPhaseThree.time},
         $inc: { nSamplesPhaseThree: 1} 
-    })
+    },{ upsert: true } )
 }
 
 module.exports.findPhaseThree_OneHours = async (device_id) =>{
     var dataPhaseThree =[];
     const minHours = parseFloat(date.getTime()-3600*1000);
+    var day =funcMqtt.getDay();
     const data = await cabinPhaseThree.find({device_id :device_id, day: day}).exec();
     var timeData =data[0].samplesPhaseThree;
     if( ! func.checkUndefined(timeData))
@@ -86,7 +94,8 @@ module.exports.findPhaseThree_OneHours = async (device_id) =>{
     return dataPhaseThree;
 }
 
-module.exports.findPhaseThreeDays = async (device_id) =>{;
+module.exports.findPhaseThreeDays = async (device_id) =>{
+    var day =funcMqtt.getDay();
     const data = await cabinPhaseThree.find({device_id :device_id, day: day}).exec();
     return  data[0].samplesPhaseThree
 }
