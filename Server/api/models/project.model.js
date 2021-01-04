@@ -54,3 +54,4 @@ module.exports.getAllProject =async( cb ) =>{
 module.exports.deleteProject = async(id,cb)=>{
     await Project.deleteOne({_id : id},cb);
 }
+

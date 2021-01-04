@@ -1,18 +1,17 @@
-var express = require('express');
-var path = require('path');
-var mqtt = require("mqtt");
-var bodyParser = require('body-parser');
-var passport = require("passport");
-var morgan = require('morgan');
-var cors = require('cors');
-//Mongoose
-const mongoose = require('mongoose');
-var socketio = require("socket.io"); 
+const express = require('express');
+const path = require('path');
+const mqtt = require("mqtt");
+const bodyParser = require('body-parser');
+const passport = require("passport");
+const morgan = require('morgan');
+const cors = require('cors');
 
-//Require
+const mongoose = require('mongoose');
+
+const socketio = require("socket.io"); 
+
 require('dotenv').config();
 require("./config/passport")
-
 
 var app = express();
 var authRouter = require('./routers/auth.router');
@@ -20,7 +19,6 @@ var projectRouter = require('./api/routers/project.router');
 var {checkAccoutAdmin ,createAccoutAdmin} = require("./config/accoutAdmin")
 var options = require("./config/mqttBroker")
 
-// Create the http server 
 const server = require('http').createServer(app); 
 
 app.use(express.json());
@@ -32,10 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize());
 
 
-//Connect MongoDB
-mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (err, data) {
+//Connect MongoDB 
+mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (err, db) {
   if (err) throw err;
-  console.log("Database connection")
   let checkAccout=checkAccoutAdmin();
   checkAccout.then(function(result) {
      if(result){
@@ -43,20 +40,41 @@ mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (e
      }
  })
 });
-mongoose.Promise = global.Promise;
+
+
+
+
+//Connect Cloud MQTT
+var clientMQTT = mqtt.connect(process.env.MQTT_SERVER,options);
+var Project = require("./api/models/project.model");
+var func  = require("./middlewares/func.Middleware")
+
+Project.getAllProject((err,project)=>{
+  if(err){
+
+  }else{
+    if( !func.checkNull(project)){
+      for (let i = 0; i < project.length; i++) {
+       var arrayProject = project[i].tokenProject
+       require("./config/mqttConnect")(clientMQTT ,arrayProject);
+      }
+    }
+  }
+})
+
+require("./controllers/mqttController")(clientMQTT);
+
   
 // Create the Socket IO server on  
 var io = socketio(server); 
-
-//Connect Cloud MQTT
-var client = mqtt.connect(process.env.MQTT_SERVER,options);
-
-require("./controllers/mqttController")(client);
 require("./controllers/socketIO_Controller")(io);
+
+
+
 
 app.use('/profile', authRouter)
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
-app.get('/*', (req, res) => {
+app.get('/*', async (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 

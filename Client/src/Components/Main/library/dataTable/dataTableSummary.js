@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from 'react-redux';
 
 function DataTableSummary() {
-  var summaryData = useSelector((state) => state.SUMMARY).summaryData;
+  var summaryData = useSelector((state) => state.SUMMARY);
   console.log(summaryData)
   return (
     <div className="table-data-container" id="style-7">
@@ -33,7 +33,7 @@ function DataTableSummary() {
                 <td>{data.KW}</td>
                 <td>{data.KVA}</td>
                 <td>{data.KVAR}</td>
-                <td>{data.PE}</td>
+                <td>{data.PF}</td>
                 <td>{data.F}</td>
                 <td>{data.KWH}</td>
               </tr>

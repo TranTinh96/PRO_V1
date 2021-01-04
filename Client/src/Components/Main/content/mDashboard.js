@@ -76,7 +76,7 @@ function MDashbard(props) {
     const [topic ,setTopic] =useState("")
 
     //LOADING
-    const isLoadding = useSelector((state) => state.isLoaddingDashboard);
+    const isLoaddingDashboard = useSelector((state) => state.isLoaddingDashboard);
 
     //VOLTAGE LINE-NEUTRAL
     const VLNArray = useSelector((state) => state.VLNArray);
@@ -123,12 +123,13 @@ function MDashbard(props) {
 
     //Connect MQTT
     useEffect(() => {
-        console.log(isLoadding)
-        if(isLoadding){
+        console.log(isLoaddingDashboard)
+        if(isLoaddingDashboard){
             history.go(0);
         }
         
         setClientMQTT(mqtt.connect(host, options));
+        dispatch({type:"LOADDING_TABLE"})
 
     }, []);
 
@@ -136,6 +137,7 @@ function MDashbard(props) {
      useLayoutEffect(() => {
     if (clientMQTT) {
       clientMQTT.on("connect", () => {
+          console.log("MQTT Connecting " + _idProject)
         setConnectStatus("Connected");
         if (_idProject) {
           clientMQTT.subscribe(_idProject, (error) => {
@@ -147,7 +149,7 @@ function MDashbard(props) {
         }
         else{
           dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
-          removeCookie("Auth");
+          
           history.push("/")
         }
       });
@@ -200,32 +202,32 @@ function MDashbard(props) {
          })
 
         //KW
-        setKW(getKeyValue(payload,"KW"))
-        setKW1(getKeyValue(payload,"KW1"))
-        setKW2(getKeyValue(payload,"KW2"))
-        setKW3(getKeyValue(payload,"KW3"))
+        setKW(getKeyValue(payloadSplit,"KW"))
+        setKW1(getKeyValue(payloadSplit,"KW1"))
+        setKW2(getKeyValue(payloadSplit,"KW2"))
+        setKW3(getKeyValue(payloadSplit,"KW3"))
 
         //KVA
-        setKVA(getKeyValue(payload,"KVA"))
-        setKVA1(getKeyValue(payload,"KVA1"))
-        setKVA2(getKeyValue(payload,"KVA2"))
-        setKVA3(getKeyValue(payload,"KVA3"))
+        setKVA(getKeyValue(payloadSplit,"KVA"))
+        setKVA1(getKeyValue(payloadSplit,"KVA1"))
+        setKVA2(getKeyValue(payloadSplit,"KVA2"))
+        setKVA3(getKeyValue(payloadSplit,"KVA3"))
 
         //KVAR
-        setKVAR(getKeyValue(payload,"KVAR"))
-        setKVAR1(getKeyValue(payload,"KVAR1"))
-        setKVAR2(getKeyValue(payload,"KVAR2"))
-        setKVAR3(getKeyValue(payload,"KVAR3"))
+        setKVAR(getKeyValue(payloadSplit,"KVAR"))
+        setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
+        setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
+        setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
 
         //PE
-        setPF(getKeyValue(payload,"PF"))
-        setPF1(getKeyValue(payload,"PF1"))
-        setPF2(getKeyValue(payload,"PF2"))
-        setPF3(getKeyValue(payload,"PF3"))
+        setPF(getKeyValue(payloadSplit,"PF"))
+        setPF1(getKeyValue(payloadSplit,"PF1"))
+        setPF2(getKeyValue(payloadSplit,"PF2"))
+        setPF3(getKeyValue(payloadSplit,"PF3"))
 
         //F & KW
-        setF(getKeyValue(payload,"F"))
-        setKWH(getKeyValue(payload,"KWH"))
+        setF(getKeyValue(payloadSplit,"F"))
+        setKWH(getKeyValue(payloadSplit,"KWH"))
         dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadSplit,"FREQUENCY")})
         dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadSplit,"KWH")})
 
@@ -237,17 +239,16 @@ function MDashbard(props) {
           RLBstatus:getKeyValueString(payloadSplit,"RLBstatus"),
           RLBmode:getKeyValueString(payloadSplit,"RLBmode"),
          })
-        
         }
 
     }, [payload])
 
-    if (isLoadding) {
+    if (isLoaddingDashboard) {
         return (
           <React.Fragment>
             <div className="container-spinners">
               <div className="spinners">
-                <ClipLoader size={60} color="#727cf5" loading={isLoadding} />
+                <ClipLoader size={60} color="#727cf5" loading={isLoaddingDashboard} />
               </div>
             </div>
           </React.Fragment>

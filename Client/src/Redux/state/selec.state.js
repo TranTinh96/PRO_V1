@@ -14,7 +14,7 @@ var initialStateChartLineVLN = [
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
-    Math.round(Math.random() * 220)
+    220.5
   ]
   
   var initialStateChartLineV1N = [
@@ -23,7 +23,7 @@ var initialStateChartLineVLN = [
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
-    Math.round(Math.random() * 220)
+    218.2
   ]
   
   var initialStateChartLineV2N = [
@@ -32,7 +32,7 @@ var initialStateChartLineVLN = [
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
-    Math.round(Math.random() * 220)
+    219.5
   ]
   
   var initialStateChartLineV3N= [
@@ -41,7 +41,7 @@ var initialStateChartLineVLN = [
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
     Math.round(Math.random() * 220),
-    Math.round(Math.random() * 220)
+    225.3
   ]
 
   
@@ -95,11 +95,20 @@ var initialStateChartLineVLN = [
   
   
 
-  var initialStateSummary = {
-    summaryData: [
-    
-    ],
-  };
+  var initialStateSummary =  [
+      {
+        VLN :0,
+        VLL:0,
+        I :0,
+        KW :0 ,
+        KVAR :0 ,
+        KVA :0 ,
+        PF :0,
+        F :0 ,
+        KWH :0
+      }
+    ]
+  
   
 
   //*----------------------------------------------------------
@@ -205,8 +214,8 @@ var initialStateChartLineVLN = [
    //SUMMARY
    var SUMMARY = (state = initialStateSummary, action) => {
     switch (action.type) {
-      case "SUMMARY":
-        var newState = [...state]
+      case "TABLE_SUMMARY":
+        var newState = initialStateSummary
           newState.push(action.summaryData);
           initialStateSummary = newState;
          return newState

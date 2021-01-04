@@ -17,13 +17,13 @@ function MApp() {
   //useState
   const [isLoading, setIsLoading] = useState(true);
  
-
    //Connect MQTT
    useEffect(() => {
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 100);
   }, []);
+  
 
  
   if (isLoading) {
