@@ -2,7 +2,7 @@ import React, { useState, useEffect , useLayoutEffect } from "react";
 import {useHistory } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
 import { Tabs, Tab } from "react-bootstrap";
-//import { useCookies } from 'react-cookie';
+import axios from "axios"
 import { Radio } from "antd";
 import mqtt from "mqtt";
 import ClipLoader from "react-spinners/ScaleLoader";
@@ -49,13 +49,17 @@ function MDataTable() {
   var phaseTwoData = useSelector((state) => state.PhaseTwo);
   var phaseThreeData = useSelector((state) => state.PhaseThree);
 
-  //Cookie
-  //const [cookies, removeCookie] = useCookies(["Auth"]);
-
   const [clientMQTT, setClientMQTT] = useState(null);
   const [connectStatus, setConnectStatus] = useState("Connect");
   const [payload, setPayload] = useState({});
   const [topic, setTopic] = useState("");
+
+  //Data 
+  const [dataSummary ,setDataSummary] = useState([])
+  const [dataPhaseOne ,setDataPhaseOne] = useState([])
+  const [dataPhaseTwo ,setDataPhaseTwo] = useState([])
+  const [dataPhaseThree ,setDataPhaseThree] = useState([])
+  
 
   const [timeReport, setTimeReport] = useState("readTime");
   const handleReportChange = (e) => {
@@ -74,14 +78,21 @@ function MDataTable() {
 
   //Time Sheet Api
    useLayoutEffect(() => {
-     if(timeReport !== "readTime"){
-        dispatch({type:"TABLE_SUMMARY_STATE"})
-        dispatch({type:"TABLE_PHASE_ONE_STATE"})
-        dispatch({type:"TABLE_PHASE_TWO_STATE"})
-        dispatch({type:"TABLE_PHASE_THREE_STATE"})
         switch (timeReport) {
           case "hours":
-            
+            axios.post('/api/cabin/dataTimeHours', {
+              _idProject :_idProject
+            })
+            .then(function (res) {
+              let resData=res.data ;
+               setDataSummary(resData.dataSummary)
+               setDataPhaseOne(resData.dataPhaseOne)
+               setDataPhaseTwo(resData.dataPhaseTwo)
+               setDataPhaseThree(resData.dataPhaseThree)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
             break;
           case "days":
             
@@ -93,7 +104,6 @@ function MDataTable() {
           default:
             break;
         }
-     }
    }, [timeReport])
 
 
@@ -211,6 +221,79 @@ function MDataTable() {
       </React.Fragment>
     );
   }
+  else if(timeReport ==="readTime")
+  {
+    return (
+      <>
+        <div className="pcoded-content">
+          <div className="pcoded-inner-content">
+            <div className="main-body">
+              <div className="page-wrapper ">
+                <div className="page-body shadow-none">
+                  {/* ------- Start-Dashboard -------  */}
+                  <div className="page-start-dashboard">
+                    <div className="row">
+                      <div className="col-6">
+                        <div className="page-title-box">
+                          <div className="page-title">
+                            <div className="page-icon">
+                              <FeatherIcon
+                                icon="server"
+                                color="#727cf5"
+                                size={14}
+                              />
+                            </div>
+                            <div className="page-title-text page-title-text-fs">
+                              DataTables
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="option-time-report">
+                          <Radio.Group
+                            defaultValue="readtime"
+                            value={timeReport}
+                            onChange={handleReportChange}
+                            size="small"
+                          >
+                            <Radio.Button value="readTime">
+                              Read Time
+                            </Radio.Button>
+                            <Radio.Button value="hours">Hours</Radio.Button>
+                            <Radio.Button value="days">Days</Radio.Button>
+                            <Radio.Button value="weeks">Weeks</Radio.Button>
+                          </Radio.Group>
+                        </div>
+                      </div>
+                    </div>
+  
+                    {/* --------------------- Header Dashboard -------------------------*/}
+                    <div className="table-data-contanier">            
+                       <Tabs className="justify-content-start"  defaultActiveKey="Summary" id="uncontrolled-tab-example">
+                          <Tab eventKey="Summary" title="SUMMARY">
+                            <DataTableSummary summaryData={summaryData} />
+                          </Tab>
+                          <Tab eventKey="phase1" title="PHASE 1">
+                            <DataTablePhase1 phaseOneData={phaseOneData} />
+                          </Tab>
+                          <Tab eventKey="phase2" title="PHASE 2">
+                            <DataTablePhase2  phaseTwoData={phaseTwoData}/>
+                          </Tab>
+                          <Tab eventKey="phase3" title="PHASE 3">
+                            <DataTablePhase3  phaseThreeData={phaseThreeData}/>
+                          </Tab>
+                        </Tabs> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="pcoded-content">
@@ -257,25 +340,21 @@ function MDataTable() {
                   </div>
 
                   {/* --------------------- Header Dashboard -------------------------*/}
-                  <div className="table-data-contanier">
-                    <Tabs
-                      className="justify-content-start"
-                      defaultActiveKey="Summary"
-                      id="uncontrolled-tab-example"
-                    >
-                      <Tab eventKey="Summary" title="SUMMARY">
-                        <DataTableSummary summaryData={summaryData} />
-                      </Tab>
-                      <Tab eventKey="phase1" title="PHASE 1">
-                        <DataTablePhase1 phaseOneData={phaseOneData} />
-                      </Tab>
-                      <Tab eventKey="phase2" title="PHASE 2">
-                        <DataTablePhase2  phaseTwoData={phaseTwoData}/>
-                      </Tab>
-                      <Tab eventKey="phase3" title="PHASE 3">
-                        <DataTablePhase3  phaseThreeData={phaseThreeData}/>
-                      </Tab>
-                    </Tabs>
+                  <div className="table-data-contanier">            
+                    <Tabs className="justify-content-start"  defaultActiveKey="Summary" id="uncontrolled-tab-example">
+                        <Tab eventKey="Summary" title="SUMMARY">
+                          <DataTableSummary summaryData={dataSummary} />
+                        </Tab>
+                        <Tab eventKey="phase1" title="PHASE 1">
+                          <DataTablePhase1 phaseOneData={dataPhaseOne} />
+                        </Tab>
+                        <Tab eventKey="phase2" title="PHASE 2">
+                          <DataTablePhase2  phaseTwoData={dataPhaseTwo}/>
+                        </Tab>
+                        <Tab eventKey="phase3" title="PHASE 3">
+                          <DataTablePhase3  phaseThreeData={dataPhaseThree}/>
+                        </Tab>
+                      </Tabs>
                   </div>
                 </div>
               </div>

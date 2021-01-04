@@ -4,6 +4,8 @@ var Schema = mongoose.Schema;
 var date = new Date()
 var day = date.toISOString().substring(0, 10)
 
+const func = require("../../../middlewares/func.Middleware")
+
 var cabinSummarySchema = new Schema({
 
     device_id :{
@@ -64,19 +66,24 @@ module.exports.addDocumentCabinSummary = async ( topic,samplesSummary ) =>{
     })
 }
 
-module.exports.findSumaryOneHours = async () =>{
+module.exports.findSumaryOneHours = async (device_id) =>{
     var dataSummary =[];
     const minHours = parseFloat(date.getTime()-3600*1000);
-    const data = await cabinSummary.find({day: day}).exec();
+    const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
     var timeData =data[0].samplesSummary;
-     for (let i = 0; i < timeData.length; i++) {
-        let time =parseFloat(timeData[i].time)
-        if(minHours <= time)
-        {
-            dataSummary.push(timeData[i]);
-        }
+    if( ! func.checkUndefined(timeData))
+    {
+        for (let i = 0; i < timeData.length; i++) {
+            let time =parseFloat(timeData[i].time)
+            if(minHours <= time)
+            {
+                dataSummary.push(timeData[i]);
+            }
+             
+         }
          
-     }
+    }
+     
 
     return dataSummary;
 }

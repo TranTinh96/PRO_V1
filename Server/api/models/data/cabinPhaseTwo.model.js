@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const func = require("../../../middlewares/func.Middleware")
 
 var Schema = mongoose.Schema;
 var date = new Date()
@@ -60,4 +61,26 @@ module.exports.addDocumentCabinPhaseTwo = async ( topic,samplesPhaseTwo ) =>{
         $max: { last: samplesPhaseTwo.time},
         $inc: { nSamplesPhaseTwo: 1} 
     })
+}
+
+module.exports.findPhaseTwo_OneHours = async (device_id) =>{
+    var dataPhaseTwo =[];
+    const minHours = parseFloat(date.getTime()-3600*1000);
+    const data = await cabinPhaseTwo.find({device_id :device_id, day: day}).exec();
+    var timeData =data[0].samplesPhaseTwo;
+    if( ! func.checkUndefined(timeData))
+    {
+        for (let i = 0; i < timeData.length; i++) {
+            let time =parseFloat(timeData[i].time)
+            if(minHours <= time)
+            {
+                dataPhaseTwo.push(timeData[i]);
+            }
+             
+         }
+         
+    }
+     
+
+    return dataPhaseTwo;
 }
