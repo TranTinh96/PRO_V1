@@ -2,10 +2,7 @@ import React ,{useState ,useEffect ,useLayoutEffect} from "react";
 import { Drawer, Form, Button, Col, Input, Alert} from 'antd'
 import Select from 'react-select'
 import axios from "axios"
-import { useSelector } from "react-redux";
-
-import {checkNumber} from "../../services/fucServices"
-
+import { useSelector ,useDispatch } from "react-redux";
 
 const optionsName = [
   { value: 'Votage Line - Neutral ( VLN )', label: 'Votage Line - Neutral ( VLN )' },
@@ -19,7 +16,7 @@ const optionsName = [
 ]
 
 function  DrawerForm() {
-
+  const dispatch = useDispatch()
   const _idProject = useSelector((state) => state.idTopicProject);
 
   const [visible ,setVisible] = useState(false)
@@ -71,6 +68,7 @@ function  DrawerForm() {
                 .catch(function (error) {
                   console.log(error);
                 });
+                dispatch({type:"LOADDING_DATA_ALARM"})
                 setVisible(false)
                 }
             else

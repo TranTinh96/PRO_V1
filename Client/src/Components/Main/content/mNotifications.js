@@ -129,7 +129,7 @@ function MNotifications() {
             <div className="page-wrapper ">
               <div className="page-body shadow-none">
                 {/* ------- Start-Dashboard -------  */}
-                <div className="page-start-dashboard">
+                <div className="page-start-dashboard ">
                   <div className="row">
                     <div className="col-6">
                       <div className="page-title-box">
@@ -155,7 +155,7 @@ function MNotifications() {
                   </div>
 
                   {/* --------------------- Header Dashboard -------------------------*/}
-                  <div className="table-data-contanier m-t-30">
+                  <div className="table-data-contanier m-t-30 table-hide-pagination">
                       <EditableAlarm  _idProject={_idProject}/>
                   </div>
                 </div>

@@ -18,6 +18,7 @@ router.post("/dataTimeDays" ,cabinController.postDataDays)
  router.post ("/alarm/create-tag" ,cabinController.postCreateTagAlarm);
  router.post ("/alarm/get-tag" ,cabinController.getTagAlarm);
  router.post ("/alarm/edit-tag" ,cabinController.updateTagAlarm);
+ router.post ("/alarm/delete-tag" ,cabinController.deleteTagAlarm);
 
 
 

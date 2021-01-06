@@ -5,6 +5,7 @@ var cabinPhaseThree = require("../models/data/cabinPhaseThree.model")
 var cabinAlarm = require("../models/cabinAlarms.model")
 
 var func =require("../../middlewares/func.Middleware")
+const { LengthRequired } = require("http-errors")
 
 /**
  *  Data Table
@@ -91,14 +92,42 @@ module.exports.postDataHours = async(req,res,next) =>{
 
 module.exports.updateTagAlarm = async(req,res,next) =>{
     var reqBody = req.body
-    let device_id = reqBody._idProject;
-    var index = reqBody .index ,
+    var device_id = reqBody._idProject;
+    var index = reqBody .index ;
     var dataEditAlarm = reqBody.dataEditAlarm 
     cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
         if( !err && !func.checkNull(dataAlarm)){
-             var arrDataAlarm = dataAlarm.samples ;
-             
+             var arrDataAlarm = dataAlarm[0].samples;
+             for (let i = 0; i < arrDataAlarm.length; i++) {
+                 if(i==index){
+                     arrDataAlarm[i].HH= dataEditAlarm.HH
+                     arrDataAlarm[i].H= dataEditAlarm.H
+                     arrDataAlarm[i].L= dataEditAlarm.L
+                     arrDataAlarm[i].LL= dataEditAlarm.LL
+                     arrDataAlarm[i].Rate= dataEditAlarm.Rate
+                 }
+                 
+             }
+             cabinAlarm.editCabinAlarm(device_id,arrDataAlarm)
+        }
+        else
+        {
+            res.json({
+                status : false
+            })
+        }
+       });
+ }
 
+ module.exports.deleteTagAlarm = async(req,res,next) =>{
+    var reqBody = req.body
+    var device_id = reqBody._idProject;
+    var index = reqBody .index ;
+    cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
+        if( !err && !func.checkNull(dataAlarm)){
+             var arrDataAlarm = dataAlarm[0].samples;
+             arrDataAlarm.splice(index,1)
+             cabinAlarm.editCabinAlarm(device_id,arrDataAlarm)
         }
         else
         {

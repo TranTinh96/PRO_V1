@@ -47,6 +47,7 @@ module.exports.addCabinAlarm= async ( device_id,samplesAlarm ) =>{
 }
 
 module.exports.editCabinAlarm= async ( device_id,samplesAlarm ) =>{
+    await cabinAlarm.deleteOne({device_id:device_id})
     await cabinAlarm.updateOne({device_id:device_id},
         {$push:{samples :samplesAlarm},
     },{ upsert: true } )
@@ -59,5 +60,5 @@ module.exports.deleteCabinAlarm= async ( device_id,samplesAlarm ) =>{
 }
 
 module.exports.getCabinAlarm= async ( device_id ,cb) =>{
-    await cabinAlarm.findOne({device_id:device_id},cb)
+    await cabinAlarm.find({device_id:device_id},cb)
 }

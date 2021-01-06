@@ -272,3 +272,6 @@
   top: 100%;
   font-size: 12px;
 }
+.table-hide-pagination .ant-table-pagination.ant-pagination {
+  display: none !important;
+}

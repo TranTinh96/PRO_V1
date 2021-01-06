@@ -1,7 +1,7 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState ,useEffect ,useLayoutEffect } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Button} from 'antd';
 import axios from 'axios'
-const originData = [];
+import { useDispatch ,useSelector } from "react-redux";
 
 
 
@@ -41,6 +41,11 @@ const EditableCell = ({
 };
 
 const EditableAlarm = (props) => {
+
+  const dispatch = useDispatch()
+  const isLoaddingDataAlarm = useSelector((state) => state.isLoaddingDataAlarm);
+
+
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
@@ -63,11 +68,22 @@ const EditableAlarm = (props) => {
     setEditingKey('');
   };
 
-  const deleteTag = () => {
+  const deleteTag = async (key) => {
+    const newData = [...data];
+    newData.splice( parseInt(key), 1);
+    setData(newData);
     setEditingKey('');
+    axios.post('/api/cabin/alarm/delete-tag', {
+      _idProject :props._idProject ,
+      index : parseInt(key)
+   })
+    .then(function (res) {})
   };
 
-  useEffect(() => {
+
+   //Loadding Add new
+   useLayoutEffect(() => {
+    setData([])
     axios.post('/api/cabin/alarm/get-tag', {
        _idProject :props._idProject
     })
@@ -75,8 +91,9 @@ const EditableAlarm = (props) => {
       let resData=res.data ;
       if(resData.status){
         var dataInit = resData.dataAlarm;
+        var originDataAdd=[]
         for (let i = 0; i < dataInit.length; i++) {
-          originData.push({
+          originDataAdd.push({
               key: i.toString(),
               STT : i,
               nameTag: dataInit[i].name,
@@ -91,25 +108,23 @@ const EditableAlarm = (props) => {
         }
         
       }
-      setData(originData)
+      setData(originDataAdd)
+      dispatch({type:"NO_LOADDING_DATA_ALARM"})
       
     })
     .catch(function (error) {
       console.log(error);
     });
 
- 
+  }, [isLoaddingDataAlarm])
 
-  }, [])
 
   //Save Edit Table
-  const save = async (key) => {
+  const save = async (record,key) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
-      console.log(row)
-      console.log(newData)
 
       if (index > -1) {
         const item = newData[index];
@@ -205,7 +220,7 @@ const EditableAlarm = (props) => {
           <span>
             <a
               href="javascript:;"
-              onClick={() => save(record.key)}
+              onClick={() => save(record, record.key)}
               style={{
                 marginRight: 8,
               }}
@@ -222,7 +237,7 @@ const EditableAlarm = (props) => {
                   Edit
               </Typography.Link>
               <Typography.Link disabled={editingKey !== ''}>
-                <Popconfirm title="Sure to Delete Tag ?" onConfirm={deleteTag}>
+                <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record.key)}>
                 <a>Delete</a>
               </Popconfirm>
               </Typography.Link>

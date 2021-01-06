@@ -47,7 +47,18 @@ var isMenu = (state = true, action) => {
     }
   };
 
+  var isLoaddingDataAlarm  = (state = false, action) => {
+    switch (action.type) {
+      case "LOADDING_DATA_ALARM":
+        return true;
+      case "NO_LOADDING_DATA_ALARM":
+        return false;
+      default:
+        return false;
+    }
+  };
 
 
 
- module.exports= {isMenu,isMenuElement ,isLoaddingDashboard ,isLoaddingTable ,isLoaddingAlarm};
+
+ module.exports= {isMenu,isMenuElement ,isLoaddingDashboard ,isLoaddingTable ,isLoaddingAlarm ,isLoaddingDataAlarm};
