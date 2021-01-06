@@ -15,7 +15,7 @@ function DataTablePhase2(props) {
               <th scope="col">REACTIVE POWER (KVAR2)</th>
               <th scope="col">APPARENT POWER (KVA2)</th>
               <th scope="col">POWER FACTOR (PF2)</th>
-              <th scope="col">TIME</th>
+             
             </tr>
           </thead>
           <tbody className="my-tbody">
@@ -31,7 +31,6 @@ function DataTablePhase2(props) {
                   <td>{data.KVA2}</td>
                   <td>{data.KVAR2}</td>
                   <td>{data.PF2}</td>
-                  <td>{data.timeCreate}</td>    
                 </tr>
                 )
               })
@@ -54,6 +53,7 @@ function DataTablePhase2(props) {
             <th scope="col">REACTIVE POWER (KVAR2)</th>
             <th scope="col">APPARENT POWER (KVA2)</th>
             <th scope="col">POWER FACTOR (PF2)</th>
+            <th scope="col">TIME</th>
           </tr>
         </thead>
         <tbody className="my-tbody">
@@ -69,6 +69,7 @@ function DataTablePhase2(props) {
                 <td>{data.KVA2}</td>
                 <td>{data.KVAR2}</td>
                 <td>{data.PF2}</td>
+                <td>{data.timeCreate}</td>    
               </tr>
               )
             })

@@ -8,7 +8,6 @@ var cabinPhaseOneSchema = new Schema({
 
     device_id :{
         type: String,
-        unique :true,
         required :true
 
     },
@@ -42,9 +41,8 @@ var cabinPhaseOneSchema = new Schema({
 })
 
 var cabinPhaseOne = module.exports= mongoose.model("cabinPhaseOne", cabinPhaseOneSchema)
-
-module.exports.findDocumentCabinPhaseOne = async( deviceID,cb ) =>{
-    await cabinPhaseOne.findOne({device_id:deviceID} ,cb)
+module.exports.findDocumentCabinPhaseOne = async( topic,cb ) =>{
+    await cabinPhaseOne.findOne({device_id:topic} ,cb)
 }
 module.exports.createDocumentCabinPhaseOne = async(topic,dataPhaseOne,cb ) =>{
     var day =funcMqtt.getDay();
@@ -63,7 +61,7 @@ module.exports.createDocumentCabinPhaseOne = async(topic,dataPhaseOne,cb ) =>{
 }
 module.exports.addDocumentCabinPhaseOne = async ( topic,samplesPhaseOne ) =>{
     var day =funcMqtt.getDay();
-    var res= await cabinPhaseOne.updateOne({device_id:topic ,day:day},
+    var res= await cabinPhaseOne.updateOne({device_id: topic ,day:day},
         {$push:{samplesPhaseOne:samplesPhaseOne},
         $min: { first: samplesPhaseOne.time},
         $max: { last: samplesPhaseOne.time},
@@ -96,8 +94,7 @@ module.exports.findPhaseOne_OneHours = async (device_id) =>{
 
 
 module.exports.findPhaseOneDays = async (device_id) =>{
-    var today = new Date();
-    var day = today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate() ;
+    var day =funcMqtt.getDay();
     const data = await cabinPhaseOne.find({device_id :device_id, day: day}).exec();
     return  data[0].samplesPhaseOne
 }

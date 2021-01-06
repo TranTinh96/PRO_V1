@@ -8,7 +8,6 @@ var cabinPhaseThreeSchema = new Schema({
 
     device_id :{
         type: String,
-        unique :true,
         required :true
 
     },
@@ -43,8 +42,8 @@ var cabinPhaseThreeSchema = new Schema({
 
 var cabinPhaseThree = module.exports= mongoose.model("cabinPhaseThree", cabinPhaseThreeSchema)
 
-module.exports.findDocumentCabinPhaseThree = async( deviceID,cb ) =>{
-    await cabinPhaseThree.findOne({device_id:deviceID} ,cb)
+module.exports.findDocumentCabinPhaseThree = async( topic,cb ) =>{
+    await cabinPhaseThree.findOne({device_id:topic } ,cb)
 }
 module.exports.createDocumentCabinPhaseThree = async(topic,dataPhaseThree,cb ) =>{
     var day =funcMqtt.getDay();
@@ -63,7 +62,7 @@ module.exports.createDocumentCabinPhaseThree = async(topic,dataPhaseThree,cb ) =
 }
 module.exports.addDocumentCabinPhaseThree = async ( topic,samplesPhaseThree ) =>{
     var day =funcMqtt.getDay();
-    var res= await cabinPhaseThree.updateOne({device_id:topic ,day:day},
+    var res= await cabinPhaseThree.updateOne({device_id: topic ,day:day},
         {$push:{samplesPhaseThree:samplesPhaseThree},
         $min: { first: samplesPhaseThree.time},
         $max: { last: samplesPhaseThree.time},

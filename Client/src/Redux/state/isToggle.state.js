@@ -38,8 +38,16 @@ var isMenu = (state = true, action) => {
         return false;
     }
   };
+  var isLoaddingAlarm  = (state = false, action) => {
+    switch (action.type) {
+      case "LOADDING_ALARM":
+        return true;
+      default:
+        return false;
+    }
+  };
 
 
 
 
- module.exports= {isMenu,isMenuElement ,isLoaddingDashboard ,isLoaddingTable};
+ module.exports= {isMenu,isMenuElement ,isLoaddingDashboard ,isLoaddingTable ,isLoaddingAlarm};

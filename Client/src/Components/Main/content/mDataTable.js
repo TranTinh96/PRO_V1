@@ -73,6 +73,7 @@ function MDataTable() {
     }
     setClientMQTT(mqtt.connect(host, options));
     dispatch({ type: "LOADDING_DASHBOARD" });
+    dispatch({type:"LOADDING_ALARM"})
   }, []);
 
 

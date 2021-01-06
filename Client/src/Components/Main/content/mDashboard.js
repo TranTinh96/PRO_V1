@@ -127,6 +127,7 @@ function MDashbard(props) {
         
         setClientMQTT(mqtt.connect(host, options));
         dispatch({type:"LOADDING_TABLE"})
+        dispatch({type:"LOADDING_ALARM"})
 
     }, []);
 

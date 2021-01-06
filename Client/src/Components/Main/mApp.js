@@ -7,10 +7,11 @@ import Header from "./element/mHeader";
 import Navbars from "./element/mNavbar";
 //Content
 import Dashboard from "./content/mDashboard";
-import mManage from "./content/mManage";
-import mAccout from "./content/mAccout";
-import mMaps from "./content/mMaps";
+import Manage from "./content/mManage";
+import Accout from "./content/mAccout";
+import Maps from "./content/mMaps";
 import DataTable from "./content/mDataTable";
+import Notification from "./content/mNotifications";
 
 import ClipLoader from "react-spinners/ScaleLoader";
 
@@ -29,15 +30,15 @@ function MApp() {
    useEffect(() => {
     setTimeout(() => {
       setIsLoading(!isLoading);
+      if(!_idProject){
+        dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+        removeCookie("Auth");
+        history.push("/");
+      }    
     }, 100);
   }, []);
 
-  if(!_idProject){
-    dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
-    removeCookie("Auth");
-    history.push("/");
-  }
-  
+
 
  
   if (isLoading) {
@@ -58,24 +59,13 @@ function MApp() {
       <div className="pcoded-main-container">
         <Navbars />
         <Switch>
-          <Route
-            exact
-            path="/dashboard"
-            render={(props) => (
-              <Dashboard {...props}/> 
-            )}
-          />
-          <Route exact path="/manage/setting" component={mManage} />
-          <Route exact path="/manage/open-accout" component={mManage} />
-          <Route exact path="/accouts" component={mAccout} />
-          <Route exact path="/maps" component={mMaps} />
-          <Route
-            exact
-            path="/tables"
-            render={(props) => (
-              <DataTable {...props}  />
-            )}
-          />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/manage/setting" component={Manage} />
+          <Route exact path="/manage/open-accout" component={Manage} />
+          <Route exact path="/accouts" component={Accout} />
+          <Route exact path="/maps" component={Maps} />
+          <Route exact path="/tables" component={DataTable} />
+          <Route exact path="/alarms" component={Notification} />
         </Switch>
       </div>
     </React.Fragment>

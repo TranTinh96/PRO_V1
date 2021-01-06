@@ -1,8 +1,7 @@
 var func =require("./func.Middleware")
 
 module.exports.dataSummary = (payloadSplit) => {
-     var today = new Date();
-     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + "(" + today.getDate() + "/" + today.getMonth() + 1 + "/" + today.getFullYear() + ")";
+  var time = new Date().toLocaleString();
     return  {
         VLN     :   func.getKeyValue(payloadSplit,"VLN"),
         VLL     :   func.getKeyValue(payloadSplit,"VLL"),
@@ -20,8 +19,7 @@ module.exports.dataSummary = (payloadSplit) => {
  }
 
  module.exports.dataPhaseOne = (payloadSplit) => {
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + "(" + today.getDate() + "/" + today.getMonth() + 1 + "/" + today.getFullYear() + ")";
+  var time = new Date().toLocaleString();
   return  {
       V1N     :   func.getKeyValue(payloadSplit,"V1N"),
       V12     :   func.getKeyValue(payloadSplit,"V12"),
@@ -37,8 +35,7 @@ module.exports.dataSummary = (payloadSplit) => {
 }
 
 module.exports.dataPhaseTwo = (payloadSplit) => {
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + "(" + today.getDate() + "/" + today.getMonth() + 1 + "/" + today.getFullYear() + ")";
+  var time = new Date().toLocaleString();
   return  {
       V2N     :   func.getKeyValue(payloadSplit,"V2N"),
       V23    :   func.getKeyValue(payloadSplit,"V23"),
@@ -54,8 +51,7 @@ module.exports.dataPhaseTwo = (payloadSplit) => {
 }
 
 module.exports.dataPhaseThree = (payloadSplit) => {
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + "(" + today.getDate() + "/" + today.getMonth() + 1 + "/" + today.getFullYear() + ")";
+  var time = new Date().toLocaleString();
   return  {
       V3N     :    func.getKeyValue(payloadSplit,"V3N"),
       V31    :     func.getKeyValue(payloadSplit,"V31"),
@@ -72,6 +68,6 @@ module.exports.dataPhaseThree = (payloadSplit) => {
 
 module.exports.getDay = () => {
   var today = new Date();
-  return  today.toISOString().substring(0, 10)
+  return  today.toLocaleDateString();
 
 }

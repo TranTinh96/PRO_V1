@@ -3,13 +3,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const func = require("../../../middlewares/func.Middleware")
 const funcMqtt = require("../../../middlewares/mqtt.Middleware")
-var date = new Date()
 
 var cabinSummarySchema = new Schema({
 
     device_id :{
         type: String,
-        unique :true,
         required :true
 
     },
@@ -46,11 +44,12 @@ var cabinSummarySchema = new Schema({
 
 var cabinSummary = module.exports= mongoose.model("cabinSummary", cabinSummarySchema)
 
-module.exports.findDocumentCabinSummary = async( deviceID,cb ) =>{
-    await cabinSummary.findOne({device_id:deviceID} ,cb)
+module.exports.findDocumentCabinSummary = async( topic,cb ) =>{
+    await cabinSummary.findOne({device_id:topic } ,cb)
 }
 module.exports.createDocumentCabinSummary = async(topic,dataSummary,cb ) =>{
     var day =funcMqtt.getDay();
+    var date = new Date()
     var newSummary = new cabinSummary( {
         device_id : topic ,
         nSamplesSummary:1,
@@ -66,8 +65,7 @@ module.exports.createDocumentCabinSummary = async(topic,dataSummary,cb ) =>{
 }
 module.exports.addDocumentCabinSummary = async ( topic,samplesSummary ) =>{
 var day =funcMqtt.getDay();
-console.log(day)
- var res= await cabinSummary.updateOne({device_id:topic ,day:day},
+ var res= await cabinSummary.updateOne({device_id: topic , day:day},
         {$push:{samplesSummary:samplesSummary},
         $min: { first: samplesSummary.time},
         $max: { last: samplesSummary.time},
@@ -77,6 +75,7 @@ console.log(day)
 
 module.exports.findSumaryOneHours = async (device_id) =>{
     var dataSummary =[];
+    var date = new Date()
     const minHours = parseFloat(date.getTime()-3600*1000);
     var day =funcMqtt.getDay();
     const data = await cabinSummary.find({device_id :device_id, day: day}).exec();

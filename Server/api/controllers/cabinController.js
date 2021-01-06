@@ -2,8 +2,14 @@ var cabinSummary = require("../models/data/cabinSummary.model")
 var cabinPhaseOne = require("../models/data/cabinPhaseOne.model")
 var cabinPhaseTwo = require("../models/data/cabinPhaseTwo.model")
 var cabinPhaseThree = require("../models/data/cabinPhaseThree.model")
-var date = new Date()
-var day = date.toISOString().substring(0, 10)
+var cabinAlarm = require("../models/cabinAlarms.model")
+
+var func =require("../../middlewares/func.Middleware")
+
+/**
+ *  Data Table
+ */
+
 
 module.exports.postDataHours = async(req,res,next) =>{
     let device_id = req.body._idProject;
@@ -40,4 +46,65 @@ module.exports.postDataHours = async(req,res,next) =>{
     res.json({
         dataSummary :dataSummary ,
     })
+ }
+
+
+ 
+/**
+ *  Alarm
+ */
+ module.exports.postCreateTagAlarm = async(req,res,next) =>{
+     var reqBody = req.body
+    let device_id = reqBody._idProject;
+    var samplesAlarm ={
+        name :reqBody.nameTag ,
+        HH :reqBody.HH,
+        H : reqBody.H,
+        L :reqBody.L ,
+        LL : reqBody.LL,
+        Rate : reqBody.Rate,
+    }
+    cabinAlarm.addCabinAlarm(device_id ,samplesAlarm);
+    res.json ({
+        status : "Success"
+    })
+ }
+
+ module.exports.getTagAlarm = async(req,res,next) =>{
+   let device_id = req.body._idProject;
+   cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
+    if( !err && !func.checkNull(dataAlarm)){
+         res.json({
+             dataAlarm : dataAlarm[0].samples ,
+             status : true
+         })
+    }
+    else
+    {
+        res.json({
+            status : false
+        })
+    }
+   });
+  
+}
+
+module.exports.updateTagAlarm = async(req,res,next) =>{
+    var reqBody = req.body
+    let device_id = reqBody._idProject;
+    var index = reqBody .index ,
+    var dataEditAlarm = reqBody.dataEditAlarm 
+    cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
+        if( !err && !func.checkNull(dataAlarm)){
+             var arrDataAlarm = dataAlarm.samples ;
+             
+
+        }
+        else
+        {
+            res.json({
+                status : false
+            })
+        }
+       });
  }

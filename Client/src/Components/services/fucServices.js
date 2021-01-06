@@ -83,7 +83,12 @@ module.exports.limitData = (array ,limit ,data) => {
   return array
 }
 
-
+module.exports.checkNumber = (number) => {
+   return (typeof number == 'number')? true :false
+ }
+ 
+ 
+ 
 
 
 

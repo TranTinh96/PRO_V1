@@ -256,3 +256,19 @@
   padding: 4px 12px;
   line-height: 22px;
 }
+
+/* -----------Notification ---------------*/
+.button-show-addNew{
+  float: left;
+}
+.drawerContainer{
+  z-index: 4000;
+}
+.notificationShow{
+  z-index: 5000;
+}
+.editable-row .ant-form-item-explain {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
+}
