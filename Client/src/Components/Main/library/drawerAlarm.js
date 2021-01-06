@@ -193,7 +193,7 @@ function  DrawerForm() {
             <Col gutter={16}>
                 <Form.Item
                   name="Rate"
-                  label="Rate"
+                  label="Deadband"
                   rules={[{ required: true, message: 'Please chose level Rate' }]}
                 >
                   <Input  name ="Rate" value="Rate"  onChange={handleChange}/>

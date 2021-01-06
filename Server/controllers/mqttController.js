@@ -3,7 +3,9 @@ var cabinSummary = require("../api/models/data/cabinSummary.model");
 var cabinPhaseOne = require("../api/models/data/cabinPhaseOne.model");
 var cabinPhaseTwo = require("../api/models/data/cabinPhaseTwo.model");
 var cabinPhaseThree = require("../api/models/data/cabinPhaseThree.model");
+var cabinAlarm = require("../api/models/cabinAlarms.model")
 
+var middlewareAlarm =  require("../api/middlewares/alarm.Middleware")
 var func  = require("../middlewares/func.Middleware")
 var mqtt  = require("../middlewares/mqtt.Middleware")
 
@@ -23,7 +25,6 @@ module.exports = (clientMQTT) => {
              */
             cabinSummary.findDocumentCabinSummary(topic,(err,summary)=>{
                   if(!err){
-                    console.log(summary)
                     if(func.checkNull(summary)){
                       //If exits create Document
                       cabinSummary.createDocumentCabinSummary(topic,dataSummary, (err,newsummary)=>{
@@ -86,12 +87,41 @@ module.exports = (clientMQTT) => {
                 }
               }
           })
-             
-           }
-        })
-       
-    
-       
-    }
+          /*
+          * Alarms
+          */
+         var arrLastAlarm =[];
+         cabinAlarm.findCabinAlarm(topic,(err, dataAlarm)=>{
+          if( !err && !func.checkArray(dataAlarm)){
+            var arrDataAlarm = dataAlarm[0].samples ;
+
+            //Task : Lấy dữ liệu mới
+            for (let i = 0; i < arrDataAlarm.length; i++) {
+                var statusAlarm = middlewareAlarm.checkStatusAlarm(payloadSplit , arrDataAlarm[i]);
+                var valueTagAlarm = middlewareAlarm.getValueTagAlarm(payloadSplit, arrDataAlarm[i]);
+                let newAlarm ={
+                  name : arrDataAlarm[i].name ,
+                  HH :  arrDataAlarm[i].HH ,
+                  H :  arrDataAlarm[i].H ,
+                  L :  arrDataAlarm[i].L ,
+                  LL :  arrDataAlarm[i].LL ,
+                  Rate :  arrDataAlarm[i].Rate ,
+                  valueTag : valueTagAlarm ,
+                  status : statusAlarm
+                }
+                console.log(newAlarm.toString())
+                arrLastAlarm.push(newAlarm)
+            }
+
+            
+          //Task : Update dữ liệu
+            cabinAlarm.editCabinAlarm(topic,arrLastAlarm)
+          
+           //Task : Gửi dữ liệu MQTT
+             clientMQTT.publish("1122331", "1232")
+          }
+
+         });         
+    }})}
   });
 };

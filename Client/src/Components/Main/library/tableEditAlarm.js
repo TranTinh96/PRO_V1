@@ -194,7 +194,7 @@ const EditableAlarm = (props) => {
         editable: true,
      },
     {
-        title: 'Rate',
+        title: 'Deadband',
         dataIndex: 'Rate',
         width: '10%',
         editable: true,

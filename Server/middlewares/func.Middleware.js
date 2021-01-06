@@ -19,6 +19,14 @@ module.exports.checkNull = (valueNull) => {
   return valueNull == null ? true :false ;
 }
 
+module.exports.checkArray = (array) => {
+   if (array === undefined || array.length == 0) {
+       return true;
+   }
+   return false;
+ }
+ 
+
 
 //example key = V1=220&V1N=220 => getKeyValue: V1=220
 module.exports.getKeyValue = (str , key) => {
