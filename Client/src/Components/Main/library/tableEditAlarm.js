@@ -1,5 +1,5 @@
 import React, { useState ,useEffect ,useLayoutEffect } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Button} from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag} from 'antd';
 import axios from 'axios'
 import { useDispatch ,useSelector } from "react-redux";
 
@@ -93,7 +93,8 @@ const EditableAlarm = (props) => {
         var dataInit = resData.dataAlarm;
         for (let i = 0; i < dataInit.length; i++) {
             dataInit[i].key = i.toString();
-            dataInit[i].STT = i
+            dataInit[i].STT = i ;
+            dataInit[i].tags = [ dataInit[i].status]
       }
       setData(dataInit)
       dispatch({type:"NO_LOADDING_DATA_ALARM"})   
@@ -189,16 +190,48 @@ const EditableAlarm = (props) => {
         editable: true,
     },
     {
-        title: 'Tags value',
+        title: 'Tag value',
         dataIndex: 'valueTag',
         width: '10%',
         editable: false,
     },
     {
         title: 'Status',
-        dataIndex: 'status',
+        key: 'tags',
         width: '10%',
         editable: false,
+        dataIndex: 'tags',
+        
+        render: tags => (
+          <>
+            {tags.map(tag => {
+              let color = 'success';
+              switch (tag) {
+                case 'LL':
+                    color = 'error';              
+                  break;
+                case 'L':
+                    color = 'warning';
+                  break;
+                case 'H':
+                    color = 'geekblue';
+                  break;
+                case 'HH':
+                    color = 'purple';
+                   break;
+              
+                default:
+                  break;
+              }
+              return (
+                <Tag color={color} key={tag}>
+                  {tag.toUpperCase()}
+                </Tag>
+              );
+            })}
+          </>
+        ),
+        
     },
     {
       title: 'Action',

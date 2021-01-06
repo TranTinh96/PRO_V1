@@ -275,3 +275,6 @@
 .table-hide-pagination .ant-table-pagination.ant-pagination {
   display: none !important;
 }
+.table-hide-pagination .ant-table {
+  font-size: 13px;
+}
