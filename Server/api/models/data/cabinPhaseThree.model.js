@@ -62,12 +62,12 @@ module.exports.createDocumentCabinPhaseThree = async(topic,dataPhaseThree,cb ) =
 }
 module.exports.addDocumentCabinPhaseThree = async ( topic,samplesPhaseThree ) =>{
     var day =funcMqtt.getDay();
-    var res= await cabinPhaseThree.updateOne({device_id: topic ,day:day},
+     await cabinPhaseThree.updateOne({device_id: topic ,day:day},
         {$push:{samplesPhaseThree:samplesPhaseThree},
         $min: { first: samplesPhaseThree.time},
         $max: { last: samplesPhaseThree.time},
         $inc: { nSamplesPhaseThree: 1} 
-    },{ upsert: true } )
+    } )
 }
 
 module.exports.findPhaseThree_OneHours = async (device_id) =>{
@@ -75,9 +75,10 @@ module.exports.findPhaseThree_OneHours = async (device_id) =>{
     const minHours = parseFloat(date.getTime()-3600*1000);
     var day =funcMqtt.getDay();
     const data = await cabinPhaseThree.find({device_id :device_id, day: day}).exec();
-    var timeData =data[0].samplesPhaseThree;
-    if( ! func.checkUndefined(timeData))
+ 
+    if( ! func.checkArray(data))
     {
+        var timeData =data[0].samplesPhaseThree;
         for (let i = 0; i < timeData.length; i++) {
             let time =parseFloat(timeData[i].time)
             if(minHours <= time)
@@ -96,5 +97,12 @@ module.exports.findPhaseThree_OneHours = async (device_id) =>{
 module.exports.findPhaseThreeDays = async (device_id) =>{
     var day =funcMqtt.getDay();
     const data = await cabinPhaseThree.find({device_id :device_id, day: day}).exec();
-    return  data[0].samplesPhaseThree
+    if( ! func.checkArray(data))
+    {
+        return  data[0].samplesPhaseThree
+    }
+    else
+    {
+        return []
+    }
 }

@@ -45,7 +45,8 @@ var cabinSummarySchema = new Schema({
 var cabinSummary = module.exports= mongoose.model("cabinSummary", cabinSummarySchema)
 
 module.exports.findDocumentCabinSummary = async( topic,cb ) =>{
-    await cabinSummary.findOne({device_id:topic } ,cb)
+    var day =funcMqtt.getDay();
+    await cabinSummary.findOne({device_id:topic ,day:day } ,cb)
 }
 module.exports.createDocumentCabinSummary = async(topic,dataSummary,cb ) =>{
     var day =funcMqtt.getDay();
@@ -65,12 +66,12 @@ module.exports.createDocumentCabinSummary = async(topic,dataSummary,cb ) =>{
 }
 module.exports.addDocumentCabinSummary = async ( topic,samplesSummary ) =>{
 var day =funcMqtt.getDay();
- var res= await cabinSummary.updateOne({device_id: topic , day:day},
+    await cabinSummary.updateOne({device_id: topic , day:day},
         {$push:{samplesSummary:samplesSummary},
         $min: { first: samplesSummary.time},
         $max: { last: samplesSummary.time},
         $inc: { nSamplesSummary: 1} 
-    },{ upsert: true } )
+    } )
 }
 
 module.exports.findSumaryOneHours = async (device_id) =>{
@@ -79,9 +80,9 @@ module.exports.findSumaryOneHours = async (device_id) =>{
     const minHours = parseFloat(date.getTime()-3600*1000);
     var day =funcMqtt.getDay();
     const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
-    var timeData =data[0].samplesSummary;
-    if( ! func.checkUndefined(timeData))
+    if( ! func.checkArray(data))
     {
+        var timeData =data[0].samplesSummary;
         for (let i = 0; i < timeData.length; i++) {
             let time =parseFloat(timeData[i].time)
             if(minHours <= time)
@@ -100,7 +101,15 @@ module.exports.findSumaryOneHours = async (device_id) =>{
 module.exports.findSumaryDays = async (device_id) =>{
     var day =funcMqtt.getDay();
     const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
-    return  data[0].samplesSummary
+    if( ! func.checkArray(data))
+    {
+        return  data[0].samplesSummary
+    }
+    else
+    {
+        return []
+    }
+    
 }
 
 module.exports.findSumaryWeeks = async (device_id) =>{

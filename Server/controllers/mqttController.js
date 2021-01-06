@@ -47,7 +47,13 @@ module.exports = (clientMQTT) => {
               if(!err){
                 if(func.checkNull(phaseOne)){
                   //If exits create Document
-                  cabinPhaseOne.createDocumentCabinPhaseOne(topic,dataPhaseOne, (err,newsPhaseOne)=>{})
+                  cabinPhaseOne.createDocumentCabinPhaseOne(topic,dataPhaseOne, (err,newsPhaseOne)=>{
+                    if (err)
+                    {
+                      console.log(err)
+                    }
+                    
+                  })
                 }
                 else
                 {
@@ -63,7 +69,9 @@ module.exports = (clientMQTT) => {
               if(!err){
                 if(func.checkNull(phaseTwo)){
                   //If exits create Document
-                  cabinPhaseTwo.createDocumentCabinPhaseTwo(topic,dataPhaseTwo, (err,newsPhaseTwo)=>{})
+                  cabinPhaseTwo.createDocumentCabinPhaseTwo(topic,dataPhaseTwo, (err,newsPhaseTwo)=>{
+                    console.log(err)
+                  })
                 }
                 else
                 {
@@ -109,7 +117,7 @@ module.exports = (clientMQTT) => {
                   valueTag : valueTagAlarm ,
                   status : statusAlarm
                 }
-                console.log(newAlarm.toString())
+                console.log(statusAlarm)
                 arrLastAlarm.push(newAlarm)
             }
 

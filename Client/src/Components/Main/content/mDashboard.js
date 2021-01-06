@@ -120,7 +120,6 @@ function MDashbard(props) {
 
     //Connect MQTT
     useEffect(() => {
-        console.log(isLoaddingDashboard)
         if(isLoaddingDashboard){
             history.go(0);
         }

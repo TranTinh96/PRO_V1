@@ -238,7 +238,7 @@ function MDataTable() {
         
      
       }
-    }, [payload ,timeReport])
+    }, [payload])
 
   if (isLoaddingTable) {
     return (

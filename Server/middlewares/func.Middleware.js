@@ -7,7 +7,7 @@ module.exports.checkTokenProject = (tokenLast,token)=>{
 }
 
 module.exports.checkUndefined = (value) => {
-   return value === 'undefined' ? true :false
+   return value === undefined ? true :false
 }
 
 module.exports.checkTypeUndefined = (value) => {

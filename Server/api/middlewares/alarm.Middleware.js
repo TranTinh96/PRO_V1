@@ -18,11 +18,11 @@ module.exports.checkStatusAlarm= (payloadSplit,dataTag) =>{
     var splitTag = splitStr[1].replace(/\s/g, '') 
     var findName = splitTag.split(")")[0] ;
     valuePresentTag = func.getKeyValue(payloadSplit,findName)
-
     
     // Kiểm tra khi biểu đồ đi lên (valuePresentTag lớn hơn  giá trị củ)
      if(valuePresentTag > value)
      {
+         console.log("UP TREND" )
          if(valuePresentTag <= (LowLow + deadband))
          {
              return status ="LL"
@@ -31,7 +31,7 @@ module.exports.checkStatusAlarm= (payloadSplit,dataTag) =>{
          {
              return status ="L"
          }
-         else if( High < valuePresentTag < highHigh)
+         else if( (valuePresentTag >=High) && (valuePresentTag < highHigh))
          {
              return status ="H"
          }
@@ -47,15 +47,16 @@ module.exports.checkStatusAlarm= (payloadSplit,dataTag) =>{
      //Kiểm tra khi biểu đồ đi xuống
      else
      {
+        console.log("DOWN TREND")
         if(valuePresentTag <= LowLow)
         {
             return status ="LL"
         }
-        else if( Low < valuePresentTag <= LowLow)
+        else if( (LowLow < valuePresentTag)&&(valuePresentTag <= Low ))
         {
             return status ="L"
         }
-        else if( ( High -deadband) < valuePresentTag <= (highHigh-deadband))
+        else if( (valuePresentTag > (High -deadband))&&(valuePresentTag<= (highHigh-deadband)))
         {
             return status ="H"
         }

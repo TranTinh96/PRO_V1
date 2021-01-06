@@ -82,7 +82,7 @@ const EditableAlarm = (props) => {
 
 
    //Loadding Add new
-   useLayoutEffect(() => {
+   useEffect(() => {
     setData([])
     axios.post('/api/cabin/alarm/get-tag', {
        _idProject :props._idProject
@@ -91,27 +91,16 @@ const EditableAlarm = (props) => {
       let resData=res.data ;
       if(resData.status){
         var dataInit = resData.dataAlarm;
-        var originDataAdd=[]
         for (let i = 0; i < dataInit.length; i++) {
-          originDataAdd.push({
-              key: i.toString(),
-              STT : i,
-              nameTag: dataInit[i].name,
-              HH: dataInit[i].HH,
-              H: dataInit[i].H,
-              L: dataInit[i].L,
-              LL: dataInit[i].LL,
-              Rate: dataInit[i].Rate,
-              Status: dataInit[i].status,
-              value : dataInit[i].valueTag
-          });
-        }
-        
+            dataInit[i].key = i.toString();
+            dataInit[i].STT = i
       }
-      setData(originDataAdd)
-      dispatch({type:"NO_LOADDING_DATA_ALARM"})
-      
-    })
+      setData(dataInit)
+      dispatch({type:"NO_LOADDING_DATA_ALARM"})   
+      console.log(dataInit)
+    }
+    
+  })
     .catch(function (error) {
       console.log(error);
     });
@@ -165,7 +154,7 @@ const EditableAlarm = (props) => {
       },
     {
       title: 'Tags Name',
-      dataIndex: 'nameTag',
+      dataIndex: 'name',
       width: '15%',
       editable: false,
     },
@@ -201,13 +190,13 @@ const EditableAlarm = (props) => {
     },
     {
         title: 'Tags value',
-        dataIndex: 'value',
+        dataIndex: 'valueTag',
         width: '10%',
         editable: false,
     },
     {
         title: 'Status',
-        dataIndex: 'Status',
+        dataIndex: 'status',
         width: '10%',
         editable: false,
     },

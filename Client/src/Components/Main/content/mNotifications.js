@@ -1,7 +1,6 @@
 import React, { useState, useEffect , useLayoutEffect } from "react";
 import {useHistory } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
-import axios from "axios"
 import mqtt from "mqtt";
 import ClipLoader from "react-spinners/ScaleLoader";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,9 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import DrawerForm from "../library/drawerAlarm"
 import EditableAlarm from "../library/tableEditAlarm"
 
-
-//Function
-import {getKeyValue} from "../../services/fucServices";
 
 //MQTT Config
 const host = "wss://hairdresser.cloudmqtt.com";
@@ -43,9 +39,7 @@ function MNotifications() {
   
   const _idProject = useSelector((state) => state.idTopicProject);
   const isLoaddingAlarm = useSelector((state) => state.isLoaddingAlarm);
-  if (isLoaddingAlarm) {
-    history.go(0);
-  }
+  
   const [clientMQTT, setClientMQTT] = useState(null);
   const [connectStatus, setConnectStatus] = useState("Connect");
   const [payload, setPayload] = useState({});
@@ -53,6 +47,9 @@ function MNotifications() {
 
   //Connect MQTT
   useEffect(() => {
+    if (isLoaddingAlarm) {
+      history.go(0);
+    }
     setClientMQTT(mqtt.connect(host, options));
     dispatch({ type: "LOADDING_DASHBOARD" });
     dispatch({type:"LOADDING_TABLE"})
@@ -104,7 +101,7 @@ function MNotifications() {
    useLayoutEffect(() => {
     if(topic){
         var payloadSplit = payload.toString().split('&')
-
+        dispatch({type:"LOADDING_DATA_ALARM"})
      
      
       }

@@ -73,7 +73,7 @@ module.exports.postDataHours = async(req,res,next) =>{
  module.exports.getTagAlarm = async(req,res,next) =>{
    let device_id = req.body._idProject;
    cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
-    if( !err && !func.checkArray(dataAlarm)){
+    if( !err && !func.checkNull(dataAlarm)){
          res.json({
              dataAlarm : dataAlarm[0].samples ,
              status : true
@@ -95,7 +95,7 @@ module.exports.updateTagAlarm = async(req,res,next) =>{
     var index = reqBody .index ;
     var dataEditAlarm = reqBody.dataEditAlarm 
     cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
-        if( !err && !func.checkArray(dataAlarm)){
+        if( !err && !func.checkNull(dataAlarm)){
              var arrDataAlarm = dataAlarm[0].samples;
              for (let i = 0; i < arrDataAlarm.length; i++) {
                  if(i==index){
@@ -123,7 +123,7 @@ module.exports.updateTagAlarm = async(req,res,next) =>{
     var device_id = reqBody._idProject;
     var index = reqBody .index ;
     cabinAlarm.getCabinAlarm(device_id ,(err, dataAlarm)=>{
-        if( !err && !func.checkArray(dataAlarm)){
+        if( !err && !func.checkNull(dataAlarm)){
              var arrDataAlarm = dataAlarm[0].samples;
              arrDataAlarm.splice(index,1)
              cabinAlarm.editCabinAlarm(device_id,arrDataAlarm)
@@ -138,8 +138,6 @@ module.exports.updateTagAlarm = async(req,res,next) =>{
  }
 
 
- module.exports.deleteTagAlarm = async(req,res,next) =>{
-   
- }
+
 
 
