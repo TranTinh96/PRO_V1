@@ -74,10 +74,11 @@ function Accout() {
                                     <Timeline.Item dot={<FileProtectOutlined style={{ fontSize: '16px' }} />}>{infoProject.timeCreate}  - Create new cabin project  with name ({infoProject.nameProject}) </Timeline.Item>
                                     <Timeline.Item color="green">ID : {infoProject.tokenProject}</Timeline.Item>
                                     <Timeline.Item dot={<UserOutlined style={{ fontSize: '16px' }} />}>
-                                        Register accout with Email : {emailUser} -  User : {nameUser}  &  Role : {roleUser}
+                                        Register Accout 
                                     </Timeline.Item>
-                                    <Timeline.Item color="red"></Timeline.Item>
-                                    
+                                    <Timeline.Item color="red"> Email : {emailUser}</Timeline.Item>
+                                    <Timeline.Item > User : {nameUser} </Timeline.Item>
+                                    <Timeline.Item color="green"> Role : {roleUser}</Timeline.Item>
                                     <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>
                                 
                                     </Timeline.Item>

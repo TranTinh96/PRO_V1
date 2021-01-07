@@ -14,7 +14,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import setAuthorizationToken from './Components/services/jwtService';
 
 import checkRole from "./Components/services/fucRole";
-import {checkUndefined , checkTypeUndefined} from "./Components/services/fucServices";
+import {checkNull , checkTypeUndefined} from "./Components/services/fucServices";
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'antd/dist/antd.css'
 import "./assets/css/util.css"
@@ -44,22 +44,26 @@ const Them = createMuiTheme({
 const cookies = new Cookies();
 var authToken = cookies.get("Auth")
 
-if (!checkTypeUndefined(authToken)) {
+if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
   let jwtToken = jwt.decode(authToken)
-  let role = checkRole(jwtToken.role);
-  var users = {
-    email: jwtToken.email,
-    user: jwtToken.user,
-    role: role
-  }
-  //Redux User JWT
-  store.dispatch({ type: "SET_USER", users: users })
-
-  //Redux ProjectID
-  store.dispatch({type :"PROJECT_ID_REGISTER" ,projectID : null})
-  store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
+  if(! checkNull(jwtToken))
+  {
+    let role = checkRole(jwtToken.role);
+    var users = {
+      email: jwtToken.email,
+      user: jwtToken.user,
+      role: role
+    }
+    //Redux User JWT
+    store.dispatch({ type: "SET_USER", users: users })
   
-  //Set Axios 
+    //Redux ProjectID
+    store.dispatch({type :"PROJECT_ID_REGISTER" ,projectID : null})
+    store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
+    
+    //Set Axios 
+  }
+
   setAuthorizationToken(authToken)
 }
 

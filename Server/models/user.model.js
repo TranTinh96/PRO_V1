@@ -103,3 +103,7 @@ module.exports.getAllUser =async( cb ) =>{
 module.exports.deleteUser = async(id,cb)=>{
     await User.deleteOne({_id : id},cb);
 }
+
+module.exports.getUserManage =async( project_id ,cb ) =>{
+   await User.find({project_id:project_id} ,cb);
+}

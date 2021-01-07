@@ -1,6 +1,9 @@
 var Project = require("../models/project.model")
 var User = require("../../models/user.model")
 
+/*
+* ADMIN
+*/
 module.exports.postSetting = async(req,res,next) =>{
    var newProject =new Project({
        nameProject : req.body.nameProject,
@@ -87,5 +90,30 @@ module.exports.deleteProject = async(req,res)=>{
  
 
 } 
+/**
+ * MANAGE
+ */
+
+module.exports.postInfoProject = async(req,res,next) =>{
+    var reqBody = req.body
+    var tokenProject = reqBody._idProject;
+    Project.getByTokenProject(tokenProject ,(err, project)=>{
+        if( !err && !func.checkNull(project)){
+            res.json({
+                status: true ,
+                project : project
+            })
+        }
+        else
+        {
+            res.json({
+                status : false
+            })
+        }
+       });
+    
+ }
+
  
+
 

@@ -1,5 +1,6 @@
 import React, { useState,useLayoutEffect,useEffect } from "react";
 import { useCookies } from 'react-cookie'
+
 import {useSelector ,useDispatch } from 'react-redux';
 
 import { Route, Switch ,useHistory } from "react-router-dom";
@@ -12,8 +13,11 @@ import Accout from "./content/mAccout";
 import Maps from "./content/mMaps";
 import DataTable from "./content/mDataTable";
 import Notification from "./content/mNotifications";
+import ManageProject from "./content/mManageProject"
 
 import ClipLoader from "react-spinners/ScaleLoader";
+
+import {checkString} from "../services/fucServices"
 
 function MApp() {
   const dispatch =useDispatch()
@@ -30,15 +34,12 @@ function MApp() {
    useEffect(() => {
     setTimeout(() => {
       setIsLoading(!isLoading);
-      if(!_idProject){
-        dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+      if(!_idProject ||(!checkString(cookies.Auth))){
         removeCookie("Auth");
         history.push("/");
       }    
-    }, 100);
+    }, 200);
   }, []);
-
-
 
  
   if (isLoading) {
@@ -60,12 +61,13 @@ function MApp() {
         <Navbars />
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/manage/setting" component={Manage} />
-          <Route exact path="/manage/open-accout" component={Manage} />
           <Route exact path="/accouts" component={Accout} />
           <Route exact path="/maps" component={Maps} />
           <Route exact path="/tables" component={DataTable} />
           <Route exact path="/alarms" component={Notification} />
+          <Route exact path="/manage/project" component={ManageProject} />
+          <Route exact path="/manage/setting" component={Manage} />
+          <Route exact path="/manage/open-accout" component={Manage} />
         </Switch>
       </div>
     </React.Fragment>

@@ -7,7 +7,7 @@ import MenuManyElement from "../menu/menuManyElement"
 
 
 //
-const navRouter = [
+const navRouterAdmin = [
   {
     name: "Dashboard",
     to: "/dashboard",
@@ -52,24 +52,109 @@ const navRouter = [
       {
         name: "Setting",
         exact: true,
-        to: "/manage/setting"
+        to: "/manager/setting"
       },
       {
         name: "New Accout",
         exact: false,
-        to: "/manage/open-accout"
+        to: "/manager/open-accout"
       }
     ]
   }
+]
+
+const navRouter = [
+  {
+    name: "Dashboard",
+    to: "/dashboard",
+    exact: true,
+    isManyElenment: false,
+    icon: "home"
+  },
+  {
+    name: "Data Tables",
+    to: "/tables",
+    exact: false,
+    isManyElenment: false,
+    icon: "server"
+  },
+  {
+    name: "Alarms",
+    to: "/alarms",
+    exact: false,
+    isManyElenment: false,
+    icon: "bell"
+  },
+  {
+    name: "Maps",
+    to: "/maps",
+    exact: false,
+    isManyElenment: false,
+    icon: "map-pin"
+  },
+  {
+    name: "Accouts",
+    to: "/accouts",
+    exact: false,
+    isManyElenment: false,
+    icon: "user"
+  }
+]
+
+const navRouterManage = [
+  {
+    name: "Dashboard",
+    to: "/dashboard",
+    exact: true,
+    isManyElenment: false,
+    icon: "home"
+  },
+  {
+    name: "Data Tables",
+    to: "/tables",
+    exact: false,
+    isManyElenment: false,
+    icon: "server"
+  },
+  {
+    name: "Alarms",
+    to: "/alarms",
+    exact: false,
+    isManyElenment: false,
+    icon: "bell"
+  },
+  {
+    name: "Maps",
+    to: "/maps",
+    exact: false,
+    isManyElenment: false,
+    icon: "map-pin"
+  },
+  {
+    name: "Accouts",
+    to: "/accouts",
+    exact: false,
+    isManyElenment: false,
+    icon: "user"
+  },
+  {
+    name: "Manage",
+    to: "/manage/project",
+    exact: false,
+    isManyElenment: false,
+    icon: "users"
+  },
+  
+  
 ]
 
 
 function Navbar() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   //Redux
-  const isMenu = useSelector(state => state.isMenu);
+  //const isMenu = useSelector(state => state.isMenu);
   const role = useSelector((state) => state.setUserJWT).users.role;
-  if((role=='Administrator')&&(role == "Manager"))
+  if(role ==='Administrator')
   {
     return (
       <React.Fragment>
@@ -77,7 +162,7 @@ function Navbar() {
           <div className="navbar-list">
             <ul className="pcoded-item">
               {
-                navRouter.map((menu, index) => {
+                navRouterAdmin.map((menu, index) => {
                   if (!menu.isManyElenment) {
                     return (
                       <MenuLink key={index} label={menu.name} to={menu.to} activeOnlyWhenExact={menu.exact} icon={menu.icon} />
@@ -91,6 +176,26 @@ function Navbar() {
         </div>
       </React.Fragment>
     )}
+  if(role === "Manager")
+  {
+    return (
+      <React.Fragment>
+      <div className="pcoded-navbar">
+        <div className="navbar-list">
+          <ul className="pcoded-item">
+            {
+              navRouterManage.map((menu, index) => {
+                if (!menu.isManyElenment) {
+                  return (
+                    <MenuLink key={index} label={menu.name} to={menu.to} activeOnlyWhenExact={menu.exact} icon={menu.icon} />
+                  )}
+              })}
+          </ul>
+        </div>
+      </div>
+    </React.Fragment>
+    )
+  }
   return (
     <React.Fragment>
       <div className="pcoded-navbar">

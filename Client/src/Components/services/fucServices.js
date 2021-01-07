@@ -16,6 +16,17 @@ module.exports.checkNull = (valueNull) => {
    return role == "Administrator" ? true :false ;
 }
 
+module.exports.checkValue= (value) => {
+    if(value ===null ||value === undefined)
+          return true
+    return false
+}
+module.exports.checkString= (value) => {
+   if(value ||value === '')
+         return true
+   return false
+}
+
  
 
  //example key = V1=220&V1N=220 => getKeyValue: V1=220
