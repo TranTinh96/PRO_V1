@@ -28,7 +28,7 @@ var userSchema = new Schema({
             "ROLE_ADMIN",
             "ROLE_SEE",
             "ROLE_CONTROL" ,
-            "ROLE_AUTHOR"
+            "ROLE_MANAGER"
         ],
         default: "ROLE_SEE"
     },

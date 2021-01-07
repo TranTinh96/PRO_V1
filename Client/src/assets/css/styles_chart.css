@@ -278,3 +278,24 @@
 .table-hide-pagination .ant-table {
   font-size: 13px;
 }
+/*-------------------------------------------------------*/
+.avatar-container{
+  text-align: center;
+}
+.avatar-container h5{
+  font-size: 16px ;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 20px;
+
+}
+.avatar-container h6{
+  font-size: 14px ;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+.timeLine-container{
+  text-align: center;
+  margin-top: 70px;
+}

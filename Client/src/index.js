@@ -44,7 +44,7 @@ const Them = createMuiTheme({
 const cookies = new Cookies();
 var authToken = cookies.get("Auth")
 
-if (!checkUndefined(authToken) && ! checkTypeUndefined(authToken)) {
+if (!checkTypeUndefined(authToken)) {
   let jwtToken = jwt.decode(authToken)
   let role = checkRole(jwtToken.role);
   var users = {

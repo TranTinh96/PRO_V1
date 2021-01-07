@@ -83,7 +83,6 @@ const EditableAlarm = (props) => {
 
    //Loadding Add new
    useEffect(() => {
-    setData([])
     axios.post('/api/cabin/alarm/get-tag', {
        _idProject :props._idProject
     })

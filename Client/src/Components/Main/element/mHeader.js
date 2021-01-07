@@ -123,13 +123,13 @@ function MHeader() {
               >
                 <ul>
                   <li>
-                    <Link className="user-link" to="/accout">
+                    <Link className="user-link" to="/setting">
                       <Settings color="#2D8DC9" size={16} />
                       <span> Settings</span>
                     </Link>
                   </li>
                   <li>
-                    <Link className="user-link" to="/profile">
+                    <Link className="user-link" to="/accouts">
                       <User color="#2D8DC9" size={16} />
                       <span> Profile</span>
                     </Link>

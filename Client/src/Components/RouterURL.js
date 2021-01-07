@@ -14,10 +14,10 @@ import Page403 from "./Page/Page403"
 
 function RouterURL() {
     const  isAuthenticated = useSelector(state =>state.setUserJWT).isAuthenticated;
-     const users = useSelector((state) => state.setUserJWT).users;
+     const role = useSelector((state) => state.setUserJWT).users.role;
     
     if(isAuthenticated){
-        if(users.role=='Administrator')
+        if((role=='Administrator')&&(role == "Manager"))
         {
             return(
             <React.Fragment>

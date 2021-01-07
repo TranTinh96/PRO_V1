@@ -4,6 +4,8 @@ var cabinPhaseTwo = require("../models/data/cabinPhaseTwo.model")
 var cabinPhaseThree = require("../models/data/cabinPhaseThree.model")
 var cabinAlarm = require("../models/cabinAlarms.model")
 
+var Project = require("../models/project.model")
+
 var func =require("../../middlewares/func.Middleware")
 
 /**
@@ -137,6 +139,28 @@ module.exports.updateTagAlarm = async(req,res,next) =>{
        });
  }
 
+ /**
+  * Accout
+  */
+ module.exports.infoAccout = async(req,res,next) =>{
+    var reqBody = req.body
+    var tokenProject = reqBody._idProject;
+    Project.getByTokenProject(tokenProject ,(err, project)=>{
+        if( !err && !func.checkNull(project)){
+            res.json({
+                status: true ,
+                project : project
+            })
+        }
+        else
+        {
+            res.json({
+                status : false
+            })
+        }
+       });
+    
+ }
 
 
 

@@ -11,6 +11,11 @@ module.exports.checkTypeUndefined = (value) => {
 module.exports.checkNull = (valueNull) => {
     return valueNull == null ? true :false ;
  }
+
+ module.exports.checkRole = (role) => {
+   return role == "Administrator" ? true :false ;
+}
+
  
 
  //example key = V1=220&V1N=220 => getKeyValue: V1=220

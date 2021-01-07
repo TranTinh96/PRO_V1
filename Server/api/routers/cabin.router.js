@@ -20,4 +20,8 @@ router.post("/dataTimeDays" ,cabinController.postDataDays)
  router.post ("/alarm/edit-tag" ,cabinController.updateTagAlarm);
  router.post ("/alarm/delete-tag" ,cabinController.deleteTagAlarm);
 
+ //Accouts
+router.post("/accouts/information",cabinController.infoAccout)
+
+
 module.exports = router;
