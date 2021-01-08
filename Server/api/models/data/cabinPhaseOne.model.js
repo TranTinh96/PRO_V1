@@ -42,7 +42,7 @@ var cabinPhaseOneSchema = new Schema({
 
 var cabinPhaseOne = module.exports= mongoose.model("cabinPhaseOne", cabinPhaseOneSchema)
 module.exports.findDocumentCabinPhaseOne = async( topic,cb ) =>{
-    var day =funcMqtt.getDay();
+    
     await cabinPhaseOne.findOne({device_id:topic ,day : day} ,cb)
 }
 module.exports.createDocumentCabinPhaseOne = async(topic,dataPhaseOne,cb ) =>{
