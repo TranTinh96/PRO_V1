@@ -47,7 +47,6 @@ module.exports.postDataHours = async(req,res,next) =>{
     var dataPhaseOne = await cabinPhaseOne.findPhaseOneWeeks(device_id);
     var dataPhaseTwo = await cabinPhaseTwo.findPhaseTwoWeeks(device_id);
     var dataPhaseThree = await cabinPhaseThree.findPhaseThrewwWeeks(device_id);
-    console.log(dataSummary)
     res.json({
         dataSummary :dataSummary ,
         dataPhaseOne : dataPhaseOne ,

@@ -1,6 +1,6 @@
-import React, { useState,useLayoutEffect,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { useCookies } from 'react-cookie'
-
+import jwt from 'jsonwebtoken';
 import {useSelector ,useDispatch } from 'react-redux';
 
 import { Route, Switch ,useHistory } from "react-router-dom";
@@ -18,6 +18,7 @@ import ManageProject from "./content/mManageProject"
 import ClipLoader from "react-spinners/ScaleLoader";
 
 import {checkString} from "../services/fucServices"
+import checkRole from "../services/fucRole";
 
 function MApp() {
   const dispatch =useDispatch()
@@ -29,7 +30,9 @@ function MApp() {
 
    //Cookie
    const [cookies, removeCookie] = useCookies(["Auth"]);
- 
+   let jwtToken = jwt.decode(cookies.Auth)
+   var role =checkRole(jwtToken.role);
+
    //Connect MQTT
    useEffect(() => {
     setTimeout(() => {
@@ -56,9 +59,9 @@ function MApp() {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header role={role} />
       <div className="pcoded-main-container">
-        <Navbars />
+        <Navbars role={role} />
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/accouts" component={Accout} />

@@ -1,9 +1,7 @@
-import React from "react"
-import {useSelector} from 'react-redux';
+import React,{useEffect} from "react"
 //Menu
 import MenuLink from '../menu/menuLink'
 import MenuManyElement from "../menu/menuManyElement"
-
 
 
 //
@@ -149,12 +147,12 @@ const navRouterManage = [
 ]
 
 
-function Navbar() {
+function Navbar(props) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   //Redux
   //const isMenu = useSelector(state => state.isMenu);
-  const role = useSelector((state) => state.setUserJWT).users.role;
-  if(role ==='Administrator')
+
+  if(props.role =='Administrator')
   {
     return (
       <React.Fragment>
@@ -176,7 +174,7 @@ function Navbar() {
         </div>
       </React.Fragment>
     )}
-  if(role === "Manager")
+  if(props.role == "Manager")
   {
     return (
       <React.Fragment>
