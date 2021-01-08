@@ -37,10 +37,13 @@ function MApp() {
    useEffect(() => {
     setTimeout(() => {
       setIsLoading(!isLoading);
-      if(!_idProject ||(!checkString(cookies.Auth))){
-        removeCookie("Auth");
-        history.push("/");
-      }    
+      if(role !=="Administrator")
+      {
+        if(!_idProject ||(!checkString(cookies.Auth))){
+          removeCookie("Auth");
+          history.push("/");
+        }   
+      }
     }, 200);
   }, []);
 

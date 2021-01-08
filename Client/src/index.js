@@ -59,8 +59,17 @@ if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
   
     //Redux ProjectID
     store.dispatch({type :"PROJECT_ID_REGISTER" ,projectID : null})
-    store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
+    if(role = "Administrator")
+    {
+      store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :"ADMIN"})
     
+    }
+    else
+    {
+      store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
+    
+    }
+
     //Set Axios 
   }
 
