@@ -126,7 +126,7 @@ module.exports = (clientMQTT) => {
             cabinAlarm.editCabinAlarm(topic,arrLastAlarm)
           
            //Task : Gửi dữ liệu MQTT
-             clientMQTT.publish("1122331", "1232")
+             //clientMQTT.publish("1122331", "1232")
           }
 
          });         

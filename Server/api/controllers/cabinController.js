@@ -44,9 +44,15 @@ module.exports.postDataHours = async(req,res,next) =>{
  module.exports.postDataWeeks = async(req,res,next) =>{
     let device_id = req.body._idProject;
     var dataSummary = await cabinSummary.findSumaryWeeks(device_id);
-  
+    var dataPhaseOne = await cabinPhaseOne.findPhaseOneWeeks(device_id);
+    var dataPhaseTwo = await cabinPhaseTwo.findPhaseTwoWeeks(device_id);
+    var dataPhaseThree = await cabinPhaseThree.findPhaseThrewwWeeks(device_id);
+    console.log(dataSummary)
     res.json({
         dataSummary :dataSummary ,
+        dataPhaseOne : dataPhaseOne ,
+        dataPhaseTwo : dataPhaseTwo ,
+        dataPhaseThree : dataPhaseThree
     })
  }
 

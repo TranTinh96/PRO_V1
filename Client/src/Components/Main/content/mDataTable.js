@@ -115,6 +115,7 @@ function MDataTable() {
             break;
           //Weeks
           case "weeks":
+
               axios.post('/api/cabin/dataTimeWeeks', {
                 _idProject :_idProject
               })

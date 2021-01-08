@@ -106,3 +106,24 @@ module.exports.findPhaseThreeDays = async (device_id) =>{
         return []
     }
 }
+
+module.exports.findPhaseThrewwWeeks = async (device_id) =>{
+
+    var dataPhaseThree =[];
+    var date = new Date()
+    const minHours = parseFloat(date.getTime()-7*24*3600*1000);
+    const data = await cabinPhaseThree.find({device_id :device_id});
+    for (let i = 0; i < data.length; i++) {
+        var timeData =data[i].samplesPhaseThree;
+        for (let i = 0; i < timeData.length; i++) {
+            let time =parseFloat(timeData[i].time)
+            if(minHours <= time)
+            {
+                dataPhaseThree.push(timeData[i]);
+            }
+             
+        }  
+    }
+     
+    return dataPhaseThree;
+}

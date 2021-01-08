@@ -115,12 +115,11 @@ module.exports.findSumaryDays = async (device_id) =>{
 module.exports.findSumaryWeeks = async (device_id) =>{
 
     var dataSummary =[];
-    var day =funcMqtt.getDay();
+    var date = new Date()
     const minHours = parseFloat(date.getTime()-7*24*3600*1000);
-    const data = await cabinSummary.find({device_id :device_id, day: day}).exec();
-    var timeData =data[0].samplesSummary;
-    if( ! func.checkUndefined(timeData))
-    {
+    const data = await cabinSummary.find({device_id :device_id});
+    for (let i = 0; i < data.length; i++) {
+        var timeData =data[i].samplesSummary;
         for (let i = 0; i < timeData.length; i++) {
             let time =parseFloat(timeData[i].time)
             if(minHours <= time)
