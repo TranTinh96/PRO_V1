@@ -1,5 +1,5 @@
 import React, { useState ,useEffect ,useLayoutEffect } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag} from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag ,Tooltip} from 'antd';
 import axios from 'axios'
 import { useDispatch ,useSelector } from "react-redux";
 
@@ -44,6 +44,7 @@ const EditableUser = (props) => {
 
   const dispatch = useDispatch()
   const _idProject = useSelector((state) => state.idTopicProject);
+  const isLoaddingAccoutManage = useSelector((state) => state.isLoaddingAccoutManage);
 
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -53,11 +54,9 @@ const EditableUser = (props) => {
 
   const edit = (record) => {
     form.setFieldsValue({
-      HH: '',
-      H: '',
-      L: '',
-      LL: '',
-      Rate: '',
+      FullName: '',
+      Email: '',
+      Role: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -67,14 +66,15 @@ const EditableUser = (props) => {
     setEditingKey('');
   };
 
-  const deleteTag = async (key) => {
+  //Delete User Manage
+  const deleteTag = async (record) => {
     const newData = [...data];
-    newData.splice( parseInt(key), 1);
+    newData.splice( parseInt(record.key), 1);
     setData(newData);
     setEditingKey('');
-    axios.post('/api/cabin/alarm/delete-tag', {
-      _idProject :_idProject ,
-      index : parseInt(key)
+    axios.post('/api/manage/project/delete', {
+      email :record.email ,
+      
    })
     .then(function (res) {})
   };
@@ -87,7 +87,6 @@ const EditableUser = (props) => {
     })
     .then(function (res) {
       let resData=res.data ;
-      console.log(resData)
       if(resData.status){
         var dataInit = resData.users;
         for (let i = 0; i < dataInit.length; i++) {
@@ -96,8 +95,7 @@ const EditableUser = (props) => {
             dataInit[i].tags = [ dataInit[i].role]
       }
       setData(dataInit)
-
-      console.log(dataInit)
+      dispatch({type:"NO_LOADDING_ACCOUT_MANAGE"})   
     }
     
   })
@@ -105,41 +103,24 @@ const EditableUser = (props) => {
       console.log(error);
     });
 
-  }, [])
+  }, [isLoaddingAccoutManage])
 
 
   //Save Edit Table
   const save = async (record,key) => {
     try {
       const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey('');
-      }
       //Post Data Edit
-      var newFomatData = {
-        HH: parseInt(row.HH),
-        H: parseInt(row.H),
-        L: parseInt(row.L),
-        LL: parseInt(row.LL),
-        Rate: parseInt(row.Rate),
-      }
-      axios.post('/api/cabin/alarm/edit-tag', {
-          _idProject :props._idProject ,
-          dataEditAlarm : newFomatData ,
-          index : parseInt(key)
-       })
-     .then(function (res) {})
-
+      axios.post('/api/manage/project/edit', {
+        record : record,
+        role : row.tags
+        })
+      .then(function (res) {
+        if(res.status){
+          dispatch({type:"LOADDING_ACCOUT_MANAGE"})
+        }
+      })
+      setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
@@ -175,10 +156,26 @@ const EditableUser = (props) => {
           <>
             {tags.map(tag => {
               let color = 'success';
+              switch (tag) {
+                case 'ROLE_MANAGE':
+                    color = 'success';              
+                  break;
+                case 'ROLE_SEE':
+                    color = 'purple';
+                  break;
+                case 'ROLE_CONTROL':
+                    color = 'geekblue';
+                  break;
+                default:
+                  break;
+              }
               return (
-                <Tag color={color} key={tag}>
-                  {tag.toUpperCase()}
-                </Tag>
+                <Tooltip overlayStyle={{fontSize:10}} placement="topLeft"  title="ROLE_MANAGER , ROLE_CONTROL & ROLE_SEE">
+                  <Tag color={color} key={tag}>
+                      {tag.toUpperCase()}
+                  </Tag>
+                </Tooltip>
+              
               );
             })}
           </>
@@ -211,8 +208,8 @@ const EditableUser = (props) => {
                   Edit
               </Typography.Link>
               <Typography.Link disabled={editingKey !== ''}>
-                <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record.key)}>
-                <a   style={{marginLeft: 12,}}>Delete</a>
+                <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record)}>
+                   <a  style={{marginLeft: 12,}}>Delete</a>
               </Popconfirm>
               </Typography.Link>
           </span>
@@ -231,11 +228,6 @@ const EditableUser = (props) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'HH' ? 'number' : 'text',
-        inputType: col.dataIndex === 'H' ? 'number' : 'text',
-        inputType: col.dataIndex === 'L' ? 'number' : 'text',
-        inputType: col.dataIndex === 'LL' ? 'number' : 'text',
-        inputType: col.dataIndex === 'Rate' ? 'number' : 'text',
         inputType: col.dataIndex === 'value' ? 'number' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,

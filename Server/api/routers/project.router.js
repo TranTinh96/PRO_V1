@@ -20,8 +20,8 @@ router.delete("/open-accout/:id",userController.deleteUser)
 router.post("/project/infomation" ,projectController.postInfoProject)
 router.post("/project/get-user",userController.getUserManage)
 router.post("/project/open-accout",userController.createAccoutManage)
-router.put("/project/:id/:role",userController.updateAccout)
-router.delete("/project/:id",userController.deleteUser)
+router.post("/project/edit",userController.updateAccoutManage)
+router.post("/project/delete",userController.deleteUserManage)
 
 
 module.exports = router;

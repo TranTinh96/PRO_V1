@@ -183,3 +183,26 @@ module.exports.createAccoutManage = async(req,res,next) =>{
             }
         })
     }
+
+
+module.exports.deleteUserManage = async(req,res)=>{
+   User.deleteUserByEmail(req.body.email , (err ,user)=>{
+   })
+} 
+//Update Accout
+module.exports.updateAccoutManage = async(req,res)=>{
+    console.log(req.body)
+    User.updateUser(req.body.record.email , req.body.role ,(err ,user)=>{
+        if(!err){
+            res.json({
+                status :true
+            })
+        }
+        else
+        {
+            res.json({
+                status :false
+            })
+        }
+    })
+}

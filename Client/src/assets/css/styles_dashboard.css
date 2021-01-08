@@ -531,7 +531,7 @@
 }
 /* ------------ Table Custom ----------*/
 .container-table {
-  border-left: 3px solid #f7f8fc !important;
+  border-left: 0px solid #f7f8fc !important;
 }
 .container-table .MuiPaper-root {
   box-shadow: none !important;
@@ -688,6 +688,8 @@
     letter-spacing: 2px;
     transition: border 1s;
     height: 47px !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
 }
 .btn-edit{
   margin-top: 30px;

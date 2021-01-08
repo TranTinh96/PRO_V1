@@ -14,7 +14,7 @@ function ManageProject() {
     //Router
     const history = useHistory();
     const _idProject = useSelector((state) => state.idTopicProject);
-
+    const dispatch = useDispatch()
   
     var [user, setUser] = useState([])
    
@@ -41,18 +41,7 @@ function ManageProject() {
             .then(res => {
                 var Res = res.data
                 if (Res.success && Res.isEmail) {
-                    /*
-                    axios.get('/api/manage/open-accout')
-                        .then(res => {
-                            var Res = res.data
-                            if (Res.success) {
-                                setUser(Res.data)
-                            }
-                        })
-                        .catch(err => {
-                            history.push("/")
-                        });
-                        */
+                    dispatch({type :"LOADDING_ACCOUT_MANAGE"})
                 } else {
                     setError("email", "emailExits", Res.message)
                 }
