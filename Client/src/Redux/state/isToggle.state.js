@@ -25,6 +25,8 @@ var isMenu = (state = true, action) => {
     switch (action.type) {
       case "LOADDING_DASHBOARD":
         return true;
+      case "NO_LOADDING_DASHBOARD":
+        return false;
       default:
         return false;
     }
@@ -38,6 +40,8 @@ var isMenu = (state = true, action) => {
         return false;
     }
   };
+
+
   var isLoaddingAlarm  = (state = false, action) => {
     switch (action.type) {
       case "LOADDING_ALARM":

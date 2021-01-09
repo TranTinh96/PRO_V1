@@ -24,7 +24,7 @@ const columns = [
   ];
 
 function TableInfoProject() {
-    const _idProject = useSelector((state) => state.idTopicProject);
+    const _idProject = localStorage.getItem("AuthID");
     const [data, setData] = useState([]);
     var infoProject = [{
         key :" ",

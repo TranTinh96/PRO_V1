@@ -59,7 +59,7 @@ if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
   
     //Redux ProjectID
     store.dispatch({type :"PROJECT_ID_REGISTER" ,projectID : null})
-    if(role = "Administrator")
+    if(role == "Administrator")
     {
       store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :"ADMIN"})
     
@@ -67,7 +67,7 @@ if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
     else
     {
       store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
-    
+      localStorage.setItem("AuthID",jwtToken.project_id)
     }
 
     //Set Axios 

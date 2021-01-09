@@ -64,7 +64,8 @@ function AuLogin() {
                         dispatch({
                             type :"ID_TOPIC_PROJECT" ,
                             _idProject : "ADMIN"
-                        })                       
+                        })   
+                        localStorage.setItem("AuthID","ADMIN")                    
                     }
                     else
                     {
@@ -72,6 +73,7 @@ function AuLogin() {
                             type :"ID_TOPIC_PROJECT" ,
                             _idProject :jwtToken.project_id
                         })
+                        localStorage.setItem("AuthID",jwtToken.project_id)
                         
                     }
                    
@@ -87,6 +89,7 @@ function AuLogin() {
                     setCookie('Auth', authToken, optionCookie);
                     //Redirect
                     history.push("/dashboard");
+                    
                    
                 } else {
                     if (!resData.email) {

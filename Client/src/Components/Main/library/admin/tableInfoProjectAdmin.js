@@ -1,4 +1,4 @@
-import React, { useState ,useEffect ,useLayoutEffect } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag ,Tooltip} from 'antd';
 import axios from 'axios'
 import { useDispatch ,useSelector } from "react-redux";
@@ -43,7 +43,7 @@ const EditableCell = ({
 const EditableUser = (props) => {
 
   const dispatch = useDispatch()
-  const _idProject = useSelector((state) => state.idTopicProject);
+  const _idProject = localStorage.getItem("AuthID");
   const isLoaddingAccoutManage = useSelector((state) => state.isLoaddingAccoutManage);
 
   const [form] = Form.useForm();

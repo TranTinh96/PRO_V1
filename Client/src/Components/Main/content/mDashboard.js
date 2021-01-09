@@ -18,6 +18,7 @@ import v13 from "../../../assets/Image/vonke/v13.png"
 import v23 from "../../../assets/Image/vonke/v23.png"
 import i from "../../../assets/Image/vonke/i.png"
 import control from "../../../assets/Image/vonke/remote-control.png"
+import TableSelecProjectAdmin from "../library/admin/tableSelecProjectAdmin"
 
  //Function
 import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
@@ -64,8 +65,8 @@ function MDashbard(props) {
     //Calendar
     const [timeInput, setTimeInput] = useState(currentDateInput())
 
-      //Redux
-     const _idProject = useSelector((state) => state.idTopicProject);
+      
+    const _idProject = localStorage.getItem("AuthID");
 
     const [clientMQTT, setClientMQTT] = useState(null);
     const [connectStatus, setConnectStatus] = useState("Connect");
@@ -123,51 +124,52 @@ function MDashbard(props) {
         if(isLoaddingDashboard){
             history.go(0);
         }
-        
-        setClientMQTT(mqtt.connect(host, options));
+        if((_idProject !="ADMIN" )&& (_idProject !== null))
+        {
+            setClientMQTT(mqtt.connect(host, options));
+        }
         dispatch({type:"LOADDING_TABLE"})
         dispatch({type:"LOADDING_ALARM"})
+       
 
     }, []);
 
      //Client MQTT
      useLayoutEffect(() => {
-    if (clientMQTT) {
-      clientMQTT.on("connect", () => {
-          console.log("MQTT Connecting " + _idProject)
-        setConnectStatus("Connected");
-        if (_idProject) {
-          clientMQTT.subscribe(_idProject, (error) => {
-            if (error) {
-              console.log("Subscribe to topics error", error);
-             
+     if (clientMQTT) {
+            clientMQTT.on("connect", () => {
+                console.log("MQTT Connecting " + _idProject)
+                setConnectStatus("Connected");
+                clientMQTT.subscribe(_idProject, (error) => {
+                    if (error) {
+                    console.log("Subscribe to topics error", error);
+                    
+                    }
+                });
+            
+            });
+            clientMQTT.on("error", (err) => {
+                setConnectStatus("Connection error");
+                console.error("Connection error: ", err);
+                
+            });
+            clientMQTT.on("reconnect", () => {
+                setConnectStatus("Reconnecting");
+            });
+
+            clientMQTT.on("disconnect", () => {
+                setConnectStatus("Disconnect");
+            });
+
+            clientMQTT.on("message", (topic, message) => {
+                setTopic(topic)
+                const payload = message.toString();
+                setPayload(payload);
+            });
             }
-          });
-        }
-       
-      });
-      clientMQTT.on("error", (err) => {
-        setConnectStatus("Connection error");
-        console.error("Connection error: ", err);
-        
-      });
-      clientMQTT.on("reconnect", () => {
-        setConnectStatus("Reconnecting");
-      });
-
-      clientMQTT.on("disconnect", () => {
-        setConnectStatus("Disconnect");
-      });
-
-      clientMQTT.on("message", (topic, message) => {
-        setTopic(topic)
-        const payload = message.toString();
-        setPayload(payload);
-      });
-    }
-    return () => {
-         
-     };
+            return () => {
+                
+            };
   }, [clientMQTT]);
 
   //Payload
@@ -293,6 +295,9 @@ function MDashbard(props) {
                                     </div>                                    
                                 </div>
                                 {/* --------------------- Header Dashboard -------------------------*/}
+                                <div className ="m-t-20 showProject-container">
+                                    <TableSelecProjectAdmin/>
+                                </div>
                                 <div className="row m-t-20">
                                          <div className="col-md-6 col-xl-3">
                                             <div  className="card">

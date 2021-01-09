@@ -15,7 +15,7 @@ function Accout() {
     const emailUser = useSelector((state) => state.setUserJWT).users.email;
     const nameUser = useSelector((state) => state.setUserJWT).users.user;
     const roleUser = useSelector((state) => state.setUserJWT).users.role;
-    const _idProject = useSelector((state) => state.idTopicProject);
+    const _idProject = localStorage.getItem("AuthID");
 
     useEffect(() => {
         if(! checkTypeUndefined(_idProject)){

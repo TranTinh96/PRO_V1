@@ -8,7 +8,7 @@ import Header from "./element/mHeader";
 import Navbars from "./element/mNavbar";
 //Content
 import Dashboard from "./content/mDashboard";
-import Manage from "./content/mManage";
+import Manage from "./content/mAdmin";
 import Accout from "./content/mAccout";
 import Maps from "./content/mMaps";
 import DataTable from "./content/mDataTable";
@@ -43,8 +43,11 @@ function MApp() {
           removeCookie("Auth");
           history.push("/");
         }   
+        localStorage.setItem("AuthID",_idProject)
+        dispatch({type :"ID_TOPIC_PROJECT" ,_idProject : _idProject})
       }
     }, 200);
+    
   }, []);
 
  

@@ -50,12 +50,12 @@ const navRouterAdmin = [
       {
         name: "Setting",
         exact: true,
-        to: "/manager/setting"
+        to: "/manage/setting"
       },
       {
         name: "New Accout",
         exact: false,
-        to: "/manager/open-accout"
+        to: "/manage/open-accout"
       }
     ]
   }

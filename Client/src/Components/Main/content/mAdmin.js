@@ -6,7 +6,7 @@ import mManageRegister from "../mMiniComponent/manageRegisterUser"
 
 
 
-function mManage() {
+function Manage() {
     return (
         <div className="pcoded-content">
             <div className="pcoded-inner-content pcoded-inner-padding">
@@ -16,7 +16,7 @@ function mManage() {
                             {/* Nội dung của Manage  */}
                             <Switch>
                                 <Route exact path="/manage/setting" component={mManageSetting} />
-                                <Route path="/manage/open-accout" component={mManageRegister} />
+                                {/*<Route path="/manage/open-accout" component={mManageRegister} /> */}
                             </Switch>
                         </div>
                     </div>
@@ -27,4 +27,4 @@ function mManage() {
     )
 }
 
-export default mManage
+export default Manage

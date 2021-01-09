@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { Search, X } from 'react-feather';
 
-import TableInfoProject from "../library/tableInfoProject"
-import TableEditUser from "../library/tableEditUser"
+import TableInfoProject from "../library/manage/tableInfoProject"
+import TableEditUser from "../library/manage/tableEditUser"
 
 //Infomation Project
 function ManageProject() {

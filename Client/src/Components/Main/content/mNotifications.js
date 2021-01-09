@@ -37,7 +37,7 @@ function MNotifications() {
   const history = useHistory()
   const dispatch = useDispatch();
   
-  const _idProject = useSelector((state) => state.idTopicProject);
+  const _idProject = localStorage.getItem("AuthID");
   const isLoaddingAlarm = useSelector((state) => state.isLoaddingAlarm);
   
   const [clientMQTT, setClientMQTT] = useState(null);
@@ -50,9 +50,16 @@ function MNotifications() {
     if (isLoaddingAlarm) {
       history.go(0);
     }
-    setClientMQTT(mqtt.connect(host, options));
+    if((_idProject !="ADMIN" )&& (_idProject !== null))
+    {
+      setClientMQTT(mqtt.connect(host, options));
+      localStorage.setItem("AuthID",_idProject)
+      dispatch({type :"ID_TOPIC_PROJECT" ,_idProject : _idProject})
+
+    }
     dispatch({ type: "LOADDING_DASHBOARD" });
     dispatch({type:"LOADDING_TABLE"})
+ 
   }, []);
 
 
@@ -62,15 +69,14 @@ function MNotifications() {
     if (clientMQTT) {
       clientMQTT.on("connect", () => {
           console.log("MQTT Connecting " + _idProject)
-        setConnectStatus("Connected");
-        if (_idProject) {
+          setConnectStatus("Connected");
           clientMQTT.subscribe(_idProject, (error) => {
             if (error) {
               console.log("Subscribe to topics error", error);
               setClientMQTT(mqtt.connect(host, options));
             }
           });
-        }
+    
        
       });
       clientMQTT.on("error", (err) => {
@@ -95,7 +101,7 @@ function MNotifications() {
     return () => {
          
      };
-  }, [clientMQTT]);
+  }, [clientMQTT ]);
 
    //Payload
    useLayoutEffect(() => {

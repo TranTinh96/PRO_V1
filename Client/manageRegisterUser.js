@@ -3,17 +3,51 @@ import FeatherIcon from 'feather-icons-react';
 import { useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import { makeStyles } from '@material-ui/core/styles';
 import { Search, X } from 'react-feather';
 import checkRole from "../../services/fucRole"
 
+const useStyles = makeStyles({
+    root: {
+        border: 1,
+        borderRadius: 3,
+        color: 'black',
+        padding: '5px 20px',
+        '&:hover': {
+            border: 1,
+            borderColor: "#538DDF",
 
+        },
+        '&:active': {
+            border: 1,
+            borderColor: "#538DDF",
+
+        },
+    },
+    text: {
+        color: "#727cf5",
+        fontSize: 15,
+        wordSpacing: 2
+    },
+    textedit: {
+        color: "#727cf5",
+        fontSize: 17,
+        wordSpacing: 2
+    }
+
+});
 
 //Infomation Project
 function ManageRegisterUser() {
     //Router
     const history = useHistory();
 
+    const classes = useStyles();
     //useState
     var [user, setUser] = useState([])
     var [project, setProject] = useState([])
@@ -30,6 +64,99 @@ function ManageRegisterUser() {
 
     //Form
     const { register, handleSubmit, errors, setError, watch, formState: { isSubmitting } } = useForm();
+
+    //Handle DELETE
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleDisagree = () => {
+        setOpen(false);
+    };
+
+    const handleAgree = (id) => (reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        axios.delete(`/api/manage/open-accout/${id}`)
+            .then(res => {
+                var Res = res.data
+                if (Res.success) {
+                    //Lấy lại dữ lieu
+                    axios.get('/api/manage/open-accout')
+                        .then(res => {
+                            var Res = res.data
+                            if (Res.success) {
+                                setUser(Res.data)
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                } else {
+                    setError("nameProject", "alreadyName", "Project delete  Fail")
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        setOpen(false);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+    //EDIT
+    const handleClickOpenEDIT = () => {
+        setOpenEdit(true);
+    };
+    const handleCloseEdit = () => {
+
+        setOpenEdit(false);
+    };
+
+    const handleEdit = (id) => (reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        axios.put(`/api/manage/open-accout/${id}/${role}`)
+        .then(res => {
+            var Res = res.data
+            if (Res.success) {
+                //Lấy lại dữ lieu
+                axios.get('/api/manage/open-accout')
+                    .then(res => {
+                        var Res = res.data
+                        if (Res.success) {
+                            setUser(Res.data)
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            } else {
+                
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+       
+        setOpen(false);
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+    };
+
+    const handleChangeRole = (e) => {
+        console.log(e.target.value)
+        setRole(e.target.value);
+      };
+    
+
+
 
 
     //Submit
@@ -89,6 +216,71 @@ function ManageRegisterUser() {
         */
         
     }, [])
+    //Maps -List
+    const InfoDetailUser = user.map((info, index) => {
+        return (
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{info.userName}</td>
+                <td>{info.email}</td>
+                <td>{checkRole(info.role)}</td>
+                <td>{info.project_id}</td>
+                <td className="manage-table-tb-delete">
+                     {/* DELETE */}
+                    <FeatherIcon icon="trash-2" size={18} color="red" onClick={handleClickOpen} />
+                    <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description" className={classes.text}>
+                                You definitely want to delete the project ?
+                             </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleDisagree} variant="outlined" disableRipple size="small" color="primary" className={classes.root}>
+                                Disagree
+                            </Button>
+                            <Button onClick={handleAgree(info._id)} variant="outlined" disableRipple color="primary" size="small" autoFocus className={classes.root} >
+                                Agree
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                    {/* EDIT */}
+                    <FeatherIcon icon="edit-2" size={18} color="red" className="m-l-10" onClick={handleClickOpenEDIT} />
+                    <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={openEdit} onClose={handleCloseEdit} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description" className={classes.textedit}>
+                                Edit User
+                             </DialogContentText>
+                                <div class="form-group form-input-edit m-b-20">
+                                        <label className="my-1 mr-2 form-lable-manage " for="role">ROLE</label>
+                                        <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="role" n onChange={handleChangeRole} >
+                                            <option selected>Choose...</option>
+                                            <option value="ROLE_SEE">User</option>
+                                            <option value="ROLE_CONTROL">Control</option>
+                                            <option value="ROLE_MANAGER">Manager</option>
+                                        </select>
+                                    </div>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleCancel} variant="outlined" disableRipple size="small" color="primary" className={classes.root}>
+                                Cancel
+                            </Button> 
+                            <Button onClick={handleEdit(info._id)} variant="outlined" disableRipple color="primary" size="small"  className={classes.root} >
+                                EDIT
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </td>
+            </tr>
+
+        )
+    })
+    //Project
+    const InfoDetailProject = project.map((info, index) => {
+        return (
+            <option value={info._id}>{info.nameProject}</option>
+        )
+    })
+
 
     return (
         <div className="row m-r-0 m-l-0">
@@ -157,7 +349,7 @@ function ManageRegisterUser() {
                                     <label className="my-1 mr-2 form-lable-manage " for="nameProject">NAME PROJECT</label>
                                     <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="nameProject" name="project_id" ref={register}>
                                         <option selected>Choose...</option>
-                                       
+                                        {InfoDetailProject}
 
                                     </select>
                                 </div>
@@ -207,8 +399,21 @@ function ManageRegisterUser() {
                                 <Search color="#2D8DC9" size={15} className={isSearch ? "icon-search-manage-show d-line" : "d-none"} onClick={() => setSearch(!isSearch)} />
                             </div>
                             <div className="table-manage">
-                               
-                                
+                                <table className="table table-centered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>USER NAME</th>
+                                            <th>EMAIL</th>
+                                            <th>ROLE</th>
+                                            <th>PROJECT ID</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {InfoDetailUser}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

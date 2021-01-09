@@ -42,7 +42,7 @@ function MDataTable() {
   const history = useHistory()
   const dispatch = useDispatch();
   
-  const _idProject = useSelector((state) => state.idTopicProject);
+  const _idProject = localStorage.getItem("AuthID");;
   const isLoaddingTable = useSelector((state) => state.isLoaddingTable);
   var summaryData = useSelector((state) => state.SUMMARY);
   var phaseOneData = useSelector((state) => state.PhaseOne);
@@ -71,10 +71,13 @@ function MDataTable() {
     if (isLoaddingTable) {
       history.go(0);
     }
-    setClientMQTT(mqtt.connect(host, options));
+     if((_idProject !="ADMIN" )&& (_idProject !== null))
+     {      setClientMQTT(mqtt.connect(host, options));
+    }
     dispatch({ type: "LOADDING_DASHBOARD" });
     dispatch({type:"LOADDING_ALARM"})
-  }, []);
+   
+  },[]);
 
 
   //Time Sheet Api
@@ -142,18 +145,17 @@ function MDataTable() {
 
   //Client MQTT
   useLayoutEffect(() => {
-    if (clientMQTT) {
+    if (clientMQTT ) {
       clientMQTT.on("connect", () => {
           console.log("MQTT Connecting " + _idProject)
-        setConnectStatus("Connected");
-        if (_idProject) {
-          clientMQTT.subscribe(_idProject, (error) => {
+         setConnectStatus("Connected");
+         clientMQTT.subscribe(_idProject, (error) => {
             if (error) {
               console.log("Subscribe to topics error", error);
               setClientMQTT(mqtt.connect(host, options));
             }
           });
-        }
+    
        
       });
       clientMQTT.on("error", (err) => {

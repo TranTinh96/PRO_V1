@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState,useEffect} from "react";
-import {Link} from "react-router-dom"
+import {Link ,useHistory} from "react-router-dom"
 import { useCookies } from 'react-cookie';
 import {useSelector ,useDispatch} from 'react-redux';
 import { Search ,Menu,Bell,List ,ChevronDown ,ChevronUp ,Settings,User,Lock,Power,X} from 'react-feather';
@@ -13,6 +13,7 @@ import userlogo from "../../../assets/Image/loggeduser.jpg"
 function MHeader() {
   //Cookie
   const [cookies, removeCookie] = useCookies(["Auth"]);
+  const history = useHistory()
   //Redux
   const isMenu = useSelector((state) => state.isMenu);
   const userName = useSelector((state) => state.setUserJWT).users.user;
@@ -25,8 +26,11 @@ function MHeader() {
   const btnLogout = () => {
     console.log("Remove Cookies ");
     //Redux User JWT
-    dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
     removeCookie("Auth");
+    dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+    localStorage.removeItem("AuthID")
+    history.push("/")
+    history.go(0)
   };
 
   return (

@@ -1,8 +1,5 @@
-import React,{useState, useEffect} from 'react'
-import axios from "axios"
+import React,{useEffect} from 'react'
 import { useDispatch ,useSelector} from "react-redux";
-import { Timeline ,Avatar } from 'antd';
-import { ClockCircleOutlined,FileProtectOutlined ,UserOutlined } from '@ant-design/icons';
 
 import ManageProject from "../mMiniComponent/manageProject"
 import {checkTypeUndefined} from "../../services/fucServices"
@@ -12,7 +9,7 @@ function Accout() {
     var dispatch = useDispatch()
 
 
-    const _idProject = useSelector((state) => state.idTopicProject);
+    const _idProject = localStorage.getItem("AuthID");
 
     useEffect(() => {
         if(! checkTypeUndefined(_idProject)){
