@@ -83,7 +83,7 @@ const TableSelecProjectAdmin = (props) => {
       axios.get('/api/manage/setting')
       .then(function (res) {
         let resData=res.data ;
-        if(resData.success){
+        if(resData.status){
           var dataInit = resData.data;
           console.log(dataInit)
           for (let i = 0; i < dataInit.length; i++) {
@@ -157,7 +157,7 @@ const TableSelecProjectAdmin = (props) => {
           <span>
               <Typography.Link disabled={editingKey !== ''}>
                 <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record)}>
-                   <a  style={{marginLeft: 0,}}>Action</a>
+                   <a  style={{marginLeft: 0,}}>Active</a>
               </Popconfirm>
               </Typography.Link>
           </span>

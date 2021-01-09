@@ -49,7 +49,7 @@ function AuLogin() {
         axios.post('/profile/login', data)
             .then(res => {
                 var resData = res.data
-               
+                localStorage.removeItem("AuthID")       
                 if (resData.success) {
                     var authToken = resData.token;
                     jwtToken =jwt.decode(authToken)

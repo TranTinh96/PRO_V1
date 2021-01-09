@@ -8,7 +8,7 @@ var userController = require("../controllers/userController")
 //Admin setting
 router.get("/setting" ,projectController.getDataProject)
 router.post("/setting",projectController.postSetting)
-router.delete("/setting/:id", projectController.deleteProject);
+router.post("/setting/delete", projectController.deleteProject);
 
 // Admin Accout
 router.get("/open-accout",userController.getUser)

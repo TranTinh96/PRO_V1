@@ -50,7 +50,7 @@ module.exports.getByTokenProject = async (tokenID ,cb) =>{
 module.exports.getAllProject =async( cb ) =>{
     await Project.find(cb);
 }
-module.exports.deleteProject = async(id,cb)=>{
-    await Project.deleteOne({_id : id},cb);
+module.exports.deleteProject = async(tokenProject,cb)=>{
+    await Project.deleteOne({tokenProject : tokenProject},cb);
 }
 

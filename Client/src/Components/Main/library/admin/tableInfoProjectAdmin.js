@@ -72,8 +72,8 @@ const EditableUser = (props) => {
     newData.splice( parseInt(record.key), 1);
     setData(newData);
     setEditingKey('');
-    axios.post('/api/manage/project/delete', {
-      email :record.email ,
+    axios.post('/api/manage/setting/delete', {
+      _idProject :record.tokenProject ,
       
    })
     .then(function (res) {})
@@ -82,13 +82,12 @@ const EditableUser = (props) => {
 
    //Loadding Add new
    useEffect(() => {
-    axios.post('/api/manage/project/get-user', {
-       _idProject :_idProject
-    })
+    axios.get('/api/manage/setting')
     .then(function (res) {
       let resData=res.data ;
+      console.log(resData)
       if(resData.status){
-        var dataInit = resData.users;
+        var dataInit = resData.data;
         for (let i = 0; i < dataInit.length; i++) {
             dataInit[i].key = i.toString();
             dataInit[i].STT = i ;
@@ -106,110 +105,36 @@ const EditableUser = (props) => {
   }, [isLoaddingAccoutManage])
 
 
-  //Save Edit Table
-  const save = async (record,key) => {
-    try {
-      const row = await form.validateFields();
-      //Post Data Edit
-      axios.post('/api/manage/project/edit', {
-        record : record,
-        role : row.tags
-        })
-      .then(function (res) {
-        if(res.status){
-          dispatch({type:"LOADDING_ACCOUT_MANAGE"})
-        }
-      })
-      setEditingKey('');
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
 
   const columns = [
     {
-        title: 'STT',
-        dataIndex: 'STT',
-        width: '5%',
-        editable: false,
-      },
-    {
-      title: 'Full Name',
-      dataIndex: 'userName',
+      title: 'Name',
+      dataIndex: 'nameProject',
       width: '15%',
-      editable: false,
+      key: 'nameProject',
     },
     {
-        title: 'Email',
-        dataIndex: 'email',
-        width: '30%',
-        editable: false,
+      title: 'Token',
+      dataIndex: 'tokenProject',
+      width: '30%',
+      key: 'tokenProject',
     },
     {
-        title: 'Role',
-        key: 'tags',
-        width: '25%',
-        editable: true,
-        dataIndex: 'tags',
-        
-        render: tags => (
-          <>
-            {tags.map(tag => {
-              let color = 'success';
-              switch (tag) {
-                case 'ROLE_MANAGE':
-                    color = 'success';              
-                  break;
-                case 'ROLE_SEE':
-                    color = 'purple';
-                  break;
-                case 'ROLE_CONTROL':
-                    color = 'geekblue';
-                  break;
-                default:
-                  break;
-              }
-              return (
-                <Tooltip overlayStyle={{fontSize:10}} placement="topLeft"  title="ROLE_MANAGER , ROLE_CONTROL & ROLE_SEE">
-                  <Tag color={color} key={tag}>
-                      {tag.toUpperCase()}
-                  </Tag>
-                </Tooltip>
-              
-              );
-            })}
-          </>
-        ),
-        
+        title: 'Time',
+        dataIndex: 'timeCreate',
+        width: '20%',
+        key: 'timeCreate',
     },
     {
       title: 'Action',
       dataIndex: 'operation',
+      width: '10%',
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
+        return  (
           <span>
-            <a
-              href="javascript:;"
-              onClick={() => save(record, record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <span>
-              <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                  Edit
-              </Typography.Link>
               <Typography.Link disabled={editingKey !== ''}>
                 <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record)}>
-                   <a  style={{marginLeft: 12,}}>Delete</a>
+                   <a  style={{marginLeft: 12,}}>DEL</a>
               </Popconfirm>
               </Typography.Link>
           </span>

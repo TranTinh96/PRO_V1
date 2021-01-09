@@ -39,12 +39,12 @@ module.exports.getDataProject = async(req,res,next) =>{
     Project.getAllProject((err,project)=>{
         if(err){
             res.json({
-                success :false ,
+                status :false ,
                 message : "New Project Add Fail",
             })
         }else{
          res.json({
-             success :true ,
+             status :true ,
              message : "New Project Add Success",
              data : project
          })
@@ -56,7 +56,8 @@ module.exports.getDataProject = async(req,res,next) =>{
 //Delete Project
 
 module.exports.deleteProject = async(req,res)=>{
-    var projectID =  req.params.id;
+    var projectID =  req.body._idProject;
+    console.log(projectID)
     Project.deleteProject( projectID ,(err,project)=>{
         if(err){
 

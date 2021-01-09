@@ -4,12 +4,14 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useHistory } from "react-router-dom"
 import { Search, X } from 'react-feather';
+import TableInfoSetting from "../library/admin/tableInfoProjectAdmin"
+import { useDispatch ,useSelector } from "react-redux";
 
 
-//Infomation Project
 function ManageSetting() {
     //Router
     const history = useHistory();
+    const dispatch = useDispatch()
     //useState
     var [project, setProject] = useState([])
     const [open, setOpen] = useState(false);
@@ -28,16 +30,7 @@ function ManageSetting() {
             .then(res => {
                 var Res = res.data
                 if (Res.success) {
-                    axios.get('/api/manage/setting')
-                        .then(res => {
-                            var Res = res.data
-                            if (Res.success) {
-                                setProject(Res.data)
-                            }
-                        })
-                        .catch(err => {
-                            history.push("/")
-                        });
+                    dispatch({type:"LOADDING_ACCOUT_MANAGE"}) 
                 } else {
                     setError("nameProject", "alreadyName", "Name project already exits")
                 }
@@ -46,25 +39,10 @@ function ManageSetting() {
                 history.push("/")
             });
     };
-    //useEffect
-    useEffect(() => {
-        /*
-        axios.get('/api/manage/setting')
-            .then(res => {
-                var Res = res.data
-                if (Res.success) {
-                    setProject(Res.data)
-                }
-            })
-            .catch(err => {
-                history.push("/")
-            });
-            */
-    }, [])
 
     return (
         <div className="row m-r-0 m-l-0">
-            <div className="col-lg-6 col-md-12 col-sm-12 ">
+            <div className="col-lg-5 col-md-12 col-sm-12 ">
                 <div className="card border-0 background-setting card-manage">
                     <div className="card-body card-body-manage ">
                          <div className="page-title-box">
@@ -124,7 +102,7 @@ function ManageSetting() {
                                 </div>
                                 <div className="btn-form-container btn-form-manage">
                                     <button type="submit" className="btn btn-form shadow-none btn-manage" disabled={isSubmitting}  >
-                                        CREATE NEW PROJECT
+                                        CREATE 
                                     </button>
                                 </div>
 
@@ -137,7 +115,7 @@ function ManageSetting() {
                 </div>
             </div>
             {/*-----Table------ */}
-            <div className="col-lg-6 col-md-12 form-right-02 col-sm-12">
+            <div className="col-lg-7 col-md-12 form-right-02 col-sm-12">
                 <div className="container-table">
                     <div className="card border-0 background-setting">
                         <div className="card-body card-body-manage">
@@ -166,7 +144,7 @@ function ManageSetting() {
                                 <Search color="#2D8DC9" size={15} className={isSearch ? "icon-search-manage-show d-line" : "d-none"} onClick={() => setSearch(!isSearch)} />
                             </div>
                             <div className="table-manage">
-                               
+                               <TableInfoSetting/>
                             </div>
                         </div>
 
