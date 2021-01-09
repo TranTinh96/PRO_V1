@@ -1,156 +1,163 @@
-import React,{useEffect} from "react"
+import React,{useEffect ,useState} from "react"
 //Menu
 import MenuLink from '../menu/menuLink'
 import MenuManyElement from "../menu/menuManyElement"
 
-
-//
-const navRouterAdmin = [
-  {
-    name: "Dashboard",
-    to: "/dashboard",
-    exact: true,
-    isManyElenment: false,
-    icon: "home"
-  },
-  {
-    name: "Data Tables",
-    to: "/tables",
-    exact: false,
-    isManyElenment: false,
-    icon: "server"
-  },
-  {
-    name: "Alarms",
-    to: "/alarms",
-    exact: false,
-    isManyElenment: false,
-    icon: "bell"
-  },
-  {
-    name: "Maps",
-    to: "/maps",
-    exact: false,
-    isManyElenment: false,
-    icon: "map-pin"
-  },
-  {
-    name: "Accouts",
-    to: "/accouts",
-    exact: false,
-    isManyElenment: false,
-    icon: "user"
-  },
-  {
-    name: "Manage",
-    icon: "users",
-    isManyElenment: true,
-    exact: false,
-    routers: [
-      {
-        name: "Setting",
-        exact: true,
-        to: "/manage/setting"
-      },
-      {
-        name: "New Accout",
-        exact: false,
-        to: "/manage/open-accout"
-      }
-    ]
-  }
-]
-
-const navRouter = [
-  {
-    name: "Dashboard",
-    to: "/dashboard",
-    exact: true,
-    isManyElenment: false,
-    icon: "home"
-  },
-  {
-    name: "Data Tables",
-    to: "/tables",
-    exact: false,
-    isManyElenment: false,
-    icon: "server"
-  },
-  {
-    name: "Alarms",
-    to: "/alarms",
-    exact: false,
-    isManyElenment: false,
-    icon: "bell"
-  },
-  {
-    name: "Maps",
-    to: "/maps",
-    exact: false,
-    isManyElenment: false,
-    icon: "map-pin"
-  },
-  {
-    name: "Accouts",
-    to: "/accouts",
-    exact: false,
-    isManyElenment: false,
-    icon: "user"
-  }
-]
-
-const navRouterManage = [
-  {
-    name: "Dashboard",
-    to: "/dashboard",
-    exact: true,
-    isManyElenment: false,
-    icon: "home"
-  },
-  {
-    name: "Data Tables",
-    to: "/tables",
-    exact: false,
-    isManyElenment: false,
-    icon: "server"
-  },
-  {
-    name: "Alarms",
-    to: "/alarms",
-    exact: false,
-    isManyElenment: false,
-    icon: "bell"
-  },
-  {
-    name: "Maps",
-    to: "/maps",
-    exact: false,
-    isManyElenment: false,
-    icon: "map-pin"
-  },
-  {
-    name: "Accouts",
-    to: "/accouts",
-    exact: false,
-    isManyElenment: false,
-    icon: "user"
-  },
-  {
-    name: "Manage",
-    to: "/manage/project",
-    exact: false,
-    isManyElenment: false,
-    icon: "users"
-  },
-  
-  
-]
-
-
 function Navbar(props) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  //Redux
-  //const isMenu = useSelector(state => state.isMenu);
+  /*
+  const [isAdim  , setIsAdmin] = useState(false)
+  const _idProject = localStorage.getItem("AuthID");
+
+  if(_idProject == "ADMIN"){
+    setIsAdmin (true)
+  }
+  else
+  {
+    setIsAdmin(false)
+  }
+  */
+
+
+  const navRouterAdmin = [
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      exact: true,
+      isManyElenment: false,
+      icon: "home"
+    },
+    {
+      name: "Data Tables",
+      to: "/tables",
+      exact: false,
+      isManyElenment: false,
+      icon: "server"
+    },
+    {
+      name: "Alarms",
+      to: "/alarms",
+      exact: false,
+      isManyElenment: false,
+      icon: "bell"
+    },
+    {
+      name: "Maps",
+      to: "/maps",
+      exact: false,
+      isManyElenment: false,
+      icon: "map-pin"
+    },
+    {
+      name: "Accouts",
+      to: "/accouts",
+      exact: false,
+      isManyElenment: false,
+      icon: "user"
+    },
+    {
+      name: "Manage",
+      icon: "users",
+      isManyElenment: true,
+      exact: false,
+      routers: [
+        {
+          name: "Setting",
+          exact: true,
+          to: "/manage/setting"
+        },
+        {
+          name: "New Accout",
+          exact: false,
+          to: "/manage/open-accout"
+        }
+      ]
+    }
+  ]
+  
+  const navRouter = [
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      exact: true,
+      isManyElenment: false,
+      icon: "home"
+    },
+    {
+      name: "Data Tables",
+      to: "/tables",
+      exact: false,
+      isManyElenment: false,
+      icon: "server"
+    },
+    {
+      name: "Alarms",
+      to: "/alarms",
+      exact: false,
+      isManyElenment: false,
+      icon: "bell"
+    },
+    {
+      name: "Maps",
+      to: "/maps",
+      exact: false,
+      isManyElenment: false,
+      icon: "map-pin"
+    },
+    {
+      name: "Accouts",
+      to: "/accouts",
+      exact: false,
+      isManyElenment: false,
+      icon: "user"
+    }
+  ]
+  
+  const navRouterManage = [
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      exact: true,
+      isManyElenment: false,
+      icon: "home"
+    },
+    {
+      name: "Data Tables",
+      to: "/tables",
+      exact: false,
+      isManyElenment: false,
+      icon: "server"
+    },
+    {
+      name: "Alarms",
+      to: "/alarms",
+      exact: false,
+      isManyElenment: false,
+      icon: "bell"
+    },
+    {
+      name: "Maps",
+      to: "/maps",
+      exact: false,
+      isManyElenment: false,
+      icon: "map-pin"
+    },
+    {
+      name: "Accouts",
+      to: "/accouts",
+      exact: false,
+      isManyElenment: false,
+      icon: "user"
+    },
+    {
+      name: "Manage",
+      to: "/manage/project",
+      exact: false,
+      isManyElenment: false,
+      icon: "users"
+    },
+    
+    
+  ]
 
   if(props.role =='Administrator')
   {

@@ -64,27 +64,24 @@ module.exports.createAccout = async(req,res,next) =>{
   }
 //Update Accout
 module.exports.updateAccout = async(req,res)=>{
-    var _id =  req.params.id;
-    var role =  req.params.role;
-    User.findByIdAndUpdate(_id ,{role :role} ,options,(err,user)=>{
-        if(err){
+    User.updateUser(req.body.record.email , req.body.role ,(err ,user)=>{
+        if(!err){
             res.json({
-                success :false ,
-                message : "User edit Fail"
+                status :true
             })
-        }else{
+        }
+        else
+        {
             res.json({
-                success :true ,
-                message : "User edit success",
+                status :false
             })
-        
         }
     })
 }
 //Delete Project
-module.exports.deleteUser = async(req,res)=>{
-    var userID =  req.params.id;
-    User.deleteUser( userID ,(err,user)=>{
+module.exports.deleteUserAdmin = async(req,res)=>{
+    var userEmail =  req.body.email;
+    User.deleteUserAdmin( userEmail ,(err,user)=>{
         if(err){
             res.json({
                 success :false ,
@@ -191,7 +188,6 @@ module.exports.deleteUserManage = async(req,res)=>{
 } 
 //Update Accout
 module.exports.updateAccoutManage = async(req,res)=>{
-    console.log(req.body)
     User.updateUser(req.body.record.email , req.body.role ,(err ,user)=>{
         if(!err){
             res.json({

@@ -1,5 +1,5 @@
-import React, { useState ,useEffect ,useLayoutEffect } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag} from 'antd';
+import React, { useState ,useEffect } from 'react';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography ,Tag ,Tooltip} from 'antd';
 import axios from 'axios'
 import { useDispatch ,useSelector } from "react-redux";
 
@@ -40,25 +40,23 @@ const EditableCell = ({
   );
 };
 
-const EditableAlarm = (props) => {
+const EditableUserAdmin = (props) => {
 
   const dispatch = useDispatch()
-  const isLoaddingDataAlarm = useSelector((state) => state.isLoaddingDataAlarm);
-
+  const _idProject = localStorage.getItem("AuthID");
+  const isLoaddingAccoutManage = useSelector((state) => state.isLoaddingAccoutManage);
 
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
-
+  
   const isEditing = (record) => record.key === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue({
-      HH: '',
-      H: '',
-      L: '',
-      LL: '',
-      Rate: '',
+      FullName: '',
+      Email: '',
+      Role: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -68,36 +66,46 @@ const EditableAlarm = (props) => {
     setEditingKey('');
   };
 
-  const deleteTag = async (key) => {
+  //Delete User Manage
+  const deleteTag = async (record) => {
     const newData = [...data];
-    newData.splice( parseInt(key), 1);
+    newData.splice( parseInt(record.key), 1);
     setData(newData);
     setEditingKey('');
-    axios.post('/api/cabin/alarm/delete-tag', {
-      _idProject :props._idProject ,
-      index : parseInt(key)
+    axios.post('/api/manage/open-accout/delete', {
+      email :record.email ,
+      
    })
-    .then(function (res) {})
+    .then(function (res) {
+      var Res = res.data
+       if(Res.success){
+        dispatch({type:"LOADDING_ACCOUT_MANAGE"})   
+       }
+    })
   };
 
 
    //Loadding Add new
    useEffect(() => {
-    axios.post('/api/cabin/alarm/get-tag', {
-       _idProject :props._idProject
-    })
+    axios.get('/api/manage/open-accout')
     .then(function (res) {
       let resData=res.data ;
-      if(resData.status){
-        var dataInit = resData.dataAlarm;
+      if(resData.success){
+        var dataInit = resData.data;
+        var dataUser=[]
         for (let i = 0; i < dataInit.length; i++) {
-            dataInit[i].key = i.toString();
+          if(dataInit[i].role !="ROLE_ADMIN")
+          {
+            dataInit[i].key = (i+1).toString();
             dataInit[i].STT = i ;
-            dataInit[i].tags = [ dataInit[i].status]
-      }
-      setData(dataInit)
-      dispatch({type:"NO_LOADDING_DATA_ALARM"})   
-      console.log(dataInit)
+            dataInit[i].tags = [ dataInit[i].role]
+            dataUser.push(dataInit[i])
+          }
+          
+        }
+      console.log(dataUser)
+      setData(dataUser)
+      dispatch({type:"NO_LOADDING_ACCOUT_MANAGE"})   
     }
     
   })
@@ -105,41 +113,24 @@ const EditableAlarm = (props) => {
       console.log(error);
     });
 
-  }, [isLoaddingDataAlarm])
+  }, [isLoaddingAccoutManage])
 
 
   //Save Edit Table
   const save = async (record,key) => {
     try {
       const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setData(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey('');
-      }
       //Post Data Edit
-      var newFomatData = {
-        HH: parseInt(row.HH),
-        H: parseInt(row.H),
-        L: parseInt(row.L),
-        LL: parseInt(row.LL),
-        Rate: parseInt(row.Rate),
-      }
-      axios.post('/api/cabin/alarm/edit-tag', {
-          _idProject :props._idProject ,
-          dataEditAlarm : newFomatData ,
-          index : parseInt(key)
-       })
-     .then(function (res) {})
-
+      axios.post('/api/manage/open-accout/edit', {
+        record : record,
+        role : row.tags
+        })
+      .then(function (res) {
+        if(res.status){
+          dispatch({type:"LOADDING_ACCOUT_MANAGE"})
+        }
+      })
+      setEditingKey('');
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
@@ -149,89 +140,52 @@ const EditableAlarm = (props) => {
     {
         title: 'STT',
         dataIndex: 'STT',
-        width: '3%',
+        width: '5%',
         editable: false,
       },
-    {
-      title: 'Tags Name',
-      dataIndex: 'name',
-      width: '15%',
-      editable: false,
-    },
-    {
-      title: 'High High',
-      dataIndex: 'HH',
-      width: '10%',
-      editable: true,
-    },
-    {
-      title: 'High',
-      dataIndex: 'H',
-      width: '10%',
-      editable: true,
-    },
-    {
-        title: 'Low',
-        dataIndex: 'L',
-        width: '10%',
-        editable: true,
-    },
-    {
-        title: 'Low Low',
-        dataIndex: 'LL',
-        width: '10%',
-        editable: true,
-     },
-    {
-        title: 'Deadband',
-        dataIndex: 'Rate',
-        width: '10%',
-        editable: true,
-    },
-    {
-        title: 'Tag value',
-        dataIndex: 'valueTag',
-        width: '10%',
+      {
+        title: 'ID Project',
+        dataIndex: 'project_id',
+        width: '30%',
         editable: false,
     },
     {
-        title: 'Status',
+        title: 'Email',
+        dataIndex: 'email',
+        width: '30%',
+        editable: false,
+    },
+    {
+        title: 'Role',
         key: 'tags',
-        width: '10%',
-        editable: false,
+        width: '30%',
+        editable: true,
         dataIndex: 'tags',
         
         render: tags => (
           <>
             {tags.map(tag => {
               let color = 'success';
-              let status = "  " ;
               switch (tag) {
-                case 'LL':
-                    color = 'error'; 
-                    status = " LOW LOW "             
+                case 'ROLE_MANAGE':
+                    color = 'success';              
                   break;
-                case 'L':
-                    color = 'warning';
-                    status= " LOW "
-                  break;
-                case 'H':
-                    color = 'geekblue';
-                    status=  " HIGH "
-                  break;
-                case 'HH':
+                case 'ROLE_SEE':
                     color = 'purple';
-                     status  = " HIGH HIGH "
-                   break;
-              
+                  break;
+                case 'ROLE_CONTROL':
+                    color = 'geekblue';
+                  break;
                 default:
-                  status = " "
                   break;
               }
               return (
-                <Tag color={color} key={status}>
-                  {status.toUpperCase()}
-                </Tag>
+                <Tooltip overlayStyle={{fontSize:10}} placement="topLeft"  title="ROLE_MANAGER , ROLE_CONTROL & ROLE_SEE">
+                  <Tag color={color} key={tag}>
+                      {tag.toUpperCase()}
+                  </Tag>
+                </Tooltip>
+              
               );
             })}
           </>
@@ -240,6 +194,7 @@ const EditableAlarm = (props) => {
     },
     {
       title: 'Action',
+      width: '15%',
       dataIndex: 'operation',
       render: (_, record) => {
         const editable = isEditing(record);
@@ -261,16 +216,15 @@ const EditableAlarm = (props) => {
         ) : (
           <span>
               <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                  Edit
+                  EDIT
               </Typography.Link>
               <Typography.Link disabled={editingKey !== ''}>
-                <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record.key)}>
-                <a>Delete</a>
+                <Popconfirm title="Sure to Delete Tag ?" onConfirm={()=>deleteTag(record)}>
+                   <a  style={{marginLeft: 12,}}>DEL</a>
               </Popconfirm>
               </Typography.Link>
           </span>
          
-          
         );
       },
     },
@@ -284,11 +238,6 @@ const EditableAlarm = (props) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'HH' ? 'number' : 'text',
-        inputType: col.dataIndex === 'H' ? 'number' : 'text',
-        inputType: col.dataIndex === 'L' ? 'number' : 'text',
-        inputType: col.dataIndex === 'LL' ? 'number' : 'text',
-        inputType: col.dataIndex === 'Rate' ? 'number' : 'text',
         inputType: col.dataIndex === 'value' ? 'number' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
@@ -316,4 +265,4 @@ const EditableAlarm = (props) => {
   );
 };
 
-export default EditableAlarm;
+export default EditableUserAdmin;

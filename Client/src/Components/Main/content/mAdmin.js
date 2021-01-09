@@ -11,12 +11,12 @@ function Manage() {
         <div className="pcoded-content">
             <div className="pcoded-inner-content pcoded-inner-padding">
                 <div className="main-body">
-                    <div class="page-wrapper">
+                    <div className="page-wrapper">
                         <div className="page-body">
                             {/* Nội dung của Manage  */}
                             <Switch>
                                 <Route exact path="/manage/setting" component={mManageSetting} />
-                                {/*<Route path="/manage/open-accout" component={mManageRegister} /> */}
+                                <Route path="/manage/open-accout" component={mManageRegister} />
                             </Switch>
                         </div>
                     </div>

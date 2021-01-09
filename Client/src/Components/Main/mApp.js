@@ -41,12 +41,17 @@ function MApp() {
       {
         if(!_idProject ||(!checkString(cookies.Auth))){
           removeCookie("Auth");
+          localStorage.removeItem("AuthID")
           history.push("/");
         }   
-        localStorage.setItem("AuthID",_idProject)
-        dispatch({type :"ID_TOPIC_PROJECT" ,_idProject : _idProject})
+        else
+        {
+          localStorage.setItem("AuthID",_idProject)
+          dispatch({type :"ID_TOPIC_PROJECT" ,_idProject : _idProject})
+        }
+   
       }
-    }, 200);
+    }, 100);
     
   }, []);
 

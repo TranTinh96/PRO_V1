@@ -13,8 +13,8 @@ router.post("/setting/delete", projectController.deleteProject);
 // Admin Accout
 router.get("/open-accout",userController.getUser)
 router.post("/open-accout",userController.createAccout)
-router.put("/open-accout/:id/:role",userController.updateAccout)
-router.delete("/open-accout/:id",userController.deleteUser)
+router.post("/open-accout/edit",userController.updateAccout)
+router.post("/open-accout/delete",userController.deleteUserAdmin)
 
 // Manager Accout
 router.post("/project/infomation" ,projectController.postInfoProject)

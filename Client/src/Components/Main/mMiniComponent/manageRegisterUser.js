@@ -3,15 +3,15 @@ import FeatherIcon from 'feather-icons-react';
 import { useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import { Search, X } from 'react-feather';
-import checkRole from "../../services/fucRole"
-
+import { Search, X } from 'react-feather'
+import TableEditUserAdmin  from "../library/admin/tableEditUserAdmin"
+import { useDispatch } from "react-redux";
 
 
 //Infomation Project
 function ManageRegisterUser() {
     //Router
+    const dispatch  = useDispatch()
     const history = useHistory();
 
     //useState
@@ -38,16 +38,7 @@ function ManageRegisterUser() {
             .then(res => {
                 var Res = res.data
                 if (Res.success && Res.isEmail) {
-                    axios.get('/api/manage/open-accout')
-                        .then(res => {
-                            var Res = res.data
-                            if (Res.success) {
-                                setUser(Res.data)
-                            }
-                        })
-                        .catch(err => {
-                            history.push("/")
-                        });
+                    dispatch({type:"LOADDING_ACCOUT_MANAGE"}) 
                 } else {
                     setError("email", "emailExits", Res.message)
                 }
@@ -65,45 +56,51 @@ function ManageRegisterUser() {
 
     //useEffect
     useEffect(() => {
-        /*
-        axios.get('/api/manage/open-accout')
-            .then(res => {
-                var Res = res.data
-                if (Res.success) {
-                    setUser(Res.data)
-                }
-            })
-            .catch(err => {
-                history.push("/")
-            });
         axios.get('/api/manage/setting')
         .then(res => {
             var Res = res.data
-            if (Res.success) {
+            console.log(Res)
+            if (Res.status) {
                 setProject(Res.data)
             } 
         })
         .catch(err => {
             history.push("/")
         });
-        */
         
     }, [])
 
+     //Project
+    const InfoDetailProject = project.map((info, index) => {
+        return (
+            <option value={info._id}>{info.nameProject}</option>
+        )
+    })
+
+
     return (
         <div className="row m-r-0 m-l-0">
-            <div className="col-lg-6 col-md-12 col-sm-12 ">
+            <div className="col-lg-5 col-md-12 col-sm-12 ">
                 <div className="card border-0 background-setting card-manage">
                     <div className="card-body card-body-manage ">
-                        <div className="d-flex  justify-content-between align-items-baseline">
-                            <FeatherIcon icon="settings" size={16} color="#727cf5" />
-                            <h6 className="card-title mb-0 border-title title-card-header">CREATE NEW USER</h6>
-
+                        <div className="page-title-box">
+                          <div className="page-title">
+                            <div className="page-icon">
+                              <FeatherIcon
+                                icon="user"
+                                color="#727cf5"
+                                size={14}
+                              />
+                            </div>
+                            <div className="page-title-text page-title-text-fs font-project-header">
+                              ACCOUT
+                            </div>
+                          </div>
                         </div>
                         <div className="form-manage">
                             <form className="form-setting" onSubmit={handleSubmit(onSubmit)} >
                                 <div className="form-group  form-input-manage-2">
-                                    <label className="form-lable-manage" id="fullName">FULL NAME</label>
+                                    <label className="form-lable-manage" id="fullName">Full Name</label>
                                     <input type="text" className="form-control shadow-none rounded-0 input-setting" id="fullName" name="userName"
                                         ref={register({
                                             required: 'Required',
@@ -111,7 +108,7 @@ function ManageRegisterUser() {
                                         {errors.userName && <p>Full Name is required</p>}
                                 </div>
                                 <div className="form-group form-input-manage-2">
-                                    <label className="form-lable-manage" id="email">GMAIL</label>
+                                    <label className="form-lable-manage" id="email">Gmail</label>
                                     <input type="email" className="form-control shadow-none rounded-0 input-setting" name="email" id="email"
                                         ref={register({
                                             required: 'Required',
@@ -126,7 +123,7 @@ function ManageRegisterUser() {
                                 <div className="row">
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage-2">
-                                            <label className="form-lable-manage" id="password">PASSWORD</label>
+                                            <label className="form-lable-manage" id="password">Password</label>
                                             <input type="password" className="form-control shadow-none input-show rounded-0 input-setting" id="password" name="password"
                                                 ref={register({
                                                     required: 'Required', minLength: 8,
@@ -139,7 +136,7 @@ function ManageRegisterUser() {
                                     </div>
                                     <div className="col-md-6 col-12">
                                         <div className="form-group form-input-manage-2">
-                                            <label className="form-lable-manage" for="rePassword">REPEAT PASSWORD</label>
+                                            <label className="form-lable-manage" for="rePassword">Repeat Password</label>
                                             <input type="password" className="form-control shadow-none input-show rounded-0 input-setting" id="rePassword" name="rePassword" 
                                                 ref={register({
                                                     required: 'Required', minLength: 8,
@@ -154,19 +151,17 @@ function ManageRegisterUser() {
                                     </div>
                                 </div>
                                 <div class="form-group form-input-manage-2">
-                                    <label className="my-1 mr-2 form-lable-manage " for="nameProject">NAME PROJECT</label>
+                                    <label className="my-1 mr-2 form-lable-manage " for="nameProject">Name Project</label>
                                     <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="nameProject" name="project_id" ref={register}>
                                         <option selected>Choose...</option>
-                                       
-
+                                        {InfoDetailProject}
                                     </select>
                                 </div>
 
                                 <div class="form-group form-input-manage-2">
-                                    <label className="my-1 mr-2 form-lable-manage " for="role">ROLE</label>
+                                    <label className="my-1 mr-2 form-lable-manage " for="role">Role</label>
                                     <select className="custom-select form-control shadow-none input-show rounded-0 input-setting  my-1 mr-sm-2" id="role" name="role" ref={register}>
                                         <option selected>Choose...</option>
-                                        <option value="ROLE_ADMIN">Administrator</option>
                                         <option value="ROLE_SEE">User</option>
                                         <option value="ROLE_CONTROL">Control</option>
                                         <option value="ROLE_MANAGER">Manager</option>
@@ -188,14 +183,24 @@ function ManageRegisterUser() {
                 </div>
             </div>
             {/*-----Table------ */}
-            <div className="col-lg-6 col-md-12 form-right-02 col-sm-12">
+            <div className="col-lg-7 col-md-12 form-right-02 col-sm-12">
                 <div className="container-table">
                     <div className="card border-0 background-setting">
                         <div className="card-body card-body-manage">
-                            <div className="card-body-header ">
-                                <div className="d-flex">
-                                    <FeatherIcon icon="list" size={16} color="#727cf5" />
-                                    <h6 className="card-title mb-0 border-title title-card-header">INFORMATION</h6>
+                             <div className="card-body-header ">
+                                <div className="page-title-box">
+                                    <div className="page-title">
+                                        <div className="page-icon">
+                                        <FeatherIcon
+                                            icon="list"
+                                            color="#727cf5"
+                                            size={14}
+                                        />
+                                        </div>
+                                        <div className="page-title-text page-title-text-fs font-project-header">
+                                            INFORMATION
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="card-body-search ">
@@ -207,7 +212,7 @@ function ManageRegisterUser() {
                                 <Search color="#2D8DC9" size={15} className={isSearch ? "icon-search-manage-show d-line" : "d-none"} onClick={() => setSearch(!isSearch)} />
                             </div>
                             <div className="table-manage">
-                               
+                                <TableEditUserAdmin/>
                                 
                             </div>
                         </div>
