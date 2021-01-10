@@ -311,4 +311,9 @@
 
 .showProject-container .ant-table-pagination.ant-pagination {
   display: none !important;
+} 
+
+.disabled-li {
+    pointer-events:none; 
+    opacity:0.8;         
 }

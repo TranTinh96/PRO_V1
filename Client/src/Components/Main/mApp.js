@@ -23,7 +23,7 @@ import checkRole from "../services/fucRole";
 function MApp() {
   const dispatch =useDispatch()
   const _idProject = useSelector((state) => state.idTopicProject);
- 
+  const _idProject_ = localStorage.getItem("AuthID");
   const history = useHistory()
   //useState
   const [isLoading, setIsLoading] = useState(true);
@@ -72,7 +72,7 @@ function MApp() {
     <React.Fragment>
       <Header role={role} />
       <div className="pcoded-main-container">
-        <Navbars role={role} />
+        <Navbars role={role}  _idProject={_idProject_}/>
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/accouts" component={Accout} />

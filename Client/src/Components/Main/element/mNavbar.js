@@ -4,18 +4,13 @@ import MenuLink from '../menu/menuLink'
 import MenuManyElement from "../menu/menuManyElement"
 
 function Navbar(props) {
-  /*
-  const [isAdim  , setIsAdmin] = useState(false)
-  const _idProject = localStorage.getItem("AuthID");
+  
+    var isAdmin = false;
 
-  if(_idProject == "ADMIN"){
-    setIsAdmin (true)
-  }
-  else
-  {
-    setIsAdmin(false)
-  }
-  */
+    //Check Role and Disable
+    if(props._idProject =="ADMIN")
+        isAdmin =true
+    
 
 
   const navRouterAdmin = [
@@ -24,6 +19,7 @@ function Navbar(props) {
       to: "/dashboard",
       exact: true,
       isManyElenment: false,
+      isDisable : false,
       icon: "home"
     },
     {
@@ -31,6 +27,7 @@ function Navbar(props) {
       to: "/tables",
       exact: false,
       isManyElenment: false,
+      isDisable : isAdmin,
       icon: "server"
     },
     {
@@ -38,6 +35,7 @@ function Navbar(props) {
       to: "/alarms",
       exact: false,
       isManyElenment: false,
+      isDisable : isAdmin,
       icon: "bell"
     },
     {
@@ -45,6 +43,7 @@ function Navbar(props) {
       to: "/maps",
       exact: false,
       isManyElenment: false,
+      isDisable : isAdmin,
       icon: "map-pin"
     },
     {
@@ -52,12 +51,14 @@ function Navbar(props) {
       to: "/accouts",
       exact: false,
       isManyElenment: false,
+      isDisable : isAdmin,
       icon: "user"
     },
     {
       name: "Manage",
       icon: "users",
       isManyElenment: true,
+      isDisable : isAdmin,
       exact: false,
       routers: [
         {
@@ -80,12 +81,14 @@ function Navbar(props) {
       to: "/dashboard",
       exact: true,
       isManyElenment: false,
+      isManyElenment: false,
       icon: "home"
     },
     {
       name: "Data Tables",
       to: "/tables",
       exact: false,
+      isManyElenment: false,
       isManyElenment: false,
       icon: "server"
     },
@@ -94,6 +97,7 @@ function Navbar(props) {
       to: "/alarms",
       exact: false,
       isManyElenment: false,
+      isManyElenment: false,
       icon: "bell"
     },
     {
@@ -101,12 +105,14 @@ function Navbar(props) {
       to: "/maps",
       exact: false,
       isManyElenment: false,
+      isManyElenment: false,
       icon: "map-pin"
     },
     {
       name: "Accouts",
       to: "/accouts",
       exact: false,
+      isManyElenment: false,
       isManyElenment: false,
       icon: "user"
     }
@@ -118,12 +124,14 @@ function Navbar(props) {
       to: "/dashboard",
       exact: true,
       isManyElenment: false,
+      isManyElenment: false,
       icon: "home"
     },
     {
       name: "Data Tables",
       to: "/tables",
       exact: false,
+      isManyElenment: false,
       isManyElenment: false,
       icon: "server"
     },
@@ -132,12 +140,14 @@ function Navbar(props) {
       to: "/alarms",
       exact: false,
       isManyElenment: false,
+      isManyElenment: false,
       icon: "bell"
     },
     {
       name: "Maps",
       to: "/maps",
       exact: false,
+      isManyElenment: false,
       isManyElenment: false,
       icon: "map-pin"
     },
@@ -146,12 +156,14 @@ function Navbar(props) {
       to: "/accouts",
       exact: false,
       isManyElenment: false,
+       isManyElenment: false,
       icon: "user"
     },
     {
       name: "Manage",
       to: "/manage/project",
       exact: false,
+      isManyElenment: false,
       isManyElenment: false,
       icon: "users"
     },
@@ -170,10 +182,10 @@ function Navbar(props) {
                 navRouterAdmin.map((menu, index) => {
                   if (!menu.isManyElenment) {
                     return (
-                      <MenuLink key={index} label={menu.name} to={menu.to} activeOnlyWhenExact={menu.exact} icon={menu.icon} />
+                      <MenuLink key={index} label={menu.name} to={menu.to} activeOnlyWhenExact={menu.exact} icon={menu.icon} isDisable ={menu.isDisable}/>
                     )}
                   return (
-                    <MenuManyElement key={index} label={menu.name} icon={menu.icon} routers={menu.routers} exact={menu.exact} />
+                    <MenuManyElement key={index} label={menu.name} icon={menu.icon} routers={menu.routers} exact={menu.exact} isDisable ={menu.isDisable}/>
                   )
                 })}
             </ul>
