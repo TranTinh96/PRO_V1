@@ -21,7 +21,7 @@ store.subscribe(() => {
 });
 
 //axios.defaults.baseURL = 'http://192.168.1.8:5000'
-axios.defaults.baseURL = 'http://172.16.3.226:5000'
+axios.defaults.baseURL = 'http://172.16.10.202:5000'
 //axios.defaults.baseURL = 'http://192.168.1.100:5000'
 
 

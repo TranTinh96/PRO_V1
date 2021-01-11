@@ -19,7 +19,7 @@ import {getKeyValue} from "../../services/fucServices";
 const host = "wss://hairdresser.cloudmqtt.com";
 const options = {
   port: 35572,
-  host: "wss://address.cloudmqtt.com",
+  host: "wss://hairdresser.cloudmqtt.com",
   username: "qiiwyeiv",
   password: "X4hvcjgbyUit",
   clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),

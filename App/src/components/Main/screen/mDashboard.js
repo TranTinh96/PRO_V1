@@ -87,7 +87,7 @@ function Dashboard(props) {
    console.log(RLAstatus + "/"+RLAmode +"/"+RLBstatus +"/"+RLBmode)
 
 
-   const topic =`${_idProject}/${topicPublish.topic}`
+   const topicPub =`${_idProject}/${topicPublish.topic}`
      //Publish MQTT mode Manual
      const handleManualRLA = () => {
       var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+checkStatus(RLAstatus)+"&";
@@ -96,7 +96,7 @@ function Dashboard(props) {
       else
         dispatch({type:'RLAstatusON'})
      
-      clientMQTT.publish(topic,payload)
+      clientMQTT.publish(topicPub,payload)
     };
     const handleManualRLB= () => {
       var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus)+"&";
@@ -105,7 +105,7 @@ function Dashboard(props) {
       else
          dispatch({type:'RLBstatusON'})
 
-      clientMQTT.publish(topic,payload)
+      clientMQTT.publish(topicPub,payload)
     };
     const handleChangeModeRelayA = (RLAmodeValue) => {
       if(RLAmodeValue ==="auto")

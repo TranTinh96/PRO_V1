@@ -13,6 +13,7 @@ import {getKeyValue} from "../../services/fucService"
 
 
 function Home(props) {
+  console.log("Home Navigator")
   const payload = props.payload ;
   const topic = props.topic
   //Redux
@@ -68,6 +69,7 @@ function Home(props) {
   
     //Payload
     useLayoutEffect(() => {
+      console.log(topic + "  " + payload)
       if(topic){
           var payloadSplit = payload.toString().split('&')
 

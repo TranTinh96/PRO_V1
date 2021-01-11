@@ -8,6 +8,7 @@ const MainStack = createStackNavigator();
 const DashboardStack = createStackNavigator();
 
 function StackNavigator() {
+    console.log("Stack Navigator")
     return (
         <MainStack.Navigator
             mode={'modal'}

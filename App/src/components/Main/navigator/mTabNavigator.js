@@ -13,32 +13,17 @@ import Notification from "../screen/mNotification"
 
 //Context
 import { AuthContext } from '../../../context/authContext';
-
+import configMQTT from "../../MQTT/config.MQTT"
 
 
 //Setting Tav Navigator
 const Tab = createMaterialBottomTabNavigator();
 
 //MQTT Config
-const host = "wss://hairdresser.cloudmqtt.com";
-const options = {
-  port: 35572,
-  host: "wss://address.cloudmqtt.com",
-  username: "qiiwyeiv",
-  password: "X4hvcjgbyUit",
-  clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
-  keepalive: 60,
-  protocolId: "MQIsdp",
-  protocolVersion: 3,
-  clean: true,
-  reconnectPeriod: 10000,
-  connectTimeout: 30 * 1000,
-  rejectUnauthorized: false,
-};
-
 
 function TabNavigator() 
 {
+  console.log("Tab Navigator")
   //Context
     const { signOut } = useContext(AuthContext);
     //Redux
@@ -48,28 +33,33 @@ function TabNavigator()
     const [connectStatus, setConnectStatus] = useState("Connect");
     const [payload, setPayload] = useState({});
     const [topic, setTopic] = useState("")
+
     //useEffect connect MQTT   
     useEffect(() => {
-        //Connect MQTT
-        setClientMQTT(mqtt.connect(host, options))
+      
+        if((_idProject !="ADMIN" )&& (_idProject !== null))
+        {
+            
+            setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+        }
+        else
+        {
+          signOut()
+        }
       }, [])
+
     //useEffect MQTT
     useEffect(() => {
         if (clientMQTT) {
           clientMQTT.on("connect", () => {
-            console.log("Connected" +_idProject);
+            console.log("Connect MQTT : " +_idProject)
             setConnectStatus("Connected");
-            if(_idProject){
-              clientMQTT.subscribe(_idProject, (error) => {
+            clientMQTT.subscribe(_idProject, (error) => {
                 if (error) {
                   console.log("Subscribe to topics error", error);
                 }
               });
-            }
-            else
-            {
-              signOut()
-            }
+           
            
           });
           clientMQTT.on("error", (err) => {
@@ -89,6 +79,7 @@ function TabNavigator()
     
           clientMQTT.on("message", (topic, message) => {
             const payload = message.toString() ;
+            console.log(topic)
             setPayload(payload);
             setTopic(topic)
           });

@@ -104,19 +104,15 @@ const App = () => {
    * 
    */
 
-
+  console.log("App")
   useEffect(() => {
     setTimeout(async () => {
       var jwtToken =null ;
-
       try {
         jwtToken = await AsyncStorage.getItem('authJWT');
-        console.log(jwtToken)
         if(jwtToken){
             setAuthorizationToken(jwtToken);
             var jwt =jwt_decode(jwtToken);
-            console.log(jwt)
-            console.log(jwt.project_id)
             let users = {
               email: jwt.email,
               user: jwt.user,
