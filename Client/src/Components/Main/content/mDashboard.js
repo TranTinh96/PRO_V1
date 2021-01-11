@@ -22,29 +22,7 @@ import TableSelecProjectAdmin from "../library/admin/tableSelecProjectAdmin"
 
  //Function
 import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
-
-//MQTT Config
-const host = "wss://hairdresser.cloudmqtt.com";
-const options = {
-  port: 35572,
-  host: "wss://hairdresser.cloudmqtt.com",
-  username: "qiiwyeiv",
-  password: "X4hvcjgbyUit",
-  clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
-  keepalive: 60,
-  protocolId: "MQIsdp",
-  protocolVersion: 3,
-  clean: true,
-  reconnectPeriod: 1000,
-      connectTimeout: 30 * 1000,
-      will: {
-        topic: 'WillMsg',
-        payload: 'Connection Closed abnormally..!',
-        qos: 0,
-        retain: false
-      },
-      rejectUnauthorized: false,
-};
+import configMQTT from "../../MQTT/config.MQTT"
 
 
 function currentDateInput() {
@@ -126,7 +104,7 @@ function MDashbard(props) {
         }
         if((_idProject !="ADMIN" )&& (_idProject !== null))
         {
-            setClientMQTT(mqtt.connect(host, options));
+            setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
         }
         dispatch({type:"LOADDING_TABLE"})
         dispatch({type:"LOADDING_ALARM"})

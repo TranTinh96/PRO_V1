@@ -14,29 +14,8 @@ import DataTablePhase3 from "../library/dataTable/dataTablePhase3";
 
 //Function
 import {getKeyValue} from "../../services/fucServices";
+import configMQTT from "../../MQTT/config.MQTT"
 
-//MQTT Config
-const host = "wss://hairdresser.cloudmqtt.com";
-const options = {
-  port: 35572,
-  host: "wss://hairdresser.cloudmqtt.com",
-  username: "qiiwyeiv",
-  password: "X4hvcjgbyUit",
-  clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
-  keepalive: 60,
-  protocolId: "MQIsdp",
-  protocolVersion: 3,
-  clean: true,
-  reconnectPeriod: 1000,
-  connectTimeout: 30 * 1000,
-  will: {
-    topic: "WillMsg",
-    payload: "Connection Closed abnormally..!",
-    qos: 0,
-    retain: false,
-  },
-  rejectUnauthorized: false,
-};
 
 function MDataTable() {
   const history = useHistory()
@@ -72,7 +51,8 @@ function MDataTable() {
       history.go(0);
     }
      if((_idProject !="ADMIN" )&& (_idProject !== null))
-     {      setClientMQTT(mqtt.connect(host, options));
+     {      
+      setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
     }
     dispatch({ type: "LOADDING_DASHBOARD" });
     dispatch({type:"LOADDING_ALARM"})
@@ -152,7 +132,6 @@ function MDataTable() {
          clientMQTT.subscribe(_idProject, (error) => {
             if (error) {
               console.log("Subscribe to topics error", error);
-              setClientMQTT(mqtt.connect(host, options));
             }
           });
     
