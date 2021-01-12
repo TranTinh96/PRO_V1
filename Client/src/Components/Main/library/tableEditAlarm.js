@@ -80,9 +80,15 @@ const EditableAlarm = (props) => {
     .then(function (res) {})
   };
 
+  useEffect(() => {
+    setInterval(function(){ 
+      dispatch({type:"LOADDING_DATA_ALARM"})   
+     }, 5000);
+  }, [])
+
 
    //Loadding Add new
-   useEffect(() => {
+   useLayoutEffect(() => {
     axios.post('/api/cabin/alarm/get-tag', {
        _idProject :props._idProject
     })

@@ -129,13 +129,15 @@ function MDataTable() {
       clientMQTT.on("connect", () => {
           console.log("MQTT Connecting " + _idProject)
          setConnectStatus("Connected");
-         clientMQTT.subscribe(_idProject, (error) => {
+         if(connectStatus =="Connected")
+         {
+          clientMQTT.subscribe(_idProject, (error) => {
             if (error) {
               console.log("Subscribe to topics error", error);
+              clientMQTT.end()
             }
           });
-    
-       
+         }
       });
       clientMQTT.on("error", (err) => {
         setConnectStatus("Connection error");
@@ -145,6 +147,9 @@ function MDataTable() {
       clientMQTT.on("reconnect", () => {
         setConnectStatus("Reconnecting");
       });
+      clientMQTT.on("offline", () => {
+        clientMQTT.end()
+     });
 
       clientMQTT.on("disconnect", () => {
         setConnectStatus("Disconnect");
@@ -157,7 +162,17 @@ function MDataTable() {
       });
     }
     return () => {
-         
+      if(clientMQTT){
+        clientMQTT.unsubscribe(_idProject, (err) => {
+            if (! err) {
+                console.log("Unsubscribe to topics");
+                clientMQTT.end(function(){
+                    setConnectStatus('Connect');
+                  });
+            
+            }
+        });
+    }
      };
   }, [clientMQTT]);
 

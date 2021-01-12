@@ -74,10 +74,10 @@ require("./controllers/socketIO_Controller")(io);
 
 
 app.use('/profile', authRouter)
-app.use('/api/manage',projectRouter)
-app.use('/api/cabin',cabinRouter)
-//app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
-//app.use('/api/cabin', passport.authenticate('jwt', { session: false }),cabinRouter)
+//app.use('/api/manage',projectRouter)
+//app.use('/api/cabin',cabinRouter)
+app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
+app.use('/api/cabin', passport.authenticate('jwt', { session: false }),cabinRouter)
 /*
 app.get('/*', async (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

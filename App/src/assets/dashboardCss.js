@@ -19,6 +19,14 @@ const Forms = {
         shadowOpacity: 0.3,
         shadowRadius: 4,
     },
+    formContainerAlarm :{
+        
+        padding :8,
+        shadowColor: 'gray',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+    },
     wrapper:{
     },
     containerScreen:{

@@ -93,7 +93,7 @@ function TabNavigator()
             screenOptions={{
                 headerShown: false,
             }}
-            initialRouteName="Home"
+            initialRouteName="Notification"
             activeColor="#0074FE"
             inactiveColor="#ADADAD"
             barStyle={{
@@ -104,7 +104,7 @@ function TabNavigator()
                 borderRadius: 3
             }}
         >
-            <Tab.Screen name="Home"  children={()=><Home payload={payload} clientMQTT={clientMQTT} topic={topic}/>}
+            <Tab.Screen name="Home"  children={()=><Home payload={payload} topic={topic}/>}
             options={{
                 tabBarColor: '#FFF',
                 tabBarIcon: ({ color }) => (

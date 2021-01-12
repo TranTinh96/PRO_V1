@@ -49,9 +49,9 @@ function AuReSend() {
                                     })} />
                                 {errors.email && errors.email.type === "required" && <p>Enter a valid email address</p>}
                                 {errors.email && errors.email.type === "pattern" && <p>Format email is incorrect</p>}
-                                {errors.email && errors.email.type == "emailExits" && <p>{errors.email.message}</p>}
+                                {errors.email && errors.email.type === "emailExits" && <p>{errors.email.message}</p>}
                             </div>
-                            {errors.errTotal && errors.email.type == "errMany" && <p  className="err-total">{errors.errTotal.message}</p>}
+                            {errors.errTotal && errors.email.type === "errMany" && <p  className="err-total">{errors.errTotal.message}</p>}
                             <div className="btn-form-container-resend">
                                 <button type="submit" className="btn show btn-form-resend" disabled={isSubmitting}>
                                     RESEND EMAIL

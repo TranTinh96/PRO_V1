@@ -45,6 +45,7 @@ const cookies = new Cookies();
 var authToken = cookies.get("Auth")
 
 if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
+  console.log("Index " + authToken);
   let jwtToken = jwt.decode(authToken)
   if(! checkNull(jwtToken))
   {

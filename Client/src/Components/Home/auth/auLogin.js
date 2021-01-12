@@ -145,7 +145,7 @@ function AuLogin() {
                                         }
                                     })} />
                                 {errors.email && errors.email.type === 'required' && <p>Enter a valid email address</p>}
-                                {errors.email && errors.email.type == 'noEmail' && <p>{errors.email.message}</p>}
+                                {errors.email && errors.email.type === 'noEmail' && <p>{errors.email.message}</p>}
 
                             </div>
                             <div className="form-group m-t-25 from-position">
@@ -161,7 +161,7 @@ function AuLogin() {
                                     })} />
                                 {errors.password && errors.password.type === 'required' && <p>Enter a valid password</p>}
                                 {errors.password && errors.password.type === 'minLenght' && <p>Your password need minmium 8 charcaters</p>}
-                                {errors.password && errors.password.type == 'noPassword' && <p>{errors.password.message}</p>}
+                                {errors.password && errors.password.type === 'noPassword' && <p>{errors.password.message}</p>}
 
                             </div>
                             <div className="form-checkPASS m-t-25">

@@ -146,7 +146,17 @@ function MDashbard(props) {
             });
             }
             return () => {
-                
+                if(clientMQTT){
+                    clientMQTT.unsubscribe(_idProject, (err) => {
+                        if (! err) {
+                            console.log("Unsubscribe to topics");
+                            clientMQTT.end(function(){
+                                setConnectStatus('Connect');
+                              });
+                        
+                        }
+                    });
+                }
             };
   }, [clientMQTT]);
 

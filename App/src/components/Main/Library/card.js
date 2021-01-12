@@ -58,7 +58,6 @@ function Card(props) {
 
 export default Card
 
-const {width,height} = Dimensions.get("screen")
 const styles = StyleSheet.create({
     card: {
         margin:8,

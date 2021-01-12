@@ -111,7 +111,7 @@ function AuRegister() {
                                     })} />
                                 {errors.email && errors.email.type === "required" && <p>Enter a valid email address</p>}
                                 {errors.email && errors.email.type === "pattern" && <p>Format email is incorrect</p>}
-                                {errors.email && errors.email.type == "emailExits" && <p>{errors.email.message}</p>}
+                                {errors.email && errors.email.type === "emailExits" && <p>{errors.email.message}</p>}
                             </div>
                             <div className="form-group form-marginTop from-position">
                                 <label for="password" className="form-lable">Password</label>
