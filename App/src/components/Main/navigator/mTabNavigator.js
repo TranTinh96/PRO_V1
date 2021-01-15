@@ -93,7 +93,7 @@ function TabNavigator()
             screenOptions={{
                 headerShown: false,
             }}
-            initialRouteName="Notification"
+            initialRouteName="Home"
             activeColor="#0074FE"
             inactiveColor="#ADADAD"
             barStyle={{

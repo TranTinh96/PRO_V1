@@ -16,6 +16,7 @@ function Home(props) {
   console.log("Home Navigator")
   const payload = props.payload ;
   const topic = props.topic
+  console.log(topic + "  " + payload)
   //Redux
    const dispatch =useDispatch();
 
@@ -25,10 +26,10 @@ function Home(props) {
    var I3 = useSelector((state) => state.I3);
 
   //VOLTAGE LINE-NEUTRAL
-  const [VLN , setVLN] =useState(0);
-  const [V1N , setV1N] =useState(0);
-  const [V2N , setV2N] =useState(0);
-  const [V3N , setV3N] =useState(0);
+  const [VLN , setVLN] =useState(218.5);
+  const [V1N , setV1N] =useState(220.3);
+  const [V2N , setV2N] =useState(219.5);
+  const [V3N , setV3N] =useState(221.7);
 
   //VOLTAGE LINE-LINE
   const [VLL , setVLL] =useState(0);
@@ -57,13 +58,13 @@ function Home(props) {
   const [KVAR3 , setKVAR3] =useState(0);
 
   //PE
-  const [PE , setPE] =useState(0);
-  const [PE1 , setPE1] =useState(0);
-  const [PE2 , setPE2] =useState(0);
-  const [PE3 , setPE3] =useState(0);
+  const [PE , setPE] =useState(1);
+  const [PE1 , setPE1] =useState(1);
+  const [PE2 , setPE2] =useState(1);
+  const [PE3 , setPE3] =useState(1);
 
   //F & KW
-  const [F , setF] =useState(0);
+  const [F , setF] =useState(50);
   const [KWH , setKWH] =useState(0);
 
   

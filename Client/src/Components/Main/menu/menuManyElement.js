@@ -35,37 +35,6 @@ function MenuManyElement({ label, icon, routers, exact ,isDisable }) {
 
 
     });
-    if(isDisable){
-        return (
-            <li className="pcoded-hasmenu disabled-li">
-                <div className="pcoded-link-many-element" onClick={() => {
-                    dispatch({ type: "TOGGLE_IS_MENU_ELEMENT" })
-    
-                }}>
-                    <span className="pcoded-micon">
-                        <FeatherIcon icon={icon} color="#dcdcdc" size={15} />
-                    </span>
-                    <span className="pcoded-mtext">
-                        {label}
-                    </span>
-                    <span className="pcoded-toggle">
-                        <FeatherIcon icon={isMenuElement ? "chevron-down" : "chevron-up"} size={14} />
-                    </span>
-                </div>
-                <div className={isMenuElement ? "pcoded-content-many-element d-none" : "pcoded-content-many-element d-d-block"}>
-                    <ul className="pcoded-content-element">
-                        {
-                            routers.map((router, index) => {
-                                return (
-                                    <MenuLink key={index}name={router.name}  to={router.to} activeOnlyWhenExact={router.exact}  />
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </li>
-        )
-    }
 
     return (
         <li className={match ? "pcoded-hasmenu-active" : " pcoded-hasmenu"}>

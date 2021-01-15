@@ -32,7 +32,7 @@ app.use(passport.initialize());
 
 
 //Connect MongoDB 
-mongoose.connect(process.env.MongoDB_URL, { useNewUrlParser: true }, function (err, db) {
+mongoose.connect(process.env.MongoDB_URL || process.env.MongoDB_URL_LOCAL, { useNewUrlParser: true }, function (err, db) {
   if (err) throw err;
   let checkAccout=checkAccoutAdmin();
   checkAccout.then(function(result) {
@@ -74,14 +74,11 @@ require("./controllers/socketIO_Controller")(io);
 
 
 app.use('/profile', authRouter)
-//app.use('/api/manage',projectRouter)
-//app.use('/api/cabin',cabinRouter)
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
 app.use('/api/cabin', passport.authenticate('jwt', { session: false }),cabinRouter)
-/*
+
 app.get('/*', async (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-*/
 
 module.exports = { app: app, server: server }; 

@@ -92,7 +92,7 @@ function MDashbard(props) {
     const [PF3 , setPF3] =useState(1);
 
     //F & KW
-    const [F , setF] =useState(0);
+    const [F , setF] =useState(50);
     const [KWH , setKWH] =useState(0);
     const FArray = useSelector((state) => state.FArray);
     const KWHArray = useSelector((state) => state.EArray);
