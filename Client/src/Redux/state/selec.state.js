@@ -249,61 +249,6 @@ var PhaseThree = (state = initialStatePhaseThree, action) => {
   }
 };
 
-//RLA
-var RLA = (state = initialStateRLA, action) => {
-  switch (action.type) {
-    case "RLAmodeAuto":
-      return {
-        ...state,
-        RLAmode: "auto",
-      };
-    case "RLAmodeManual":
-      return {
-        ...state,
-        RLAmode: "manual",
-      };
-    case "RLAstatusON":
-      return {
-        ...state,
-        RLAstatus: "on",
-      };
-    case "RLAstatusOFF":
-      return {
-        ...state,
-        RLAstatus: "off",
-      };
-    default:
-      return state;
-  }
-};
-
-//RLB
-var RLB = (state = initialStateRLB, action) => {
-  switch (action.type) {
-    case "RLBmodeAuto":
-      return {
-        ...state,
-        RLBmode: "auto",
-      };
-    case "RLBmodeManual":
-      return {
-        ...state,
-        RLBmode: "manual",
-      };
-    case "RLBstatusON":
-      return {
-        ...state,
-        RLBstatus: "on",
-      };
-    case "RLBstatusOFF":
-      return {
-        ...state,
-        RLBstatus: "off",
-      };
-    default:
-      return state;
-  }
-};
 
 //RL
 var RL = (state = initialStateRLSelec, action) => {
@@ -334,7 +279,5 @@ module.exports = {
   PhaseOne,
   PhaseTwo,
   PhaseThree,
-  RLA,
-  RLB,
-  RL,
+  RL
 };

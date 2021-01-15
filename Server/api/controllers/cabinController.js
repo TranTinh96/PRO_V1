@@ -158,11 +158,11 @@ module.exports.infoAccout = async (req, res, next) => {
  * Relay
  */
 
-module.exports.postCreateCabinRelay = async (req, res, next) => {
+module.exports.postUpdateCabinRelay = async (req, res, next) => {
   var reqBody = req.body;
   let device_id = reqBody._idProject;
   var samplesRelay = {
-    name: reqBody.nameRelay,
+    name: reqBody.name,
     mode :reqBody.mode ,
     timeOn: reqBody.timeOn,
     timeOff: reqBody.timeOff,

@@ -10,18 +10,34 @@ var cabinRelaySchema = new Schema({
         unique :true,
         required :true
     },
+
+    cabinStatus :{
+        type  :String ,
+        enum :['online' ,'offline'] ,
+        default :"offline"
+    },
     samples:[{
-        name : String ,
+        name : {
+            type :String ,
+            enum :['RLA' ,'RLB']
+        } ,
         mode : {
             type :String ,
-            enum :['Auto' ,'Manual'],
+            enum :['auto' ,'manual'],
             default : "manual"
         } ,
-        timeOn :String ,
-        timeOff : String ,
+        timeOn :{
+           type:  String ,
+           default : "00:00"
+        } ,
+        timeOff :{
+            type:  String ,
+            default : "00:00"
+         } ,
         status : {
-            type : Boolean ,
-            default:false
+            type : String ,
+            enum :['on','off'],
+            default:'off'
         }
       
     }]
@@ -30,8 +46,8 @@ var cabinRelaySchema = new Schema({
 var cabinRelay = module.exports= mongoose.model("cabinRelay", cabinRelaySchema)
 
 
-module.exports.addCabinRelay= async ( device_id,samplesRelay ) =>{
-    await cabinRelay.updateOne({device_id:device_id},
+module.exports.addCabinRelay= async ( device_id ,cabinStatus,samplesRelay ) =>{
+    await cabinRelay.updateOne({device_id:device_id ,cabinStatus:cabinStatus},
         {$push:{samples :samplesRelay},
     },{ upsert: true } )
 }

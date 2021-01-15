@@ -10,19 +10,24 @@ var middlewareAlarm =  require("../api/middlewares/alarm.Middleware")
 var func  = require("../middlewares/func.Middleware")
 var mqtt  = require("../middlewares/mqtt.Middleware")
 
+var samplesRelay =[
+   {
+     name :"RLA",
+     mode :"manual" ,
+     timeOn : "00:00" ,
+     timeOff :"00:00",
+     status :"off"
+   } ,
+   {
+    name :"RLB",
+    mode :"manual" ,
+    timeOn : "00:00" ,
+    timeOff :"00:00",
+    status :"off"
+  }
+]
 
 module.exports = (clientMQTT) => {
-  clientMQTT.on("error", (err) => {
-    console.error("Connection error: ", err);
-      
-  });
-  clientMQTT.on("reconnect", () => {
-    console.log("Reconnecting");
-  });
-
-  clientMQTT.on("disconnect", () => {
-      console.log ("Disconnect");
-  });
 
   clientMQTT.on("message", function (topic, message, packet) {
     if(topic){
@@ -143,27 +148,16 @@ module.exports = (clientMQTT) => {
           /*
           * Relay
           */  
-         cabinRelay.findCabinRelaycabinRelay(topic,(err, dataRelay)=>{
+         cabinRelay.findCabinRelay(topic,(err, dataRelay)=>{
           if( !err && !func.checkArray(dataRelay)){
-            var arrDataAlarm = dataRelay[0].samples ;
-            //Task : Lấy dữ liệu mới
-            for (let i = 0; i < arrDataAlarm.length; i++) {
-                var statusAlarm = middlewareAlarm.checkStatusAlarm(payloadSplit , arrDataAlarm[i]);
-                var valueTagAlarm = middlewareAlarm.getValueTagAlarm(payloadSplit, arrDataAlarm[i]);
-                let newAlarm ={
-                  name : arrDataAlarm[i].name ,
-                  HH :  arrDataAlarm[i].HH ,
-                  H :  arrDataAlarm[i].H ,
-                  L :  arrDataAlarm[i].L ,
-                  LL :  arrDataAlarm[i].LL ,
-                  Rate :  arrDataAlarm[i].Rate ,
-                  valueTag : valueTagAlarm ,
-                  status : statusAlarm
-                }
-                arrLastAlarm.push(newAlarm)
-            }
-            cabinRelay.editCabinRelaycabinRelay(topic,arrLastAlarm)
+           
+            
           
+          }
+
+          //Tu tao hai relay
+          else{
+             cabinRelay.addCabinRelay(topic,'offline' ,samplesRelay);
           }
 
          })      

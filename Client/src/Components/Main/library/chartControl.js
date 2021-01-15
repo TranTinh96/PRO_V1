@@ -1,6 +1,7 @@
 import React,{useState ,useEffect,useLayoutEffect}from "react";
 import Switch from "react-switch";
 import {useSelector ,useDispatch} from 'react-redux';
+import axios from "axios"
 import { Button } from 'antd';
 import onLight from "../../../assets/Image/light/on.png"
 import offLight from "../../../assets/Image/light/off.png"
@@ -11,20 +12,23 @@ import topicPublish from "../../MQTT/topicPublish"
 function ChartControl(props) {
     var RLmodeA = useSelector((state) => state.RL).RLAmode;
     var RLmodeB =  useSelector((state) => state.RL).RLAmode;
-    var RLstatusA =  useSelector((state) => state.RL).RLAmode;
-    var RLstatusB =  useSelector((state) => state.RL).RLAmode;
+    var RLstatusA =  useSelector((state) => state.RL).RLAstatus;
+    var RLstatusB =  useSelector((state) => state.RL).RLBstatus;
   //MQTT
     var clientMQTT= props.clientMQTT
     //Redux
     var dispatch =useDispatch();
     const role = useSelector((state) => state.setUserJWT).users.role;
     const _idProject = useSelector((state) => state.idTopicProject);
-    const RLAstatus = useSelector((state) => state.RLA.RLAstatus);
-    const RLAmode = useSelector((state) => state.RLA.RLAmode);
-    const RLBstatus = useSelector((state) => state.RLB.RLBstatus);
-    const RLBmode = useSelector((state) => state.RLB.RLBmode);
-
+    //RLA
+    const [RLAstatus ,setRLAstatus] = useState("off")
+    const [RLAmode ,setRLAmode] = useState("manual")
+    //RLB
+    const [RLBstatus ,setRLBstatus] = useState("off")
+    const [RLBmode ,setRLBmode] = useState("manual")
+    //Topic publish
     const topic =`${_idProject}/${topicPublish.topic}`
+    //Time mode = auto
     const [state , setState]= useState({
         RLAonTime : " ",
         RLAoffTime : " ",
@@ -32,9 +36,9 @@ function ChartControl(props) {
         RLBoffTime : " "
     })
 
-
-
-    
+    /** 
+     * Function
+     */
     function checkRLStatus(status){
       return  status=="on"? true:false;
     }
@@ -59,40 +63,49 @@ function ChartControl(props) {
     }
 
 
-     //Publish MQTT mode Manual
-    const handleManualRLA = () => {
+    //Handle change mode
+
+    const handleChangeModeRelayA = () => {
+      RLAmode ==="auto" ? setRLAmode('manual') : setRLAmode('auto')
+    };
+
+    const handleChangeModeRelayB = () => {
+        RLBmode ==="auto" ? setRLBmode('manual') : setRLBmode('auto')
+    };
+
+    /**
+     * Publish MQTT mode Manual
+     */
+    
+     const handleManualRLA = () => {
       var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus)+"&";
-      if(checkRLStatus(RLAstatus))
-        dispatch({type:'RLAstatusOFF'})
-      else
-        dispatch({type:'RLAstatusON'})
-     
+      checkRLStatus(RLAstatus) ? setRLAstatus("off") :setRLAstatus('on')
+      axios.post('/api/cabin/relay/update', {
+        _idProject :_idProject,
+        name :'RLA',
+        mode :"manual",
+        status : RLstatusA ,
+        timeOn :'00:00',
+        timeOff :'00:00'
+     })
+      .then(function (res) {
+        var Res = res.data
+         if(Res.success){
+           console.log(Res)
+         }
+      })
       clientMQTT.publish(topic,payload)
     };
     const handleManualRLB= () => {
       var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus)+"&";
-      if(checkRLStatus(RLBstatus))
-          dispatch({type:'RLBstatusOFF'})
-      else
-         dispatch({type:'RLBstatusON'})
-
+      checkRLStatus(RLBstatus) ? setRLBstatus("off") :setRLBstatus('on')
       clientMQTT.publish(topic,payload)
     };
-    const handleChangeModeRelayA = () => {
-    
-      if(RLAmode ==="auto")
-        dispatch({type:'RLAmodeManual'})
-      else
-        dispatch({type:'RLAmodeAuto'})
-  
-    };
-    const handleChangeModeRelayB = () => {
-      if(RLBmode ==="auto")
-        dispatch({type:'RLBmodeManual'})
-      else
-        dispatch({type:'RLBmodeAuto'})
-    };
-    //Publish MQTT mode Auto
+
+    /**
+     * Publish MQTT mode Auto
+     */
+
     const onClickRLAauto = () => {
       if( (state.RLAoffTime !==" ") &&(state.RLAonTime !==" ")){
         var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" + state.RLAonTime+":00"+"&"+"RLAoffTime"+"=" + state.RLAoffTime+":00"+"&";
@@ -115,7 +128,9 @@ function ChartControl(props) {
     }
 
    const [isDisable,setIsDisable] =useState(false)
-  //useEffect
+
+  
+  //Role
    useEffect(() => {
       if(role =="User")
       {
@@ -125,28 +140,13 @@ function ChartControl(props) {
    }, [role])
 
   useLayoutEffect(() => {
-      //RELAY A
-      if(RLmodeA ==="auto")
-          dispatch({type:'RLAmodeAuto'})
-      else if(RLmodeA ==="manual")
-          dispatch({type:'RLAmodeManual'})
-      //RELAY B
-      if(RLmodeB ==="auto")
-          dispatch({type:'RLBmodeAuto'})
-      else if(RLmodeB ==="manual")
-          dispatch({type:'RLBmodeManual'})
-        
-      //Status RELAY A
-      if(RLstatusA ==="on")
-          dispatch({type:'RLAstatusON'})
-      else if(RLstatusA ==="off")
-          dispatch({type:'RLAstatusOFF'})
-       //Status RELAY B
-      if(RLstatusB ==="on")
-          dispatch({type:'RLBstatusON'})
-      else if(RLstatusB ==="off")
-          dispatch({type:'RLBstatusOFF'})
-
+     //Mode
+      RLmodeA ==="auto" ? setRLAmode("auto"): setRLAmode('manual')
+      RLmodeB ==="auto" ? setRLBmode("auto"): setRLBmode('manual')
+      //Status 
+      RLstatusA ==="on" ? setRLAstatus("on") : setRLAstatus("off")
+      RLstatusB ==="on" ? setRLBstatus("on") : setRLBstatus("off")
+    
   }, [RLmodeA,RLmodeB,RLstatusA,RLstatusB])
 
 

@@ -21,8 +21,6 @@ import {
   PhaseOne,
   PhaseTwo,
   PhaseThree,
-  RLA,
-  RLB,
   RL,
 } from "./state/selec.state";
 var reducer = combineReducers({
@@ -47,8 +45,6 @@ var reducer = combineReducers({
   PhaseOne,
   PhaseTwo,
   PhaseThree,
-  RLA,
-  RLB,
   RL,
 });
 
