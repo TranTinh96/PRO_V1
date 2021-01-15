@@ -69,8 +69,7 @@ function Home(props) {
 
   
     //Payload
-    useLayoutEffect(() => {
-      console.log(topic + "  " + payload)
+    useEffect(() => {
       if(topic){
           var payloadSplit = payload.toString().split('&')
 

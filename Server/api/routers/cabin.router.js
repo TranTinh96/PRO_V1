@@ -23,5 +23,9 @@ router.post("/dataTimeWeeks" ,cabinController.postDataWeeks)
  //Accouts
 router.post("/accouts/information",cabinController.infoAccout)
 
+//Relay
+router.post ("/relay/create-relay" ,cabinController.postCreateCabinRelay);
+router.post ("/relay/get-relay" ,cabinController.getCabinRelay);
+
 
 module.exports = router;

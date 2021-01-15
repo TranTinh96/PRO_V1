@@ -20,10 +20,7 @@ store.subscribe(() => {
   
 });
 
-axios.defaults.baseURL = 'http://192.168.1.104:5000'
-//axios.defaults.baseURL = 'http://172.16.10.202:5000'
-//axios.defaults.baseURL = 'http://172.16.4.201:5000'
-
+axios.defaults.baseURL = 'https://tnt-iot.herokuapp.com/'
 
 export default function Main() {
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 import { Result, Button } from "antd";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 function Page404() {
   //Router

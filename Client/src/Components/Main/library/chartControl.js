@@ -125,7 +125,6 @@ function ChartControl(props) {
    }, [role])
 
   useLayoutEffect(() => {
-   
       //RELAY A
       if(RLmodeA ==="auto")
           dispatch({type:'RLAmodeAuto'})
@@ -147,9 +146,6 @@ function ChartControl(props) {
           dispatch({type:'RLBstatusON'})
       else if(RLstatusB ==="off")
           dispatch({type:'RLBstatusOFF'})
-
-
-
 
   }, [RLmodeA,RLmodeB,RLstatusA,RLstatusB])
 

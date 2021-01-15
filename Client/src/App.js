@@ -10,4 +10,6 @@ function App() {
   );
 }
 
+{/* "proxy": "https://tnt-iot.herokuapp.com/", */}
+
 export default App;
