@@ -177,7 +177,7 @@ var initialStateChartLineVLN = [
   var CURRENT = (state =initialStateCurrent, action) => {
     switch (action.type) {
       case "ADD_DATA_I":
-        return {...state, 
+        return {
             I :action.I ,
             I1 :action.I1 ,
             I2 :action.I2,
@@ -209,7 +209,7 @@ var initialStateChartLineVLN = [
         var newSatate = [...state]
           newSatate.shift();
           newSatate.push(action.EArray);
-          
+          initialStateChartLineE= newSatate;
          return newSatate;
       default:
         return state;

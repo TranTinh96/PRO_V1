@@ -11,8 +11,21 @@ var mqtt  = require("../middlewares/mqtt.Middleware")
 
 
 module.exports = (clientMQTT) => {
+  clientMQTT.on("error", (err) => {
+    console.error("Connection error: ", err);
+      
+  });
+  clientMQTT.on("reconnect", () => {
+    console.log("Reconnecting");
+  });
+
+  clientMQTT.on("disconnect", () => {
+      console.log ("Disconnect");
+  });
+
   clientMQTT.on("message", function (topic, message, packet) {
     if(topic){
+      console.log(topic)
         Project.getByTokenProject(topic ,(err,project) =>{
            if(!err && ! func.checkNull(project)){
             var payloadSplit = message.toString().split('&');

@@ -176,6 +176,7 @@ function MDashbard(props) {
         setV3N(getKeyValue(payloadSplit,"V3N"))
 
         //CURRENT
+  
         dispatch({
           type:"ADD_DATA_I",
           I:getKeyValue(payloadSplit,"I"),
@@ -183,6 +184,7 @@ function MDashbard(props) {
           I2:getKeyValue(payloadSplit,"I2"),
           I3:getKeyValue(payloadSplit,"I3"),
          })
+
 
         //KW
         setKW(getKeyValue(payloadSplit,"KW"))
