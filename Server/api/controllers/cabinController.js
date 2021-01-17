@@ -161,32 +161,36 @@ module.exports.infoAccout = async (req, res, next) => {
 module.exports.postUpdateCabinRelay = async (req, res, next) => {
   var reqBody = req.body;
   let device_id = reqBody._idProject;
-  var samplesRelay = {
-    name: reqBody.name,
-    mode :reqBody.mode ,
-    timeOn: reqBody.timeOn,
-    timeOff: reqBody.timeOff,
-    status : reqBody.status
-  };
-  cabinRelay.addCabinRelay(device_id, samplesRelay);
+  console.log(reqBody)
+  cabinRelay.editCabinRelay(device_id ,"online",reqBody.arrayRelay);
   res.json({
-    status: "Success",
+    status: true,
   });
 };
 
 
 module.exports.getCabinRelay = async (req, res, next) => {
-    let device_id = req.body._idProject;
-    cabinAlarm.getCabinRelay(device_id, (err, dataRelay) => {
-      if (!err && !func.checkNull(dataRelay)) {
-        res.json({
-          dataRelay: dataRelay[0].samples,
-          status: true,
-        });
-      } else {
-        res.json({
-          status: false,
-        });
-      }
-    });
+    var _idProject_ = req.body._idProject;
+    console.log(_idProject_ + "----------------------")
+    if(_idProject_ != null){
+      cabinRelay.getCabinRelay(_idProject_, (err, dataRelay) => {
+        
+        if (!err && !func.checkUndefined(dataRelay)) {
+          res.json({
+            success :true ,
+            dataRelay: dataRelay[0].samples,
+            status: true,
+          });
+        } else {
+          res.json({
+            success:true,
+            status: false,
+          });
+        }
+      });
+    }
+    res.json({
+      success :false
+    })
+   
 }

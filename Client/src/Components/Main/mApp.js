@@ -21,6 +21,7 @@ import {checkString} from "../services/fucServices"
 import checkRole from "../services/fucRole";
 
 function MApp() {
+  console.log("App")
   const dispatch =useDispatch()
   const _idProject = useSelector((state) => state.idTopicProject);
   const _idProject_ = localStorage.getItem("AuthID");

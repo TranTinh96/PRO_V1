@@ -1,5 +1,5 @@
 module.exports.checkNull = (valueNull) => {
-   return valueNull == null ? true :false ;
+   return valueNull === null ? true :false ;
 }
 
 module.exports.checkTokenProject = (tokenLast,token)=>{
@@ -45,3 +45,32 @@ module.exports.getKeyValue = (str , key) => {
  return value;
  
 }
+
+
+module.exports.getKeyValueString = (str , key ,preValue) => {
+   var value =preValue ;
+   for (let i = 0; i < str.length; i++) {
+     if(str[i].search(key) !== -1)
+     {
+       value = str[i].split('=')[1].toString();
+       break;
+     }
+    
+  }
+  return value;
+ }
+ 
+ module.exports.getKeyValueStringTime = (str , key ,preValue) => {
+   var value =preValue ;
+   for (let i = 0; i < str.length; i++) {
+     if(str[i].search(key) !== -1)
+     {
+       var valueTime = str[i].split('=')[1]
+       value =valueTime.split(":")[0]+":"+valueTime.split(":")[1]
+       break;
+     }
+    
+  }
+  return value;
+  
+ }

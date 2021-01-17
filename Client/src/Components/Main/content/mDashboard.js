@@ -36,7 +36,8 @@ function checkLength(value){
 }
 
 
-function MDashbard(props) {
+function MDashbard() {
+    console.log("Dashboard")
     const history = useHistory()
 
     const dispatch =useDispatch()
@@ -219,10 +220,10 @@ function MDashbard(props) {
         //RL status
         dispatch({
           type:"ADD_RL_SELEC",
-          RLAstatus:getKeyValueString(payloadSplit,"RLAstatus"),
-          RLAmode:getKeyValueString(payloadSplit,"RLAmode"),
-          RLBstatus:getKeyValueString(payloadSplit,"RLBstatus"),
-          RLBmode:getKeyValueString(payloadSplit,"RLBmode"),
+          RLAstatus:getKeyValueString(payloadSplit,"RLAstatus","off"),
+          RLAmode:getKeyValueString(payloadSplit,"RLAmode",'manual'),
+          RLBstatus:getKeyValueString(payloadSplit,"RLBstatus" ,'off'),
+          RLBmode:getKeyValueString(payloadSplit,"RLBmode",'manual'),
          })
         }
 
@@ -405,7 +406,7 @@ function MDashbard(props) {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl clientMQTT={clientMQTT} RLAstatus={props.RLAstatus} RLBstatus={props.RLBstatus} RLAmode={props.RLAmode} RLBmode={props.RLBmode} />        
+                                                         <ChartControl clientMQTT={clientMQTT}   />        
                                                     </div>
                                                 </div>
                                             </div>

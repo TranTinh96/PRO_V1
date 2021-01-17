@@ -10,30 +10,33 @@ import topicPublish from "../../MQTT/topicPublish"
 
 
 function ChartControl(props) {
-    var RLmodeA = useSelector((state) => state.RL).RLAmode;
-    var RLmodeB =  useSelector((state) => state.RL).RLAmode;
-    var RLstatusA =  useSelector((state) => state.RL).RLAstatus;
-    var RLstatusB =  useSelector((state) => state.RL).RLBstatus;
-  //MQTT
+    const RLmodeA = useSelector((state) => state.RL).RLAmode;
+    const RLmodeB =  useSelector((state) => state.RL).RLBmode;
+    const RLstatusA =  useSelector((state) => state.RL).RLAstatus;
+    const RLstatusB =  useSelector((state) => state.RL).RLBstatus;
+    
+    //MQTT
     var clientMQTT= props.clientMQTT
     //Redux
     var dispatch =useDispatch();
     const role = useSelector((state) => state.setUserJWT).users.role;
-    const _idProject = useSelector((state) => state.idTopicProject);
+    const _idProject = localStorage.getItem("AuthID");
     //RLA
     const [RLAstatus ,setRLAstatus] = useState("off")
     const [RLAmode ,setRLAmode] = useState("manual")
     //RLB
     const [RLBstatus ,setRLBstatus] = useState("off")
     const [RLBmode ,setRLBmode] = useState("manual")
+    
     //Topic publish
     const topic =`${_idProject}/${topicPublish.topic}`
+
     //Time mode = auto
     const [state , setState]= useState({
-        RLAonTime : " ",
-        RLAoffTime : " ",
-        RLBonTime : " ",
-        RLBoffTime : " "
+        RLAonTime : "00:00",
+        RLAoffTime : "00:00",
+        RLBonTime : "00:00",
+        RLBoffTime : "00:00"
     })
 
     /** 
@@ -66,11 +69,11 @@ function ChartControl(props) {
     //Handle change mode
 
     const handleChangeModeRelayA = () => {
-      RLAmode ==="auto" ? setRLAmode('manual') : setRLAmode('auto')
+      RLAmode =="auto" ? setRLAmode('manual') : setRLAmode('auto')
     };
 
     const handleChangeModeRelayB = () => {
-        RLBmode ==="auto" ? setRLBmode('manual') : setRLBmode('auto')
+        RLBmode =="auto" ? setRLBmode('manual') : setRLBmode('auto')
     };
 
     /**
@@ -79,26 +82,66 @@ function ChartControl(props) {
     
      const handleManualRLA = () => {
       var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+ checkStatus(RLAstatus)+"&";
-      checkRLStatus(RLAstatus) ? setRLAstatus("off") :setRLAstatus('on')
+      
+      let arrayRLAManual =[
+        {
+          name :'RLA',
+          mode :RLAmode,
+          status : checkStatus(RLAstatus) ,
+          timeOn :"00:00",
+          timeOff :"00:00"
+        } ,
+        {
+          name :'RLB',
+          mode :RLBmode,
+          status : RLBstatus ,
+          timeOn : state.RLBonTime,
+          timeOff : state.RLBoffTime
+        }
+      ]
       axios.post('/api/cabin/relay/update', {
         _idProject :_idProject,
-        name :'RLA',
-        mode :"manual",
-        status : RLstatusA ,
-        timeOn :'00:00',
-        timeOff :'00:00'
+        arrayRelay :arrayRLAManual
      })
       .then(function (res) {
         var Res = res.data
-         if(Res.success){
-           console.log(Res)
+         if(Res.status){
+          checkRLStatus(RLAstatus) ? setRLAstatus("off") :setRLAstatus('on')
          }
       })
       clientMQTT.publish(topic,payload)
     };
+
+    //Manual B
     const handleManualRLB= () => {
       var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBstatus"+"="+checkStatus(RLBstatus)+"&";
-      checkRLStatus(RLBstatus) ? setRLBstatus("off") :setRLBstatus('on')
+    
+      let arrayRelayBManual =[
+        {
+          name :'RLA',
+          mode :RLAmode,
+          status : RLAstatus ,
+          timeOn : state.RLAonTime,
+          timeOff : state.RLAoffTime
+        } ,
+        {
+          name :'RLB',
+          mode :RLBmode,
+          status : checkStatus(RLBstatus) ,
+          timeOn : "00:00",
+          timeOff : '00:00'
+        }
+      ]
+      axios.post('/api/cabin/relay/update', {
+        _idProject :_idProject,
+        arrayRelay :arrayRelayBManual
+     })
+      .then(function (res) {
+        var Res = res.data
+         if(Res.status){
+          checkRLStatus(RLBstatus) ? setRLBstatus("off") :setRLBstatus('on')
+         }
+      })
       clientMQTT.publish(topic,payload)
     };
 
@@ -109,6 +152,32 @@ function ChartControl(props) {
     const onClickRLAauto = () => {
       if( (state.RLAoffTime !==" ") &&(state.RLAonTime !==" ")){
         var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" + state.RLAonTime+":00"+"&"+"RLAoffTime"+"=" + state.RLAoffTime+":00"+"&";
+        let arrayRLA_Auto =[
+          {
+            name :'RLA',
+            mode :RLAmode,
+            status : "off" ,
+            timeOn :state.RLAonTime,
+            timeOff :state.RLAoffTime
+          } ,
+          {
+            name :'RLB',
+            mode :RLBmode,
+            status : "off" ,
+            timeOn :state.RLBonTime,
+            timeOff :state.RLBffTime
+          }
+        ]
+        axios.post('/api/cabin/relay/update', {
+          _idProject :_idProject,
+          arrayRelay :arrayRLA_Auto
+       })
+        .then(function (res) {
+          var Res = res.data
+           if(Res.status){
+             console.log(Res)
+           }
+        })
         clientMQTT.publish(topic,payload)
       }
       else
@@ -118,7 +187,33 @@ function ChartControl(props) {
     }
     const onClickRLBauto = () => {
       if( (state.RLBoffTime !==" ") && (state.RLBonTime !==" ")){
-        var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLABnTime"+"=" + state.RLBonTime+":00"+"&"+"RLBoffTime"+"=" + state.RLBoffTime+":00"+"&";
+        var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBonTime"+"=" + state.RLBonTime+":00"+"&"+"RLBoffTime"+"=" + state.RLBoffTime+":00"+"&";
+        let arrayRLA_Auto =[
+          {
+            name :'RLA',
+            mode :RLAmode,
+            status : "off" ,
+            timeOn :state.RLAonTime,
+            timeOff :state.RLAoffTime
+          } ,
+          {
+            name :'RLB',
+            mode :RLBmode,
+            status : "off" ,
+            timeOn :state.RLBonTime,
+            timeOff :state.RLBoffTime
+          }
+        ]
+        axios.post('/api/cabin/relay/update', {
+          _idProject :_idProject,
+          arrayRelay :arrayRLA_Auto
+       })
+        .then(function (res) {
+          var Res = res.data
+           if(Res.status){
+             console.log(Res)
+           }
+        })
         clientMQTT.publish(topic,payload)
       }
       else
@@ -139,13 +234,45 @@ function ChartControl(props) {
      
    }, [role])
 
+   //Init Role
+   /*
+   useEffect(() => {
+     if(_idProject){
+      axios.post('/api/cabin/relay/info', {_idProject :_idProject})
+      .then(function (res) {
+        var Res = res.data
+        if(Res.success){
+          if(Res.status)
+          {
+            setRLAmode(Res.dataRelay[0].mode)
+            setRLBmode(Res.dataRelay[1].mode)
+            setRLAstatus(Res.dataRelay[0].status)
+            setRLBstatus(Res.dataRelay[1].status)
+            let onTimeRLA = Res.dataRelay[0].timeOn
+            let offTimeRLA = Res.dataRelay[0].timeOff
+            let onTimeRLB = Res.dataRelay[1].timeOn
+            let offTimeRLB =Res.dataRelay[1].timeOff
+            setState({RLAonTime : onTimeRLA})
+            setState({RLAoffTime : offTimeRLA})
+            setState({RLBonTime : onTimeRLB})
+            setState({RLBoffTime : offTimeRLB})
+          }
+        }
+       
+      })
+     }
+    
+   }, [])
+   */
+   
+
   useLayoutEffect(() => {
      //Mode
-      RLmodeA ==="auto" ? setRLAmode("auto"): setRLAmode('manual')
-      RLmodeB ==="auto" ? setRLBmode("auto"): setRLBmode('manual')
+      RLmodeA =="auto" ? setRLAmode("auto"): setRLAmode('manual')
+      RLmodeB =="auto" ? setRLBmode("auto"): setRLBmode('manual')
       //Status 
-      RLstatusA ==="on" ? setRLAstatus("on") : setRLAstatus("off")
-      RLstatusB ==="on" ? setRLBstatus("on") : setRLBstatus("off")
+      RLstatusA =="on" ? setRLAstatus("on") : setRLAstatus("off")
+      RLstatusB =="on" ? setRLBstatus("on") : setRLBstatus("off")
     
   }, [RLmodeA,RLmodeB,RLstatusA,RLstatusB])
 
@@ -374,7 +501,6 @@ function ChartControl(props) {
                     ON
                   </div>
                 }
-              
               />
             </td>
             }

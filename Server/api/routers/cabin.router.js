@@ -25,7 +25,7 @@ router.post("/accouts/information",cabinController.infoAccout)
 
 //Relay
 router.post ("/relay/update" ,cabinController.postUpdateCabinRelay);
-router.post ("/relay/get-relay" ,cabinController.getCabinRelay);
+router.post ("/relay/info" ,cabinController.getCabinRelay);
 
 
 module.exports = router;

@@ -17,7 +17,7 @@ const optionsName = [
 
 function  DrawerForm() {
   const dispatch = useDispatch()
-  const _idProject = useSelector((state) => state.idTopicProject);
+  const _idProject = localStorage.getItem("AuthID"); 
 
   const [visible ,setVisible] = useState(false)
   const [name ,setName] = useState()

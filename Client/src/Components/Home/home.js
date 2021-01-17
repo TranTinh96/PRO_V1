@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { Link ,useHistory} from "react-router-dom";
 import Cookies from 'universal-cookie';
-import {checkUndefined , checkTypeUndefined} from "../services/fucServices";
+import {checkUndefined , checkTypeUndefined,checkNull} from "../services/fucServices";
 import logo from "../../assets/Image/logo.png";
 
 function Home() {
 
  const history = useHistory();
- 
  const cookies = new Cookies();
  var authToken = cookies.get("Auth")
  useEffect(() => {
-    if (!checkUndefined(authToken) && ! checkTypeUndefined(authToken))
+    if (!checkNull(authToken) && ! checkTypeUndefined(authToken))
     {
       history.push("/dashboard")
     }

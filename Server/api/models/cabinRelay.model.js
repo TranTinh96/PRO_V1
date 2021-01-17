@@ -52,6 +52,12 @@ module.exports.addCabinRelay= async ( device_id ,cabinStatus,samplesRelay ) =>{
     },{ upsert: true } )
 }
 
+module.exports.editCabinRelay= async ( device_id, cabinStatus , samplesRelay) =>{
+    await cabinRelay.deleteOne({device_id:device_id})
+    await cabinRelay.updateOne({device_id:device_id ,cabinStatus :cabinStatus},
+        {$push:{samples :samplesRelay},
+    },{ upsert: true } )
+}
 
 module.exports.getCabinRelay= async ( device_id ,cb) =>{
     await cabinRelay.find({device_id:device_id},cb)

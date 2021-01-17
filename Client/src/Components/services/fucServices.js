@@ -27,6 +27,14 @@ module.exports.checkString= (value) => {
    return false
 }
 
+module.exports.isEmpty =(obj) =>{
+   for(var prop in obj) {
+       if(obj.hasOwnProperty(prop))
+           return false;
+   }
+
+   return true;
+}
  
 
  //example key = V1=220&V1N=220 => getKeyValue: V1=220
@@ -65,24 +73,19 @@ module.exports.checkString= (value) => {
   
 }
 
-//example key = V1=220&V1N=220 => getKeyValue: V1=220
-module.exports.getKeyValueString = (str , key) => {
-   var value ;
+module.exports.getKeyValueString = (str , key ,preValue) => {
+   var value =preValue ;
    for (let i = 0; i < str.length; i++) {
      if(str[i].search(key) !== -1)
      {
-       value = str[i].split('=')[1];
-       value=value.toString()
+       value = str[i].split('=')[1].toString();
        break;
      }
-     else
-     {
-        value =' ';
-     }
+    
   }
   return value;
-  
-}
+ }
+ 
 
 //example if(limitData =5) array =[100 ,200,300,400,500,600,700] => array =[200,300,400,500,600,700]
 //VD: lenghtArray =10 , limit =5

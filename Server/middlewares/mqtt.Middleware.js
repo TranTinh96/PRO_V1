@@ -71,3 +71,24 @@ module.exports.getDay = () => {
   return  today.toLocaleDateString();
 
 }
+
+module.exports.dataRelay = (payloadSplit) => {
+  return [
+    {
+      name: "RLA",
+      mode:  func.getKeyValue(payloadSplit,"RLAmode"),
+      timeOn:  func.getKeyValue(payloadSplit,"RLAonTime"),
+      timeOff:  func.getKeyValue(payloadSplit,"RLAoffTime"),
+      status:  func.getKeyValue(payloadSplit,"RLAstatus"),
+    },
+    {
+      name: "RLB",
+      mode:  func.getKeyValue(payloadSplit,"RLBmode"),
+      timeOn:  func.getKeyValue(payloadSplit,"RLBonTime"),
+      timeOff:  func.getKeyValue(payloadSplit,"RLBoffTime"),
+      status:  func.getKeyValue(payloadSplit,"RLBstatus"),
+    },
+  ];
+};
+
+
