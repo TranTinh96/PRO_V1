@@ -30,7 +30,6 @@ function MHeader() {
     dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
     localStorage.removeItem("AuthID")
     history.push("/")
-    history.go(0)
   };
 
   return (

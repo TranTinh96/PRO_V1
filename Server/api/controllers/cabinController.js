@@ -170,27 +170,46 @@ module.exports.postUpdateCabinRelay = async (req, res, next) => {
 
 
 module.exports.getCabinRelay = async (req, res, next) => {
-    var _idProject_ = req.body._idProject;
-    console.log(_idProject_ + "----------------------")
-    if(_idProject_ != null){
-      cabinRelay.getCabinRelay(_idProject_, (err, dataRelay) => {
-        
-        if (!err && !func.checkUndefined(dataRelay)) {
-          res.json({
-            success :true ,
-            dataRelay: dataRelay[0].samples,
-            status: true,
-          });
-        } else {
-          res.json({
-            success:true,
-            status: false,
-          });
-        }
-      });
-    }
-    res.json({
-      success :false
-    })
-   
-}
+  var topic = req.body._idProject;
+  const samplesRelayInit = [
+    {
+      name: "RLA",
+      mode: "manual",
+      timeOn: "00:00",
+      timeOff: "00:00",
+      status: "off",
+    },
+    {
+      name: "RLB",
+      mode: "manual",
+      timeOn: "00:00",
+      timeOff: "00:00",
+      status: "off",
+    },
+  ];
+  console.log(topic + "----------------------");
+  if( topic){
+    cabinRelay.findCabinRelay(topic, (err, dataRelay) => {
+      if (!err && !func.checkArray(dataRelay)) {
+        cabinRelay.getCabinRelay(topic, (err, dataRelay) => {
+          console.log(dataRelay[0].samples);
+          if (!err && !func.checkUndefined(dataRelay)) {
+            res.json({
+              success: true,
+              dataRelay: dataRelay[0].samples,
+              status: true,
+            });
+          } else {
+            res.json({
+              success: true,
+              status: false,
+            });
+          }
+        });
+      } else {
+        cabinRelay.addCabinRelay(topic, "offline", samplesRelayInit);
+      }
+    });
+  }
+  
+};

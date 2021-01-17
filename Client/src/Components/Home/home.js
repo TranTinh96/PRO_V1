@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link ,useHistory} from "react-router-dom";
 import Cookies from 'universal-cookie';
-import {checkUndefined , checkTypeUndefined,checkNull} from "../services/fucServices";
+import {checkUndefined , checkTypeUndefined} from "../services/fucServices";
 import logo from "../../assets/Image/logo.png";
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
  const cookies = new Cookies();
  var authToken = cookies.get("Auth")
  useEffect(() => {
-    if (!checkNull(authToken) && ! checkTypeUndefined(authToken))
+    if (!checkUndefined(authToken) && ! checkTypeUndefined(authToken))
     {
       history.push("/dashboard")
     }

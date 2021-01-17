@@ -19,6 +19,7 @@ module.exports.checkNull = (valueNull) => {
   return valueNull == null ? true :false ;
 }
 
+
 module.exports.checkArray = (array) => {
    if (array === undefined || array.length == 0) {
        return true;

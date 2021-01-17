@@ -406,7 +406,7 @@ function MDashbard() {
                                                         <h5 className="card-title card-title-header mb-0">CONTROL</h5>
                                                     </div>
                                                     <div className="card-content-line align-items-center">
-                                                         <ChartControl clientMQTT={clientMQTT}   />        
+                                                         <ChartControl clientMQTT={clientMQTT}  _idProject={_idProject} />        
                                                     </div>
                                                 </div>
                                             </div>

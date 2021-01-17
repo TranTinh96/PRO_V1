@@ -20,24 +20,20 @@ function ChartControl(props) {
     //Redux
     var dispatch =useDispatch();
     const role = useSelector((state) => state.setUserJWT).users.role;
-    const _idProject = localStorage.getItem("AuthID");
+    const _idProject = props._idProject
     //RLA
     const [RLAstatus ,setRLAstatus] = useState("off")
     const [RLAmode ,setRLAmode] = useState("manual")
     //RLB
     const [RLBstatus ,setRLBstatus] = useState("off")
     const [RLBmode ,setRLBmode] = useState("manual")
-    
+    const [RLAonTime ,setRLAonTime] = useState(" ")
+    const [RLAoffTime ,setRLAoffTime] = useState(" ")
+    const [RLBonTime ,setRLBonTime] = useState(" ")
+    const [RLBoffTime ,setRLBoffTime] = useState(" ")
+
     //Topic publish
     const topic =`${_idProject}/${topicPublish.topic}`
-
-    //Time mode = auto
-    const [state , setState]= useState({
-        RLAonTime : "00:00",
-        RLAoffTime : "00:00",
-        RLBonTime : "00:00",
-        RLBoffTime : "00:00"
-    })
 
     /** 
      * Function
@@ -57,12 +53,20 @@ function ChartControl(props) {
       return light;
     }
     //Input Time
-    function handleChange(e) {
-      const value = e.target.value;
-      setState({
-        ...state,
-        [e.target.name]: value
-      });
+    function handleChangeRLAonTime(e) {
+      setRLAonTime(e.target.value);
+    }
+
+    function handleChangeRLAoffTime(e) {
+      setRLAoffTime(e.target.value);
+    }
+
+    function handleChangeRLBonTime(e) {
+      setRLBonTime(e.target.value);
+    }
+
+    function handleChangeRLBoffTime(e) {
+      setRLBoffTime(e.target.value);
     }
 
 
@@ -95,8 +99,8 @@ function ChartControl(props) {
           name :'RLB',
           mode :RLBmode,
           status : RLBstatus ,
-          timeOn : state.RLBonTime,
-          timeOff : state.RLBoffTime
+          timeOn : RLBonTime,
+          timeOff : RLBoffTime
         }
       ]
       axios.post('/api/cabin/relay/update', {
@@ -121,8 +125,8 @@ function ChartControl(props) {
           name :'RLA',
           mode :RLAmode,
           status : RLAstatus ,
-          timeOn : state.RLAonTime,
-          timeOff : state.RLAoffTime
+          timeOn : RLAonTime,
+          timeOff : RLAoffTime
         } ,
         {
           name :'RLB',
@@ -150,22 +154,22 @@ function ChartControl(props) {
      */
 
     const onClickRLAauto = () => {
-      if( (state.RLAoffTime !==" ") &&(state.RLAonTime !==" ")){
-        var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" + state.RLAonTime+":00"+"&"+"RLAoffTime"+"=" + state.RLAoffTime+":00"+"&";
+      if( (RLAoffTime !==" ") &&(RLAonTime !==" ")){
+        var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" + RLAonTime+":00"+"&"+"RLAoffTime"+"=" + RLAoffTime+":00"+"&";
         let arrayRLA_Auto =[
           {
             name :'RLA',
             mode :RLAmode,
             status : "off" ,
-            timeOn :state.RLAonTime,
-            timeOff :state.RLAoffTime
+            timeOn :RLAonTime,
+            timeOff :RLAoffTime
           } ,
           {
             name :'RLB',
             mode :RLBmode,
             status : "off" ,
-            timeOn :state.RLBonTime,
-            timeOff :state.RLBffTime
+            timeOn :RLBonTime,
+            timeOff :RLBoffTime
           }
         ]
         axios.post('/api/cabin/relay/update', {
@@ -175,7 +179,7 @@ function ChartControl(props) {
         .then(function (res) {
           var Res = res.data
            if(Res.status){
-             console.log(Res)
+            setRLAstatus("off") 
            }
         })
         clientMQTT.publish(topic,payload)
@@ -186,32 +190,32 @@ function ChartControl(props) {
       }
     }
     const onClickRLBauto = () => {
-      if( (state.RLBoffTime !==" ") && (state.RLBonTime !==" ")){
-        var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBonTime"+"=" + state.RLBonTime+":00"+"&"+"RLBoffTime"+"=" + state.RLBoffTime+":00"+"&";
-        let arrayRLA_Auto =[
+      if( (RLBoffTime !==" ") && (RLBonTime !==" ")){
+        var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBonTime"+"=" + RLBonTime+":00"+"&"+"RLBoffTime"+"=" + RLBoffTime+":00"+"&";
+        let arrayRLB_Auto =[
           {
             name :'RLA',
             mode :RLAmode,
             status : "off" ,
-            timeOn :state.RLAonTime,
-            timeOff :state.RLAoffTime
+            timeOn :RLAonTime,
+            timeOff :RLAoffTime
           } ,
           {
             name :'RLB',
             mode :RLBmode,
             status : "off" ,
-            timeOn :state.RLBonTime,
-            timeOff :state.RLBoffTime
+            timeOn :RLBonTime,
+            timeOff :RLBoffTime
           }
         ]
         axios.post('/api/cabin/relay/update', {
           _idProject :_idProject,
-          arrayRelay :arrayRLA_Auto
+          arrayRelay :arrayRLB_Auto
        })
         .then(function (res) {
           var Res = res.data
            if(Res.status){
-             console.log(Res)
+            setRLBstatus("off") ;
            }
         })
         clientMQTT.publish(topic,payload)
@@ -235,12 +239,12 @@ function ChartControl(props) {
    }, [role])
 
    //Init Role
-   /*
    useEffect(() => {
-     if(_idProject){
+     if(_idProject !==null){
       axios.post('/api/cabin/relay/info', {_idProject :_idProject})
       .then(function (res) {
         var Res = res.data
+        console.log(Res)
         if(Res.success){
           if(Res.status)
           {
@@ -252,18 +256,18 @@ function ChartControl(props) {
             let offTimeRLA = Res.dataRelay[0].timeOff
             let onTimeRLB = Res.dataRelay[1].timeOn
             let offTimeRLB =Res.dataRelay[1].timeOff
-            setState({RLAonTime : onTimeRLA})
-            setState({RLAoffTime : offTimeRLA})
-            setState({RLBonTime : onTimeRLB})
-            setState({RLBoffTime : offTimeRLB})
+            setRLAonTime(onTimeRLA)
+            setRLAoffTime( offTimeRLA)
+            setRLBonTime(onTimeRLB)
+            setRLBoffTime(offTimeRLB)
           }
         }
        
       })
      }
     
-   }, [])
-   */
+   }, [_idProject])
+   
    
 
   useLayoutEffect(() => {
@@ -346,8 +350,8 @@ function ChartControl(props) {
             </td>
             {RLAmode=="auto" ? 
             <td className="table-chartControl-auto">
-                <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLAonTime"  value={state.RLAonTime} onChange={handleChange}/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLAoffTime"  value={state.RLAoffTime} onChange={handleChange}/>
+                <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLAonTime"  value={RLAonTime} onChange={handleChangeRLAonTime}/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLAoffTime"  value={RLAoffTime} onChange={handleChangeRLAoffTime}/>
                 <Button type="primary" type="dashed" onClick={onClickRLAauto}>SET</Button>
             </td>
             :
@@ -454,8 +458,8 @@ function ChartControl(props) {
             </td>
             {RLBmode=="auto"?
             <td className="table-chartControl-auto">
-                 <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLBonTime"  value={state.RLBonTime} onChange={handleChange}/>
-                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLBoffTime"  value={state.RLBoffTime} onChange={handleChange}/>
+                 <input className="form-control shadow-none rounded-0 d-inline" type="time" name="RLBonTime"  value={RLBonTime} onChange={handleChangeRLBonTime}/>
+                <input className="form-control shadow-none rounded-0 d-inline m-l-10 m-r-10" type="time" name="RLBoffTime"  value={RLBoffTime} onChange={handleChangeRLBoffTime}/>
                 <Button type="primary" type="dashed" onClick={onClickRLBauto}>SET</Button>
             </td>
             :
