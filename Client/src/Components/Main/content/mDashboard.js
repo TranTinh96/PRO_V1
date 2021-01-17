@@ -2,6 +2,7 @@ import React, { useState ,useEffect,useLayoutEffect } from 'react'
 import FeatherIcon from 'feather-icons-react';
 import { Link ,useHistory } from "react-router-dom";
 import mqtt from "mqtt";
+import axios from 'axios'
 import {useSelector ,useDispatch } from 'react-redux';
 import ClipLoader from "react-spinners/ScaleLoader";
 //Chart
@@ -62,10 +63,10 @@ function MDashbard() {
     const V3NArray = useSelector((state) => state.V3NArray);
 
     //VOLTAGE LINE-NEUTRAL
-    const [VLN , setVLN] =useState(220.5);
-    const [V1N , setV1N] =useState(218.2);
-    const [V2N , setV2N] =useState(219.5);
-    const [V3N , setV3N] =useState(225.3);
+    const [VLN , setVLN] =useState(0);
+    const [V1N , setV1N] =useState(0);
+    const [V2N , setV2N] =useState(0);
+    const [V3N , setV3N] =useState(0);
 
 
     //KW
@@ -87,13 +88,13 @@ function MDashbard() {
     const [KVAR3 , setKVAR3] =useState(0);
 
     //PE
-    const [PF , setPF] =useState(1);
-    const [PF1 , setPF1] =useState(1);
-    const [PF2 , setPF2] =useState(1);
-    const [PF3 , setPF3] =useState(1);
+    const [PF , setPF] =useState(0);
+    const [PF1 , setPF1] =useState(0);
+    const [PF2 , setPF2] =useState(0);
+    const [PF3 , setPF3] =useState(0);
 
     //F & KW
-    const [F , setF] =useState(50);
+    const [F , setF] =useState(0);
     const [KWH , setKWH] =useState(0);
     const FArray = useSelector((state) => state.FArray);
     const KWHArray = useSelector((state) => state.EArray);
@@ -103,15 +104,94 @@ function MDashbard() {
         if(isLoaddingDashboard){
             history.go(0);
         }
-        if((_idProject !="ADMIN" )&& (_idProject !== null))
-        {
-            setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+        if (_idProject != "ADMIN" && _idProject !== null) {
+          setClientMQTT(mqtt.connect(configMQTT.host, configMQTT.options));
+          axios
+            .post("/api/cabin/get/init", {
+              _idProject: _idProject,
+            })
+            .then(function (res) {
+              let resData = res.data;
+              console.log(resData)
+              //VOLTAGE LINE-NEUTRAL
+              dispatch({
+                type: "ADD_DATA_VLNArray",
+                VLNArray: resData.dataSummary.VLN,
+              });
+              dispatch({
+                type: "ADD_DATA_V1NArray",
+                V1NArray: resData.dataPhaseOne.V1N
+              });
+              dispatch({
+                type: "ADD_DATA_V2NArray",
+                V2NArray: resData.dataPhaseTwo.V2N
+              });
+              dispatch({
+                type: "ADD_DATA_V3NArray",
+                V3NArray: resData.dataPhaseThree.V3N
+              });
+              setVLN(resData.dataSummary.VLN);
+              setV1N( resData.dataPhaseOne.V1N);
+              setV2N( resData.dataPhaseTwo.V2N);
+              setV3N(resData.dataPhaseThree.V3N);
+
+              //CURRENT
+
+              dispatch({
+                type: "ADD_DATA_I",
+                I: resData.dataSummary.I,
+                I1:resData.dataPhaseOne.I1,
+                I2: resData.dataPhaseTwo.I2,
+                I3: resData.dataPhaseThree.I3,
+              });
+
+              //KW
+              setKW(resData.dataSummary.KW);
+              setKW1(resData.dataPhaseOne.KW1);
+              setKW2(resData.dataPhaseTwo.KW2);
+              setKW3(resData.dataPhaseThree.KW3);
+
+              //KVA
+              setKVA(resData.dataSummary.KVA);
+              setKVA1(resData.dataPhaseOne.KVA1);
+              setKVA2(resData.dataPhaseTwo.KVA2);
+              setKVA3(resData.dataPhaseThree.KVA3);
+
+              //KVAR
+              setKVAR(resData.dataSummary.KVRA);
+              setKVAR1(resData.dataPhaseOne.KVAR1);
+              setKVAR2(resData.dataPhaseTwo.KVAR2);
+              setKVAR3(resData.dataPhaseThree.KVAR3);
+
+              //PE
+              setPF(resData.dataSummary.PF);
+              setPF1(resData.dataPhaseOne.PF1);
+              setPF2(resData.dataPhaseTwo.PF2);
+              setPF3(resData.dataPhaseThree.PF3);
+
+              //F & KW
+              setF(resData.dataSummary.F);
+              setKWH(resData.dataSummary.KWH);
+              dispatch({
+                type: "ADD_DATA_FArray",
+                FArray:resData.dataSummary.F
+              });
+              dispatch({
+                type: "ADD_DATA_EArray",
+                EArray: resData.dataSummary.KWH,
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         }
-        dispatch({type:"LOADDING_TABLE"})
-        dispatch({type:"LOADDING_ALARM"})
+
+        dispatch({ type: "LOADDING_TABLE" });
+        dispatch({ type: "LOADDING_ALARM" });
        
 
     }, []);
+
 
      //Client MQTT
      useLayoutEffect(() => {

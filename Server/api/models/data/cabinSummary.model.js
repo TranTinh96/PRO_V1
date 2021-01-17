@@ -132,3 +132,28 @@ module.exports.findSumaryWeeks = async (device_id) =>{
      
     return dataSummary;
 }
+module.exports.findOneInitSummary = async (device_id) =>{
+
+    var dataSummary ={
+        "VLN" : 0,
+        "VLL" : 0,
+        "I" : 0,
+        "KW" : 0,
+        "KVAR" : 0,
+        "KVA" : 0,
+        "PF" : 0,
+        "F" : 0,
+        "KWH" : 0
+    };
+    const data = await cabinSummary.find({device_id :device_id,day :funcMqtt.getDay()});
+    if( data.length >0 && ! func.checkNull(device_id) )
+    {
+        let length =data[0].samplesSummary.length
+        let dataArray = data[0].samplesSummary;
+        dataSummary = dataArray
+        return dataSummary[length-1];
+    }
+    return dataSummary
+
+    
+}

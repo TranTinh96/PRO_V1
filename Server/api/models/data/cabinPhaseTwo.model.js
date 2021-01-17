@@ -130,3 +130,27 @@ module.exports.findPhaseTwoWeeks = async (device_id) =>{
      
     return dataPhaseTwo;
 }
+
+module.exports.findOneInitPhaseTwo = async (device_id) =>{
+
+    var dataPhaseTwo ={
+        "V2N" : 0,
+        "V23" : 0,
+        "I2" : 0,
+        "KW2" : 0,
+        "KVAR2" : 0,
+        "KVA2" : 0,
+        "PF2" : 0,
+    };
+    const data = await cabinPhaseTwo.find({device_id :device_id,day :funcMqtt.getDay()});
+    if( data.length >0 && ! func.checkNull(device_id) )
+    {
+        let length =data[0].samplesPhaseTwo.length
+        let dataArray = data[0].samplesPhaseTwo;
+        dataPhaseTwo = dataArray
+        return dataPhaseTwo[length-1];
+    }
+    return dataPhaseTwo
+
+    
+}

@@ -28,4 +28,9 @@ router.post ("/relay/update" ,cabinController.postUpdateCabinRelay);
 router.post ("/relay/info" ,cabinController.getCabinRelay);
 
 
+//Cabin init
+
+router.post("/get/init" ,cabinController.postInitData)
+
+
 module.exports = router;

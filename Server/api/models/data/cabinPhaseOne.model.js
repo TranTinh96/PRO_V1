@@ -127,3 +127,28 @@ module.exports.findPhaseOneWeeks = async (device_id) =>{
      
     return dataPhaseOne;
 }
+
+module.exports.findOneInitPhaseOne = async (device_id) =>{
+
+    var dataPhaseOne ={
+        "V1N" : 0,
+        "V12" : 0,
+        "I1" : 0,
+        "KW1" : 0,
+        "KVAR1" : 0,
+        "KVA1" : 0,
+        "PF1" : 0,
+        "KWH1" : 0
+    };
+    const data = await cabinPhaseOne.find({device_id :device_id,day :funcMqtt.getDay()});
+    if( data.length >0 && ! func.checkNull(device_id) )
+    {
+        let length =data[0].samplesPhaseOne.length
+        let dataArray = data[0].samplesPhaseOne;
+        dataPhaseOne = dataArray
+        return dataPhaseOne[length-1];
+    }
+    return dataPhaseOne
+
+    
+}

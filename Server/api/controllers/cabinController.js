@@ -55,6 +55,20 @@ module.exports.postDataWeeks = async (req, res, next) => {
   });
 };
 
+module.exports.postInitData = async (req, res, next) => {
+  let device_id = req.body._idProject;
+  var dataSummary = await cabinSummary.findOneInitSummary(device_id);
+  var dataPhaseOne = await cabinPhaseOne.findOneInitPhaseOne(device_id);
+  var dataPhaseTwo = await cabinPhaseTwo.findOneInitPhaseTwo(device_id);
+  var dataPhaseThree = await cabinPhaseThree.findOneInitPhaseThree(device_id);
+  res.json({
+    dataSummary: dataSummary,
+    dataPhaseOne: dataPhaseOne,
+    dataPhaseTwo: dataPhaseTwo,
+    dataPhaseThree: dataPhaseThree,
+  });
+};
+
 /**
  *  Alarm
  */
@@ -187,13 +201,11 @@ module.exports.getCabinRelay = async (req, res, next) => {
       status: "off",
     },
   ];
-  console.log(topic + "----------------------");
-  if( topic){
+  if(! func.checkNull(topic)){
     cabinRelay.findCabinRelay(topic, (err, dataRelay) => {
       if (!err && !func.checkArray(dataRelay)) {
         cabinRelay.getCabinRelay(topic, (err, dataRelay) => {
-          console.log(dataRelay[0].samples);
-          if (!err && !func.checkUndefined(dataRelay)) {
+          if (!err && !func.checkUndefined(dataRelay) && dataRelay.length >0) {
             res.json({
               success: true,
               dataRelay: dataRelay[0].samples,

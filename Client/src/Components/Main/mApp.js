@@ -40,7 +40,7 @@ function MApp() {
       setIsLoading(!isLoading);
       if(role !=="Administrator")
       {
-        if(!_idProject ||(!checkString(cookies.Auth))){
+        if((!checkString(cookies.Auth))){
           removeCookie("Auth");
           localStorage.removeItem("AuthID")
           history.push("/");
