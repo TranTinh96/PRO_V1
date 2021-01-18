@@ -90,19 +90,24 @@ module.exports.postCreateTagAlarm = async (req, res, next) => {
 };
 
 module.exports.getTagAlarm = async (req, res, next) => {
-  let device_id = req.body._idProject;
-  cabinAlarm.getCabinAlarm(device_id, (err, dataAlarm) => {
-    if (!err && !func.checkNull(dataAlarm)) {
-      res.json({
-        dataAlarm: dataAlarm[0].samples,
-        status: true,
-      });
-    } else {
-      res.json({
-        status: false,
-      });
-    }
-  });
+  let topic = req.body._idProject;
+   if(! func.checkNull(topic))
+  {
+    cabinAlarm.getCabinAlarm(topic, (err, dataAlarm) => {
+      console.log(dataAlarm + dataAlarm.length)
+      if (!err && dataAlarm.length >0) {
+        res.json({
+          dataAlarm: dataAlarm[0].samples,
+          status: true,
+        });
+      } else {
+        res.json({
+          status: false,
+        });
+      }
+    });
+  }
+
 };
 
 module.exports.updateTagAlarm = async (req, res, next) => {

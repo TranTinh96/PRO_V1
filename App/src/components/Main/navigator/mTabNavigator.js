@@ -3,8 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Foundation from 'react-native-vector-icons/Foundation';
-import mqtt from "@taoqf/react-native-mqtt"
-import { useSelector } from "react-redux";
+import {useSelector} from 'react-redux';
 //Import
 import Home from "../screen/mHome"
 import Accout from "../screen/mAccout"
@@ -13,7 +12,7 @@ import Notification from "../screen/mNotification"
 
 //Context
 import { AuthContext } from '../../../context/authContext';
-import configMQTT from "../../MQTT/config.MQTT"
+
 
 
 //Setting Tav Navigator
@@ -24,67 +23,20 @@ const Tab = createMaterialBottomTabNavigator();
 function TabNavigator() 
 {
   console.log("Tab Navigator")
-  //Context
-    const { signOut } = useContext(AuthContext);
-    //Redux
-    var _idProject = useSelector((state) => state.projectID);
-    //MQTT
-    const[clientMQTT ,setClientMQTT] = useState(null)
-    const [connectStatus, setConnectStatus] = useState("Connect");
-    const [payload, setPayload] = useState({});
-    const [topic, setTopic] = useState("")
+    //Context
+  const { signOut } = useContext(AuthContext);
+  //Redux
+  var _idProject = useSelector((state) => state.projectID);
 
-    //useEffect connect MQTT   
-    useEffect(() => {
+  useEffect(() => {
       
-        if((_idProject !="ADMIN" )&& (_idProject !== null))
-        {
-            
-            setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
-        }
-        else
-        {
+      if(_idProject === null)
+      {
           signOut()
-        }
-      }, [])
-
-    //useEffect MQTT
-    useEffect(() => {
-        if (clientMQTT) {
-          clientMQTT.on("connect", () => {
-            console.log("Connect MQTT : " +_idProject)
-            setConnectStatus("Connected");
-            clientMQTT.subscribe(_idProject, (error) => {
-                if (error) {
-                  console.log("Subscribe to topics error", error);
-                }
-              });
-           
-           
-          });
-          clientMQTT.on("error", (err) => {
-            setConnectStatus("Connection error");
-            console.error("Connection error: ", err);
-            clientMQTT.end();
-          });
-          clientMQTT.on("reconnect", () => {
-            console.log("ReConnecting");
-            setConnectStatus("Reconnecting");
-          });
+      }
+   
+    }, [])
     
-          clientMQTT.on("disconnect", () => {
-            console.log("DisConnect");
-            setConnectStatus("Disconnect");
-          });
-    
-          clientMQTT.on("message", (topic, message) => {
-            const payload = message.toString() ;
-            console.log(topic)
-            setPayload(payload);
-            setTopic(topic)
-          });
-        }
-      }, [clientMQTT]);
       
     return (
         <Tab.Navigator
@@ -104,13 +56,14 @@ function TabNavigator()
                 borderRadius: 3
             }}
         >
-            <Tab.Screen name="Home"  children={()=><Home payload={payload} topic={topic}/>}
+            <Tab.Screen name="Home"  children={()=><Home />}
             options={{
                 tabBarColor: '#FFF',
                 tabBarIcon: ({ color }) => (
                     <Foundation name="home" color={color} size={23} />
                 ),
             }} />
+            {/*
             <Tab.Screen name="Dashboard" children={()=><Dashboard payload={payload} clientMQTT={clientMQTT}  topic={topic}/>}
                 options={{
                 tabBarColor: '#fff',
@@ -118,7 +71,7 @@ function TabNavigator()
                     <MaterialIcons name="dashboard" color={color} size={24} />
                 ),
             }} />
-  
+           */}
             <Tab.Screen name="Notification" component={Notification} options={{
                 tabBarBadge:true,
                 tabBarColor: '#fff',

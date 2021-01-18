@@ -11,7 +11,6 @@ import EditableAlarm from "../library/tableEditAlarm"
 
 
 function MNotifications() {
-  const dispatch = useDispatch();
   const _idProject = localStorage.getItem("AuthID");
   
   return (

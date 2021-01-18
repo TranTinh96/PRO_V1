@@ -2,6 +2,7 @@ import React, {useState, useEffect ,useLayoutEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import { View,ScrollView,SafeAreaView,StatusBar,} from 'react-native';
 import {useSelector ,useDispatch} from 'react-redux';
+import mqtt from "@taoqf/react-native-mqtt"
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
 import LineChart from '../Library/lineChart';
@@ -9,16 +10,21 @@ import Card from '../Library/card';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
-import {getKeyValue} from "../../services/fucService"
+import {getKeyValue} from "../../services/fucService";
+import configMQTT from "../../MQTT/config.MQTT";
 
+function Home() {
 
-function Home(props) {
-  console.log("Home Navigator")
-  const payload = props.payload ;
-  const topic = props.topic
-  console.log(topic + "  " + payload)
   //Redux
-   const dispatch =useDispatch();
+  const dispatch =useDispatch();
+
+  //Redux
+  var _idProject = useSelector((state) => state.projectID);
+  //MQTT
+  const[clientMQTT ,setClientMQTT] = useState(null)
+  const [connectStatus, setConnectStatus] = useState("Connect");
+  const [payload, setPayload] = useState({});
+  const [topic, setTopic] = useState("")
 
    var I = useSelector((state) => state.I);
    var I1 = useSelector((state) => state.I1);
@@ -66,13 +72,61 @@ function Home(props) {
   //F & KW
   const [F , setF] =useState(50);
   const [KWH , setKWH] =useState(0);
+  //useEffect connect MQTT   
+  useEffect(() => {
+      
+    if((_idProject !="ADMIN" )&& (_idProject !== null))
+    {
+        
+        setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+    }
+  }, [])
 
+//useEffect MQTT
+useEffect(() => {
+    if (clientMQTT) {
+      clientMQTT.on("connect", () => {
+        console.log("Connect MQTT : " +_idProject)
+        setConnectStatus("Connected");
+        clientMQTT.subscribe(_idProject, (error) => {
+            if (error) {
+              console.log("Subscribe to topics error", error);
+            }
+          });
+       
+       
+      });
+      clientMQTT.on("error", (err) => {
+        setConnectStatus("Connection error");
+        console.error("Connection error: ", err);
+        clientMQTT.end();
+      });
+      clientMQTT.on("reconnect", () => {
+        console.log("ReConnecting");
+        setConnectStatus("Reconnecting");
+      });
+
+      clientMQTT.on("disconnect", () => {
+        console.log("DisConnect");
+        setConnectStatus("Disconnect");
+      });
+
+      clientMQTT.on("message", (topic, message) => {
+        const payload = message.toString() ;
+        
+        setPayload(payload + topic);
+        console.log(payload)
+        setTopic(topic)
+      });
+    }
+  }, [clientMQTT]);
+  
   
     //Payload
     useEffect(() => {
       if(topic){
           var payloadSplit = payload.toString().split('&')
-
+          console.log(payloadSplit)
           //VOLTAGE LINE-NEUTRAL
           setVLN(getKeyValue(payloadSplit,"VLN"))
           setV1N(getKeyValue(payloadSplit,"V1N"))

@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import { createStore } from 'redux'
 import { Provider } from "react-redux"
-import Reducer from "./Redux/reducer"
+import combineReducers from "./Redux/reducer"
 import Cookies from 'universal-cookie';
 import { CookiesProvider } from 'react-cookie';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
@@ -27,7 +27,7 @@ import "./assets/css/styles_chart.css"
 
 
 
-var store = createStore(Reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+var store = createStore(combineReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 store.subscribe(() => {
 
 });
