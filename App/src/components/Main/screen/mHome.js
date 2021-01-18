@@ -114,8 +114,8 @@ useEffect(() => {
       clientMQTT.on("message", (topic, message) => {
         const payload = message.toString() ;
         
-        setPayload(payload + topic);
-        console.log(payload)
+        setPayload(payload );
+        console.log(payload + topic)
         setTopic(topic)
       });
     }

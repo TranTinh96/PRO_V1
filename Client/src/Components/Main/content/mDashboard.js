@@ -38,7 +38,6 @@ function checkLength(value){
 
 
 function MDashbard() {
-    console.log("Dashboard")
     const history = useHistory()
 
     const dispatch =useDispatch()
@@ -104,10 +103,9 @@ function MDashbard() {
         if(isLoaddingDashboard){
             history.go(0);
         }
-        if (_idProject != "ADMIN" && _idProject !== null) {
+        if (_idProject != "ADMIN" && _idProject != null) {
           setClientMQTT(mqtt.connect(configMQTT.host, configMQTT.options));
-          axios
-            .post("/api/cabin/get/init", {
+          axios.post("/api/cabin/get/init", {
               _idProject: _idProject,
             })
             .then(function (res) {
