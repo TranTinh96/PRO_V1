@@ -32,8 +32,8 @@ app.use(passport.initialize());
 
 
 //Connect MongoDB 
-//mongoose.connect(process.env.MongoDB_URL|| 'mongodb://localhost/ProjectID', 
-mongoose.connect(process.env.MongoDB_URL_LOCAL, 
+mongoose.connect(process.env.MongoDB_URL|| 'mongodb://localhost/ProjectID', 
+//mongoose.connect(process.env.MongoDB_URL_LOCAL, 
 { 
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -79,10 +79,6 @@ require("./controllers/socketIO_Controller")(io);
 
 
 app.use('/profile', authRouter)
-/*
-app.use('/api/manage',projectRouter)
-app.use('/api/cabin',cabinRouter)
-*/
 
 app.use('/api/manage', passport.authenticate('jwt', { session: false }),projectRouter)
 app.use('/api/cabin', passport.authenticate('jwt', { session: false }),cabinRouter)
