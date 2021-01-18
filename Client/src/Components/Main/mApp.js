@@ -46,7 +46,15 @@ function MApp() {
         }   
         else
         {
-          dispatch({type :"ID_TOPIC_PROJECT" ,_idProject : _idProject})
+      
+          if(! _idProject_)
+          {
+            localStorage.setItem("AuthID", jwtToken.project_id)
+          }
+          if( !_idProject)
+          {
+            dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
+          }
         }
    
       }
