@@ -40,7 +40,7 @@ namespace Basic
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.panel120 = new System.Windows.Forms.Panel();
             this.label51 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
+            this.valueHz = new System.Windows.Forms.Label();
             this.panel121 = new System.Windows.Forms.Panel();
             this.label55 = new System.Windows.Forms.Label();
             this.panel122 = new System.Windows.Forms.Panel();
@@ -49,7 +49,7 @@ namespace Basic
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.panel124 = new System.Windows.Forms.Panel();
             this.label50 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
+            this.valueEnegry = new System.Windows.Forms.Label();
             this.panel125 = new System.Windows.Forms.Panel();
             this.label57 = new System.Windows.Forms.Label();
             this.panel126 = new System.Windows.Forms.Panel();
@@ -110,32 +110,33 @@ namespace Basic
             this.panel130 = new System.Windows.Forms.Panel();
             this.label62 = new System.Windows.Forms.Label();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.panel12 = new System.Windows.Forms.Panel();
+            this.panelAmpe = new System.Windows.Forms.Panel();
+            this.txtAmpe = new System.Windows.Forms.TextBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel73 = new System.Windows.Forms.Panel();
             this.panel74 = new System.Windows.Forms.Panel();
             this.panel75 = new System.Windows.Forms.Panel();
-            this.label33 = new System.Windows.Forms.Label();
+            this.KVAR3 = new System.Windows.Forms.Label();
             this.panel76 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.panel77 = new System.Windows.Forms.Panel();
             this.panel78 = new System.Windows.Forms.Panel();
             this.panel79 = new System.Windows.Forms.Panel();
-            this.label35 = new System.Windows.Forms.Label();
+            this.KVAR2 = new System.Windows.Forms.Label();
             this.panel80 = new System.Windows.Forms.Panel();
             this.label36 = new System.Windows.Forms.Label();
             this.panel81 = new System.Windows.Forms.Panel();
             this.panel82 = new System.Windows.Forms.Panel();
             this.panel83 = new System.Windows.Forms.Panel();
-            this.label37 = new System.Windows.Forms.Label();
+            this.KVAR1 = new System.Windows.Forms.Label();
             this.panel84 = new System.Windows.Forms.Panel();
             this.label38 = new System.Windows.Forms.Label();
             this.panel85 = new System.Windows.Forms.Panel();
             this.panel86 = new System.Windows.Forms.Panel();
             this.panel87 = new System.Windows.Forms.Panel();
-            this.label39 = new System.Windows.Forms.Label();
+            this.KVAR = new System.Windows.Forms.Label();
             this.panel88 = new System.Windows.Forms.Panel();
             this.label40 = new System.Windows.Forms.Label();
             this.panel89 = new System.Windows.Forms.Panel();
@@ -147,25 +148,25 @@ namespace Basic
             this.panel56 = new System.Windows.Forms.Panel();
             this.panel57 = new System.Windows.Forms.Panel();
             this.panel58 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
+            this.KVA3 = new System.Windows.Forms.Label();
             this.panel59 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.panel60 = new System.Windows.Forms.Panel();
             this.panel61 = new System.Windows.Forms.Panel();
             this.panel62 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
+            this.KVA2 = new System.Windows.Forms.Label();
             this.panel63 = new System.Windows.Forms.Panel();
             this.label28 = new System.Windows.Forms.Label();
             this.panel64 = new System.Windows.Forms.Panel();
             this.panel65 = new System.Windows.Forms.Panel();
             this.panel66 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
+            this.KVA1 = new System.Windows.Forms.Label();
             this.panel67 = new System.Windows.Forms.Panel();
             this.label30 = new System.Windows.Forms.Label();
             this.panel68 = new System.Windows.Forms.Panel();
             this.panel69 = new System.Windows.Forms.Panel();
             this.panel70 = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
+            this.KVA = new System.Windows.Forms.Label();
             this.panel71 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.panel72 = new System.Windows.Forms.Panel();
@@ -177,25 +178,25 @@ namespace Basic
             this.panel90 = new System.Windows.Forms.Panel();
             this.panel91 = new System.Windows.Forms.Panel();
             this.panel92 = new System.Windows.Forms.Panel();
-            this.label41 = new System.Windows.Forms.Label();
+            this.PF3 = new System.Windows.Forms.Label();
             this.panel93 = new System.Windows.Forms.Panel();
             this.label42 = new System.Windows.Forms.Label();
             this.panel94 = new System.Windows.Forms.Panel();
             this.panel95 = new System.Windows.Forms.Panel();
             this.panel96 = new System.Windows.Forms.Panel();
-            this.label43 = new System.Windows.Forms.Label();
+            this.PF2 = new System.Windows.Forms.Label();
             this.panel97 = new System.Windows.Forms.Panel();
             this.label44 = new System.Windows.Forms.Label();
             this.panel98 = new System.Windows.Forms.Panel();
             this.panel99 = new System.Windows.Forms.Panel();
             this.panel100 = new System.Windows.Forms.Panel();
-            this.label45 = new System.Windows.Forms.Label();
+            this.PF1 = new System.Windows.Forms.Label();
             this.panel101 = new System.Windows.Forms.Panel();
             this.label46 = new System.Windows.Forms.Label();
             this.panel102 = new System.Windows.Forms.Panel();
             this.panel103 = new System.Windows.Forms.Panel();
             this.panel104 = new System.Windows.Forms.Panel();
-            this.label47 = new System.Windows.Forms.Label();
+            this.PF = new System.Windows.Forms.Label();
             this.panel105 = new System.Windows.Forms.Panel();
             this.label48 = new System.Windows.Forms.Label();
             this.panel106 = new System.Windows.Forms.Panel();
@@ -206,25 +207,25 @@ namespace Basic
             this.panel39 = new System.Windows.Forms.Panel();
             this.panel53 = new System.Windows.Forms.Panel();
             this.panel54 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
+            this.KW3 = new System.Windows.Forms.Label();
             this.panel55 = new System.Windows.Forms.Panel();
             this.label24 = new System.Windows.Forms.Label();
             this.panel52 = new System.Windows.Forms.Panel();
             this.panel49 = new System.Windows.Forms.Panel();
             this.panel50 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
+            this.KW2 = new System.Windows.Forms.Label();
             this.panel51 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
             this.panel48 = new System.Windows.Forms.Panel();
             this.panel45 = new System.Windows.Forms.Panel();
             this.panel46 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
+            this.KW1 = new System.Windows.Forms.Label();
             this.panel47 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.panel42 = new System.Windows.Forms.Panel();
             this.panel41 = new System.Windows.Forms.Panel();
             this.panel44 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
+            this.KW = new System.Windows.Forms.Label();
             this.panel43 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel40 = new System.Windows.Forms.Panel();
@@ -237,7 +238,7 @@ namespace Basic
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.valueLine = new System.Windows.Forms.Label();
+            this.VLN = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -246,7 +247,7 @@ namespace Basic
             this.panel33 = new System.Windows.Forms.Panel();
             this.panel34 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.valueLinePhase3 = new System.Windows.Forms.Label();
+            this.V3N = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel30 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -256,7 +257,7 @@ namespace Basic
             this.panel27 = new System.Windows.Forms.Panel();
             this.panel28 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.valueLinePhase1 = new System.Windows.Forms.Label();
+            this.V1N = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel26 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -266,7 +267,7 @@ namespace Basic
             this.panel31 = new System.Windows.Forms.Panel();
             this.panel32 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.valueLinePhase2 = new System.Windows.Forms.Label();
+            this.V2N = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel29 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -312,6 +313,7 @@ namespace Basic
             this.panel128.SuspendLayout();
             this.panel130.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            this.panelAmpe.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel73.SuspendLayout();
@@ -429,7 +431,7 @@ namespace Basic
             // panel10
             // 
             this.panel10.Controls.Add(this.panel13);
-            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.panelAmpe);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 195);
             this.panel10.Name = "panel10";
@@ -497,7 +499,7 @@ namespace Basic
             // panel120
             // 
             this.panel120.Controls.Add(this.label51);
-            this.panel120.Controls.Add(this.label54);
+            this.panel120.Controls.Add(this.valueHz);
             this.panel120.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel120.Location = new System.Drawing.Point(414, 0);
             this.panel120.Name = "panel120";
@@ -516,17 +518,17 @@ namespace Basic
             this.label51.TabIndex = 2;
             this.label51.Text = "Hz";
             // 
-            // label54
+            // valueHz
             // 
-            this.label54.AutoSize = true;
-            this.label54.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label54.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label54.Location = new System.Drawing.Point(26, 14);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(28, 22);
-            this.label54.TabIndex = 1;
-            this.label54.Text = "50";
+            this.valueHz.AutoSize = true;
+            this.valueHz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.valueHz.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valueHz.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.valueHz.Location = new System.Drawing.Point(26, 14);
+            this.valueHz.Name = "valueHz";
+            this.valueHz.Size = new System.Drawing.Size(19, 22);
+            this.valueHz.TabIndex = 1;
+            this.valueHz.Text = "0";
             // 
             // panel121
             // 
@@ -593,7 +595,7 @@ namespace Basic
             // panel124
             // 
             this.panel124.Controls.Add(this.label50);
-            this.panel124.Controls.Add(this.label56);
+            this.panel124.Controls.Add(this.valueEnegry);
             this.panel124.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel124.Location = new System.Drawing.Point(414, 0);
             this.panel124.Name = "panel124";
@@ -612,17 +614,17 @@ namespace Basic
             this.label50.TabIndex = 2;
             this.label50.Text = "KWH";
             // 
-            // label56
+            // valueEnegry
             // 
-            this.label56.AutoSize = true;
-            this.label56.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label56.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label56.Location = new System.Drawing.Point(24, 18);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(37, 22);
-            this.label56.TabIndex = 1;
-            this.label56.Text = "220";
+            this.valueEnegry.AutoSize = true;
+            this.valueEnegry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.valueEnegry.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valueEnegry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.valueEnegry.Location = new System.Drawing.Point(24, 18);
+            this.valueEnegry.Name = "valueEnegry";
+            this.valueEnegry.Size = new System.Drawing.Size(19, 22);
+            this.valueEnegry.TabIndex = 1;
+            this.valueEnegry.Text = "0";
             // 
             // panel125
             // 
@@ -934,22 +936,22 @@ namespace Basic
             // 
             // statusOffRelayB
             // 
-            this.statusOffRelayB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.statusOffRelayB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusOffRelayB.Image = ((System.Drawing.Image)(resources.GetObject("statusOffRelayB.Image")));
-            this.statusOffRelayB.Location = new System.Drawing.Point(45, 5);
+            this.statusOffRelayB.Location = new System.Drawing.Point(10, 5);
             this.statusOffRelayB.Name = "statusOffRelayB";
-            this.statusOffRelayB.Size = new System.Drawing.Size(35, 45);
+            this.statusOffRelayB.Size = new System.Drawing.Size(75, 45);
             this.statusOffRelayB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.statusOffRelayB.TabIndex = 1;
             this.statusOffRelayB.TabStop = false;
             // 
             // statusOnRelayB
             // 
-            this.statusOnRelayB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.statusOnRelayB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusOnRelayB.Image = ((System.Drawing.Image)(resources.GetObject("statusOnRelayB.Image")));
             this.statusOnRelayB.Location = new System.Drawing.Point(10, 5);
             this.statusOnRelayB.Name = "statusOnRelayB";
-            this.statusOnRelayB.Size = new System.Drawing.Size(35, 45);
+            this.statusOnRelayB.Size = new System.Drawing.Size(75, 45);
             this.statusOnRelayB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.statusOnRelayB.TabIndex = 0;
             this.statusOnRelayB.TabStop = false;
@@ -1203,22 +1205,22 @@ namespace Basic
             // 
             // statusOffRelayA
             // 
-            this.statusOffRelayA.Dock = System.Windows.Forms.DockStyle.Left;
+            this.statusOffRelayA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusOffRelayA.Image = ((System.Drawing.Image)(resources.GetObject("statusOffRelayA.Image")));
-            this.statusOffRelayA.Location = new System.Drawing.Point(45, 5);
+            this.statusOffRelayA.Location = new System.Drawing.Point(10, 5);
             this.statusOffRelayA.Name = "statusOffRelayA";
-            this.statusOffRelayA.Size = new System.Drawing.Size(35, 45);
+            this.statusOffRelayA.Size = new System.Drawing.Size(75, 45);
             this.statusOffRelayA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.statusOffRelayA.TabIndex = 1;
             this.statusOffRelayA.TabStop = false;
             // 
             // statusOnRelayA
             // 
-            this.statusOnRelayA.Dock = System.Windows.Forms.DockStyle.Left;
+            this.statusOnRelayA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusOnRelayA.Image = ((System.Drawing.Image)(resources.GetObject("statusOnRelayA.Image")));
             this.statusOnRelayA.Location = new System.Drawing.Point(10, 5);
             this.statusOnRelayA.Name = "statusOnRelayA";
-            this.statusOnRelayA.Size = new System.Drawing.Size(35, 45);
+            this.statusOnRelayA.Size = new System.Drawing.Size(75, 45);
             this.statusOnRelayA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.statusOnRelayA.TabIndex = 0;
             this.statusOnRelayA.TabStop = false;
@@ -1314,7 +1316,7 @@ namespace Basic
             this.label63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label63.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label63.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label63.Location = new System.Drawing.Point(7, 15);
+            this.label63.Location = new System.Drawing.Point(29, 15);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(53, 17);
             this.label63.TabIndex = 1;
@@ -1385,15 +1387,26 @@ namespace Basic
             this.pictureBox18.TabIndex = 3;
             this.pictureBox18.TabStop = false;
             // 
-            // panel12
+            // panelAmpe
             // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel12.Location = new System.Drawing.Point(20, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Padding = new System.Windows.Forms.Padding(10);
-            this.panel12.Size = new System.Drawing.Size(537, 425);
-            this.panel12.TabIndex = 0;
+            this.panelAmpe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.panelAmpe.Controls.Add(this.txtAmpe);
+            this.panelAmpe.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelAmpe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelAmpe.Location = new System.Drawing.Point(20, 0);
+            this.panelAmpe.Name = "panelAmpe";
+            this.panelAmpe.Padding = new System.Windows.Forms.Padding(10);
+            this.panelAmpe.Size = new System.Drawing.Size(537, 425);
+            this.panelAmpe.TabIndex = 0;
+            this.panelAmpe.Tag = "";
+            // 
+            // txtAmpe
+            // 
+            this.txtAmpe.Location = new System.Drawing.Point(55, 20);
+            this.txtAmpe.Multiline = true;
+            this.txtAmpe.Name = "txtAmpe";
+            this.txtAmpe.Size = new System.Drawing.Size(430, 311);
+            this.txtAmpe.TabIndex = 0;
             // 
             // panel11
             // 
@@ -1458,24 +1471,24 @@ namespace Basic
             // 
             // panel75
             // 
-            this.panel75.Controls.Add(this.label33);
+            this.panel75.Controls.Add(this.KVAR3);
             this.panel75.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel75.Location = new System.Drawing.Point(135, 0);
             this.panel75.Name = "panel75";
             this.panel75.Size = new System.Drawing.Size(103, 50);
             this.panel75.TabIndex = 3;
             // 
-            // label33
+            // KVAR3
             // 
-            this.label33.AutoSize = true;
-            this.label33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label33.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label33.Location = new System.Drawing.Point(63, 15);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(36, 20);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "220";
+            this.KVAR3.AutoSize = true;
+            this.KVAR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVAR3.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVAR3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVAR3.Location = new System.Drawing.Point(63, 15);
+            this.KVAR3.Name = "KVAR3";
+            this.KVAR3.Size = new System.Drawing.Size(18, 20);
+            this.KVAR3.TabIndex = 1;
+            this.KVAR3.Text = "0";
             // 
             // panel76
             // 
@@ -1520,24 +1533,24 @@ namespace Basic
             // 
             // panel79
             // 
-            this.panel79.Controls.Add(this.label35);
+            this.panel79.Controls.Add(this.KVAR2);
             this.panel79.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel79.Location = new System.Drawing.Point(135, 0);
             this.panel79.Name = "panel79";
             this.panel79.Size = new System.Drawing.Size(103, 50);
             this.panel79.TabIndex = 3;
             // 
-            // label35
+            // KVAR2
             // 
-            this.label35.AutoSize = true;
-            this.label35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label35.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label35.Location = new System.Drawing.Point(63, 15);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(36, 20);
-            this.label35.TabIndex = 1;
-            this.label35.Text = "220";
+            this.KVAR2.AutoSize = true;
+            this.KVAR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVAR2.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVAR2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVAR2.Location = new System.Drawing.Point(63, 15);
+            this.KVAR2.Name = "KVAR2";
+            this.KVAR2.Size = new System.Drawing.Size(18, 20);
+            this.KVAR2.TabIndex = 1;
+            this.KVAR2.Text = "0";
             // 
             // panel80
             // 
@@ -1582,24 +1595,24 @@ namespace Basic
             // 
             // panel83
             // 
-            this.panel83.Controls.Add(this.label37);
+            this.panel83.Controls.Add(this.KVAR1);
             this.panel83.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel83.Location = new System.Drawing.Point(135, 0);
             this.panel83.Name = "panel83";
             this.panel83.Size = new System.Drawing.Size(103, 50);
             this.panel83.TabIndex = 3;
             // 
-            // label37
+            // KVAR1
             // 
-            this.label37.AutoSize = true;
-            this.label37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label37.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label37.Location = new System.Drawing.Point(63, 15);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(36, 20);
-            this.label37.TabIndex = 1;
-            this.label37.Text = "220";
+            this.KVAR1.AutoSize = true;
+            this.KVAR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVAR1.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVAR1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVAR1.Location = new System.Drawing.Point(63, 15);
+            this.KVAR1.Name = "KVAR1";
+            this.KVAR1.Size = new System.Drawing.Size(18, 20);
+            this.KVAR1.TabIndex = 1;
+            this.KVAR1.Text = "0";
             // 
             // panel84
             // 
@@ -1644,24 +1657,24 @@ namespace Basic
             // 
             // panel87
             // 
-            this.panel87.Controls.Add(this.label39);
+            this.panel87.Controls.Add(this.KVAR);
             this.panel87.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel87.Location = new System.Drawing.Point(135, 0);
             this.panel87.Name = "panel87";
             this.panel87.Size = new System.Drawing.Size(103, 50);
             this.panel87.TabIndex = 3;
             // 
-            // label39
+            // KVAR
             // 
-            this.label39.AutoSize = true;
-            this.label39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label39.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label39.Location = new System.Drawing.Point(63, 15);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(36, 20);
-            this.label39.TabIndex = 1;
-            this.label39.Text = "220";
+            this.KVAR.AutoSize = true;
+            this.KVAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVAR.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVAR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVAR.Location = new System.Drawing.Point(63, 15);
+            this.KVAR.Name = "KVAR";
+            this.KVAR.Size = new System.Drawing.Size(18, 20);
+            this.KVAR.TabIndex = 1;
+            this.KVAR.Text = "0";
             // 
             // panel88
             // 
@@ -1778,24 +1791,24 @@ namespace Basic
             // 
             // panel58
             // 
-            this.panel58.Controls.Add(this.label25);
+            this.panel58.Controls.Add(this.KVA3);
             this.panel58.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel58.Location = new System.Drawing.Point(136, 0);
             this.panel58.Name = "panel58";
             this.panel58.Size = new System.Drawing.Size(103, 50);
             this.panel58.TabIndex = 3;
             // 
-            // label25
+            // KVA3
             // 
-            this.label25.AutoSize = true;
-            this.label25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label25.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label25.Location = new System.Drawing.Point(63, 15);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(36, 20);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "220";
+            this.KVA3.AutoSize = true;
+            this.KVA3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVA3.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVA3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVA3.Location = new System.Drawing.Point(63, 15);
+            this.KVA3.Name = "KVA3";
+            this.KVA3.Size = new System.Drawing.Size(18, 20);
+            this.KVA3.TabIndex = 1;
+            this.KVA3.Text = "0";
             // 
             // panel59
             // 
@@ -1840,24 +1853,24 @@ namespace Basic
             // 
             // panel62
             // 
-            this.panel62.Controls.Add(this.label27);
+            this.panel62.Controls.Add(this.KVA2);
             this.panel62.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel62.Location = new System.Drawing.Point(136, 0);
             this.panel62.Name = "panel62";
             this.panel62.Size = new System.Drawing.Size(103, 50);
             this.panel62.TabIndex = 3;
             // 
-            // label27
+            // KVA2
             // 
-            this.label27.AutoSize = true;
-            this.label27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label27.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label27.Location = new System.Drawing.Point(63, 15);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(36, 20);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "220";
+            this.KVA2.AutoSize = true;
+            this.KVA2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVA2.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVA2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVA2.Location = new System.Drawing.Point(63, 15);
+            this.KVA2.Name = "KVA2";
+            this.KVA2.Size = new System.Drawing.Size(18, 20);
+            this.KVA2.TabIndex = 1;
+            this.KVA2.Text = "0";
             // 
             // panel63
             // 
@@ -1902,24 +1915,24 @@ namespace Basic
             // 
             // panel66
             // 
-            this.panel66.Controls.Add(this.label29);
+            this.panel66.Controls.Add(this.KVA1);
             this.panel66.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel66.Location = new System.Drawing.Point(136, 0);
             this.panel66.Name = "panel66";
             this.panel66.Size = new System.Drawing.Size(103, 50);
             this.panel66.TabIndex = 3;
             // 
-            // label29
+            // KVA1
             // 
-            this.label29.AutoSize = true;
-            this.label29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label29.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label29.Location = new System.Drawing.Point(63, 15);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(36, 20);
-            this.label29.TabIndex = 1;
-            this.label29.Text = "220";
+            this.KVA1.AutoSize = true;
+            this.KVA1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVA1.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVA1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVA1.Location = new System.Drawing.Point(63, 15);
+            this.KVA1.Name = "KVA1";
+            this.KVA1.Size = new System.Drawing.Size(18, 20);
+            this.KVA1.TabIndex = 1;
+            this.KVA1.Text = "0";
             // 
             // panel67
             // 
@@ -1964,24 +1977,24 @@ namespace Basic
             // 
             // panel70
             // 
-            this.panel70.Controls.Add(this.label31);
+            this.panel70.Controls.Add(this.KVA);
             this.panel70.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel70.Location = new System.Drawing.Point(136, 0);
             this.panel70.Name = "panel70";
             this.panel70.Size = new System.Drawing.Size(103, 50);
             this.panel70.TabIndex = 3;
             // 
-            // label31
+            // KVA
             // 
-            this.label31.AutoSize = true;
-            this.label31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label31.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label31.Location = new System.Drawing.Point(63, 15);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(36, 20);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "220";
+            this.KVA.AutoSize = true;
+            this.KVA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KVA.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KVA.Location = new System.Drawing.Point(63, 15);
+            this.KVA.Name = "KVA";
+            this.KVA.Size = new System.Drawing.Size(18, 20);
+            this.KVA.TabIndex = 1;
+            this.KVA.Text = "0";
             // 
             // panel71
             // 
@@ -2098,24 +2111,24 @@ namespace Basic
             // 
             // panel92
             // 
-            this.panel92.Controls.Add(this.label41);
+            this.panel92.Controls.Add(this.PF3);
             this.panel92.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel92.Location = new System.Drawing.Point(136, 0);
             this.panel92.Name = "panel92";
             this.panel92.Size = new System.Drawing.Size(103, 50);
             this.panel92.TabIndex = 3;
             // 
-            // label41
+            // PF3
             // 
-            this.label41.AutoSize = true;
-            this.label41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label41.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label41.Location = new System.Drawing.Point(63, 15);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(36, 20);
-            this.label41.TabIndex = 1;
-            this.label41.Text = "220";
+            this.PF3.AutoSize = true;
+            this.PF3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PF3.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PF3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.PF3.Location = new System.Drawing.Point(63, 15);
+            this.PF3.Name = "PF3";
+            this.PF3.Size = new System.Drawing.Size(18, 20);
+            this.PF3.TabIndex = 1;
+            this.PF3.Text = "0";
             // 
             // panel93
             // 
@@ -2160,24 +2173,24 @@ namespace Basic
             // 
             // panel96
             // 
-            this.panel96.Controls.Add(this.label43);
+            this.panel96.Controls.Add(this.PF2);
             this.panel96.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel96.Location = new System.Drawing.Point(136, 0);
             this.panel96.Name = "panel96";
             this.panel96.Size = new System.Drawing.Size(103, 50);
             this.panel96.TabIndex = 3;
             // 
-            // label43
+            // PF2
             // 
-            this.label43.AutoSize = true;
-            this.label43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label43.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label43.Location = new System.Drawing.Point(63, 15);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(36, 20);
-            this.label43.TabIndex = 1;
-            this.label43.Text = "220";
+            this.PF2.AutoSize = true;
+            this.PF2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PF2.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PF2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.PF2.Location = new System.Drawing.Point(63, 15);
+            this.PF2.Name = "PF2";
+            this.PF2.Size = new System.Drawing.Size(18, 20);
+            this.PF2.TabIndex = 1;
+            this.PF2.Text = "0";
             // 
             // panel97
             // 
@@ -2222,24 +2235,24 @@ namespace Basic
             // 
             // panel100
             // 
-            this.panel100.Controls.Add(this.label45);
+            this.panel100.Controls.Add(this.PF1);
             this.panel100.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel100.Location = new System.Drawing.Point(136, 0);
             this.panel100.Name = "panel100";
             this.panel100.Size = new System.Drawing.Size(103, 50);
             this.panel100.TabIndex = 3;
             // 
-            // label45
+            // PF1
             // 
-            this.label45.AutoSize = true;
-            this.label45.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label45.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label45.Location = new System.Drawing.Point(63, 15);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(36, 20);
-            this.label45.TabIndex = 1;
-            this.label45.Text = "220";
+            this.PF1.AutoSize = true;
+            this.PF1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PF1.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PF1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.PF1.Location = new System.Drawing.Point(63, 15);
+            this.PF1.Name = "PF1";
+            this.PF1.Size = new System.Drawing.Size(18, 20);
+            this.PF1.TabIndex = 1;
+            this.PF1.Text = "0";
             // 
             // panel101
             // 
@@ -2284,24 +2297,24 @@ namespace Basic
             // 
             // panel104
             // 
-            this.panel104.Controls.Add(this.label47);
+            this.panel104.Controls.Add(this.PF);
             this.panel104.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel104.Location = new System.Drawing.Point(136, 0);
             this.panel104.Name = "panel104";
             this.panel104.Size = new System.Drawing.Size(103, 50);
             this.panel104.TabIndex = 3;
             // 
-            // label47
+            // PF
             // 
-            this.label47.AutoSize = true;
-            this.label47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label47.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label47.Location = new System.Drawing.Point(63, 15);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(36, 20);
-            this.label47.TabIndex = 1;
-            this.label47.Text = "220";
+            this.PF.AutoSize = true;
+            this.PF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PF.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.PF.Location = new System.Drawing.Point(63, 15);
+            this.PF.Name = "PF";
+            this.PF.Size = new System.Drawing.Size(18, 20);
+            this.PF.TabIndex = 1;
+            this.PF.Text = "0";
             // 
             // panel105
             // 
@@ -2408,24 +2421,24 @@ namespace Basic
             // 
             // panel54
             // 
-            this.panel54.Controls.Add(this.label23);
+            this.panel54.Controls.Add(this.KW3);
             this.panel54.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel54.Location = new System.Drawing.Point(135, 0);
             this.panel54.Name = "panel54";
             this.panel54.Size = new System.Drawing.Size(103, 50);
             this.panel54.TabIndex = 3;
             // 
-            // label23
+            // KW3
             // 
-            this.label23.AutoSize = true;
-            this.label23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label23.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label23.Location = new System.Drawing.Point(63, 15);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(36, 20);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "220";
+            this.KW3.AutoSize = true;
+            this.KW3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KW3.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KW3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KW3.Location = new System.Drawing.Point(63, 15);
+            this.KW3.Name = "KW3";
+            this.KW3.Size = new System.Drawing.Size(18, 20);
+            this.KW3.TabIndex = 1;
+            this.KW3.Text = "0";
             // 
             // panel55
             // 
@@ -2470,24 +2483,24 @@ namespace Basic
             // 
             // panel50
             // 
-            this.panel50.Controls.Add(this.label21);
+            this.panel50.Controls.Add(this.KW2);
             this.panel50.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel50.Location = new System.Drawing.Point(135, 0);
             this.panel50.Name = "panel50";
             this.panel50.Size = new System.Drawing.Size(103, 50);
             this.panel50.TabIndex = 3;
             // 
-            // label21
+            // KW2
             // 
-            this.label21.AutoSize = true;
-            this.label21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label21.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label21.Location = new System.Drawing.Point(63, 15);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(36, 20);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "220";
+            this.KW2.AutoSize = true;
+            this.KW2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KW2.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KW2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KW2.Location = new System.Drawing.Point(63, 15);
+            this.KW2.Name = "KW2";
+            this.KW2.Size = new System.Drawing.Size(18, 20);
+            this.KW2.TabIndex = 1;
+            this.KW2.Text = "0";
             // 
             // panel51
             // 
@@ -2532,24 +2545,24 @@ namespace Basic
             // 
             // panel46
             // 
-            this.panel46.Controls.Add(this.label19);
+            this.panel46.Controls.Add(this.KW1);
             this.panel46.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel46.Location = new System.Drawing.Point(135, 0);
             this.panel46.Name = "panel46";
             this.panel46.Size = new System.Drawing.Size(103, 50);
             this.panel46.TabIndex = 3;
             // 
-            // label19
+            // KW1
             // 
-            this.label19.AutoSize = true;
-            this.label19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label19.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label19.Location = new System.Drawing.Point(63, 15);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(36, 20);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "220";
+            this.KW1.AutoSize = true;
+            this.KW1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KW1.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KW1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KW1.Location = new System.Drawing.Point(63, 15);
+            this.KW1.Name = "KW1";
+            this.KW1.Size = new System.Drawing.Size(18, 20);
+            this.KW1.TabIndex = 1;
+            this.KW1.Text = "0";
             // 
             // panel47
             // 
@@ -2594,24 +2607,24 @@ namespace Basic
             // 
             // panel44
             // 
-            this.panel44.Controls.Add(this.label17);
+            this.panel44.Controls.Add(this.KW);
             this.panel44.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel44.Location = new System.Drawing.Point(135, 0);
             this.panel44.Name = "panel44";
             this.panel44.Size = new System.Drawing.Size(103, 50);
             this.panel44.TabIndex = 3;
             // 
-            // label17
+            // KW
             // 
-            this.label17.AutoSize = true;
-            this.label17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label17.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label17.Location = new System.Drawing.Point(63, 15);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(36, 20);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "220";
+            this.KW.AutoSize = true;
+            this.KW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KW.Font = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KW.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.KW.Location = new System.Drawing.Point(63, 15);
+            this.KW.Name = "KW";
+            this.KW.Size = new System.Drawing.Size(18, 20);
+            this.KW.TabIndex = 1;
+            this.KW.Text = "0";
             // 
             // panel43
             // 
@@ -2720,7 +2733,7 @@ namespace Basic
             // panel25
             // 
             this.panel25.Controls.Add(this.label2);
-            this.panel25.Controls.Add(this.valueLine);
+            this.panel25.Controls.Add(this.VLN);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(10, 10);
             this.panel25.Name = "panel25";
@@ -2739,17 +2752,17 @@ namespace Basic
             this.label2.TabIndex = 2;
             this.label2.Text = "V";
             // 
-            // valueLine
+            // VLN
             // 
-            this.valueLine.AutoSize = true;
-            this.valueLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.valueLine.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valueLine.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.valueLine.Location = new System.Drawing.Point(3, 25);
-            this.valueLine.Name = "valueLine";
-            this.valueLine.Size = new System.Drawing.Size(52, 30);
-            this.valueLine.TabIndex = 1;
-            this.valueLine.Text = "220";
+            this.VLN.AutoSize = true;
+            this.VLN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VLN.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VLN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.VLN.Location = new System.Drawing.Point(3, 25);
+            this.VLN.Name = "VLN";
+            this.VLN.Size = new System.Drawing.Size(26, 30);
+            this.VLN.TabIndex = 1;
+            this.VLN.Text = "0";
             // 
             // pictureBox1
             // 
@@ -2821,7 +2834,7 @@ namespace Basic
             // panel34
             // 
             this.panel34.Controls.Add(this.label11);
-            this.panel34.Controls.Add(this.valueLinePhase3);
+            this.panel34.Controls.Add(this.V3N);
             this.panel34.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel34.Location = new System.Drawing.Point(10, 10);
             this.panel34.Name = "panel34";
@@ -2840,17 +2853,17 @@ namespace Basic
             this.label11.TabIndex = 2;
             this.label11.Text = "V";
             // 
-            // valueLinePhase3
+            // V3N
             // 
-            this.valueLinePhase3.AutoSize = true;
-            this.valueLinePhase3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.valueLinePhase3.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valueLinePhase3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.valueLinePhase3.Location = new System.Drawing.Point(3, 25);
-            this.valueLinePhase3.Name = "valueLinePhase3";
-            this.valueLinePhase3.Size = new System.Drawing.Size(52, 30);
-            this.valueLinePhase3.TabIndex = 1;
-            this.valueLinePhase3.Text = "220";
+            this.V3N.AutoSize = true;
+            this.V3N.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.V3N.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.V3N.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.V3N.Location = new System.Drawing.Point(3, 25);
+            this.V3N.Name = "V3N";
+            this.V3N.Size = new System.Drawing.Size(26, 30);
+            this.V3N.TabIndex = 1;
+            this.V3N.Text = "0";
             // 
             // pictureBox8
             // 
@@ -2932,7 +2945,7 @@ namespace Basic
             // panel28
             // 
             this.panel28.Controls.Add(this.label5);
-            this.panel28.Controls.Add(this.valueLinePhase1);
+            this.panel28.Controls.Add(this.V1N);
             this.panel28.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel28.Location = new System.Drawing.Point(10, 10);
             this.panel28.Name = "panel28";
@@ -2951,17 +2964,17 @@ namespace Basic
             this.label5.TabIndex = 2;
             this.label5.Text = "V";
             // 
-            // valueLinePhase1
+            // V1N
             // 
-            this.valueLinePhase1.AutoSize = true;
-            this.valueLinePhase1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.valueLinePhase1.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valueLinePhase1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.valueLinePhase1.Location = new System.Drawing.Point(3, 25);
-            this.valueLinePhase1.Name = "valueLinePhase1";
-            this.valueLinePhase1.Size = new System.Drawing.Size(52, 30);
-            this.valueLinePhase1.TabIndex = 1;
-            this.valueLinePhase1.Text = "220";
+            this.V1N.AutoSize = true;
+            this.V1N.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.V1N.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.V1N.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.V1N.Location = new System.Drawing.Point(3, 25);
+            this.V1N.Name = "V1N";
+            this.V1N.Size = new System.Drawing.Size(26, 30);
+            this.V1N.TabIndex = 1;
+            this.V1N.Text = "0";
             // 
             // pictureBox4
             // 
@@ -3043,7 +3056,7 @@ namespace Basic
             // panel32
             // 
             this.panel32.Controls.Add(this.label9);
-            this.panel32.Controls.Add(this.valueLinePhase2);
+            this.panel32.Controls.Add(this.V2N);
             this.panel32.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel32.Location = new System.Drawing.Point(10, 10);
             this.panel32.Name = "panel32";
@@ -3062,17 +3075,17 @@ namespace Basic
             this.label9.TabIndex = 2;
             this.label9.Text = "V";
             // 
-            // valueLinePhase2
+            // V2N
             // 
-            this.valueLinePhase2.AutoSize = true;
-            this.valueLinePhase2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.valueLinePhase2.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valueLinePhase2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.valueLinePhase2.Location = new System.Drawing.Point(3, 25);
-            this.valueLinePhase2.Name = "valueLinePhase2";
-            this.valueLinePhase2.Size = new System.Drawing.Size(52, 30);
-            this.valueLinePhase2.TabIndex = 1;
-            this.valueLinePhase2.Text = "220";
+            this.V2N.AutoSize = true;
+            this.V2N.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.V2N.Font = new System.Drawing.Font("Open Sans", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.V2N.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.V2N.Location = new System.Drawing.Point(3, 25);
+            this.V2N.Name = "V2N";
+            this.V2N.Size = new System.Drawing.Size(26, 30);
+            this.V2N.TabIndex = 1;
+            this.V2N.Text = "0";
             // 
             // pictureBox7
             // 
@@ -3205,6 +3218,8 @@ namespace Basic
             this.panel130.ResumeLayout(false);
             this.panel130.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            this.panelAmpe.ResumeLayout(false);
+            this.panelAmpe.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel73.ResumeLayout(false);
@@ -3348,7 +3363,7 @@ namespace Basic
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtNavbarActive;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panelAmpe;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel15;
@@ -3376,98 +3391,98 @@ namespace Basic
         private System.Windows.Forms.Panel panel42;
         private System.Windows.Forms.Panel panel41;
         private System.Windows.Forms.Panel panel44;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label KW;
         private System.Windows.Forms.Panel panel43;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel45;
         private System.Windows.Forms.Panel panel46;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label KW1;
         private System.Windows.Forms.Panel panel47;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel48;
         private System.Windows.Forms.Panel panel49;
         private System.Windows.Forms.Panel panel50;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label KW2;
         private System.Windows.Forms.Panel panel51;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Panel panel54;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label KW3;
         private System.Windows.Forms.Panel panel55;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Panel panel52;
         private System.Windows.Forms.Panel panel73;
         private System.Windows.Forms.Panel panel74;
         private System.Windows.Forms.Panel panel75;
-        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label KVAR3;
         private System.Windows.Forms.Panel panel76;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel panel77;
         private System.Windows.Forms.Panel panel78;
         private System.Windows.Forms.Panel panel79;
-        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label KVAR2;
         private System.Windows.Forms.Panel panel80;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Panel panel81;
         private System.Windows.Forms.Panel panel82;
         private System.Windows.Forms.Panel panel83;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label KVAR1;
         private System.Windows.Forms.Panel panel84;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Panel panel85;
         private System.Windows.Forms.Panel panel86;
         private System.Windows.Forms.Panel panel87;
-        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label KVAR;
         private System.Windows.Forms.Panel panel88;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panel89;
         private System.Windows.Forms.Panel panel56;
         private System.Windows.Forms.Panel panel57;
         private System.Windows.Forms.Panel panel58;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label KVA3;
         private System.Windows.Forms.Panel panel59;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Panel panel60;
         private System.Windows.Forms.Panel panel61;
         private System.Windows.Forms.Panel panel62;
-        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label KVA2;
         private System.Windows.Forms.Panel panel63;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Panel panel64;
         private System.Windows.Forms.Panel panel65;
         private System.Windows.Forms.Panel panel66;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label KVA1;
         private System.Windows.Forms.Panel panel67;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Panel panel68;
         private System.Windows.Forms.Panel panel69;
         private System.Windows.Forms.Panel panel70;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label KVA;
         private System.Windows.Forms.Panel panel71;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Panel panel72;
         private System.Windows.Forms.Panel panel90;
         private System.Windows.Forms.Panel panel91;
         private System.Windows.Forms.Panel panel92;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label PF3;
         private System.Windows.Forms.Panel panel93;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Panel panel94;
         private System.Windows.Forms.Panel panel95;
         private System.Windows.Forms.Panel panel96;
-        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label PF2;
         private System.Windows.Forms.Panel panel97;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Panel panel98;
         private System.Windows.Forms.Panel panel99;
         private System.Windows.Forms.Panel panel100;
-        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label PF1;
         private System.Windows.Forms.Panel panel101;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Panel panel102;
         private System.Windows.Forms.Panel panel103;
         private System.Windows.Forms.Panel panel104;
-        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label PF;
         private System.Windows.Forms.Panel panel105;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Panel panel106;
@@ -3476,13 +3491,13 @@ namespace Basic
         private System.Windows.Forms.Panel panel110;
         private System.Windows.Forms.Panel panel119;
         private System.Windows.Forms.Panel panel120;
-        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label valueHz;
         private System.Windows.Forms.Panel panel121;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Panel panel122;
         private System.Windows.Forms.Panel panel123;
         private System.Windows.Forms.Panel panel124;
-        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label valueEnegry;
         private System.Windows.Forms.Panel panel125;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Panel panel126;
@@ -3536,7 +3551,7 @@ namespace Basic
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label valueLine;
+        private System.Windows.Forms.Label VLN;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Label label3;
@@ -3545,7 +3560,7 @@ namespace Basic
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.Panel panel34;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label valueLinePhase3;
+        private System.Windows.Forms.Label V3N;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Label label8;
@@ -3555,7 +3570,7 @@ namespace Basic
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label valueLinePhase1;
+        private System.Windows.Forms.Label V1N;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Label label4;
@@ -3565,7 +3580,7 @@ namespace Basic
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label valueLinePhase2;
+        private System.Windows.Forms.Label V2N;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.Label label7;
@@ -3587,5 +3602,6 @@ namespace Basic
         private FontAwesome.Sharp.IconButton btnManualOffRelayA;
         private System.Windows.Forms.Panel panel143;
         private FontAwesome.Sharp.IconButton btnManualOnRelayA;
+        private System.Windows.Forms.TextBox txtAmpe;
     }
 }

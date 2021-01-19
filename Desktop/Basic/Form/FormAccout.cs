@@ -12,7 +12,8 @@ namespace Basic
 {
     public partial class FormAccout : Form
     {
-        public FormAccout()
+
+        public FormAccout(string tokenID)
         {
             InitializeComponent();
         }

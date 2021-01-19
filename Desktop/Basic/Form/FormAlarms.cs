@@ -12,9 +12,14 @@ namespace Basic
 {
     public partial class FormAlarms : Form
     {
-        public FormAlarms()
+        public FormAlarms(string tokenID)
         {
             InitializeComponent();
+        }
+
+        private void FormAlarms_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

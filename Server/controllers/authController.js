@@ -95,6 +95,7 @@ module.exports.postRegister = async (req, res) => {
 
 //Post Login
 module.exports.postLogin = async (req, res) => {
+    console.log(req.body.email)
     var reqGmail = req.body.email
     var passwordBefore = req.body.password
     var jwtToken  ;

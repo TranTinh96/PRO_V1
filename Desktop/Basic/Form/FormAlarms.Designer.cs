@@ -29,10 +29,18 @@ namespace Basic
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormAlarms
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "FormAlarms";
             this.Text = "FormAlarms";
+            this.Load += new System.EventHandler(this.FormAlarms_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

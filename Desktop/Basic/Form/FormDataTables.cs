@@ -12,7 +12,7 @@ namespace Basic
 {
     public partial class FormDataTables : Form
     {
-        public FormDataTables()
+        public FormDataTables(string tokenID)
         {
             InitializeComponent();
         }

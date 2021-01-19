@@ -87,7 +87,7 @@ namespace Basic
             this.btnAccout.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAccout.FlatAppearance.BorderSize = 0;
             this.btnAccout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccout.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccout.Font = new System.Drawing.Font("Poppins SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccout.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAccout.IconChar = FontAwesome.Sharp.IconChar.User;
             this.btnAccout.IconColor = System.Drawing.Color.Lavender;
@@ -109,7 +109,7 @@ namespace Basic
             this.btnAlarms.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAlarms.FlatAppearance.BorderSize = 0;
             this.btnAlarms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlarms.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlarms.Font = new System.Drawing.Font("Poppins SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlarms.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.btnAlarms.IconChar = FontAwesome.Sharp.IconChar.Bell;
             this.btnAlarms.IconColor = System.Drawing.Color.Lavender;
@@ -131,7 +131,7 @@ namespace Basic
             this.btnDataTables.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDataTables.FlatAppearance.BorderSize = 0;
             this.btnDataTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDataTables.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDataTables.Font = new System.Drawing.Font("Poppins SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDataTables.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDataTables.IconChar = FontAwesome.Sharp.IconChar.Table;
             this.btnDataTables.IconColor = System.Drawing.Color.Lavender;
@@ -153,7 +153,7 @@ namespace Basic
             this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDashboard.FlatAppearance.BorderSize = 0;
             this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.Font = new System.Drawing.Font("Poppins SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
             this.btnDashboard.IconColor = System.Drawing.Color.Lavender;
@@ -211,6 +211,7 @@ namespace Basic
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1134, 65);
             this.panelHeader.TabIndex = 0;
+            this.panelHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeader_Paint);
             // 
             // btnExit
             // 

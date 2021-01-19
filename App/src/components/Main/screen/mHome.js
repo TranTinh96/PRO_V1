@@ -115,10 +115,22 @@ useEffect(() => {
         const payload = message.toString() ;
         
         setPayload(payload );
-        console.log(payload + topic)
         setTopic(topic)
       });
     }
+    return () => {
+      if(clientMQTT){
+          clientMQTT.unsubscribe(_idProject, (err) => {
+              if (! err) {
+                  console.log("Unsubscribe to topics");
+                  clientMQTT.end(function(){
+                      setConnectStatus('Connect');
+                    });
+              
+              }
+          });
+      }
+  };
   }, [clientMQTT]);
   
   
@@ -126,7 +138,6 @@ useEffect(() => {
     useEffect(() => {
       if(topic){
           var payloadSplit = payload.toString().split('&')
-          console.log(payloadSplit)
           //VOLTAGE LINE-NEUTRAL
           setVLN(getKeyValue(payloadSplit,"VLN"))
           setV1N(getKeyValue(payloadSplit,"V1N"))
