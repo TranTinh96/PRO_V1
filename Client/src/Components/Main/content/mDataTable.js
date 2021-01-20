@@ -173,58 +173,57 @@ function MDataTable() {
    //Payload
    useLayoutEffect(() => {
     if((topic === _idProject) && timeReport ==="readTime"){
-        var payloadSplit = payload.toString().split('&')
-
+         var payloadStr = payload.toString();
         //TABLE SUMMARY
         var summaryData ={
-            VLN     :getKeyValue(payloadSplit,"VLN"),
-            VLL     :getKeyValue(payloadSplit,"VLL"),
-            I       :getKeyValue(payloadSplit,"I"),
-            KW      :getKeyValue(payloadSplit,"KW") ,
-            KVAR    :getKeyValue(payloadSplit,"KVAR") ,
-            KVA     :getKeyValue(payloadSplit,"KVA"),
-            PF      :getKeyValue(payloadSplit,"PF"),
-            F       :getKeyValue(payloadSplit,"FREQUENCY"),
-            KWH     :getKeyValue(payloadSplit,"KWH")
+            VLN     :getKeyValue(payloadStr,"VLN"),
+            VLL     :getKeyValue(payloadStr,"VLL"),
+            I       :getKeyValue(payloadStr,"I"),
+            KW      :getKeyValue(payloadStr,"KW") ,
+            KVAR    :getKeyValue(payloadStr,"KVAR") ,
+            KVA     :getKeyValue(payloadStr,"KVA"),
+            PF      :getKeyValue(payloadStr,"PF"),
+            F       :getKeyValue(payloadStr,"FREQUENCY"),
+            KWH     :getKeyValue(payloadStr,"KWH")
           }
           dispatch({type:"TABLE_SUMMARY",summaryData:summaryData})
           
 
          //TABLE PHASE ONE
          var phaseOneData ={
-          V1N     :getKeyValue(payloadSplit,"V1N"),
-          V12     :getKeyValue(payloadSplit,"V12"),
-          I1       :getKeyValue(payloadSplit,"I1"),
-          KW1      :getKeyValue(payloadSplit,"KW1") ,
-          KVAR1    :getKeyValue(payloadSplit,"KVAR1") ,
-          KVA1     :getKeyValue(payloadSplit,"KVA1"),
-          PF1      :getKeyValue(payloadSplit,"PF1")
+          V1N     :getKeyValue(payloadStr,"V1N"),
+          V12     :getKeyValue(payloadStr,"V12"),
+          I1       :getKeyValue(payloadStr,"I1"),
+          KW1      :getKeyValue(payloadStr,"KW1") ,
+          KVAR1    :getKeyValue(payloadStr,"KVAR1") ,
+          KVA1     :getKeyValue(payloadStr,"KVA1"),
+          PF1      :getKeyValue(payloadStr,"PF1")
         }
         dispatch({type:"TABLE_PHASE_ONE",phaseOneData:phaseOneData})
 
 
          //TABLE PHASE TW0
          var phaseTwoData ={
-          V2N      :getKeyValue(payloadSplit,"V2N"),
-          V23      :getKeyValue(payloadSplit,"V23"),
-          I2       :getKeyValue(payloadSplit,"I2"),
-          KW2      :getKeyValue(payloadSplit,"KW2") ,
-          KVAR2    :getKeyValue(payloadSplit,"KVAR2") ,
-          KVA2     :getKeyValue(payloadSplit,"KVA2"),
-          PF2      :getKeyValue(payloadSplit,"PF2")
+          V2N      :getKeyValue(payloadStr,"V2N"),
+          V23      :getKeyValue(payloadStr,"V23"),
+          I2       :getKeyValue(payloadStr,"I2"),
+          KW2      :getKeyValue(payloadStr,"KW2") ,
+          KVAR2    :getKeyValue(payloadStr,"KVAR2") ,
+          KVA2     :getKeyValue(payloadStr,"KVA2"),
+          PF2      :getKeyValue(payloadStr,"PF2")
         }
         dispatch({type:"TABLE_PHASE_TWO",phaseTwoData:phaseTwoData})
 
         
          //TABLE PHASE THREE
          var phaseThreeData ={
-          V3N      :getKeyValue(payloadSplit,"V3N"),
-          V31      :getKeyValue(payloadSplit,"V31"),
-          I3       :getKeyValue(payloadSplit,"I3"),
-          KW3      :getKeyValue(payloadSplit,"KW3") ,
-          KVAR3    :getKeyValue(payloadSplit,"KVAR3") ,
-          KVA3     :getKeyValue(payloadSplit,"KVA3"),
-          PF3      :getKeyValue(payloadSplit,"PF3")
+          V3N      :getKeyValue(payloadStr,"V3N"),
+          V31      :getKeyValue(payloadStr,"V31"),
+          I3       :getKeyValue(payloadStr,"I3"),
+          KW3      :getKeyValue(payloadStr,"KW3") ,
+          KVAR3    :getKeyValue(payloadStr,"KVAR3") ,
+          KVA3     :getKeyValue(payloadStr,"KVA3"),
+          PF3      :getKeyValue(payloadStr,"PF3")
         }
         dispatch({type:"TABLE_PHASE_THREE",phaseThreeData:phaseThreeData})
         

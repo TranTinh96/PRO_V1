@@ -28,3 +28,4 @@ G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\MQTTnet.Extensions.ManagedClient.dll
 G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\M2Mqtt.Net.dll
 G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\M2Mqtt.Net.pdb
 G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.FormDataTables.resources
+G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.FormAccout.resources

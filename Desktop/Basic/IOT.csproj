@@ -166,17 +166,17 @@
     <Compile Include="Form\FormAccout.Designer.cs">
       <DependentUpon>FormAccout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormAlarms.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormAlarms.Designer.cs">
-      <DependentUpon>FormAlarms.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMainMenu.Designer.cs">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormAlarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormAlarms.Designer.cs">
+      <DependentUpon>FormAlarms.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\FormDataTables.cs">
       <SubType>Form</SubType>
@@ -195,12 +195,14 @@
     <EmbeddedResource Include="FormMainMenu.resx">
       <DependentUpon>FormMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAlarms.resx">
-      <DependentUpon>FormAlarms.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Form\FormAccout.resx">
+      <DependentUpon>FormAccout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormAlarms.resx">
+      <DependentUpon>FormAlarms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormDataTables.resx">
       <DependentUpon>FormDataTables.cs</DependentUpon>

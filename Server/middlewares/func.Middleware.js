@@ -29,23 +29,28 @@ module.exports.checkArray = (array) => {
  
 
 
-//example key = V1=220&V1N=220 => getKeyValue: V1=220
-module.exports.getKeyValue = (str , key) => {
-  var value ;
-  for (let i = 0; i < str.length; i++) {
-    if(str[i].search(key) !== -1)
-    {
-      value = parseFloat(str[i].split('=')[1]);
-      break;
+module.exports.getKeyValue = (dataString, charFind) => {
+  var lenStr = dataString.length;
+  var lenCharFind = charFind.length;
+  var indexCharFind = dataString.indexOf(charFind);
+  if (indexCharFind !== -1) {
+    var strCharFind = dataString.substring(indexCharFind);
+    var indexDauVa = strCharFind.indexOf("&");
+    var strCharToFind = strCharFind.slice(lenCharFind).toString();
+    var strFind = "=";
+    if (strCharToFind[0] === strFind) {
+      var lenEnd = indexDauVa - indexCharFind;
+      lenEnd = indexDauVa !== -1 ? lenEnd : lenStr;
+
+      return parseFloat(strCharFind.slice(lenCharFind + 1, lenEnd));
     }
-    else
-    {
-       value=0;
-    }
- }
- return value;
+    return 0;
+  }
+  return 0;
+};
+
  
-}
+
 
 
 module.exports.getKeyValueString = (str , key ,preValue) => {

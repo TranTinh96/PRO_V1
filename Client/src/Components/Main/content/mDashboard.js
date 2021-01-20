@@ -243,57 +243,57 @@ function MDashbard() {
   useLayoutEffect(() => {
     if(topic === _idProject){
         var payloadSplit = payload.toString().split('&')
-
+        var payloadStr = payload.toString();
         //VOLTAGE LINE-NEUTRAL
-        dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadSplit,"VLN")})
-        dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadSplit,"V1N")})
-        dispatch({type:"ADD_DATA_V2NArray",V2NArray:getKeyValue2Int(payloadSplit,"V2N")})
-        dispatch({type:"ADD_DATA_V3NArray",V3NArray:getKeyValue2Int(payloadSplit,"V3N")})
-        setVLN(getKeyValue(payloadSplit,"VLN"))
-        setV1N(getKeyValue(payloadSplit,"V1N"))
-        setV2N(getKeyValue(payloadSplit,"V2N"))
-        setV3N(getKeyValue(payloadSplit,"V3N"))
+        dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadStr,"VLN")})
+        dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadStr,"V1N")})
+        dispatch({type:"ADD_DATA_V2NArray",V2NArray:getKeyValue2Int(payloadStr,"V2N")})
+        dispatch({type:"ADD_DATA_V3NArray",V3NArray:getKeyValue2Int(payloadStr,"V3N")})
+        setVLN(getKeyValue(payloadStr,"VLN"))
+        setV1N(getKeyValue(payloadStr,"V1N"))
+        setV2N(getKeyValue(payloadStr,"V2N"))
+        setV3N(getKeyValue(payloadStr,"V3N"))
 
         //CURRENT
   
         dispatch({
           type:"ADD_DATA_I",
-          I:getKeyValue(payloadSplit,"I"),
-          I1:getKeyValue(payloadSplit,"I1"),
-          I2:getKeyValue(payloadSplit,"I2"),
-          I3:getKeyValue(payloadSplit,"I3"),
+          I:getKeyValue(payloadStr,"I"),
+          I1:getKeyValue(payloadStr,"I1"),
+          I2:getKeyValue(payloadStr,"I2"),
+          I3:getKeyValue(payloadStr,"I3"),
          })
 
 
         //KW
-        setKW(getKeyValue(payloadSplit,"KW"))
-        setKW1(getKeyValue(payloadSplit,"KW1"))
-        setKW2(getKeyValue(payloadSplit,"KW2"))
-        setKW3(getKeyValue(payloadSplit,"KW3"))
+        setKW(getKeyValue(payloadStr,"KW"))
+        setKW1(getKeyValue(payloadStr,"KW1"))
+        setKW2(getKeyValue(payloadStr,"KW2"))
+        setKW3(getKeyValue(payloadStr,"KW3"))
 
         //KVA
-        setKVA(getKeyValue(payloadSplit,"KVA"))
-        setKVA1(getKeyValue(payloadSplit,"KVA1"))
-        setKVA2(getKeyValue(payloadSplit,"KVA2"))
-        setKVA3(getKeyValue(payloadSplit,"KVA3"))
+        setKVA(getKeyValue(payloadStr,"KVA"))
+        setKVA1(getKeyValue(payloadStr,"KVA1"))
+        setKVA2(getKeyValue(payloadStr,"KVA2"))
+        setKVA3(getKeyValue(payloadStr,"KVA3"))
 
         //KVAR
-        setKVAR(getKeyValue(payloadSplit,"KVAR"))
-        setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
-        setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
-        setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
+        setKVAR(getKeyValue(payloadStr,"KVAR"))
+        setKVAR1(getKeyValue(payloadStr,"KVAR1"))
+        setKVAR2(getKeyValue(payloadStr,"KVAR2"))
+        setKVAR3(getKeyValue(payloadStr,"KVAR3"))
 
         //PE
-        setPF(getKeyValue(payloadSplit,"PF"))
-        setPF1(getKeyValue(payloadSplit,"PF1"))
-        setPF2(getKeyValue(payloadSplit,"PF2"))
-        setPF3(getKeyValue(payloadSplit,"PF3"))
+        setPF(getKeyValue(payloadStr,"PF"))
+        setPF1(getKeyValue(payloadStr,"PF1"))
+        setPF2(getKeyValue(payloadStr,"PF2"))
+        setPF3(getKeyValue(payloadStr,"PF3"))
 
         //F & KW
-        setF(getKeyValue(payloadSplit,"FREQUENCY"))
-        setKWH(getKeyValue(payloadSplit,"KWH"))
-        dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadSplit,"FREQUENCY")})
-        dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadSplit,"KWH")})
+        setF(getKeyValue(payloadStr,"FREQUENCY"))
+        setKWH(getKeyValue(payloadStr,"KWH"))
+        dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadStr,"FREQUENCY")})
+        dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadStr,"KWH")})
 
         //RL status
         dispatch({

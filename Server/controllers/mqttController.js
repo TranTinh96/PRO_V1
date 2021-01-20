@@ -30,16 +30,13 @@ const samplesRelayInit = [
 module.exports = (clientMQTT) => {
   clientMQTT.on("message", function (topic, message, packet) {
     if (topic) {
-       
-
-
       Project.getByTokenProject(topic, (err, project) => {
         if (!err && !func.checkNull(project)) {
           var payloadSplit = message.toString().split("&");
-          var dataSummary = mqtt.dataSummary(payloadSplit);
-          var dataPhaseOne = mqtt.dataPhaseOne(payloadSplit);
-          var dataPhaseTwo = mqtt.dataPhaseTwo(payloadSplit);
-          var dataPhaseThree = mqtt.dataPhaseThree(payloadSplit);
+          var dataSummary = mqtt.dataSummary(message.toString());
+          var dataPhaseOne = mqtt.dataPhaseOne(message.toString());
+          var dataPhaseTwo = mqtt.dataPhaseTwo(message.toString());
+          var dataPhaseThree = mqtt.dataPhaseThree(message.toString())
           //Value Relay
           let sampleRelay  = [
             {
@@ -152,11 +149,11 @@ module.exports = (clientMQTT) => {
               //Task : Lấy dữ liệu mới
               for (let i = 0; i < arrDataAlarm.length; i++) {
                 var statusAlarm = middlewareAlarm.checkStatusAlarm(
-                  payloadSplit,
+                  message.toString(),
                   arrDataAlarm[i]
                 );
                 var valueTagAlarm = middlewareAlarm.getValueTagAlarm(
-                  payloadSplit,
+                  message.toString(),
                   arrDataAlarm[i]
                 );
                 let newAlarm = {

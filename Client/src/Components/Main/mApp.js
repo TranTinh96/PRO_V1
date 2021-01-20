@@ -39,6 +39,7 @@ function MApp() {
       setIsLoading(!isLoading);
       if(role !=="Administrator")
       {
+
         if((!checkString(cookies.Auth))){
           removeCookie("Auth");
           localStorage.removeItem("AuthID")
@@ -46,11 +47,7 @@ function MApp() {
         }   
         else
         {
-      
-          if(! _idProject_)
-          {
-            localStorage.setItem("AuthID", jwtToken.project_id)
-          }
+          localStorage.setItem("AuthID", jwtToken.project_id)
           if( !_idProject)
           {
             dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})

@@ -45,7 +45,7 @@ const cookies = new Cookies();
 var authToken = cookies.get("Auth")
 
 if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
-  console.log("Index " + authToken);
+  console.log("Index 2 : " + authToken);
   let jwtToken = jwt.decode(authToken)
   if(! checkNull(jwtToken))
   {
@@ -60,6 +60,7 @@ if (!checkTypeUndefined(authToken) || ! checkNull(authToken)) {
   
     //Redux ProjectID
     store.dispatch({type :"PROJECT_ID_REGISTER" ,projectID : null})
+
     if(role == "Administrator")
     {
       store.dispatch({type :"ID_TOPIC_PROJECT" , _idProject :"ADMIN"})
