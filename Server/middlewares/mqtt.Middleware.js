@@ -10,7 +10,7 @@ module.exports.dataSummary = (payloadSplit) => {
         KVAR    :   func.getKeyValue(payloadSplit,"KVAR") ,
         KVA     :   func.getKeyValue(payloadSplit,"KVA"),
         PF      :   func.getKeyValue(payloadSplit,"PF"),
-        F       :   func.getKeyValue(payloadSplit,"F"),
+        F       :   func.getKeyValue(payloadSplit,"FREQUENCY"),
         KWH     :   func.getKeyValue(payloadSplit,"KWH"),
         time    :   new Date().getTime(),
         timeCreate : time

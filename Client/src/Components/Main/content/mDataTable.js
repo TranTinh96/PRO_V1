@@ -98,7 +98,6 @@ function MDataTable() {
             break;
           //Weeks
           case "weeks":
-
               axios.post('/api/cabin/dataTimeWeeks', {
                 _idProject :_idProject
               })
@@ -112,16 +111,12 @@ function MDataTable() {
               .catch(function (error) {
                 console.log(error);
               });
-              
-            
             break;
         
           default:
             break;
         }
    }, [timeReport])
-
-
 
   //Client MQTT
   useLayoutEffect(() => {
@@ -169,7 +164,6 @@ function MDataTable() {
                 clientMQTT.end(function(){
                     setConnectStatus('Connect');
                   });
-            
             }
         });
     }
@@ -178,7 +172,7 @@ function MDataTable() {
 
    //Payload
    useLayoutEffect(() => {
-    if(topic && timeReport ==="readTime"){
+    if((topic === _idProject) && timeReport ==="readTime"){
         var payloadSplit = payload.toString().split('&')
 
         //TABLE SUMMARY
@@ -190,7 +184,7 @@ function MDataTable() {
             KVAR    :getKeyValue(payloadSplit,"KVAR") ,
             KVA     :getKeyValue(payloadSplit,"KVA"),
             PF      :getKeyValue(payloadSplit,"PF"),
-            F       :getKeyValue(payloadSplit,"F"),
+            F       :getKeyValue(payloadSplit,"FREQUENCY"),
             KWH     :getKeyValue(payloadSplit,"KWH")
           }
           dispatch({type:"TABLE_SUMMARY",summaryData:summaryData})

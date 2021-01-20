@@ -111,7 +111,6 @@ namespace Basic
             this.label62 = new System.Windows.Forms.Label();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.panelAmpe = new System.Windows.Forms.Panel();
-            this.txtAmpe = new System.Windows.Forms.TextBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -237,7 +236,6 @@ namespace Basic
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.VLN = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel23 = new System.Windows.Forms.Panel();
@@ -246,7 +244,6 @@ namespace Basic
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel33 = new System.Windows.Forms.Panel();
             this.panel34 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.V3N = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel30 = new System.Windows.Forms.Panel();
@@ -256,7 +253,6 @@ namespace Basic
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.panel28 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.V1N = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel26 = new System.Windows.Forms.Panel();
@@ -266,7 +262,6 @@ namespace Basic
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.panel32 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
             this.V2N = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel29 = new System.Windows.Forms.Panel();
@@ -313,7 +308,6 @@ namespace Basic
             this.panel128.SuspendLayout();
             this.panel130.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            this.panelAmpe.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel73.SuspendLayout();
@@ -1390,7 +1384,6 @@ namespace Basic
             // panelAmpe
             // 
             this.panelAmpe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
-            this.panelAmpe.Controls.Add(this.txtAmpe);
             this.panelAmpe.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelAmpe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panelAmpe.Location = new System.Drawing.Point(20, 0);
@@ -1399,14 +1392,6 @@ namespace Basic
             this.panelAmpe.Size = new System.Drawing.Size(537, 425);
             this.panelAmpe.TabIndex = 0;
             this.panelAmpe.Tag = "";
-            // 
-            // txtAmpe
-            // 
-            this.txtAmpe.Location = new System.Drawing.Point(55, 20);
-            this.txtAmpe.Multiline = true;
-            this.txtAmpe.Name = "txtAmpe";
-            this.txtAmpe.Size = new System.Drawing.Size(430, 311);
-            this.txtAmpe.TabIndex = 0;
             // 
             // panel11
             // 
@@ -2732,25 +2717,12 @@ namespace Basic
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.label2);
             this.panel25.Controls.Add(this.VLN);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(10, 10);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(103, 69);
             this.panel25.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label2.Location = new System.Drawing.Point(47, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "V";
             // 
             // VLN
             // 
@@ -2833,25 +2805,12 @@ namespace Basic
             // 
             // panel34
             // 
-            this.panel34.Controls.Add(this.label11);
             this.panel34.Controls.Add(this.V3N);
             this.panel34.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel34.Location = new System.Drawing.Point(10, 10);
             this.panel34.Name = "panel34";
             this.panel34.Size = new System.Drawing.Size(103, 69);
             this.panel34.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label11.Font = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label11.Location = new System.Drawing.Point(47, 25);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 19);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "V";
             // 
             // V3N
             // 
@@ -2944,25 +2903,12 @@ namespace Basic
             // 
             // panel28
             // 
-            this.panel28.Controls.Add(this.label5);
             this.panel28.Controls.Add(this.V1N);
             this.panel28.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel28.Location = new System.Drawing.Point(10, 10);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(103, 69);
             this.panel28.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Font = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label5.Location = new System.Drawing.Point(47, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 19);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "V";
             // 
             // V1N
             // 
@@ -3055,25 +3001,12 @@ namespace Basic
             // 
             // panel32
             // 
-            this.panel32.Controls.Add(this.label9);
             this.panel32.Controls.Add(this.V2N);
             this.panel32.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel32.Location = new System.Drawing.Point(10, 10);
             this.panel32.Name = "panel32";
             this.panel32.Size = new System.Drawing.Size(103, 69);
             this.panel32.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Font = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.label9.Location = new System.Drawing.Point(47, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(18, 19);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "V";
             // 
             // V2N
             // 
@@ -3218,8 +3151,6 @@ namespace Basic
             this.panel130.ResumeLayout(false);
             this.panel130.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            this.panelAmpe.ResumeLayout(false);
-            this.panelAmpe.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel73.ResumeLayout(false);
@@ -3550,7 +3481,6 @@ namespace Basic
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label VLN;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel23;
@@ -3559,7 +3489,6 @@ namespace Basic
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.Panel panel34;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label V3N;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Panel panel30;
@@ -3569,7 +3498,6 @@ namespace Basic
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label V1N;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel26;
@@ -3579,7 +3507,6 @@ namespace Basic
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Panel panel32;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label V2N;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel29;
@@ -3602,6 +3529,5 @@ namespace Basic
         private FontAwesome.Sharp.IconButton btnManualOffRelayA;
         private System.Windows.Forms.Panel panel143;
         private FontAwesome.Sharp.IconButton btnManualOnRelayA;
-        private System.Windows.Forms.TextBox txtAmpe;
     }
 }

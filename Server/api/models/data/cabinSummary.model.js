@@ -42,6 +42,7 @@ var cabinSummarySchema = new Schema({
     }
 })
 
+
 var cabinSummary = module.exports= mongoose.model("cabinSummary", cabinSummarySchema)
 
 module.exports.findDocumentCabinSummary = async( topic,cb ) =>{
@@ -153,7 +154,6 @@ module.exports.findOneInitSummary = async (device_id) =>{
         dataSummary = dataArray
         return dataSummary[length-1];
     }
-    return dataSummary
-
+    return dataSummary;
     
 }

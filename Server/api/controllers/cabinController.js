@@ -57,11 +57,11 @@ module.exports.postDataWeeks = async (req, res, next) => {
 
 module.exports.postInitData = async (req, res, next) => {
   let device_id = req.body._idProject;
-  console.log(device_id)
   var dataSummary = await cabinSummary.findOneInitSummary(device_id);
   var dataPhaseOne = await cabinPhaseOne.findOneInitPhaseOne(device_id);
   var dataPhaseTwo = await cabinPhaseTwo.findOneInitPhaseTwo(device_id);
   var dataPhaseThree = await cabinPhaseThree.findOneInitPhaseThree(device_id);
+  console.log(dataSummary)
   res.json({
     dataSummary: dataSummary,
     dataPhaseOne: dataPhaseOne,

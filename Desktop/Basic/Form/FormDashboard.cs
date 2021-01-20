@@ -107,6 +107,8 @@ namespace Basic
             KVA.Text = (string)reqJson["dataSummary"]["KVA"];
             KVAR.Text = (string)reqJson["dataSummary"]["KVAR"];
             PF.Text = (string)reqJson["dataSummary"]["PF"];
+            valueEnegry.Text = (string)reqJson["dataSummary"]["KWH"];
+            valueHz.Text = (string)reqJson["dataSummary"]["F"];
             //PHASE ONE
             V1N.Text = (string)reqJson["dataPhaseOne"]["V1N"];
             KW1.Text = (string)reqJson["dataPhaseOne"]["KW1"];
@@ -227,6 +229,8 @@ namespace Basic
                 KVA.Text = Shared.funcService.GetValueString(reqMessage, "KVA");
                 KVAR.Text = Shared.funcService.GetValueString(reqMessage, "KVAR");
                 PF.Text = Shared.funcService.GetValueString(reqMessage, "PF");
+                valueEnegry.Text = Shared.funcService.GetValueString(reqMessage, "KWH");
+                valueHz.Text = Shared.funcService.GetValueString(reqMessage, "FREQUENCY");
                 //PHASE ONE
                 V1N.Text = Shared.funcService.GetValueString(reqMessage, "V1N");
                 KW1.Text = Shared.funcService.GetValueString(reqMessage, "KW1");

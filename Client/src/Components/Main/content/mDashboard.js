@@ -241,7 +241,7 @@ function MDashbard() {
 
   //Payload
   useLayoutEffect(() => {
-    if(topic){
+    if(topic === _idProject){
         var payloadSplit = payload.toString().split('&')
 
         //VOLTAGE LINE-NEUTRAL
@@ -290,7 +290,7 @@ function MDashbard() {
         setPF3(getKeyValue(payloadSplit,"PF3"))
 
         //F & KW
-        setF(getKeyValue(payloadSplit,"F"))
+        setF(getKeyValue(payloadSplit,"FREQUENCY"))
         setKWH(getKeyValue(payloadSplit,"KWH"))
         dispatch({type:"ADD_DATA_FArray",FArray:getKeyValue2Int(payloadSplit,"FREQUENCY")})
         dispatch({type:"ADD_DATA_EArray",EArray:getKeyValue2Int(payloadSplit,"KWH")})
