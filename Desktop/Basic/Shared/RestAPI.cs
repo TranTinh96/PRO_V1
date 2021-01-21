@@ -11,7 +11,7 @@ namespace Basic.Shared
 {
     public static class RestAPI
     {
-        private static readonly string baseURL = "http://localhost:5000/";
+        private static readonly string baseURL = "https://tnt-iot.herokuapp.com/";
 
         public static async Task<string> Post (string url, string token, string idProject)
         {

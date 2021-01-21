@@ -307,7 +307,6 @@ namespace Basic.Auth
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(404, 48);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "tnt1513516@";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.OnValueChanged += new System.EventHandler(this.txtPassword_OnValueChanged);
             // 
@@ -381,7 +380,6 @@ namespace Basic.Auth
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(404, 50);
             this.txtEmail.TabIndex = 2;
-            this.txtEmail.Text = "trantinh.0696@gmail.com";
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEmail.OnValueChanged += new System.EventHandler(this.txtEmail_OnValueChanged);
             // 

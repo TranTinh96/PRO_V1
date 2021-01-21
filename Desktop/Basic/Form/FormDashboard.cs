@@ -30,6 +30,10 @@ namespace Basic
         private static MqttClient client;
         private static bool statusRelayA, statusRelayB ,modeRelayA ,modeRelayB;
         private static string topicPublish;
+        private static List<double> nonValue = new List<double>(5) { 1, 2, 3, 4, 1 };
+        private static List<double> oneValue = new List<double>(5) { 1, 3, 4, 5, 1 };
+        private static List<double> twoValue = new List<double>(5) { 1, 4, 5, 6, 1 };
+        private static List<double> threeValue = new List<double>(5){ 1, 5, 6, 7, 1 };
 
         public FormDashboard(string tokenAuth)
         {
@@ -38,13 +42,96 @@ namespace Basic
             idProject = Shared.JWT.JsonToken(tokenID, "project_id");
             roleAuth = Shared.JWT.JsonToken(tokenID, "role");
             topicPublish = idProject + "/hwX6aOr7";
-           
 
+            #region Init Chart Line
+            
+            //I
+            cartesianChart1.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double>(nonValue),
+                Title ="I",
+                StrokeThickness = 2,
+                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(155, 93, 229)),
+                Fill = System.Windows.Media.Brushes.Transparent,
+                LineSmoothness = 3,
+                PointGeometrySize = 10,
+                PointForeground =
+                    new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+            });
+            //I1
+            cartesianChart1.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double>(oneValue),
+                Title = "I1",
+                StrokeThickness = 2,
+                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(138, 201, 38)),
+                Fill = System.Windows.Media.Brushes.Transparent,
+                LineSmoothness = 2,
+                PointGeometrySize = 10,
+                PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+            });
+
+            //I2
+            cartesianChart1.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double>(twoValue),
+                Title = "I2",
+                StrokeThickness = 2,
+                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(215, 38, 61)),
+                Fill = System.Windows.Media.Brushes.Transparent,
+                LineSmoothness = 2,
+                PointGeometrySize = 10,
+                PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+            });
+
+            //I3
+            cartesianChart1.Series.Add(new LineSeries
+            {
+                Values = new ChartValues<double>(threeValue),
+                Title = "I3",
+                StrokeThickness = 2,
+                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(252, 255, 253)),
+                Fill = System.Windows.Media.Brushes.Transparent,
+                LineSmoothness = 2,
+                PointGeometrySize = 10,
+                PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+            });
+
+
+
+            var ax = new Axis();
+
+            cartesianChart1.AxisX.Add(new Axis
+            {
+                IsMerged = true,
+                ShowLabels =false,
+                Separator = new Separator
+                {
+                    Stroke = System.Windows.Media.Brushes.Transparent
+                }
+            });
+
+            cartesianChart1.AxisY.Add(new Axis
+            {
+                IsMerged = true,
+                Separator = new Separator
+                {
+                    StrokeThickness = 2,
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(4),
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(64, 79, 86))
+                }
+            });
+
+            #endregion 
         }
 
-      
+
         private async void FormDashboard_Load(object sender, EventArgs e)
         {
+            SeriesCollection series = new SeriesCollection();
             #region ChangeControl
             btnAutoRelayA.PerformClick();
             btnAutoRelayB.PerformClick();
@@ -115,6 +202,63 @@ namespace Basic
                 KVA3.Text = (string)reqJson["dataPhaseThree"]["KVA3"];
                 KVAR3.Text = (string)reqJson["dataPhaseThree"]["KVAR3"];
                 PF3.Text = (string)reqJson["dataPhaseThree"]["PF3"];
+
+                //CURRENT
+                //CURRENT
+                double iNon = (double)reqJson["dataSummary"]["I"];
+                double iOne = (double)reqJson["dataPhaseOne"]["I1"];
+                double iTwo = (double)reqJson["dataPhaseTwo"]["I2"];
+                double iThree = (double)reqJson["dataPhaseThree"]["I3"];
+                series.Add(new LineSeries() { 
+                    Values = new ChartValues<double>(limitValueList(nonValue ,iNon)),
+                    Title = "I",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(155, 93, 229)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 3,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                    new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries() {
+                    Values = new ChartValues<double>(limitValueList(oneValue, iOne)),
+                    Title = "I1",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(138, 201, 38)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                }); ; ;
+                series.Add(new LineSeries() { 
+                    Values = new ChartValues<double>(limitValueList(twoValue, iTwo)),
+                    Title = "I2",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(215, 38, 61)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries() {
+                    Values = new ChartValues<double>(limitValueList(threeValue, iThree)),
+                    Title = "I3",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(252, 255, 253)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                   new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                cartesianChart1.Series = series;
+
+                copyList(nonValue, limitValueList(nonValue, iNon));
+                copyList(oneValue, limitValueList(oneValue, iOne));
+                copyList(twoValue, limitValueList(twoValue, iTwo));
+                copyList(threeValue, limitValueList(threeValue, iThree));
 
                 #endregion
 
@@ -218,7 +362,7 @@ namespace Basic
         }
         void Receive(string reqMessage, string topic)
         {
-
+            SeriesCollection series = new SeriesCollection();
             if (topic == idProject)
             {
    
@@ -250,12 +394,75 @@ namespace Basic
                 PF3.Text = Shared.funcService.GetValueString(reqMessage, "PF3");
                 //RLA
                 statusRelayA = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAstatus"));
-                statusRelayA = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBstatus"));
+                statusRelayB = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBstatus"));
                 modeRelayA = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAmode"));
                 modeRelayB = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBmode"));
+
+                //CURRENT
+                double iNon = Convert.ToDouble( Shared.funcService.GetValueString(reqMessage, "I"));
+                double iOne = Convert.ToDouble( Shared.funcService.GetValueString(reqMessage, "I1"));
+                double iTwo = Convert.ToDouble( Shared.funcService.GetValueString(reqMessage, "I2"));
+                double iThree = Convert.ToDouble( Shared.funcService.GetValueString(reqMessage, "I3"));
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(nonValue, iNon)),
+                    Title = "I",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(155, 93, 229)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 3,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                     new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(oneValue, iOne)),
+                    Title = "I1",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(138, 201, 38)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                }); ; ;
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(twoValue, iTwo)),
+                    Title = "I2",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(215, 38, 61)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(threeValue, iThree)),
+                    Title = "I3",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(252, 255, 253)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                   new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                cartesianChart1.Series = series;
+
+                copyList(nonValue, limitValueList(nonValue, iNon));
+                copyList(oneValue, limitValueList(oneValue, iOne));
+                copyList(twoValue, limitValueList(twoValue, iTwo));
+                copyList(threeValue, limitValueList(threeValue, iThree));
+
+
+
                 #region RLA & RLB
                 //Relay A
-                controlRelayA();
+                controlRelayA(statusRelayA);
                 if (modeRelayA)
                 {
 
@@ -276,7 +483,7 @@ namespace Basic
                     panelAutoRelayA.Visible = false;
                 }
                 //RelayB
-                controlRelayB();
+                controlRelayB(statusRelayB);
                 if (modeRelayB)
                 {
 
@@ -296,6 +503,10 @@ namespace Basic
                     panelManualRelayB.Visible = true;
                     panelAutoRelayB.Visible = false;
                 }
+                #endregion
+
+                #region Chart Line Current
+
                 #endregion
 
             }
@@ -355,7 +566,7 @@ namespace Basic
         {
             string message = "&RLAmode=auto&RLAonTime=" + timeOnRelayA.Value.ToString("HH:mm") + "&RLAoffTime="+timeOffRelayA.Value.ToString("HH:mm") + "&";
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayA();
+            controlRelayA(statusRelayA);
         }
 
         private void btnSetAutoRelayB_Click(object sender, EventArgs e)
@@ -363,7 +574,7 @@ namespace Basic
             
             string message = "&RLBmode=auto&RLBonTime=" + timeOnRelayB.Value.ToString("HH:mm") + "&RLBoffTime=" + timeOffRelayB.Value.ToString("HH:mm") + "&";
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayB();
+            controlRelayB(statusRelayB);
         }
 
 
@@ -375,7 +586,7 @@ namespace Basic
             string message = "&RLAmode=manual&RLAstatus=on&";
             statusRelayA = true;
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayA();
+            controlRelayA(statusRelayA);
         }
 
         private void btnManualOffRelayA_Click(object sender, EventArgs e)
@@ -385,7 +596,7 @@ namespace Basic
             string message = "&RLAmode=manual&RLAstatus=off&";
             statusRelayA = false;
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayA();
+            controlRelayA(statusRelayA);
         }
 
         private void btnManualOnRelayB_Click(object sender, EventArgs e)
@@ -395,7 +606,7 @@ namespace Basic
             string message = "&RLBmode=manual&RLBstatus=on&";
             statusRelayB = true;
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayB();
+            controlRelayB(statusRelayB);
         }
 
      
@@ -407,7 +618,7 @@ namespace Basic
             string message = "&RLBmode=manual&RLBstatus=off&";
             statusRelayB = false;
             client.Publish(topicPublish, Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-            controlRelayB();
+            controlRelayB(statusRelayB);
         }
         #endregion Control
 
@@ -422,9 +633,9 @@ namespace Basic
             return mode == "auto" ? true : false;
         }
 
-        private void controlRelayA ()
+        private void controlRelayA (bool RLAstatus )
         {
-            if(statusRelayA)
+            if(RLAstatus)
             {
                 statusOnRelayA.Visible = true;
                 statusOffRelayA.Visible = false;
@@ -436,9 +647,9 @@ namespace Basic
             }
         }
 
-        private void controlRelayB()
+        private void controlRelayB(bool RLBstatus)
         {
-            if (statusRelayB)
+            if (RLBstatus)
             {
                 statusOnRelayB.Visible = true;
                 statusOffRelayB.Visible = false;
@@ -452,6 +663,40 @@ namespace Basic
 
 
         #endregion
+
+        private List<double> limitValueList(List<double> data, double value)
+        {
+            List<double> listData = new List<double>(data);
+            if (data.Count < 5)
+            {
+
+                listData.Add(value);
+
+
+            }
+            else
+            {
+                int count = data.Count - 5;
+                for (int i = 0; i < count + 1; i++)
+                {
+                    listData.RemoveAt(0);
+                }
+                listData.Add(value);
+
+            }
+            return listData;
+        }
+
+        private bool copyList(List<double> one , List<double> two)
+        {
+            one.Clear();
+            foreach( var item in two)
+            {
+                one.Add(item);
+            }    
+            return true;
+           
+        }
 
     }
 }

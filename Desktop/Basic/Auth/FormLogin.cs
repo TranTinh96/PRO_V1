@@ -79,7 +79,7 @@ namespace Basic.Auth
                
                 try
                 {
-                    var req = await client.PostAsync("http://localhost:5000/profile/login", content);
+                    var req = await client.PostAsync("https://tnt-iot.herokuapp.com/profile/login", content);
                     string reqString = await req.Content.ReadAsStringAsync();
                     JObject reqJson = JObject.Parse(reqString);
                     if( (bool)reqJson["success"])

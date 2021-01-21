@@ -149,7 +149,8 @@ namespace Basic
         {
             FormLogin Child = new FormLogin();
             this.Hide();
-            Child.ShowDialog();
+            Child.Enabled = true;
+            Child.Show();
 
         }
 
