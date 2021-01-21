@@ -46,20 +46,23 @@ namespace Basic
             #region Connect MQTT
             try
             {
-                client = new MqttClient(mqttURI, mqttPort, false, MqttSslProtocols.None, null, null)
+                if (!String.IsNullOrEmpty(idProject))
                 {
-                    ProtocolVersion = MqttProtocolVersion.Version_3_1
-                };
-                client.Connect(clientId, mqttUser, mqttPassword, true, 60);
-                //Subcribe Topic
-                client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
-                client.Subscribe(new string[] { idProject }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                    client = new MqttClient(mqttURI, mqttPort, false, MqttSslProtocols.None, null, null)
+                    {
+                        ProtocolVersion = MqttProtocolVersion.Version_3_1
+                    };
+                    client.Connect(clientId, mqttUser, mqttPassword, true, 60);
+                    //Subcribe Topic
+                    client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+                    client.Subscribe(new string[] { idProject }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                }
 
 
             }
             catch (Exception)
             {
-
+                Application.Exit();
             }
 
             #endregion

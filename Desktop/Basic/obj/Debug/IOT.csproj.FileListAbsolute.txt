@@ -29,3 +29,12 @@ G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\M2Mqtt.Net.dll
 G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\M2Mqtt.Net.pdb
 G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.FormDataTables.resources
 G:\GitHub\PRO_V1\Desktop\Basic\obj\Debug\Basic.FormAccout.resources
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.dll
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.WinForms.dll
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.Wpf.dll
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.pdb
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.xml
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.WinForms.pdb
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.WinForms.xml
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.Wpf.pdb
+G:\GitHub\PRO_V1\Desktop\Basic\bin\Debug\LiveCharts.Wpf.xml

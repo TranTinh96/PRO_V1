@@ -39,6 +39,9 @@ namespace Basic
             this.panelLogo = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lableRole = new System.Windows.Forms.Label();
+            this.lableUser = new System.Windows.Forms.Label();
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.btnScreen = new FontAwesome.Sharp.IconButton();
             this.btnSearch = new FontAwesome.Sharp.IconButton();
@@ -52,6 +55,7 @@ namespace Basic
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +71,7 @@ namespace Basic
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 966);
+            this.panelMenu.Size = new System.Drawing.Size(250, 980);
             this.panelMenu.TabIndex = 0;
             // 
             // lableTime
@@ -75,7 +79,7 @@ namespace Basic
             this.lableTime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lableTime.Font = new System.Drawing.Font("Open Sans SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lableTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
-            this.lableTime.Location = new System.Drawing.Point(0, 911);
+            this.lableTime.Location = new System.Drawing.Point(0, 925);
             this.lableTime.Name = "lableTime";
             this.lableTime.Size = new System.Drawing.Size(250, 55);
             this.lableTime.TabIndex = 6;
@@ -196,6 +200,9 @@ namespace Basic
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
+            this.panelHeader.Controls.Add(this.pictureBox1);
+            this.panelHeader.Controls.Add(this.lableRole);
+            this.panelHeader.Controls.Add(this.lableUser);
             this.panelHeader.Controls.Add(this.btnExit);
             this.panelHeader.Controls.Add(this.btnScreen);
             this.panelHeader.Controls.Add(this.btnSearch);
@@ -209,9 +216,40 @@ namespace Basic
             this.panelHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
             this.panelHeader.Location = new System.Drawing.Point(250, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1134, 65);
+            this.panelHeader.Size = new System.Drawing.Size(1130, 65);
             this.panelHeader.TabIndex = 0;
-            this.panelHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panelHeader_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(955, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 47);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lableRole
+            // 
+            this.lableRole.AutoSize = true;
+            this.lableRole.Font = new System.Drawing.Font("Poppins SemiBold", 9F, System.Drawing.FontStyle.Bold);
+            this.lableRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.lableRole.Location = new System.Drawing.Point(1016, 37);
+            this.lableRole.Name = "lableRole";
+            this.lableRole.Size = new System.Drawing.Size(60, 22);
+            this.lableRole.TabIndex = 12;
+            this.lableRole.Text = "Manage";
+            // 
+            // lableUser
+            // 
+            this.lableUser.AutoSize = true;
+            this.lableUser.Font = new System.Drawing.Font("Poppins SemiBold", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lableUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
+            this.lableUser.Location = new System.Drawing.Point(1015, 12);
+            this.lableUser.Name = "lableUser";
+            this.lableUser.Size = new System.Drawing.Size(112, 23);
+            this.lableUser.TabIndex = 30;
+            this.lableUser.Text = "Tran Ngoc Tinh";
             // 
             // btnExit
             // 
@@ -290,9 +328,9 @@ namespace Basic
             this.btnTask.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnTask.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTask.IconSize = 22;
-            this.btnTask.Location = new System.Drawing.Point(969, 0);
+            this.btnTask.Location = new System.Drawing.Point(862, 0);
             this.btnTask.Name = "btnTask";
-            this.btnTask.Size = new System.Drawing.Size(40, 65);
+            this.btnTask.Size = new System.Drawing.Size(34, 65);
             this.btnTask.TabIndex = 6;
             this.btnTask.UseVisualStyleBackColor = false;
             // 
@@ -307,21 +345,20 @@ namespace Basic
             this.btnNotification.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNotification.IconSize = 22;
-            this.btnNotification.Location = new System.Drawing.Point(1009, 0);
+            this.btnNotification.Location = new System.Drawing.Point(896, 0);
             this.btnNotification.Name = "btnNotification";
-            this.btnNotification.Size = new System.Drawing.Size(50, 65);
+            this.btnNotification.Size = new System.Drawing.Size(38, 65);
             this.btnNotification.TabIndex = 5;
             this.btnNotification.UseVisualStyleBackColor = false;
             // 
             // btnProfile
             // 
             this.btnProfile.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnProfile.Image")));
-            this.btnProfile.Location = new System.Drawing.Point(1059, 0);
+            this.btnProfile.Location = new System.Drawing.Point(934, 0);
             this.btnProfile.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(45, 65);
-            this.btnProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btnProfile.Size = new System.Drawing.Size(72, 65);
+            this.btnProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnProfile.TabIndex = 4;
             this.btnProfile.TabStop = false;
             // 
@@ -332,13 +369,13 @@ namespace Basic
             this.btnShowProfile.FlatAppearance.BorderSize = 0;
             this.btnShowProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(46)))), ((int)(((byte)(62)))));
-            this.btnShowProfile.IconChar = FontAwesome.Sharp.IconChar.ChevronDown;
+            this.btnShowProfile.IconChar = FontAwesome.Sharp.IconChar._500Px;
             this.btnShowProfile.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(124)))), ((int)(((byte)(245)))));
             this.btnShowProfile.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnShowProfile.IconSize = 16;
-            this.btnShowProfile.Location = new System.Drawing.Point(1104, 0);
+            this.btnShowProfile.IconSize = 1;
+            this.btnShowProfile.Location = new System.Drawing.Point(1006, 0);
             this.btnShowProfile.Name = "btnShowProfile";
-            this.btnShowProfile.Size = new System.Drawing.Size(30, 65);
+            this.btnShowProfile.Size = new System.Drawing.Size(124, 65);
             this.btnShowProfile.TabIndex = 3;
             this.btnShowProfile.UseVisualStyleBackColor = false;
             // 
@@ -347,7 +384,7 @@ namespace Basic
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(250, 65);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1134, 901);
+            this.panelDesktop.Size = new System.Drawing.Size(1130, 915);
             this.panelDesktop.TabIndex = 1;
             // 
             // screenForm
@@ -355,12 +392,13 @@ namespace Basic
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(37)))), ((int)(((byte)(47)))));
-            this.ClientSize = new System.Drawing.Size(1384, 966);
+            this.ClientSize = new System.Drawing.Size(1380, 980);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelMenu);
-            this.MaximumSize = new System.Drawing.Size(1400, 1005);
-            this.MinimumSize = new System.Drawing.Size(1400, 1005);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1380, 980);
+            this.MinimumSize = new System.Drawing.Size(1380, 980);
             this.Name = "screenForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormDashboard_Load);
@@ -368,6 +406,8 @@ namespace Basic
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProfile)).EndInit();
             this.ResumeLayout(false);
 
@@ -386,12 +426,15 @@ namespace Basic
         private FontAwesome.Sharp.IconButton btnShowProfile;
         private FontAwesome.Sharp.IconButton btnTask;
         private FontAwesome.Sharp.IconButton btnNotification;
-        private System.Windows.Forms.PictureBox btnProfile;
         private FontAwesome.Sharp.IconButton btnScreen;
         private FontAwesome.Sharp.IconButton btnSearch;
         private FontAwesome.Sharp.IconButton btnMenu;
         private System.Windows.Forms.Label lableTime;
         private FontAwesome.Sharp.IconButton btnExit;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lableRole;
+        private System.Windows.Forms.Label lableUser;
+        private System.Windows.Forms.PictureBox btnProfile;
         private System.Windows.Forms.Panel panelDesktop;
     }
 }

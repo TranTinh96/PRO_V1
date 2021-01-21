@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -32,6 +33,30 @@ namespace Basic.Shared
                             return data;
                         }
                        
+                    }
+                }
+            }
+            return string.Empty;
+        }
+
+        public static async Task<string> PostRelay(string url, string token, string idProject ,string[] arrayRelay)
+        {
+            object data = new
+            {
+                idProject = idProject,
+                arrayRelay = arrayRelay
+            };
+            var jsonData = JsonConvert.SerializeObject(data);
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var stringContent = new StringContent(jsonData, UnicodeEncoding.UTF8, "application/json");
+                using (HttpResponseMessage res = await client.PostAsync(baseURL + url, stringContent))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        return res.ToString();
+
                     }
                 }
             }

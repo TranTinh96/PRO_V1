@@ -76,20 +76,21 @@ namespace Basic.Auth
 
                 var content = new FormUrlEncodedContent(values);
 
-                var req = await client.PostAsync("http://localhost:5000/profile/login", content);
-                string reqString = await req.Content.ReadAsStringAsync();
+               
                 try
                 {
+                    var req = await client.PostAsync("http://localhost:5000/profile/login", content);
+                    string reqString = await req.Content.ReadAsStringAsync();
                     JObject reqJson = JObject.Parse(reqString);
                     if( (bool)reqJson["success"])
                     {
                         tokenAuth = (string)reqJson["token"];
                         if(!(tokenAuth == String.Empty))
                         {
-                            FormLogin login = new FormLogin();
+                            
                             screenForm Child = new screenForm(tokenAuth);      //Tạo Form2
                             Child.Show();
-                            login.Visible = false;
+                            guna2Panel1.Enabled = false;
                         }
 
                     } 
@@ -111,7 +112,7 @@ namespace Basic.Auth
                 }
                 catch
                 {
-                    
+                    Application.Exit();
                 }
 
 
