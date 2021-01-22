@@ -51,6 +51,7 @@ namespace Basic.Auth
             {
                  lableErrEmail.Visible = false;
             }
+            lableLoginAgain.Visible = false;
 
             //Check input Password
             if (txtPassword.Text == String.Empty)
@@ -85,13 +86,18 @@ namespace Basic.Auth
                     if( (bool)reqJson["success"])
                     {
                         tokenAuth = (string)reqJson["token"];
-                        if(!(tokenAuth == String.Empty))
+                        if( !(tokenAuth==null)|| !(tokenAuth==string.Empty))
                         {
                             
                             screenForm Child = new screenForm(tokenAuth);      //Tạo Form2
                             Child.Show();
                             guna2Panel1.Enabled = false;
                         }
+                        else
+                        {
+                            lableLoginAgain.Visible = true;
+                            lableLoginAgain.Text = "Please login again";
+                        }    
 
                     } 
                     else
@@ -151,6 +157,11 @@ namespace Basic.Auth
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lableLoginAgain_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

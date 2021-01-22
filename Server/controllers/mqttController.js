@@ -37,6 +37,7 @@ module.exports = (clientMQTT) => {
           var dataPhaseOne = mqtt.dataPhaseOne(message.toString());
           var dataPhaseTwo = mqtt.dataPhaseTwo(message.toString());
           var dataPhaseThree = mqtt.dataPhaseThree(message.toString())
+          console.log("dataPhaseThree"+ dataPhaseThree)
           //Value Relay
           let sampleRelay  = [
             {

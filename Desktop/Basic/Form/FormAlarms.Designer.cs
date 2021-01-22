@@ -252,6 +252,7 @@ namespace Basic
             this.txtNavbarActive.Size = new System.Drawing.Size(59, 19);
             this.txtNavbarActive.TabIndex = 0;
             this.txtNavbarActive.Text = "ALARM";
+            this.txtNavbarActive.Click += new System.EventHandler(this.txtNavbarActive_Click);
             // 
             // panel1
             // 

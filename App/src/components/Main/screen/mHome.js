@@ -3,6 +3,7 @@ import * as Animatable from 'react-native-animatable';
 import { View,ScrollView,SafeAreaView,StatusBar,} from 'react-native';
 import {useSelector ,useDispatch} from 'react-redux';
 import mqtt from "@taoqf/react-native-mqtt"
+import axios from 'axios'
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
 import LineChart from '../Library/lineChart';
@@ -32,10 +33,10 @@ function Home() {
    var I3 = useSelector((state) => state.I3);
 
   //VOLTAGE LINE-NEUTRAL
-  const [VLN , setVLN] =useState(218.5);
-  const [V1N , setV1N] =useState(220.3);
-  const [V2N , setV2N] =useState(219.5);
-  const [V3N , setV3N] =useState(221.7);
+  const [VLN , setVLN] =useState(0);
+  const [V1N , setV1N] =useState(0);
+  const [V2N , setV2N] =useState(0);
+  const [V3N , setV3N] =useState(0);
 
   //VOLTAGE LINE-LINE
   const [VLL , setVLL] =useState(0);
@@ -72,15 +73,69 @@ function Home() {
   //F & KW
   const [F , setF] =useState(50);
   const [KWH , setKWH] =useState(0);
-  //useEffect connect MQTT   
+
   useEffect(() => {
-      
-    if((_idProject !="ADMIN" )&& (_idProject !== null))
-    {
-        
-        setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+    if ( _idProject !== null) {
+      console.log("Connect MQTT ")
+       setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+      axios.post("/api/cabin/get/init", {
+          _idProject: _idProject,
+        })
+        .then(function (res) {
+          let resData = res.data;
+          console.log(resData)
+          //VOLTAGE LINE-NEUTRA
+          setVLN(resData.dataSummary.VLN);
+          setV1N( resData.dataPhaseOne.V1N);
+          setV2N( resData.dataPhaseTwo.V2N);
+          setV3N(resData.dataPhaseThree.V3N);
+
+          //CURRENT
+          dispatch({
+            type: "ADD_DATA_I",
+            I: resData.dataSummary.I,
+            I1:resData.dataPhaseOne.I1,
+            I2: resData.dataPhaseTwo.I2,
+            I3: resData.dataPhaseThree.I3,
+          });
+
+          //KW
+          setKW(resData.dataSummary.KW);
+          setKW1(resData.dataPhaseOne.KW1);
+          setKW2(resData.dataPhaseTwo.KW2);
+          setKW3(resData.dataPhaseThree.KW3);
+
+          //KVA
+          setKVA(resData.dataSummary.KVA);
+          setKVA1(resData.dataPhaseOne.KVA1);
+          setKVA2(resData.dataPhaseTwo.KVA2);
+          setKVA3(resData.dataPhaseThree.KVA3);
+
+          //KVAR
+          setKVAR(resData.dataSummary.KVRA);
+          setKVAR1(resData.dataPhaseOne.KVAR1);
+          setKVAR2(resData.dataPhaseTwo.KVAR2);
+          setKVAR3(resData.dataPhaseThree.KVAR3);
+
+          //PE
+          setPF(resData.dataSummary.PF);
+          setPF1(resData.dataPhaseOne.PF1);
+          setPF2(resData.dataPhaseTwo.PF2);
+          setPF3(resData.dataPhaseThree.PF3);
+
+          //F & KW
+          setF(resData.dataSummary.F);
+          setKWH(resData.dataSummary.KWH)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
-  }, [])
+
+  
+   
+
+}, []);
 
 //useEffect MQTT
 useEffect(() => {
@@ -102,7 +157,6 @@ useEffect(() => {
         clientMQTT.end();
       });
       clientMQTT.on("reconnect", () => {
-        console.log("ReConnecting");
         setConnectStatus("Reconnecting");
       });
 
@@ -137,50 +191,49 @@ useEffect(() => {
     //Payload
     useEffect(() => {
       if(topic){
-          var payloadSplit = payload.toString().split('&')
           //VOLTAGE LINE-NEUTRAL
-          setVLN(getKeyValue(payloadSplit,"VLN"))
-          setV1N(getKeyValue(payloadSplit,"V1N"))
-          setV2N(getKeyValue(payloadSplit,"V2N"))
-          setV3N(getKeyValue(payloadSplit,"V3N"))
+          setVLN(getKeyValue(payload.toString(),"VLN"))
+          setV1N(getKeyValue(payload.toString(),"V1N"))
+          setV2N(getKeyValue(payload.toString(),"V2N"))
+          setV3N(getKeyValue(payload.toString(),"V3N"))
 
            //VOLTAGE LINE - LINE
-          setVLL(getKeyValue(payloadSplit,"VLL"))
-          setV12(getKeyValue(payloadSplit,"V12"))
-          setV23(getKeyValue(payloadSplit,"V23"))
-          setV31(getKeyValue(payloadSplit,"V31"))
+          setVLL(getKeyValue(payload.toString(),"VLL"))
+          setV12(getKeyValue(payload.toString(),"V12"))
+          setV23(getKeyValue(payload.toString(),"V23"))
+          setV31(getKeyValue(payload.toString(),"V31"))
 
           //KW
-          setKW(getKeyValue(payloadSplit,"KW"))
-          setKW1(getKeyValue(payloadSplit,"KW1"))
-          setKW2(getKeyValue(payloadSplit,"KW2"))
-          setKW3(getKeyValue(payloadSplit,"KW3"))
+          setKW(getKeyValue(payload.toString(),"KW"))
+          setKW1(getKeyValue(payload.toString(),"KW1"))
+          setKW2(getKeyValue(payload.toString(),"KW2"))
+          setKW3(getKeyValue(payload.toString(),"KW3"))
 
           //KVA
-          setKVA(getKeyValue(payloadSplit,"KVA"))
-          setKVA1(getKeyValue(payloadSplit,"KVA1"))
-          setKVA2(getKeyValue(payloadSplit,"KVA2"))
-          setKVA3(getKeyValue(payloadSplit,"KVA3"))
+          setKVA(getKeyValue(payload.toString(),"KVA"))
+          setKVA1(getKeyValue(payload.toString(),"KVA1"))
+          setKVA2(getKeyValue(payload.toString(),"KVA2"))
+          setKVA3(getKeyValue(payload.toString(),"KVA3"))
 
            //KVAR
-          setKVAR(getKeyValue(payloadSplit,"KVAR"))
-          setKVAR1(getKeyValue(payloadSplit,"KVAR1"))
-          setKVAR2(getKeyValue(payloadSplit,"KVAR2"))
-          setKVAR3(getKeyValue(payloadSplit,"KVAR3"))
+          setKVAR(getKeyValue(payload.toString(),"KVAR"))
+          setKVAR1(getKeyValue(payload.toString(),"KVAR1"))
+          setKVAR2(getKeyValue(payload.toString(),"KVAR2"))
+          setKVAR3(getKeyValue(payload.toString(),"KVAR3"))
 
           //PE
-          setPE(getKeyValue(payloadSplit,"PE"))
-          setPE1(getKeyValue(payloadSplit,"PE1"))
-          setPE2(getKeyValue(payloadSplit,"PE2"))
-          setPE3(getKeyValue(payloadSplit,"PE3"))
+          setPE(getKeyValue(payload.toString(),"PE"))
+          setPE1(getKeyValue(payload.toString(),"PE1"))
+          setPE2(getKeyValue(payload.toString(),"PE2"))
+          setPE3(getKeyValue(payload.toString(),"PE3"))
 
            //F & KW
-          setF(getKeyValue(payloadSplit,"FREQUENCY"))
-          setKWH(getKeyValue(payloadSplit,"KWH"))
-          dispatch({type:"ADD_DATA_I",I:getKeyValue(payloadSplit,"I")})
-          dispatch({type:"ADD_DATA_I1",I1:getKeyValue(payloadSplit,"I1")})
-          dispatch({type:"ADD_DATA_I2",I2:getKeyValue(payloadSplit,"I2")})
-          dispatch({type:"ADD_DATA_I3",I3:getKeyValue(payloadSplit,"I3")})
+          setF(getKeyValue(payload.toString(),"FREQUENCY"))
+          setKWH(getKeyValue(payload.toString(),"KWH"))
+          dispatch({type:"ADD_DATA_I",I:getKeyValue(payload.toString(),"I")})
+          dispatch({type:"ADD_DATA_I1",I1:getKeyValue(payload.toString(),"I1")})
+          dispatch({type:"ADD_DATA_I2",I2:getKeyValue(payload.toString(),"I2")})
+          dispatch({type:"ADD_DATA_I3",I3:getKeyValue(payload.toString(),"I3")})
           
         
           

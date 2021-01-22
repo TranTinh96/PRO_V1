@@ -61,6 +61,7 @@ namespace Basic.Auth
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.lableLoginAgain = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -74,6 +75,7 @@ namespace Basic.Auth
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -407,6 +409,7 @@ namespace Basic.Auth
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lableLoginAgain);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(20, 50);
             this.panel3.Name = "panel3";
@@ -434,6 +437,21 @@ namespace Basic.Auth
             this.label3.TabIndex = 1;
             this.label3.Text = "SIGN IN";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lableLoginAgain
+            // 
+            this.lableLoginAgain.AutoSize = true;
+            this.lableLoginAgain.BackColor = System.Drawing.Color.Transparent;
+            this.lableLoginAgain.Font = new System.Drawing.Font("Poppins SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lableLoginAgain.ForeColor = System.Drawing.Color.Red;
+            this.lableLoginAgain.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lableLoginAgain.Location = new System.Drawing.Point(3, 34);
+            this.lableLoginAgain.Name = "lableLoginAgain";
+            this.lableLoginAgain.Size = new System.Drawing.Size(89, 23);
+            this.lableLoginAgain.TabIndex = 1;
+            this.lableLoginAgain.Text = "Login again";
+            this.lableLoginAgain.Visible = false;
+            this.lableLoginAgain.Click += new System.EventHandler(this.lableLoginAgain_Click);
             // 
             // FormLogin
             // 
@@ -471,6 +489,8 @@ namespace Basic.Auth
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -510,5 +530,6 @@ namespace Basic.Auth
         private Bunifu.Framework.UI.BunifuMetroTextbox txtEmail;
         private Bunifu.Framework.UI.BunifuMetroTextbox txtPassword;
         private FontAwesome.Sharp.IconButton btnExit;
+        private System.Windows.Forms.Label lableLoginAgain;
     }
 }

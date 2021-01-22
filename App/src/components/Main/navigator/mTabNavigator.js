@@ -27,7 +27,7 @@ function TabNavigator()
   const { signOut } = useContext(AuthContext);
   //Redux
   var _idProject = useSelector((state) => state.projectID);
-
+ console.log(_idProject)
   useEffect(() => {
       
       if(_idProject === null)

@@ -90,19 +90,19 @@ namespace Basic
             //SUMMARY
             var dataSummary = reqJson["dataSummary"];
             var arrSummary = dataSummary.ToArray();
-           
+
             //PHASE ONE
             var dataPhaseOne = reqJson["dataPhaseOne"];
             var arrPhaseOne = dataPhaseOne.ToArray();
-          
+
             //PHASE TWO
             var dataPhaseTwo = reqJson["dataPhaseTwo"];
             var arrPhaseTwo = dataPhaseTwo.ToArray();
-         
+
             //PHASE THREE
             var dataPhaseThree = reqJson["dataPhaseThree"];
             var arrPhaseThree = dataPhaseThree.ToArray();
-           
+
 
             switch (phaseSelect)
             {
@@ -219,7 +219,7 @@ namespace Basic
 
         }
 
-        private  async void btnDays_Click(object sender, EventArgs e)
+        private async void btnDays_Click(object sender, EventArgs e)
         {
             btnDays.FlatAppearance.BorderSize = 1;
             btnRealTime.ForeColor = System.Drawing.Color.FromArgb(0, 245, 212);
@@ -306,7 +306,7 @@ namespace Basic
         void Receive(string reqMessage, string topic)
         {
 
-            if ((topic == idProject) && (timeSelect == "REAL_TIME"))
+            if (timeSelect == "REAL_TIME")
             {
                 //SUMMARY
                 string VLN = Shared.funcService.GetValueString(reqMessage, "VLN");
@@ -369,7 +369,7 @@ namespace Basic
 
         private void btnPhaseOne_Click(object sender, EventArgs e)
         {
-           
+
             btnSummary.Enabled = true;
             btnPhaseOne.Enabled = false;
             btnPhaseTwo.Enabled = true;
@@ -443,7 +443,7 @@ namespace Basic
 
         private void FormDataTables_Load(object sender, EventArgs e)
         {
-            
+
             //Init btn Summary
             btnSummary.Enabled = false;
             btnPhaseOne.Enabled = true;
@@ -502,7 +502,7 @@ namespace Basic
                 newRow.Cells[6].Value = PF1;
                 newRow.Cells[7].Value = dateTime;
                 dataTablePhase1.Rows.Add(newRow);
-                
+
             }
             catch { }
         }

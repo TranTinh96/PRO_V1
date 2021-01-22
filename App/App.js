@@ -129,7 +129,7 @@ const App = () => {
         console.log(e);
       }
       dispatch({ type: 'RETRIEVE_TOKEN', token: jwtToken });
-    }, 500);
+    }, 100);
   }, []);
 
  /*

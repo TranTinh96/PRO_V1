@@ -48,7 +48,7 @@ module.exports.isEmpty =(obj) =>{
      var strCharToFind = strCharFind.slice(lenCharFind).toString();
      var strFind = "=";
      if (strCharToFind[0] === strFind) {
-       var lenEnd = indexDauVa - indexCharFind;
+       var lenEnd = indexDauVa ;
        lenEnd = indexDauVa !== -1 ? lenEnd : lenStr;
  
        return parseFloat(strCharFind.slice(lenCharFind + 1, lenEnd));
@@ -57,6 +57,28 @@ module.exports.isEmpty =(obj) =>{
    }
    return 0;
  };
+ //VD
+ module.exports.getKeyValuePhase3 = (dataString, charFind) => {
+   console.log(dataString)
+  var lenStr = dataString.length;
+  var lenCharFind = charFind.length;
+  var indexCharFind = dataString.indexOf(charFind);
+  if (indexCharFind !== -1) {
+    var strCharFind = dataString.substring(indexCharFind);
+    var indexDauVa = strCharFind.indexOf("&");
+    var strCharToFind = strCharFind.slice(lenCharFind).toString();
+    var strFind = "=";
+    if (strCharToFind[0] === strFind) {
+      var lenEnd = indexDauVa - indexCharFind;
+      lenEnd = indexDauVa !== -1 ? lenEnd : lenStr;
+
+      return parseFloat(strCharFind.slice(lenCharFind + 1, lenEnd));
+    }
+    return 0;
+  }
+  return 0;
+};
+
  
  //example key = V1=220&V1N=220 => getKeyValue: V1=220
  module.exports.getKeyValue2Int = (dataString, charFind) => {

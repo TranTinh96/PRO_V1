@@ -22,7 +22,7 @@ import control from "../../../assets/Image/vonke/remote-control.png"
 import TableSelecProjectAdmin from "../library/admin/tableSelecProjectAdmin"
 
  //Function
-import {getKeyValue ,getKeyValueString ,getKeyValue2Int }  from "../../services/fucServices"
+import {getKeyValue ,getKeyValueString ,getKeyValue2Int ,getKeyValuePhase3}  from "../../services/fucServices"
 import configMQTT from "../../MQTT/config.MQTT"
 
 
@@ -244,6 +244,7 @@ function MDashbard() {
     if(topic === _idProject){
         var payloadSplit = payload.toString().split('&')
         var payloadStr = payload.toString();
+        console.log(payloadStr)
         //VOLTAGE LINE-NEUTRAL
         dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadStr,"VLN")})
         dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadStr,"V1N")})
@@ -253,6 +254,8 @@ function MDashbard() {
         setV1N(getKeyValue(payloadStr,"V1N"))
         setV2N(getKeyValue(payloadStr,"V2N"))
         setV3N(getKeyValue(payloadStr,"V3N"))
+        //debugger
+        console.log(getKeyValuePhase3(payloadStr,"V3N"))
 
         //CURRENT
   

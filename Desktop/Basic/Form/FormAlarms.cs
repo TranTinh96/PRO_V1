@@ -77,10 +77,7 @@ namespace Basic
         void Receive(string reqMessage, string topic)
         {
 
-            if (topic == idProject)
-            {
-                readAlarm();
-            }
+             readAlarm();
         }
 
         #endregion
@@ -122,6 +119,11 @@ namespace Basic
 
             }    
 
+
+        }
+
+        private void txtNavbarActive_Click(object sender, EventArgs e)
+        {
 
         }
 

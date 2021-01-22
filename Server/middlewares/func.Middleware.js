@@ -39,7 +39,7 @@ module.exports.getKeyValue = (dataString, charFind) => {
     var strCharToFind = strCharFind.slice(lenCharFind).toString();
     var strFind = "=";
     if (strCharToFind[0] === strFind) {
-      var lenEnd = indexDauVa - indexCharFind;
+      var lenEnd = indexDauVa;
       lenEnd = indexDauVa !== -1 ? lenEnd : lenStr;
 
       return parseFloat(strCharFind.slice(lenCharFind + 1, lenEnd));

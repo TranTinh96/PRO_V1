@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="IotCabinet.exe.manifest" size="14136">
+    <dependentAssembly dependencyType="install" codebase="IotCabinet.exe.manifest" size="14607">
       <assemblyIdentity name="IotCabinet.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vuqwS2iAHHa3q5x8EXyQ5HbQNthDGAK6xX4I6oEVYdA=</dsig:DigestValue>
+        <dsig:DigestValue>pTa/hqcgIRN9JFiDEBTE+JLNdA109lyPZB8xOOUUawY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
