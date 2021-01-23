@@ -17,20 +17,20 @@ import ManageProject from "./content/mManageProject"
 
 import ClipLoader from "react-spinners/ScaleLoader";
 
-import {checkString} from "../services/fucServices"
+import {checkString ,checkNull} from "../services/fucServices"
 import checkRole from "../services/fucRole";
 
 function MApp() {
   const dispatch =useDispatch()
-  const _idProject = useSelector((state) => state.idTopicProject);
-  const _idProject_ = localStorage.getItem("AuthID");
+  var _idProject_ = null
+  _idProject_ = localStorage.getItem("AuthID");
   const history = useHistory()
   //useState
   const [isLoading, setIsLoading] = useState(true);
 
    //Cookie
    const [cookies, removeCookie] = useCookies(["Auth"]);
-   let jwtToken = jwt.decode(cookies.Auth)
+   var jwtToken = jwt.decode(cookies.Auth)
    var role =checkRole(jwtToken.role);
 
    //Connect MQTT
@@ -40,18 +40,19 @@ function MApp() {
       if(role !=="Administrator")
       {
 
-        if((!checkString(cookies.Auth))){
+        if((!checkString(cookies.Auth)) || ! _idProject_){
           removeCookie("Auth");
           localStorage.removeItem("AuthID")
           history.push("/");
         }   
         else
         {
-          localStorage.setItem("AuthID", jwtToken.project_id)
-          if( !_idProject)
+          if(_idProject_ )
           {
+            localStorage.setItem("AuthID",jwtToken.project_id)
             dispatch({type :"ID_TOPIC_PROJECT" , _idProject :jwtToken.project_id})
           }
+       
         }
    
       }

@@ -24,7 +24,7 @@ module.exports.checkNull = (valueNull) => {
      var strCharToFind = strCharFind.slice(lenCharFind).toString();
      var strFind = "=";
      if (strCharToFind[0] === strFind) {
-       var lenEnd = indexDauVa - indexCharFind;
+       var lenEnd = indexDauVa ;
        lenEnd = indexDauVa !== -1 ? lenEnd : lenStr;
  
        return parseInt(strCharFind.slice(lenCharFind + 1, lenEnd));

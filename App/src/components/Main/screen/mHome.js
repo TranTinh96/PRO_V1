@@ -12,7 +12,6 @@ import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
 import {getKeyValue} from "../../services/fucService";
-import configMQTT from "../../MQTT/config.MQTT";
 
 function Home() {
 
@@ -21,9 +20,6 @@ function Home() {
 
   //Redux
   var _idProject = useSelector((state) => state.projectID);
-  //MQTT
-  const[clientMQTT ,setClientMQTT] = useState(null)
-  const [connectStatus, setConnectStatus] = useState("Connect");
   const [payload, setPayload] = useState({});
   const [topic, setTopic] = useState("")
 
@@ -65,19 +61,17 @@ function Home() {
   const [KVAR3 , setKVAR3] =useState(0);
 
   //PE
-  const [PE , setPE] =useState(1);
-  const [PE1 , setPE1] =useState(1);
-  const [PE2 , setPE2] =useState(1);
-  const [PE3 , setPE3] =useState(1);
+  const [PF , setPF] =useState(0);
+  const [PF1 , setPF1] =useState(0);
+  const [PF2 , setPF2] =useState(0);
+  const [PF3 , setPF3] =useState(0);
 
   //F & KW
   const [F , setF] =useState(50);
   const [KWH , setKWH] =useState(0);
 
   useEffect(() => {
-    if ( _idProject !== null) {
-      console.log("Connect MQTT ")
-       setClientMQTT(mqtt.connect(configMQTT.host,configMQTT.options));
+    if ( _idProject) {
       axios.post("/api/cabin/get/init", {
           _idProject: _idProject,
         })
@@ -137,109 +131,6 @@ function Home() {
 
 }, []);
 
-//useEffect MQTT
-useEffect(() => {
-    if (clientMQTT) {
-      clientMQTT.on("connect", () => {
-        console.log("Connect MQTT : " +_idProject)
-        setConnectStatus("Connected");
-        clientMQTT.subscribe(_idProject, (error) => {
-            if (error) {
-              console.log("Subscribe to topics error", error);
-            }
-          });
-       
-       
-      });
-      clientMQTT.on("error", (err) => {
-        setConnectStatus("Connection error");
-        console.error("Connection error: ", err);
-        clientMQTT.end();
-      });
-      clientMQTT.on("reconnect", () => {
-        setConnectStatus("Reconnecting");
-      });
-
-      clientMQTT.on("disconnect", () => {
-        console.log("DisConnect");
-        setConnectStatus("Disconnect");
-      });
-
-      clientMQTT.on("message", (topic, message) => {
-        const payload = message.toString() ;
-        
-        setPayload(payload );
-        setTopic(topic)
-      });
-    }
-    return () => {
-      if(clientMQTT){
-          clientMQTT.unsubscribe(_idProject, (err) => {
-              if (! err) {
-                  console.log("Unsubscribe to topics");
-                  clientMQTT.end(function(){
-                      setConnectStatus('Connect');
-                    });
-              
-              }
-          });
-      }
-  };
-  }, [clientMQTT]);
-  
-  
-    //Payload
-    useEffect(() => {
-      if(topic){
-          //VOLTAGE LINE-NEUTRAL
-          setVLN(getKeyValue(payload.toString(),"VLN"))
-          setV1N(getKeyValue(payload.toString(),"V1N"))
-          setV2N(getKeyValue(payload.toString(),"V2N"))
-          setV3N(getKeyValue(payload.toString(),"V3N"))
-
-           //VOLTAGE LINE - LINE
-          setVLL(getKeyValue(payload.toString(),"VLL"))
-          setV12(getKeyValue(payload.toString(),"V12"))
-          setV23(getKeyValue(payload.toString(),"V23"))
-          setV31(getKeyValue(payload.toString(),"V31"))
-
-          //KW
-          setKW(getKeyValue(payload.toString(),"KW"))
-          setKW1(getKeyValue(payload.toString(),"KW1"))
-          setKW2(getKeyValue(payload.toString(),"KW2"))
-          setKW3(getKeyValue(payload.toString(),"KW3"))
-
-          //KVA
-          setKVA(getKeyValue(payload.toString(),"KVA"))
-          setKVA1(getKeyValue(payload.toString(),"KVA1"))
-          setKVA2(getKeyValue(payload.toString(),"KVA2"))
-          setKVA3(getKeyValue(payload.toString(),"KVA3"))
-
-           //KVAR
-          setKVAR(getKeyValue(payload.toString(),"KVAR"))
-          setKVAR1(getKeyValue(payload.toString(),"KVAR1"))
-          setKVAR2(getKeyValue(payload.toString(),"KVAR2"))
-          setKVAR3(getKeyValue(payload.toString(),"KVAR3"))
-
-          //PE
-          setPE(getKeyValue(payload.toString(),"PE"))
-          setPE1(getKeyValue(payload.toString(),"PE1"))
-          setPE2(getKeyValue(payload.toString(),"PE2"))
-          setPE3(getKeyValue(payload.toString(),"PE3"))
-
-           //F & KW
-          setF(getKeyValue(payload.toString(),"FREQUENCY"))
-          setKWH(getKeyValue(payload.toString(),"KWH"))
-          dispatch({type:"ADD_DATA_I",I:getKeyValue(payload.toString(),"I")})
-          dispatch({type:"ADD_DATA_I1",I1:getKeyValue(payload.toString(),"I1")})
-          dispatch({type:"ADD_DATA_I2",I2:getKeyValue(payload.toString(),"I2")})
-          dispatch({type:"ADD_DATA_I3",I3:getKeyValue(payload.toString(),"I3")})
-          
-        
-          
-      }
-
-  }, [payload])
 
   //RETURN
   return (
@@ -351,10 +242,10 @@ useEffect(() => {
                     namePhase1="PHASE 1"
                     namePhase2="PHASE 2"
                     namePhase3="PHASE 3"
-                    valueSummary={PE}
-                    valuePhase1={PE1}
-                    valuePhase2={PE2}
-                    valuePhase3={PE3}
+                    valueSummary={PF}
+                    valuePhase1={PF1}
+                    valuePhase2={PF2}
+                    valuePhase3={PF3}
                   />
                 </ScrollView>
               </View>

@@ -28,167 +28,192 @@ const samplesRelayInit = [
 ];
 
 module.exports = (clientMQTT) => {
-  clientMQTT.on("message", function (topic, message, packet) {
-    if (topic) {
-      Project.getByTokenProject(topic, (err, project) => {
-        if (!err && !func.checkNull(project)) {
-          var payloadSplit = message.toString().split("&");
-          var dataSummary = mqtt.dataSummary(message.toString());
-          var dataPhaseOne = mqtt.dataPhaseOne(message.toString());
-          var dataPhaseTwo = mqtt.dataPhaseTwo(message.toString());
-          var dataPhaseThree = mqtt.dataPhaseThree(message.toString())
-          console.log("dataPhaseThree"+ dataPhaseThree)
-          //Value Relay
-          let sampleRelay  = [
-            {
-              name: "RLA",
-              mode:  func.getKeyValueString(payloadSplit,"RLAmode",'manual'),
-              timeOn:  func.getKeyValueStringTime(payloadSplit,"RLAonTime",'00:00'),
-              timeOff:  func.getKeyValueStringTime(payloadSplit,"RLAoffTime",'00:00'),
-              status:  func.getKeyValueString(payloadSplit,"RLAstatus","off"),
-            },
-            {
-              name: "RLB",
-              mode:  func.getKeyValueString(payloadSplit,"RLBmode",'manual'),
-              timeOn:  func.getKeyValueStringTime(payloadSplit,"RLBonTime",'00:00'),
-              timeOff:  func.getKeyValueStringTime(payloadSplit,"RLBoffTime",'00:00'),
-              status:  func.getKeyValueString(payloadSplit,"RLBstatus","off"),
-            },
-          ];
-          /**
-           * SUMMARY
-           */
-          cabinSummary.findDocumentCabinSummary(topic, (err, summary) => {
-            if (!err) {
-              if (func.checkNull(summary)) {
-                cabinSummary.createDocumentCabinSummary(
-                  topic,
-                  dataSummary,
-                  (err, newsummary) => {
-                    if (err) {
-                      console.log(err);
-                    }
-                  }
-                );
-              } else {
-                cabinSummary.addDocumentCabinSummary(topic, dataSummary);
-              }
-            }
-          });
-
-          /**
-           * PhaseOne
-           */
-          cabinPhaseOne.findDocumentCabinPhaseOne(topic, (err, phaseOne) => {
-            if (!err) {
-              if (func.checkNull(phaseOne)) {
-                cabinPhaseOne.createDocumentCabinPhaseOne(
-                  topic,
-                  dataPhaseOne,
-                  (err, newsPhaseOne) => {
-                    if (err) {
-                      console.log(err);
-                    }
-                  }
-                );
-              } else {
-                cabinPhaseOne.addDocumentCabinPhaseOne(topic, dataPhaseOne);
-              }
-            }
-          });
-
-          /**
-           * PhaseTwo
-           */
-          cabinPhaseTwo.findDocumentCabinPhaseTwo(topic, (err, phaseTwo) => {
-            if (!err) {
-              if (func.checkNull(phaseTwo)) {
-                //If exits create Document
-                cabinPhaseTwo.createDocumentCabinPhaseTwo(
-                  topic,
-                  dataPhaseTwo,
-                  (err, newsPhaseTwo) => {
-                    console.log(err);
-                  }
-                );
-              } else {
-                cabinPhaseTwo.addDocumentCabinPhaseTwo(topic, dataPhaseTwo);
-              }
-            }
-          });
-
-          /**
-           * PhaseThree
-           */
-          cabinPhaseThree.findDocumentCabinPhaseThree(
-            topic,
-            (err, phaseThree) => {
+ 
+    clientMQTT.on("message", function (topic, message, packet) {
+      if (topic) {
+        console.log(message)
+        Project.getByTokenProject(topic, (err, project) => {
+          if (!err && !func.checkNull(project)) {
+            var payloadSplit = message.toString().split("&");
+            var dataSummary = mqtt.dataSummary(message.toString());
+            var dataPhaseOne = mqtt.dataPhaseOne(message.toString());
+            var dataPhaseTwo = mqtt.dataPhaseTwo(message.toString());
+            var dataPhaseThree = mqtt.dataPhaseThree(message.toString());
+           
+            //Value Relay
+            let sampleRelay = [
+              {
+                name: "RLA",
+                mode: func.getKeyValueString(payloadSplit, "RLAmode", "manual"),
+                timeOn: func.getKeyValueStringTime(
+                  payloadSplit,
+                  "RLAonTime",
+                  "00:00"
+                ),
+                timeOff: func.getKeyValueStringTime(
+                  payloadSplit,
+                  "RLAoffTime",
+                  "00:00"
+                ),
+                status: func.getKeyValueString(
+                  payloadSplit,
+                  "RLAstatus",
+                  "off"
+                ),
+              },
+              {
+                name: "RLB",
+                mode: func.getKeyValueString(payloadSplit, "RLBmode", "manual"),
+                timeOn: func.getKeyValueStringTime(
+                  payloadSplit,
+                  "RLBonTime",
+                  "00:00"
+                ),
+                timeOff: func.getKeyValueStringTime(
+                  payloadSplit,
+                  "RLBoffTime",
+                  "00:00"
+                ),
+                status: func.getKeyValueString(
+                  payloadSplit,
+                  "RLBstatus",
+                  "off"
+                ),
+              },
+            ];
+            /**
+             * SUMMARY
+             */
+            cabinSummary.findDocumentCabinSummary(topic, (err, summary) => {
               if (!err) {
-                if (func.checkNull(phaseThree)) {
-                  //If exits create Document
-                  cabinPhaseThree.createDocumentCabinPhaseThree(
+                if (func.checkNull(summary)) {
+                  cabinSummary.createDocumentCabinSummary(
                     topic,
-                    dataPhaseThree,
-                    (err, newsPhaseThree) => {}
+                    dataSummary,
+                    (err, newsummary) => {
+                      if (err) {
+                        console.log(err);
+                      }
+                    }
                   );
                 } else {
-                  cabinPhaseThree.addDocumentCabinPhaseThree(
-                    topic,
-                    dataPhaseThree
-                  );
+                  cabinSummary.addDocumentCabinSummary(topic, dataSummary);
                 }
               }
-            }
-          );
-          /*
-           * Alarms
-           */
-          var arrLastAlarm = [];
-          cabinAlarm.findCabinAlarm(topic, (err, dataAlarm) => {
-            if (!err && !func.checkArray(dataAlarm)) {
-              var arrDataAlarm = dataAlarm[0].samples;
-              //Task : Lấy dữ liệu mới
-              for (let i = 0; i < arrDataAlarm.length; i++) {
-                var statusAlarm = middlewareAlarm.checkStatusAlarm(
-                  message.toString(),
-                  arrDataAlarm[i]
-                );
-                var valueTagAlarm = middlewareAlarm.getValueTagAlarm(
-                  message.toString(),
-                  arrDataAlarm[i]
-                );
-                let newAlarm = {
-                  name: arrDataAlarm[i].name,
-                  HH: arrDataAlarm[i].HH,
-                  H: arrDataAlarm[i].H,
-                  L: arrDataAlarm[i].L,
-                  LL: arrDataAlarm[i].LL,
-                  Rate: arrDataAlarm[i].Rate,
-                  valueTag: valueTagAlarm,
-                  status: statusAlarm,
-                };
-                console.log(statusAlarm);
-                arrLastAlarm.push(newAlarm);
+            });
+
+            /**
+             * PhaseOne
+             */
+            cabinPhaseOne.findDocumentCabinPhaseOne(topic, (err, phaseOne) => {
+              if (!err) {
+                if (func.checkNull(phaseOne)) {
+                  cabinPhaseOne.createDocumentCabinPhaseOne(
+                    topic,
+                    dataPhaseOne,
+                    (err, newsPhaseOne) => {
+                      if (err) {
+                        console.log(err);
+                      }
+                    }
+                  );
+                } else {
+                  cabinPhaseOne.addDocumentCabinPhaseOne(topic, dataPhaseOne);
+                }
               }
-              cabinAlarm.editCabinAlarm(topic, arrLastAlarm);
-            }
-          });
+            });
 
-          /*
-           * Relay
-           */
-          cabinRelay.findCabinRelay(topic, (err, dataRelay) => {
-            if (!err && !func.checkArray(dataRelay)) {
-              console.log(sampleRelay)
-               cabinRelay.editCabinRelay(topic ,"online",sampleRelay);
-            }
+            /**
+             * PhaseTwo
+             */
+            cabinPhaseTwo.findDocumentCabinPhaseTwo(topic, (err, phaseTwo) => {
+              if (!err) {
+                if (func.checkNull(phaseTwo)) {
+                  //If exits create Document
+                  cabinPhaseTwo.createDocumentCabinPhaseTwo(
+                    topic,
+                    dataPhaseTwo,
+                    (err, newsPhaseTwo) => {
+                      console.log(err);
+                    }
+                  );
+                } else {
+                  cabinPhaseTwo.addDocumentCabinPhaseTwo(topic, dataPhaseTwo);
+                }
+              }
+            });
 
-            else {
-              cabinRelay.addCabinRelay(topic, "offline", samplesRelayInit);
-            }
-          });
-        }
-      });
-    }
-  });
+            /**
+             * PhaseThree
+             */
+            cabinPhaseThree.findDocumentCabinPhaseThree(
+              topic,
+              (err, phaseThree) => {
+                if (!err) {
+                  if (func.checkNull(phaseThree)) {
+                    //If exits create Document
+                    cabinPhaseThree.createDocumentCabinPhaseThree(
+                      topic,
+                      dataPhaseThree,
+                      (err, newsPhaseThree) => {}
+                    );
+                  } else {
+                    cabinPhaseThree.addDocumentCabinPhaseThree(
+                      topic,
+                      dataPhaseThree
+                    );
+                  }
+                }
+              }
+            );
+            /*
+             * Alarms
+             */
+            var arrLastAlarm = [];
+            cabinAlarm.findCabinAlarm(topic, (err, dataAlarm) => {
+              if (!err && !func.checkArray(dataAlarm)) {
+                var arrDataAlarm = dataAlarm[0].samples;
+                //Task : Lấy dữ liệu mới
+                for (let i = 0; i < arrDataAlarm.length; i++) {
+                  var statusAlarm = middlewareAlarm.checkStatusAlarm(
+                    message.toString(),
+                    arrDataAlarm[i]
+                  );
+                  var valueTagAlarm = middlewareAlarm.getValueTagAlarm(
+                    message.toString(),
+                    arrDataAlarm[i]
+                  );
+                  let newAlarm = {
+                    name: arrDataAlarm[i].name,
+                    HH: arrDataAlarm[i].HH,
+                    H: arrDataAlarm[i].H,
+                    L: arrDataAlarm[i].L,
+                    LL: arrDataAlarm[i].LL,
+                    Rate: arrDataAlarm[i].Rate,
+                    valueTag: valueTagAlarm,
+                    status: statusAlarm,
+                  };
+                  console.log(statusAlarm);
+                  arrLastAlarm.push(newAlarm);
+                }
+                cabinAlarm.editCabinAlarm(topic, arrLastAlarm);
+              }
+            });
+
+            /*
+             * Relay
+             */
+            cabinRelay.findCabinRelay(topic, (err, dataRelay) => {
+              if (!err && !func.checkArray(dataRelay)) {
+                console.log(sampleRelay);
+                cabinRelay.editCabinRelay(topic, "online", sampleRelay);
+              } else {
+                cabinRelay.addCabinRelay(topic, "offline", samplesRelayInit);
+              }
+            });
+          }
+        });
+      }
+    });
+  
 };

@@ -51,6 +51,7 @@ mongoose.connect(process.env.MongoDB_URL_LOCAL,
 
 //Connect Cloud MQTT
 var clientMQTT = mqtt.connect(process.env.MQTT_SERVER,options);
+var io = socketio(server); 
 var Project = require("./api/models/project.model");
 var func  = require("./middlewares/func.Middleware")
 
@@ -61,19 +62,19 @@ Project.getAllProject((err,project)=>{
     if( !func.checkNull(project)){
       for (let i = 0; i < project.length; i++) {
        var arrayProject = project[i].tokenProject
-       console.log(arrayProject)
+  
        require("./config/mqttConnect")(clientMQTT ,arrayProject);
       }
     }
   }
 })
 
-require("./controllers/mqttController")(clientMQTT);
+require("./controllers/mqttController")(clientMQTT );
 
   
 // Create the Socket IO server on  
-var io = socketio(server); 
-require("./controllers/socketIO_Controller")(io);
+
+require("./controllers/socketIO_Controller")(io ,clientMQTT);
 
 
 

@@ -100,10 +100,8 @@ function MDashbard() {
 
     //Connect MQTT
     useEffect(() => {
-        if(isLoaddingDashboard){
-            history.go(0);
-        }
-        if (_idProject != "ADMIN" && _idProject != null) {
+    
+        if (_idProject != "ADMIN" || _idProject != null) {
           setClientMQTT(mqtt.connect(configMQTT.host, configMQTT.options));
           axios.post("/api/cabin/get/init", {
               _idProject: _idProject,
@@ -183,6 +181,7 @@ function MDashbard() {
               console.log(error);
             });
         }
+    
 
         dispatch({ type: "LOADDING_TABLE" });
         dispatch({ type: "LOADDING_ALARM" });
@@ -241,7 +240,7 @@ function MDashbard() {
 
   //Payload
   useLayoutEffect(() => {
-    if(topic === _idProject){
+    if(topic){
         var payloadSplit = payload.toString().split('&')
         var payloadStr = payload.toString();
         console.log(payloadStr)

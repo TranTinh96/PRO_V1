@@ -73,6 +73,15 @@ const App = () => {
     signIn: async (jwtToken) => {
       try {
         await AsyncStorage.setItem('authJWT', jwtToken);
+        setAuthorizationToken(jwtToken)
+        let jwt =jwt_decode(jwtToken);
+        let users = {
+          email: jwt.email,
+          user: jwt.user,
+          role: checkRole(jwt.role)
+        }
+        dispatchApp({ type: "SET_USER", users: users })
+        dispatchApp({type :"PROJECT_ID" ,projectID : jwt.project_id})
       } catch (e) {
         console.log(e);
       }
@@ -112,7 +121,7 @@ const App = () => {
         jwtToken = await AsyncStorage.getItem('authJWT');
         if(jwtToken){
             setAuthorizationToken(jwtToken);
-            var jwt =jwt_decode(jwtToken);
+            let jwt =jwt_decode(jwtToken);
             let users = {
               email: jwt.email,
               user: jwt.user,
@@ -129,7 +138,7 @@ const App = () => {
         console.log(e);
       }
       dispatch({ type: 'RETRIEVE_TOKEN', token: jwtToken });
-    }, 100);
+    }, 200);
   }, []);
 
  /*
