@@ -14,7 +14,7 @@ import {
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
 import {getKeyValueString} from "../../services/fucService"
-import topicPublish from "../../MQTT/topicPublish"
+
 
 const options = [
   {label: 'A', value: "auto"},
@@ -87,7 +87,7 @@ function Dashboard(props) {
    console.log(RLAstatus + "/"+RLAmode +"/"+RLBstatus +"/"+RLBmode)
 
 
-   const topicPub =`${_idProject}/${topicPublish.topic}`
+   const topicPub =`${_idProject}`
      //Publish MQTT mode Manual
      const handleManualRLA = () => {
       var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAstatus"+"="+checkStatus(RLAstatus)+"&";

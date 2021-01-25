@@ -243,7 +243,6 @@ function MDashbard() {
     if(topic){
         var payloadSplit = payload.toString().split('&')
         var payloadStr = payload.toString();
-        console.log(payloadStr)
         //VOLTAGE LINE-NEUTRAL
         dispatch({type:"ADD_DATA_VLNArray",VLNArray:getKeyValue2Int(payloadStr,"VLN")})
         dispatch({type:"ADD_DATA_V1NArray",V1NArray:getKeyValue2Int(payloadStr,"V1N")})

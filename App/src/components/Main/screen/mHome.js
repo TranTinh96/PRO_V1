@@ -2,7 +2,6 @@ import React, {useState, useEffect ,useLayoutEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 import { View,ScrollView,SafeAreaView,StatusBar,} from 'react-native';
 import {useSelector ,useDispatch} from 'react-redux';
-import mqtt from "@taoqf/react-native-mqtt"
 import axios from 'axios'
 import Header from '../Library/mHeaderHome';
 import styles from '../../../assets/dashboardCss';
@@ -11,6 +10,7 @@ import Card from '../Library/card';
 import ChartView from "../Library/ChartView"
 import Statistic from '../Library/infoStatistics';
 import Swiper from 'react-native-swiper';
+import socket from "../../socketIO/connect.SocketIO";
 import {getKeyValue} from "../../services/fucService";
 
 function Home() {
@@ -33,39 +33,31 @@ function Home() {
   const [V1N , setV1N] =useState(0);
   const [V2N , setV2N] =useState(0);
   const [V3N , setV3N] =useState(0);
-
   //VOLTAGE LINE-LINE
   const [VLL , setVLL] =useState(0);
   const [V12 , setV12] =useState(0);
   const [V23 , setV23] =useState(0);
   const [V31 , setV31] =useState(0);
-
-
-
   //KW
   const [KW , setKW] =useState(0);
   const [KW1 , setKW1] =useState(0);
   const [KW2 , setKW2] =useState(0);
   const [KW3 , setKW3] =useState(0);
-
   //KVA
   const [KVA , setKVA] =useState(0);
   const [KVA1 , setKVA1] =useState(0);
   const [KVA2 , setKVA2] =useState(0);
   const [KVA3 , setKVA3] =useState(0);
-
  //KVAR
   const [KVAR , setKVAR] =useState(0);
   const [KVAR1 , setKVAR1] =useState(0);
   const [KVAR2 , setKVAR2] =useState(0);
   const [KVAR3 , setKVAR3] =useState(0);
-
   //PE
   const [PF , setPF] =useState(0);
   const [PF1 , setPF1] =useState(0);
   const [PF2 , setPF2] =useState(0);
   const [PF3 , setPF3] =useState(0);
-
   //F & KW
   const [F , setF] =useState(50);
   const [KWH , setKWH] =useState(0);
@@ -78,12 +70,10 @@ function Home() {
         .then(function (res) {
           let resData = res.data;
           console.log(resData)
-          //VOLTAGE LINE-NEUTRA
           setVLN(resData.dataSummary.VLN);
           setV1N( resData.dataPhaseOne.V1N);
           setV2N( resData.dataPhaseTwo.V2N);
           setV3N(resData.dataPhaseThree.V3N);
-
           //CURRENT
           dispatch({
             type: "ADD_DATA_I",
@@ -92,31 +82,26 @@ function Home() {
             I2: resData.dataPhaseTwo.I2,
             I3: resData.dataPhaseThree.I3,
           });
-
           //KW
           setKW(resData.dataSummary.KW);
           setKW1(resData.dataPhaseOne.KW1);
           setKW2(resData.dataPhaseTwo.KW2);
           setKW3(resData.dataPhaseThree.KW3);
-
           //KVA
           setKVA(resData.dataSummary.KVA);
           setKVA1(resData.dataPhaseOne.KVA1);
           setKVA2(resData.dataPhaseTwo.KVA2);
           setKVA3(resData.dataPhaseThree.KVA3);
-
           //KVAR
           setKVAR(resData.dataSummary.KVRA);
           setKVAR1(resData.dataPhaseOne.KVAR1);
           setKVAR2(resData.dataPhaseTwo.KVAR2);
           setKVAR3(resData.dataPhaseThree.KVAR3);
-
           //PE
           setPF(resData.dataSummary.PF);
           setPF1(resData.dataPhaseOne.PF1);
           setPF2(resData.dataPhaseTwo.PF2);
           setPF3(resData.dataPhaseThree.PF3);
-
           //F & KW
           setF(resData.dataSummary.F);
           setKWH(resData.dataSummary.KWH)
@@ -125,11 +110,57 @@ function Home() {
           console.log(error);
         });
     }
-
-  
-   
-
 }, []);
+
+useEffect(() => {
+     socket.on(_idProject ,payload => {
+        console.log(payload)
+        //VOLTAGE LINE-NEUTRAL
+        setVLN(getKeyValue(payload,"VLN"))
+        setV1N(getKeyValue(payload,"V1N"))
+        setV2N(getKeyValue(payload,"V2N"))
+        setV3N(getKeyValue(payload,"V3N"))
+        //CURRENT
+  
+        dispatch({
+          type:"ADD_DATA_I",
+          I:getKeyValue(payload,"I"),
+          I1:getKeyValue(payload,"I1"),
+          I2:getKeyValue(payload,"I2"),
+          I3:getKeyValue(payload,"I3"),
+         })
+
+
+        //KW
+        setKW(getKeyValue(payload,"KW"))
+        setKW1(getKeyValue(payload,"KW1"))
+        setKW2(getKeyValue(payload,"KW2"))
+        setKW3(getKeyValue(payload,"KW3"))
+
+        //KVA
+        setKVA(getKeyValue(payload,"KVA"))
+        setKVA1(getKeyValue(payload,"KVA1"))
+        setKVA2(getKeyValue(payload,"KVA2"))
+        setKVA3(getKeyValue(payload,"KVA3"))
+
+        //KVAR
+        setKVAR(getKeyValue(payload,"KVAR"))
+        setKVAR1(getKeyValue(payload,"KVAR1"))
+        setKVAR2(getKeyValue(payload,"KVAR2"))
+        setKVAR3(getKeyValue(payload,"KVAR3"))
+
+        //PE
+        setPF(getKeyValue(payload,"PF"))
+        setPF1(getKeyValue(payload,"PF1"))
+        setPF2(getKeyValue(payload,"PF2"))
+        setPF3(getKeyValue(payload,"PF3"))
+
+        //F & KW
+        setF(getKeyValue(payload,"FREQUENCY"))
+        setKWH(getKeyValue(payload,"KWH"))
+        
+       })
+}, [])
 
 
   //RETURN

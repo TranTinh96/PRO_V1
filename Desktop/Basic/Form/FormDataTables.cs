@@ -306,59 +306,63 @@ namespace Basic
         void Receive(string reqMessage, string topic)
         {
 
-            if (timeSelect == "REAL_TIME")
+            if (topic == idProject)
             {
-                //SUMMARY
-                string VLN = Shared.funcService.GetValueString(reqMessage, "VLN");
-                string VLL = Shared.funcService.GetValueString(reqMessage, "VLL");
-                string KW = Shared.funcService.GetValueString(reqMessage, "KW");
-                string KVA = Shared.funcService.GetValueString(reqMessage, "KVA");
-                string I = Shared.funcService.GetValueString(reqMessage, "I");
-                string KVAR = Shared.funcService.GetValueString(reqMessage, "KVAR");
-                string PF = Shared.funcService.GetValueString(reqMessage, "PF");
-                string KWH = Shared.funcService.GetValueString(reqMessage, "KWH");
-                string F = Shared.funcService.GetValueString(reqMessage, "FREQUENCY");
-                //PHASE ONE
-                string V1N = Shared.funcService.GetValueString(reqMessage, "V1N");
-                string KW1 = Shared.funcService.GetValueString(reqMessage, "KW1");
-                string I1 = Shared.funcService.GetValueString(reqMessage, "I1");
-                string V12 = Shared.funcService.GetValueString(reqMessage, "V12");
-                string KVA1 = Shared.funcService.GetValueString(reqMessage, "KVA1");
-                string KVAR1 = Shared.funcService.GetValueString(reqMessage, "KVAR1");
-                string PF1 = Shared.funcService.GetValueString(reqMessage, "PF1");
-                //PHASETWO
-                string V2N = Shared.funcService.GetValueString(reqMessage, "V2N");
-                string KW2 = Shared.funcService.GetValueString(reqMessage, "KW2");
-                string I2 = Shared.funcService.GetValueString(reqMessage, "I2");
-                string V23 = Shared.funcService.GetValueString(reqMessage, "V23");
-                string KVA2 = Shared.funcService.GetValueString(reqMessage, "KVA2");
-                string KVAR2 = Shared.funcService.GetValueString(reqMessage, "KVAR2");
-                string PF2 = Shared.funcService.GetValueString(reqMessage, "PF2");
-                //PHASETHREE
-                string V3N = Shared.funcService.GetValueString(reqMessage, "V3N");
-                string KW3 = Shared.funcService.GetValueString(reqMessage, "KW3");
-                string I3 = Shared.funcService.GetValueString(reqMessage, "I3");
-                string V31 = Shared.funcService.GetValueString(reqMessage, "V23");
-                string KVA3 = Shared.funcService.GetValueString(reqMessage, "KVA3");
-                string KVAR3 = Shared.funcService.GetValueString(reqMessage, "KVAR3");
-                string PF3 = Shared.funcService.GetValueString(reqMessage, "PF3");
-                switch (phaseSelect)
+                if (timeSelect == "REAL_TIME")
                 {
-                    case "SUMMARY":
-                        addGridSummary(VLN, VLL, I, KW, KVA, KVAR, PF, F, KWH, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
-                        break;
-                    case "PHASE_ONE":
-                        addGridPhaseOne(V1N, V12, I1, KW1, KVA1, KVAR1, PF1, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
-                        break;
-                    case "PHASE_TWO":
-                        addGridPhaseTwo(V2N, V23, I2, KW2, KVA2, KVAR2, PF2, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
-                        break;
-                    case "PHASE_THREE":
-                        addGridPhaseThree(V3N, V31, I3, KW3, KVA3, KVAR3, PF3, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
-                        break;
+                    //SUMMARY
+                    string VLN = Shared.funcService.GetValueString(reqMessage, "VLN");
+                    string VLL = Shared.funcService.GetValueString(reqMessage, "VLL");
+                    string KW = Shared.funcService.GetValueString(reqMessage, "KW");
+                    string KVA = Shared.funcService.GetValueString(reqMessage, "KVA");
+                    string I = Shared.funcService.GetValueString(reqMessage, "I");
+                    string KVAR = Shared.funcService.GetValueString(reqMessage, "KVAR");
+                    string PF = Shared.funcService.GetValueString(reqMessage, "PF");
+                    string KWH = Shared.funcService.GetValueString(reqMessage, "KWH");
+                    string F = Shared.funcService.GetValueString(reqMessage, "FREQUENCY");
+                    //PHASE ONE
+                    string V1N = Shared.funcService.GetValueString(reqMessage, "V1N");
+                    string KW1 = Shared.funcService.GetValueString(reqMessage, "KW1");
+                    string I1 = Shared.funcService.GetValueString(reqMessage, "I1");
+                    string V12 = Shared.funcService.GetValueString(reqMessage, "V12");
+                    string KVA1 = Shared.funcService.GetValueString(reqMessage, "KVA1");
+                    string KVAR1 = Shared.funcService.GetValueString(reqMessage, "KVAR1");
+                    string PF1 = Shared.funcService.GetValueString(reqMessage, "PF1");
+                    //PHASETWO
+                    string V2N = Shared.funcService.GetValueString(reqMessage, "V2N");
+                    string KW2 = Shared.funcService.GetValueString(reqMessage, "KW2");
+                    string I2 = Shared.funcService.GetValueString(reqMessage, "I2");
+                    string V23 = Shared.funcService.GetValueString(reqMessage, "V23");
+                    string KVA2 = Shared.funcService.GetValueString(reqMessage, "KVA2");
+                    string KVAR2 = Shared.funcService.GetValueString(reqMessage, "KVAR2");
+                    string PF2 = Shared.funcService.GetValueString(reqMessage, "PF2");
+                    //PHASETHREE
+                    string V3N = Shared.funcService.GetValueString(reqMessage, "V3N");
+                    string KW3 = Shared.funcService.GetValueString(reqMessage, "KW3");
+                    string I3 = Shared.funcService.GetValueString(reqMessage, "I3");
+                    string V31 = Shared.funcService.GetValueString(reqMessage, "V23");
+                    string KVA3 = Shared.funcService.GetValueString(reqMessage, "KVA3");
+                    string KVAR3 = Shared.funcService.GetValueString(reqMessage, "KVAR3");
+                    string PF3 = Shared.funcService.GetValueString(reqMessage, "PF3");
+                    switch (phaseSelect)
+                    {
+                        case "SUMMARY":
+                            addGridSummary(VLN, VLL, I, KW, KVA, KVAR, PF, F, KWH, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
+                            break;
+                        case "PHASE_ONE":
+                            addGridPhaseOne(V1N, V12, I1, KW1, KVA1, KVAR1, PF1, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
+                            break;
+                        case "PHASE_TWO":
+                            addGridPhaseTwo(V2N, V23, I2, KW2, KVA2, KVAR2, PF2, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
+                            break;
+                        case "PHASE_THREE":
+                            addGridPhaseThree(V3N, V31, I3, KW3, KVA3, KVAR3, PF3, DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt"));
+                            break;
 
+                    }
                 }
             }
+        
         }
 
         #endregion

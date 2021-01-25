@@ -30,11 +30,10 @@ function TabNavigator()
  console.log(_idProject)
   useEffect(() => {
       
-      if(_idProject === null)
+      if(!_idProject)
       {
           signOut()
       }
-   
     }, [])
     
       

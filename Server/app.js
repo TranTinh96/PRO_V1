@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize());
 
 
-//Connect MongoDB 
+
 //mongoose.connect(process.env.MongoDB_URL|| 'mongodb://localhost/ProjectID', 
 mongoose.connect(process.env.MongoDB_URL_LOCAL, 
 { 

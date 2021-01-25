@@ -117,62 +117,57 @@ function MDataTable() {
             break;
         }
    }, [timeReport])
+   useLayoutEffect(() => {
+    if (clientMQTT) {
+           clientMQTT.on("connect", () => {
+               console.log("MQTT Connecting " + _idProject)
+               setConnectStatus("Connected");
+               clientMQTT.subscribe(_idProject, (error) => {
+                   if (error) {
+                   console.log("Subscribe to topics error", error);
+                   
+                   }
+               });
+           
+           });
+           clientMQTT.on("error", (err) => {
+               setConnectStatus("Connection error");
+               console.error("Connection error: ", err);
+               
+           });
+           clientMQTT.on("reconnect", () => {
+               setConnectStatus("Reconnecting");
+           });
 
-  //Client MQTT
-  useLayoutEffect(() => {
-    if (clientMQTT ) {
-      clientMQTT.on("connect", () => {
-          console.log("MQTT Connecting " + _idProject)
-         setConnectStatus("Connected");
-         if(connectStatus =="Connected")
-         {
-          clientMQTT.subscribe(_idProject, (error) => {
-            if (error) {
-              console.log("Subscribe to topics error", error);
-              clientMQTT.end()
-            }
-          });
-         }
-      });
-      clientMQTT.on("error", (err) => {
-        setConnectStatus("Connection error");
-        console.error("Connection error: ", err);
-        
-      });
-      clientMQTT.on("reconnect", () => {
-        setConnectStatus("Reconnecting");
-      });
-      clientMQTT.on("offline", () => {
-        clientMQTT.end()
-     });
+           clientMQTT.on("disconnect", () => {
+               setConnectStatus("Disconnect");
+           });
 
-      clientMQTT.on("disconnect", () => {
-        setConnectStatus("Disconnect");
-      });
-
-      clientMQTT.on("message", (topic, message) => {
-        setTopic(topic)
-        const payload = message.toString();
-        setPayload(payload);
-      });
-    }
-    return () => {
-      if(clientMQTT){
-        clientMQTT.unsubscribe(_idProject, (err) => {
-            if (! err) {
-                console.log("Unsubscribe to topics");
-                clientMQTT.end(function(){
-                    setConnectStatus('Connect');
-                  });
-            }
-        });
-    }
-     };
-  }, [clientMQTT]);
+           clientMQTT.on("message", (topic, message) => {
+               setTopic(topic)
+               const payload = message.toString();
+               setPayload(payload);
+           });
+           }
+           return () => {
+               if(clientMQTT){
+                   clientMQTT.unsubscribe(_idProject, (err) => {
+                       if (! err) {
+                           console.log("Unsubscribe to topics");
+                           clientMQTT.end(function(){
+                               setConnectStatus('Connect');
+                             });
+                       
+                       }
+                   });
+               }
+           };
+ }, [clientMQTT]);
 
    //Payload
-   useLayoutEffect(() => {
-    if((topic === _idProject) && timeReport ==="readTime"){
+   useEffect(() => {
+     console.log(payload)
+    if(topic && (timeReport =="readTime")){
          var payloadStr = payload.toString();
         //TABLE SUMMARY
         var summaryData ={
@@ -187,7 +182,7 @@ function MDataTable() {
             KWH     :getKeyValue(payloadStr,"KWH")
           }
           dispatch({type:"TABLE_SUMMARY",summaryData:summaryData})
-          
+          console.log(summaryData)
 
          //TABLE PHASE ONE
          var phaseOneData ={

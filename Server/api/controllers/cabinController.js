@@ -61,7 +61,6 @@ module.exports.postInitData = async (req, res, next) => {
   var dataPhaseOne = await cabinPhaseOne.findOneInitPhaseOne(device_id);
   var dataPhaseTwo = await cabinPhaseTwo.findOneInitPhaseTwo(device_id);
   var dataPhaseThree = await cabinPhaseThree.findOneInitPhaseThree(device_id);
-  console.log(dataSummary)
   res.json({
     dataSummary: dataSummary,
     dataPhaseOne: dataPhaseOne,

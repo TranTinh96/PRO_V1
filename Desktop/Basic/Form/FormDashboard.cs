@@ -287,8 +287,7 @@ namespace Basic
                         btnAutoRelayA.PerformClick();
                         modeRelayA = true;
                     }
-                    timeOnRelayA.Text = (string)arrRelayA["timeOn"];
-                    timeOffRelayA.Text = (string)arrRelayA["timeOff"];
+                  
                     if (((string)arrRelayA["status"]) == "on")
                     {
                         statusRelayA = true;
@@ -322,8 +321,7 @@ namespace Basic
                         btnManualRelayB.Enabled = false;
                         btnAutoRelayB.PerformClick();
                     }
-                    timeOnRelayB.Text = (string)arrRelayB["timeOn"];
-                    timeOffRelayB.Text = (string)arrRelayB["timeOff"];
+                  
                     if (((string)arrRelayB["status"]) == "on")
                     {
                         statusRelayB = true;
@@ -368,149 +366,156 @@ namespace Basic
         {
             SeriesCollection series = new SeriesCollection();
 
-
-            //SUMMARY
-            VLN.Text = Shared.funcService.GetValueString(reqMessage, "VLN");
-            KW.Text = Shared.funcService.GetValueString(reqMessage, "KW");
-            KVA.Text = Shared.funcService.GetValueString(reqMessage, "KVA");
-            KVAR.Text = Shared.funcService.GetValueString(reqMessage, "KVAR");
-            PF.Text = Shared.funcService.GetValueString(reqMessage, "PF");
-            valueEnegry.Text = Shared.funcService.GetValueString(reqMessage, "KWH");
-            valueHz.Text = Shared.funcService.GetValueString(reqMessage, "FREQUENCY");
-            //PHASE ONE
-            V1N.Text = Shared.funcService.GetValueString(reqMessage, "V1N");
-            KW1.Text = Shared.funcService.GetValueString(reqMessage, "KW1");
-            KVA1.Text = Shared.funcService.GetValueString(reqMessage, "KVA1");
-            KVAR1.Text = Shared.funcService.GetValueString(reqMessage, "KVAR1");
-            PF1.Text = Shared.funcService.GetValueString(reqMessage, "PF1");
-            //PHASETWO
-            V2N.Text = Shared.funcService.GetValueString(reqMessage, "V2N");
-            KW2.Text = Shared.funcService.GetValueString(reqMessage, "KW2");
-            KVA2.Text = Shared.funcService.GetValueString(reqMessage, "KVA2");
-            KVAR2.Text = Shared.funcService.GetValueString(reqMessage, "KVAR2");
-            PF2.Text = Shared.funcService.GetValueString(reqMessage, "PF2");
-            //PHASETHREE
-            V3N.Text = Shared.funcService.GetValueString(reqMessage, "V3N");
-            KW3.Text = Shared.funcService.GetValueString(reqMessage, "KW3");
-            KVA3.Text = Shared.funcService.GetValueString(reqMessage, "KVA3");
-            KVAR3.Text = Shared.funcService.GetValueString(reqMessage, "KVAR3");
-            PF3.Text = Shared.funcService.GetValueString(reqMessage, "PF3");
-            //RLA
-            statusRelayA = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAstatus"));
-            statusRelayB = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBstatus"));
-            modeRelayA = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAmode"));
-            modeRelayB = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBmode"));
-
-            //CURRENT
-            double iNon = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I"));
-            double iOne = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I1"));
-            double iTwo = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I2"));
-            double iThree = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I3"));
-            series.Add(new LineSeries()
+            if(topic == idProject)
             {
-                Values = new ChartValues<double>(limitValueList(nonValue, iNon)),
-                Title = "I",
-                StrokeThickness = 2,
-                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(155, 93, 229)),
-                Fill = System.Windows.Media.Brushes.Transparent,
-                LineSmoothness = 3,
-                PointGeometrySize = 10,
-                PointForeground =
-                 new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
-            });
-            series.Add(new LineSeries()
-            {
-                Values = new ChartValues<double>(limitValueList(oneValue, iOne)),
-                Title = "I1",
-                StrokeThickness = 2,
-                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(138, 201, 38)),
-                Fill = System.Windows.Media.Brushes.Transparent,
-                LineSmoothness = 2,
-                PointGeometrySize = 10,
-                PointForeground =
-              new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
-            }); ; ;
-            series.Add(new LineSeries()
-            {
-                Values = new ChartValues<double>(limitValueList(twoValue, iTwo)),
-                Title = "I2",
-                StrokeThickness = 2,
-                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(215, 38, 61)),
-                Fill = System.Windows.Media.Brushes.Transparent,
-                LineSmoothness = 2,
-                PointGeometrySize = 10,
-                PointForeground =
-              new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
-            });
-            series.Add(new LineSeries()
-            {
-                Values = new ChartValues<double>(limitValueList(threeValue, iThree)),
-                Title = "I3",
-                StrokeThickness = 2,
-                Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(252, 255, 253)),
-                Fill = System.Windows.Media.Brushes.Transparent,
-                LineSmoothness = 2,
-                PointGeometrySize = 10,
-                PointForeground =
-               new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
-            });
-            cartesianChart1.Series = series;
+                //SUMMARY
+                VLN.Text = Shared.funcService.GetValueString(reqMessage, "VLN");
+                KW.Text = Shared.funcService.GetValueString(reqMessage, "KW");
+                KVA.Text = Shared.funcService.GetValueString(reqMessage, "KVA");
+                KVAR.Text = Shared.funcService.GetValueString(reqMessage, "KVAR");
+                PF.Text = Shared.funcService.GetValueString(reqMessage, "PF");
+                valueEnegry.Text = Shared.funcService.GetValueString(reqMessage, "KWH");
+                valueHz.Text = Shared.funcService.GetValueString(reqMessage, "FREQUENCY");
+                //PHASE ONE
+                V1N.Text = Shared.funcService.GetValueString(reqMessage, "V1N");
+                KW1.Text = Shared.funcService.GetValueString(reqMessage, "KW1");
+                KVA1.Text = Shared.funcService.GetValueString(reqMessage, "KVA1");
+                KVAR1.Text = Shared.funcService.GetValueString(reqMessage, "KVAR1");
+                PF1.Text = Shared.funcService.GetValueString(reqMessage, "PF1");
+                //PHASETWO
+                V2N.Text = Shared.funcService.GetValueString(reqMessage, "V2N");
+                KW2.Text = Shared.funcService.GetValueString(reqMessage, "KW2");
+                KVA2.Text = Shared.funcService.GetValueString(reqMessage, "KVA2");
+                KVAR2.Text = Shared.funcService.GetValueString(reqMessage, "KVAR2");
+                PF2.Text = Shared.funcService.GetValueString(reqMessage, "PF2");
+                //PHASETHREE
+                V3N.Text = Shared.funcService.GetValueString(reqMessage, "V3N");
+                KW3.Text = Shared.funcService.GetValueString(reqMessage, "KW3");
+                KVA3.Text = Shared.funcService.GetValueString(reqMessage, "KVA3");
+                KVAR3.Text = Shared.funcService.GetValueString(reqMessage, "KVAR3");
+                PF3.Text = Shared.funcService.GetValueString(reqMessage, "PF3");
+                //RLA
+                statusRelayA = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAstatus"));
+                statusRelayB = isStatusRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBstatus"));
+                modeRelayA = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLAmode"));
+                modeRelayB = isModeRelay((string)Shared.funcService.GetValueString(reqMessage, "RLBmode"));
 
-            copyList(nonValue, limitValueList(nonValue, iNon));
-            copyList(oneValue, limitValueList(oneValue, iOne));
-            copyList(twoValue, limitValueList(twoValue, iTwo));
-            copyList(threeValue, limitValueList(threeValue, iThree));
+                //CURRENT
+                double iNon = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I"));
+                double iOne = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I1"));
+                double iTwo = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I2"));
+                double iThree = Convert.ToDouble(Shared.funcService.GetValueString(reqMessage, "I3"));
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(nonValue, iNon)),
+                    Title = "I",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(155, 93, 229)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 3,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                     new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(oneValue, iOne)),
+                    Title = "I1",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(138, 201, 38)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                }); ; ;
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(twoValue, iTwo)),
+                    Title = "I2",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(215, 38, 61)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                  new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                series.Add(new LineSeries()
+                {
+                    Values = new ChartValues<double>(limitValueList(threeValue, iThree)),
+                    Title = "I3",
+                    StrokeThickness = 2,
+                    Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(252, 255, 253)),
+                    Fill = System.Windows.Media.Brushes.Transparent,
+                    LineSmoothness = 2,
+                    PointGeometrySize = 10,
+                    PointForeground =
+                   new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 46, 49))
+                });
+                cartesianChart1.Series = series;
+
+                copyList(nonValue, limitValueList(nonValue, iNon));
+                copyList(oneValue, limitValueList(oneValue, iOne));
+                copyList(twoValue, limitValueList(twoValue, iTwo));
+                copyList(threeValue, limitValueList(threeValue, iThree));
 
 
 
-            #region RLA & RLB
-            //Relay A
-            controlRelayAMessage(statusRelayA);
-            if (modeRelayA)
-            {
+                #region RLA & RLB
+                //Relay A
+                controlRelayAMessage(statusRelayA);
+                /*
+                if (modeRelayA)
+                {
 
-                btnAutoRelayA.Enabled = false;
-                btnAutoRelayA.BackColor = Color.FromArgb(113, 97, 239);
-                btnManualRelayA.BackColor = Color.FromArgb(226, 234, 252);
-                btnManualRelayA.Enabled = true;
-                panelManualRelayA.Visible = false;
-                panelAutoRelayA.Visible = true;
+                    btnAutoRelayA.Enabled = false;
+                    btnAutoRelayA.BackColor = Color.FromArgb(113, 97, 239);
+                    btnManualRelayA.BackColor = Color.FromArgb(226, 234, 252);
+                    btnManualRelayA.Enabled = true;
+                    panelManualRelayA.Visible = false;
+                    panelAutoRelayA.Visible = true;
 
+                }
+                else
+                {
+                    btnManualRelayA.BackColor = Color.FromArgb(113, 97, 239);
+                    btnAutoRelayA.BackColor = Color.FromArgb(226, 234, 252);
+                    btnAutoRelayA.Enabled = true;
+                    panelManualRelayA.Visible = true;
+                    panelAutoRelayA.Visible = false;
+                }
+                */
+                //RelayB
+                controlRelayBMessage(statusRelayB);
+                /*
+                if (modeRelayB)
+                {
+
+                    btnAutoRelayB.Enabled = false;
+                    btnAutoRelayB.BackColor = Color.FromArgb(113, 97, 239);
+                    btnManualRelayB.BackColor = Color.FromArgb(226, 234, 252);
+                    btnManualRelayB.Enabled = true;
+                    panelManualRelayB.Visible = false;
+                    panelAutoRelayB.Visible = true;
+
+                }
+                else
+                {
+                    btnManualRelayB.BackColor = Color.FromArgb(113, 97, 239);
+                    btnAutoRelayB.BackColor = Color.FromArgb(226, 234, 252);
+                    btnAutoRelayB.Enabled = true;
+                    panelManualRelayB.Visible = true;
+                    panelAutoRelayB.Visible = false;
+                }
+                */
+                #endregion
+
+                #region Chart Line Current
+
+                #endregion
             }
-            else
-            {
-                btnManualRelayA.BackColor = Color.FromArgb(113, 97, 239);
-                btnAutoRelayA.BackColor = Color.FromArgb(226, 234, 252);
-                btnAutoRelayA.Enabled = true;
-                panelManualRelayA.Visible = true;
-                panelAutoRelayA.Visible = false;
-            }
-            //RelayB
-            controlRelayBMessage(statusRelayB);
-            if (modeRelayB)
-            {
 
-                btnAutoRelayB.Enabled = false;
-                btnAutoRelayB.BackColor = Color.FromArgb(113, 97, 239);
-                btnManualRelayB.BackColor = Color.FromArgb(226, 234, 252);
-                btnManualRelayB.Enabled = true;
-                panelManualRelayB.Visible = false;
-                panelAutoRelayB.Visible = true;
-
-            }
-            else
-            {
-                btnManualRelayB.BackColor = Color.FromArgb(113, 97, 239);
-                btnAutoRelayB.BackColor = Color.FromArgb(226, 234, 252);
-                btnAutoRelayB.Enabled = true;
-                panelManualRelayB.Visible = true;
-                panelAutoRelayB.Visible = false;
-            }
-            #endregion
-
-            #region Chart Line Current
-
-            #endregion
 
 
         }

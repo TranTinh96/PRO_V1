@@ -47,7 +47,7 @@ function Navbar(props) {
       icon: "map-pin"
     },
     {
-      name: "Accouts",
+      name: "Accounts",
       to: "/accouts",
       exact: false,
       isManyElenment: false,

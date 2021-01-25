@@ -11,7 +11,6 @@ import * as Animatable from 'react-native-animatable';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from "moment"
 import {useSelector} from 'react-redux';
-import topicPublish from "../../MQTT/topicPublish"
 
 function TimePicker(props) {
    //MQTT
@@ -25,7 +24,7 @@ function TimePicker(props) {
   const RLAmode = useSelector((state) => state.RLA.RLAmode);
   var _idProject = useSelector((state) => state.projectID);
 
-  const topic =`${_idProject}/${topicPublish.topic}`
+  const topic =`${_idProject}/`
 
   //StartRelayA
   const showTimePickerStartRelayA = () => {
