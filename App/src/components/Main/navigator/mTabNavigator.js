@@ -70,7 +70,7 @@ function TabNavigator()
                     <MaterialIcons name="dashboard" color={color} size={24} />
                 ),
             }} />
-           */}
+        
             <Tab.Screen name="Notification" component={Notification} options={{
                 tabBarBadge:true,
                 tabBarColor: '#fff',
@@ -78,6 +78,7 @@ function TabNavigator()
                     <MaterialIcons name="notifications-none" color={color} size={26} />
                 ),
             }} />
+               */}
             <Tab.Screen name="Accout" component={Accout} options={{
                 tabBarColor: '#fff',
                 tabBarIcon: ({ color }) => (
