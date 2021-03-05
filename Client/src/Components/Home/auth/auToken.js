@@ -46,8 +46,8 @@ function AuToken() {
                             <div className="form-group m-t-20 from-position">
                                 <input type="text" className="form-control shadow-none input-show rounded-0 input-form-2" name="tokenID" 
                                 ref={register({ required: true })} />
-                                {errors.tokenID && errors.tokenID.type==="required"&&  <p> Enter a vaild PROJECT ID </p>}
-                                {errors.tokenID && errors.tokenID.type=="notMatch"&&  <p> {errors.tokenID.message} </p>}
+                                {errors.tokenID && errors.tokenID.type ==="required"&&  <p> Enter a vaild PROJECT ID </p>}
+                                {errors.tokenID && errors.tokenID.type ==="notMatch"&&  <p> {errors.tokenID.message} </p>}
                             </div>
                             <div className="title-form-link-resend m-t-20">
                                 <Link to="/profile/resend">

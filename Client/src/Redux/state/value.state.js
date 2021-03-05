@@ -1,3 +1,4 @@
+
 const initialStateJWT = {
   isAuthenticated: false,
   user: {
@@ -6,7 +7,6 @@ const initialStateJWT = {
     role: "User"
   }
 }
-
 
 
 
@@ -46,6 +46,8 @@ var projectID = (state = null, action) => {
 
   
 
+
   
+
 
  module.exports= {projectID ,setUserJWT,idTopicProject};

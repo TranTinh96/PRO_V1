@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --inspect ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "assert": "^2.0.0",
@@ -16,6 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.9.16",
     "morgan": "^1.10.0",
     "mqtt": "^4.2.6",

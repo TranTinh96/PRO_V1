@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using System.IdentityModel.Tokens.Jwt;
+using Basic.Auth;
 
 namespace Basic
 {
@@ -18,8 +20,8 @@ namespace Basic
         private Panel leftBorderBtn;
         private Form currentChildForm;
 
-        //Contructor
-        public screenForm()
+        private static string tokenID ,addressEmail , roleAuth;
+        public screenForm(string tokenAuth)
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
@@ -30,7 +32,11 @@ namespace Basic
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
+            tokenID = tokenAuth;
+            addressEmail = Shared.JWT.JsonToken(tokenID, "email");
+            lableUser.Text = Shared.JWT.JsonToken(tokenID, "user");
+            roleAuth = Shared.JWT.JsonToken(tokenID, "role");
+            lableRole.Text = checkRole(Shared.JWT.JsonToken(tokenID, "role"));
         }
   
         //Structs
@@ -61,9 +67,6 @@ namespace Basic
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
-                //Current Child Form Icon
-                //iconCurrentChildForm.IconChar = currentBtn.IconChar;
-                //iconCurrentChildForm.IconColor = color;
             }
         }
         private void DisableButton()
@@ -94,15 +97,12 @@ namespace Basic
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            //lblTitleChildForm.Text = childForm.Text;
         }
         private void Reset()
         {
             DisableButton();
             leftBorderBtn.Visible = false;
-            //iconCurrentChildForm.IconChar = IconChar.Home;
-            //iconCurrentChildForm.IconColor = Color.MediumPurple;
-            //lblTitleChildForm.Text = "Home";
+           
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -113,38 +113,70 @@ namespace Basic
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new FormDashboard());
+            OpenChildForm(new FormDashboard(tokenID));
         }
 
         private void btnDataTables_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new FormDataTables());
+            OpenChildForm(new FormDataTables(tokenID));
         }
 
         private void btnAlarms_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new FormAlarms());
+            OpenChildForm(new FormAlarms(tokenID));
         }
 
         private void btnAccout_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new FormAccout());
+            OpenChildForm(new FormAccout(tokenID));
         }
 
         private void FormDashboard_Load(object sender, EventArgs e)
         {
+
+           
 
             DateTime tn = DateTime.Now;
             lableTime.Text = tn.ToString("dd-MM-yyyy");
             btnDashboard.PerformClick();
         }
 
+
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            FormLogin Child = new FormLogin();
+            this.Hide();
+            Child.Enabled = true;
+            Child.Show();
+
+        }
+
+        private string checkRole(string role)
+        {
+            string roleName;
+            switch (role)
+            {
+                case "ROLE_ADMIN":
+                    roleName = "Administrator";
+                    break;
+                case "ROLE_SEE":
+                    roleName = "User";
+                    break;
+                case "ROLE_CONTROL":
+                    roleName = "Control";
+                    break;
+                case "ROLE_MANAGER":
+                    roleName = "Manager";
+                    break;
+
+                default:
+                    roleName = "User";
+                    break;
+            }
+            return roleName;
         }
     }
 }

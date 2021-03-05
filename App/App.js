@@ -8,6 +8,9 @@
 
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
 import { View, ActivityIndicator } from 'react-native'
+import {useDispatch} from "react-redux"
+import jwt_decode from "jwt-decode";
+import checkRole from "./src/components/services/fucRole"
 import {  Provider as PaperProvider, 
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme } from 'react-native-paper';
@@ -22,7 +25,8 @@ import AuNavigator from "./src/components/Auth/navigator/auNavigator"
 import MainNavigator from "./src/components/Main/navigator/mStackNavigator"
 import { AuthContext } from './src/context/authContext';
 import { loginReducer, initialLoginState } from "./src/redux/loginReducer"
-
+//Function
+import setAuthorizationToken from './src/components/services/jwtService';
 
 const App = () => {
 
@@ -51,6 +55,9 @@ const App = () => {
   }
 
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+ 
+    //Redux
+  const dispatchApp = useDispatch();
   /*
    *
    * Setting Reducer
@@ -66,6 +73,15 @@ const App = () => {
     signIn: async (jwtToken) => {
       try {
         await AsyncStorage.setItem('authJWT', jwtToken);
+        setAuthorizationToken(jwtToken)
+        let jwt =jwt_decode(jwtToken);
+        let users = {
+          email: jwt.email,
+          user: jwt.user,
+          role: checkRole(jwt.role)
+        }
+        dispatchApp({ type: "SET_USER", users: users })
+        dispatchApp({type :"PROJECT_ID" ,projectID : jwt.project_id})
       } catch (e) {
         console.log(e);
       }
@@ -97,19 +113,32 @@ const App = () => {
    * 
    */
 
-
+  console.log("App")
   useEffect(() => {
     setTimeout(async () => {
-      let jwtToken =null ;
-
+      var jwtToken =null ;
       try {
         jwtToken = await AsyncStorage.getItem('authJWT');
+        if(jwtToken){
+            setAuthorizationToken(jwtToken);
+            let jwt =jwt_decode(jwtToken);
+            let users = {
+              email: jwt.email,
+              user: jwt.user,
+              role: checkRole(jwt.role)
+            }
+            //Redux User JWT
+            dispatchApp({ type: "SET_USER", users: users })
+          
+            //Redux ProjectID
+            dispatchApp({type :"PROJECT_ID" ,projectID : jwt.project_id})
+    
+        }
       } catch (e) {
         console.log(e);
       }
-      console.log('user token: ', jwtToken);
       dispatch({ type: 'RETRIEVE_TOKEN', token: jwtToken });
-    }, 1000);
+    }, 200);
   }, []);
 
  /*

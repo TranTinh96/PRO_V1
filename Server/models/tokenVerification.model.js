@@ -16,7 +16,7 @@ var tokenVerificationSchema = new Schema({
         type: Date,
          required: true, 
          default: Date.now, 
-         expires: '5m' 
+         expires: '24h' 
         }
 
 })

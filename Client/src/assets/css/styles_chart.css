@@ -45,51 +45,73 @@
 }
 /**************Data Table ***********/
 .table-data-contanier nav{
-  background: #fff;
-  margin-top: 10px;
-  box-shadow: 0 4px 6px rgba(52,58,64,.06);
-  border: none;
+  background: #fafafa;
+  margin-top: 22px;
+  /*box-shadow: 0 4px 6px rgba(52,58,64,.06);*/
+  border-radius: 5px 5px 0 0;
+  
 }
 .table-data-contanier a{
   font-size: 12px;
   font-weight: 700;
   font-family: 'Open Sans', sans-serif;
-  padding: 8px 10px;
+  padding: 6px 12px 12px 12px;
   color: #495057;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-  color: #727cf5;
+  color: #5465ff;
   background-color: #fff;
-  border-color: #727cf5 #727cf5 #fff;
-  border: 0px solid #727cf5;
-  border-top: 3px solid #727cf5;
+  border: 0px solid #f0f0f0;
+  border-top: 3px solid #5465ff;
   border-bottom:none;
+  border-radius: 5px 5px 0 0;
+}
+.nav-tabs .nav-link  {
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  color: #555;
+  border-top: 3px solid transparent;
+  
 }
 
-.nav-tabs .nav-link {
-  border-bottom: 1px solid transparent ;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
+.nav-tabs .nav-link :hover {
+ 
+  border: none !important;
+}
+.nav-tabs .nav-link :active{
+ 
+  border: none !important;
+}
+.table-data-container thead{
+
+  border-bottom:1px solid #f0f0f0 !important;
 }
 .table-data-container th{
   border: none !important;
   font-size: 13px;
   font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  padding-top: 15px;
+  padding-bottom: 15x;
+  border-bottom:2px solid #f0f0f0;
 }
 .table-data-container td{
   border: none;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'Open Sans', sans-serif;
+  padding-top: 12px;
+  padding-bottom: 12x;
+  border-bottom:1px solid #f0f0f0;
 }
 .table-data-container{
   overflow-y: scroll;
   overflow-x: hidden;
-  height: -moz-calc(100vh - 185px);
-  height: -webkit-calc(100vh - 185px);
-  height: calc(100vh - 185px);
+  height: -moz-calc(100vh - 200px);
+  height: -webkit-calc(100vh - 200px);
+  height: calc(100vh - 200px);
 }
 .table-fixed{
-  box-shadow: 0 4px 6px rgba(52,58,64,.06);
+ 
   background: #fff;
 }
 /*
@@ -98,24 +120,24 @@
 
  #style-7::-webkit-scrollbar-track
  {
-   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-   background-color: #F5F5F5;
-   border-radius: 10px;
+   -webkit-box-shadow: inset 0 0 4px rgba(235, 235, 235, 0.3);
+   background-color: #fafafa;
+   border-radius: 20px;
  }
  
  #style-7::-webkit-scrollbar
  {
-   width: 10px;
-   background-color: #F5F5F5;
+   width: 5px;
+   background-color: #fafafa;
  }
  
  #style-7::-webkit-scrollbar-thumb
  {
-   border-radius: 10px;
+   border-radius: 20px;
    background-image: -webkit-gradient(linear,
-                      left bottom,
+            left bottom,
                       left top,
-                      color-stop(0.44, rgb(122,153,217)),
+                      color-stop(0.44, #caffbf),
                       color-stop(0.72, rgb(122,153,217))
    )
                   
@@ -214,5 +236,84 @@
 }
 .table-chartFreEne-container-disable{
    pointer-events: none !important;
-    opacity: 0.6 !important;
+    opacity: 1 !important;
+}
+.page-title-text-fs{
+  font-size: 16px !important;
+  color:"#727cf5";
+  font-weight: 500;
+}
+.option-time-report{
+  float:right;
+  top:5px
+}
+
+.option-time-report span{
+  font-size: 12px;
+}
+.ant-radio-group-small .ant-radio-button-wrapper {
+  height: 33px;
+  padding: 4px 12px;
+  line-height: 22px;
+}
+
+/* -----------Notification ---------------*/
+.button-show-addNew{
+  float: left;
+}
+.drawerContainer{
+  z-index: 4000;
+}
+.notificationShow{
+  z-index: 5000;
+}
+.editable-row .ant-form-item-explain {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
+}
+.table-hide-pagination .ant-table-pagination.ant-pagination {
+  display: none !important;
+}
+.table-hide-pagination .ant-table {
+  font-size: 13px;
+}
+/*-------------------------------------------------------*/
+.avatar-container{
+  text-align: center;
+}
+.avatar-container h5{
+  font-size: 16px ;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 20px;
+
+}
+.avatar-container h6{
+  font-size: 14px ;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+.timeLine-container{
+  text-align: center;
+  margin-top: 70px;
+}
+.font-project-header{
+  font-size: 14px !important;
+}
+.table-manage .ant-table-pagination.ant-pagination {
+  display: none !important;
+}
+.table-manage .ant-table {
+  font-size: 14px;
+}
+
+.showProject-container .ant-table-pagination.ant-pagination {
+  display: none !important;
+} 
+
+.disabled-li {
+    pointer-events:none; 
+    opacity:0.8;         
 }

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
-  Dimensions,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -11,40 +10,63 @@ import {
 import * as Animatable from 'react-native-animatable';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from "moment"
+import {useSelector} from 'react-redux';
 
-function TimePicker() {
-  var [timeStartRelayB, setTimeStartRelayB] = useState('6:30');
-  var [timeEndRelayB, setTimeEndRelayB] = useState('8:30');
-  const [isDatePickerVisibleStartRelayB,setDatePickerVisibilityStartRelayB,] = useState(false);
-  const [isDatePickerVisibleEndRelayB,setDatePickerVisibilityEndRelayB,] = useState(false);
-  //StartRelayB
-  const showTimePickerStartRelayB = () => {
-    setDatePickerVisibilityStartRelayB(true);
+function TimePicker(props) {
+   //MQTT
+   var clientMQTT= props.clientMQTT
+   //
+  var [timeStartRelayA, setTimeStartRelayA] = useState('00:00');
+  var [timeEndRelayA, setTimeEndRelayA] = useState('00:00');
+  const [isDatePickerVisibleStartRelayA,setDatePickerVisibilityStartRelayA,] = useState(false);
+  const [isDatePickerVisibleEndRelayA,setDatePickerVisibilityEndRelayA,] = useState(false);
+  
+  const RLBmode = useSelector((state) => state.RLB.RLBmode);
+  var _idProject = useSelector((state) => state.projectID);
+
+  const topic =`${_idProject}/`
+
+  //StartRelayA
+  const showTimePickerStartRelayA = () => {
+    setDatePickerVisibilityStartRelayA(true);
   };
-  const hideTimePickerStartRelayB = () => {
-    setDatePickerVisibilityStartRelayB(false);
+  const hideTimePickerStartRelayA = () => {
+    setDatePickerVisibilityStartRelayA(false);
   };
-  const handleConfirmStartRelayB = (datetime) => {
-    setTimeEndRelayB(moment(datetime).format('HH:MM'))
-    hideTimePickerStartRelayB();
+  const handleConfirmStartRelayA = (datetime) => {
+    setTimeStartRelayA(moment(datetime).format('HH:MM'))
+    hideTimePickerStartRelayA();
   };
   //  EndRelayA
-  const showTimePickerEndRelayB = () => {
-    setDatePickerVisibilityEndRelayB(true);
+  const showTimePickerEndRelayA = () => {
+    setDatePickerVisibilityEndRelayA(true);
   };
-  const hideTimePickerEndRelayB = () => {
-    setDatePickerVisibilityEndRelayB(false);
+  const hideTimePickerEndRelayA = () => {
+    setDatePickerVisibilityEndRelayA(false);
   };
   const handleConfirmEndRelayA = (datetime) => {
-    setTimeEndRelayB=(moment(datetime).format('HH:MM'))
-    hideTimePickerEndRelayB();
+    setTimeEndRelayA(moment(datetime).format('HH:MM'))
+    hideTimePickerEndRelayA();
   };
+
+    //Publish MQTT mode Auto
+    const onClickRLAauto = () => {
+      if( (timeStartRelayA !==" ") &&(timeEndRelayA !==" ")){
+          var payload = "&RLBmode"+ "=" + RLBmode + "&"+ "RLBonTime"+"=" +timeStartRelayA +":00"+"&"+"RLBoffTime"+"=" + timeEndRelayA+":00"+"&";
+          clientMQTT.publish(topic,payload)
+      }
+      else
+      {
+        alert("RLAonTime or RLAoffTime don't value !")
+      }
+    }
+
   return (
     <View style={styles.containerAuto}>
       <View style={styles.autoTime}>
         <View style={styles.timeContainer}>
-          <TextInput style={styles.textTime} value={timeStartRelayB} />
-          <TouchableOpacity onPress={showTimePickerStartRelayB  }>
+          <TextInput style={styles.textTime} value={timeStartRelayA} />
+          <TouchableOpacity onPress={showTimePickerStartRelayA }>
             <Animatable.Image
               animation="bounceIn"
               duraton="1500"
@@ -54,18 +76,18 @@ function TimePicker() {
             />
           </TouchableOpacity>
           <DateTimePickerModal
-            isVisible={isDatePickerVisibleStartRelayB}
+            isVisible={isDatePickerVisibleStartRelayA}
             mode="time"
-            onConfirm={handleConfirmStartRelayB}
-            onCancel={hideTimePickerStartRelayB}
+            onConfirm={handleConfirmStartRelayA}
+            onCancel={hideTimePickerStartRelayA}
           />
         </View>
       </View>
       <View style={styles.padding}></View>
       <View style={styles.autoTime}>
         <View style={styles.timeContainer}>
-          <TextInput style={styles.textTime} value={timeEndRelayB} />
-          <TouchableOpacity onPress={showTimePickerEndRelayB }>
+          <TextInput style={styles.textTime} value={timeEndRelayA} />
+          <TouchableOpacity onPress={showTimePickerEndRelayA }>
             <Animatable.Image
               animation="bounceIn"
               duraton="1500"
@@ -75,15 +97,15 @@ function TimePicker() {
             />
           </TouchableOpacity>
           <DateTimePickerModal
-            isVisible={isDatePickerVisibleEndRelayB}
+            isVisible={isDatePickerVisibleEndRelayA}
             mode="time"
             onConfirm={handleConfirmEndRelayA}
-            onCancel={hideTimePickerEndRelayB}
+            onCancel={hideTimePickerEndRelayA}
           />
         </View>
       </View>
       <View style={styles.autoButton}>
-        <TouchableHighlight>
+        <TouchableHighlight onPress={onClickRLAauto}>
             <View style={styles.buttonSet}>
                 <Text style={styles.textButton}>SET</Text>
             </View>
@@ -124,13 +146,13 @@ const styles = StyleSheet.create({
   timeImage: {
     width: 25,
     height: 25,
-    marginLeft:5,
+    marginLeft:0,
     marginTop:8
     
   },
   autoButton:{
     justifyContent:"center",
-    marginTop:-8,
+    marginTop:-5,
     marginRight:5,
     marginLeft:6
   },

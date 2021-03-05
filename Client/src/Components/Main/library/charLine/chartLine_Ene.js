@@ -54,8 +54,8 @@ function ChartLine_Ene(props) {
 
     setSeries([{
           name: props.name,
-          data: limitData(props.dataArray,11,props.data)
-      }]
+          data: props.dataArray
+    }]
     )
 
   }, [props])

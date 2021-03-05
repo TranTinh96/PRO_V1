@@ -25,7 +25,7 @@ const MenuLink = ({ name, to, activeOnlyWhenExact }) => {
 }
 
 
-function MenuManyElement({ label, icon, routers, exact }) {
+function MenuManyElement({ label, icon, routers, exact ,isDisable }) {
     const isMenuElement = useSelector(state => state.isMenuElement);
     const dispatch = useDispatch();
 

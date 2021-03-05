@@ -28,7 +28,7 @@ var userSchema = new Schema({
             "ROLE_ADMIN",
             "ROLE_SEE",
             "ROLE_CONTROL" ,
-            "ROLE_AUTHOR"
+            "ROLE_MANAGER"
         ],
         default: "ROLE_SEE"
     },
@@ -102,4 +102,20 @@ module.exports.getAllUser =async( cb ) =>{
 }
 module.exports.deleteUser = async(id,cb)=>{
     await User.deleteOne({_id : id},cb);
+}
+module.exports.deleteUserAdmin = async(email,cb)=>{
+    await User.deleteOne({email: email},cb);
+}
+
+module.exports.getUserManage =async( project_id ,cb ) =>{
+   await User.find({project_id:project_id} ,cb);
+}
+
+module.exports.deleteUserByEmail = async(email,cb)=>{
+    await User.deleteOne({email: email},cb);
+}
+
+
+module.exports.updateUser = async(email, role, cb)=>{
+    await User.findOneAndUpdate({email ,email} , {role:role} ,cb);
 }

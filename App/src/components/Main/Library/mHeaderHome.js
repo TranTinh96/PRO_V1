@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Dimensions, Text ,TouchableOpacity } from "react-native"
 import { useNavigation, useTheme } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { Badge } from "react-native-elements"
@@ -23,13 +22,8 @@ function mHeader(props) {
                                 backgroundColor: "#EB4833",
                             }}
                             status="error"
-                            containerStyle={{ position: 'absolute', top: -6, right: -4 }}
-                            value={10}
-                            textStyle={{
-                                color: "white",
-                                fontSize: 11,
-                                fontFamily: "OpenSans-SemiBold"
-                            }}
+                            containerStyle={{ position: 'absolute', top: -2, right: 0 }}
+                           
                             
                         />
                     </TouchableOpacity>

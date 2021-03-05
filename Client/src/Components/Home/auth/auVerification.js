@@ -46,7 +46,7 @@ function AuVerification() {
                                         required: 'Required'                       
                                     })} />
                                 {errors.authAccout && errors.authAccout.type === "required" && <p>Enter a valid authAccout address</p>}
-                                {errors.authAccout && errors.authAccout.type == "noMatch" && <p>{errors.authAccout.message}</p>}
+                                {errors.authAccout && errors.authAccout.type === "noMatch" && <p>{errors.authAccout.message}</p>}
                             </div>
                             {errors.errTotal && errors.email.type == "errMany" && <p  className="err-total">{errors.errTotal.message}</p>}
                             <div className="border-resend"></div>

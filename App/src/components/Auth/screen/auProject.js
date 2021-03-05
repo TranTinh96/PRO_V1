@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
 import { View, Text, StatusBar, Image, TextInput, ScrollView } from "react-native"
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import { Button } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios"
-import { checkNull } from "../../services/fucCheck"
+import { checkNull } from "../../services/fucService"
 import styles from "../../../assets/formCss"
 
 

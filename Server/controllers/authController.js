@@ -95,6 +95,7 @@ module.exports.postRegister = async (req, res) => {
 
 //Post Login
 module.exports.postLogin = async (req, res) => {
+    console.log(req.body.email)
     var reqGmail = req.body.email
     var passwordBefore = req.body.password
     var jwtToken  ;
@@ -118,10 +119,6 @@ module.exports.postLogin = async (req, res) => {
                                if(project){
                                    _idProject = project.tokenProject
                                }
-                               else
-                               {
-                                   _idProject = null
-                               }
                                
                             })
                         
@@ -135,7 +132,6 @@ module.exports.postLogin = async (req, res) => {
                             }, process.env.JWT_KEY_SECRET, {
                                 expiresIn: "1h"
                             });
-                            console.log(_idProject)
                         }
                         else{
                             jwtToken = jwt.sign({

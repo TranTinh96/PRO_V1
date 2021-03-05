@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
-  Dimensions,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -11,13 +10,22 @@ import {
 import * as Animatable from 'react-native-animatable';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from "moment"
+import {useSelector} from 'react-redux';
 
-function TimePicker() {
-  var [timeStartRelayA, setTimeStartRelayA] = useState('6:30');
-  var [timeEndRelayA, setTimeEndRelayA] = useState('8:30');
+function TimePicker(props) {
+   //MQTT
+   var clientMQTT= props.clientMQTT
+   //
+  var [timeStartRelayA, setTimeStartRelayA] = useState('00:00');
+  var [timeEndRelayA, setTimeEndRelayA] = useState('00:00');
   const [isDatePickerVisibleStartRelayA,setDatePickerVisibilityStartRelayA,] = useState(false);
   const [isDatePickerVisibleEndRelayA,setDatePickerVisibilityEndRelayA,] = useState(false);
- 
+  
+  const RLAmode = useSelector((state) => state.RLA.RLAmode);
+  var _idProject = useSelector((state) => state.projectID);
+
+  const topic =`${_idProject}/`
+
   //StartRelayA
   const showTimePickerStartRelayA = () => {
     setDatePickerVisibilityStartRelayA(true);
@@ -40,6 +48,18 @@ function TimePicker() {
     setTimeEndRelayA(moment(datetime).format('HH:MM'))
     hideTimePickerEndRelayA();
   };
+
+    //Publish MQTT mode Auto
+    const onClickRLAauto = () => {
+      if( (timeStartRelayA !==" ") &&(timeEndRelayA !==" ")){
+          var payload = "&RLAmode"+ "=" + RLAmode + "&"+ "RLAonTime"+"=" +timeStartRelayA +":00"+"&"+"RLAoffTime"+"=" + timeEndRelayA+":00"+"&";
+          clientMQTT.publish(topic,payload)
+      }
+      else
+      {
+        alert("RLAonTime or RLAoffTime don't value !")
+      }
+    }
 
   return (
     <View style={styles.containerAuto}>
@@ -67,7 +87,7 @@ function TimePicker() {
       <View style={styles.autoTime}>
         <View style={styles.timeContainer}>
           <TextInput style={styles.textTime} value={timeEndRelayA} />
-          <TouchableOpacity onPress={showTimePickerStartRelayA }>
+          <TouchableOpacity onPress={showTimePickerEndRelayA }>
             <Animatable.Image
               animation="bounceIn"
               duraton="1500"
@@ -85,7 +105,7 @@ function TimePicker() {
         </View>
       </View>
       <View style={styles.autoButton}>
-        <TouchableHighlight>
+        <TouchableHighlight onPress={onClickRLAauto}>
             <View style={styles.buttonSet}>
                 <Text style={styles.textButton}>SET</Text>
             </View>

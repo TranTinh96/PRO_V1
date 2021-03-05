@@ -6,7 +6,7 @@ const extractJwt = passportJWT.ExtractJwt
 
 //Config passport-JWT
 var configJWT = {
-    jwtFromRequest : extractJwt.fromAuthHeaderAsBearerToken("token"),
+    jwtFromRequest : extractJwt.fromAuthHeaderAsBearerToken("Authorization"),
     secretOrKey  : process.env.JWT_KEY_SECRET
  }
  

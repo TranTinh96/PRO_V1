@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigation, useTheme } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, Text, StatusBar, TextInput, Dimensions, ScrollView ,TouchableOpacity} from "react-native"
+import { View, Text, StatusBar, TextInput, ScrollView ,TouchableOpacity} from "react-native"
 import Icon from 'react-native-vector-icons/Feather';
 import IconFa from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
@@ -11,7 +11,7 @@ import Modal from "react-native-modalbox"
 import styles from "../../../assets/formCss"
 import axios from "axios"
 import { useSelector } from 'react-redux';
-import { checkNull, checkUndefined } from "../../services/fucCheck"
+import { checkNull, checkUndefined } from "../../services/fucService"
 
 
 function AuRegister() {

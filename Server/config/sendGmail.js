@@ -40,7 +40,7 @@ const sendMail = (user, req, token, cb) => {
     template: 'email',
     context: {
       userName :user.userName ,
-      hostServer: "http://localhost:3000/profile/confirmation",
+      hostServer: process.env.HOSR_SERVER_WEB,
       token: token.token
     }
 

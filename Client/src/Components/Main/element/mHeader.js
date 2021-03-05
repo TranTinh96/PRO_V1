@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState,useEffect} from "react";
-import {Link} from "react-router-dom"
-import { useCookies } from 'react-cookie';
+import {Link ,useHistory} from "react-router-dom"
+import Cookies from 'universal-cookie';
 import {useSelector ,useDispatch} from 'react-redux';
 import { Search ,Menu,Bell,List ,ChevronDown ,ChevronUp ,Settings,User,Lock,Power,X} from 'react-feather';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,8 @@ import userlogo from "../../../assets/Image/loggeduser.jpg"
 
 function MHeader() {
   //Cookie
-  const [cookies, removeCookie] = useCookies(["Auth"]);
+  const cookie = new Cookies();
+  const history = useHistory()
   //Redux
   const isMenu = useSelector((state) => state.isMenu);
   const userName = useSelector((state) => state.setUserJWT).users.user;
@@ -25,11 +26,14 @@ function MHeader() {
   const btnLogout = () => {
     console.log("Remove Cookies ");
     //Redux User JWT
-    dispatch({ type: "SET_USER", users: { } });
-    removeCookie("Auth");
+    cookie.remove("Auth")
+    dispatch({type :"ID_TOPIC_PROJECT" , _idProject :' '})
+    localStorage.removeItem("AuthID")
+    history.push("/")
   };
 
   return (
+    <React.Fragment>
     <nav className="navbar navbar-header">
       <div className="navbar-wrapper">
         <div className={isMenu ? "navbar-logo" : "navbar-logo-small"}></div>
@@ -122,13 +126,13 @@ function MHeader() {
               >
                 <ul>
                   <li>
-                    <Link className="user-link" to="/accout">
+                    <Link className="user-link" to="/setting">
                       <Settings color="#2D8DC9" size={16} />
                       <span> Settings</span>
                     </Link>
                   </li>
                   <li>
-                    <Link className="user-link" to="/profile">
+                    <Link className="user-link" to="/accouts">
                       <User color="#2D8DC9" size={16} />
                       <span> Profile</span>
                     </Link>
@@ -152,6 +156,7 @@ function MHeader() {
         </div>
       </div>
     </nav>
+    </React.Fragment>
   );
 }
 

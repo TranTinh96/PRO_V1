@@ -49,7 +49,7 @@ function AuLogin() {
         axios.post('/profile/login', data)
             .then(res => {
                 var resData = res.data
-               
+                localStorage.removeItem("AuthID")       
                 if (resData.success) {
                     var authToken = resData.token;
                     jwtToken =jwt.decode(authToken)
@@ -59,13 +59,24 @@ function AuLogin() {
                         user :jwtToken.user,
                         role :role
                     }
-                    if(!(role =="Administrator")){
+                    if(role =="Administrator")
+                    {
+                        dispatch({
+                            type :"ID_TOPIC_PROJECT" ,
+                            _idProject : "ADMIN"
+                        })   
+                        localStorage.setItem("AuthID","ADMIN")                    
+                    }
+                    else
+                    {
                         dispatch({
                             type :"ID_TOPIC_PROJECT" ,
                             _idProject :jwtToken.project_id
                         })
+                        localStorage.setItem("AuthID",jwtToken.project_id)
+                        
                     }
-                    
+                   
                     //Set JWT
                     setAuthorizationToken(authToken);
                     //Redux User JWT ,ID_TOPIC_PROJECT
@@ -78,7 +89,8 @@ function AuLogin() {
                     setCookie('Auth', authToken, optionCookie);
                     //Redirect
                     history.push("/dashboard");
-                    history.go(0);
+                    
+                   
                 } else {
                     if (!resData.email) {
                         setError(
@@ -133,7 +145,7 @@ function AuLogin() {
                                         }
                                     })} />
                                 {errors.email && errors.email.type === 'required' && <p>Enter a valid email address</p>}
-                                {errors.email && errors.email.type == 'noEmail' && <p>{errors.email.message}</p>}
+                                {errors.email && errors.email.type === 'noEmail' && <p>{errors.email.message}</p>}
 
                             </div>
                             <div className="form-group m-t-25 from-position">
@@ -149,7 +161,7 @@ function AuLogin() {
                                     })} />
                                 {errors.password && errors.password.type === 'required' && <p>Enter a valid password</p>}
                                 {errors.password && errors.password.type === 'minLenght' && <p>Your password need minmium 8 charcaters</p>}
-                                {errors.password && errors.password.type == 'noPassword' && <p>{errors.password.message}</p>}
+                                {errors.password && errors.password.type === 'noPassword' && <p>{errors.password.message}</p>}
 
                             </div>
                             <div className="form-checkPASS m-t-25">

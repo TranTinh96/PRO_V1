@@ -19,6 +19,14 @@ const Forms = {
         shadowOpacity: 0.3,
         shadowRadius: 4,
     },
+    formContainerAlarm :{
+        
+        padding :8,
+        shadowColor: 'gray',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+    },
     wrapper:{
     },
     containerScreen:{
@@ -88,9 +96,7 @@ const Forms = {
     },
 
     bulbContainer:{
-        backgroundColor:"#f8f9fa",
         padding :8,
-        borderRadius:50,
         borderColor:"#727cf5",
         justifyContent: 'center',
         alignItems: 'center',
@@ -98,9 +104,7 @@ const Forms = {
         marginBottom :0
     },
     bulbContainerOn:{
-        backgroundColor:"#ffee93",
         padding :8,
-        borderRadius:50,
         borderColor:"#727cf5",
         justifyContent: 'center',
         alignItems: 'center',

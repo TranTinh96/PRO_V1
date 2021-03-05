@@ -1,10 +1,18 @@
-import React from 'react'
+import React ,{useEffect} from 'react'
 import Map from "../library/map"
 import FeatherIcon from 'feather-icons-react';
+import { useDispatch} from "react-redux";
 
-function mMaps() {
+function Maps() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch({ type: "LOADDING_DASHBOARD" });
+        dispatch({ type: "LOADDING_TABLE" });
+        dispatch({type:"LOADDING_ALARM"})
+      }, []);
+    
     return (
-    <>
+        <>
         <div className="pcoded-content">
             <div className="pcoded-inner-content">
                 <div className="main-body">
@@ -20,9 +28,9 @@ function mMaps() {
                                             </div>
                                             <div className="page-title">
                                                 <div className="page-icon">
-                                                    <FeatherIcon icon="map-pin" color="#727cf5" size={17} />
+                                                    <FeatherIcon icon="map-pin" color="#727cf5" size={15} />
                                                 </div>
-                                                <div className="page-title-text">Maps</div>
+                                                <div className="page-title-text page-title-text-fs">Maps</div>
                                             </div>
 
                                         </div>
@@ -42,4 +50,4 @@ function mMaps() {
     )
 }
 
-export default mMaps
+export default Maps
