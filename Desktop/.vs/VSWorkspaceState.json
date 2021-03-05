@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Basic",
     "\\Basic\\Auth"
   ],
-  "SelectedNode": "\\Basic\\Auth\\FormLogin.Designer.cs",
+  "SelectedNode": "\\Basic.sln",
   "PreviewInSolutionExplorer": false
 }
